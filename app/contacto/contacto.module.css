@@ -1,0 +1,66 @@
+.contact-page-container{
+    font-family: 'CircularStd-Book',sans-serif;
+
+}
+.contact-titles{
+    padding-top: 3rem;
+    text-align: center;
+}
+
+.contact-titles h2{
+    font-family: 'CircularStd-Bold',sans-serif;
+    font-size: 40px;
+}
+
+.contact-titles p{
+    font-size: 20px;
+    width: 50%;
+    margin: auto;
+    line-height: 27px;
+
+    padding: 1rem 0;
+}
+
+.contact-info{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+    padding-bottom: 4rem;
+}
+
+.contact-text{
+    padding-top: 2rem;
+    width: 40%;
+}
+
+.contact-text h4{
+    font-size: 29px;
+    font-family: 'CircularStd-Bold',sans-serif;
+
+}
+
+.contact-text p{
+    margin: 6px 0;
+    line-height: 25px;
+}
+
+.contact-text-items{
+    padding-top: 1rem;
+}
+
+.contact-text-item{
+    display: flex;
+    align-items: center;
+}
+
+.contact-text-item img{
+    width: 26px;
+    height: 26px;
+    margin-right: 6px;
+}
+
+
+
+
+    

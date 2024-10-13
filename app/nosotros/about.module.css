@@ -1,0 +1,127 @@
+.about-us-container{
+    width: 80%;
+    margin: auto;
+    font-family: 'CircularStd-Book',sans-serif;
+}
+
+.about-us-titles{
+    text-align: center;
+    padding-top: 3em;
+    
+}
+
+.about-us-titles h2{
+    font-family: 'CircularStd-Bold',sans-serif;
+    font-size: 40px;
+    padding-bottom: 2rem;
+}
+
+.about-us-titles p{
+    font-size: 20px;
+    padding-bottom: 4rem;
+}
+
+
+.about-us-banner{
+    width: 100%;
+    background-color:#2a66ff;
+    height: 20rem;
+    border-radius: 10px;
+}
+
+.about-us-numbers{
+    padding-top: 4rem;
+}
+
+.about-us-numbers h3{
+    font-size: 35px;
+    text-align: center;
+}
+
+.about-numbers-items{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3rem;
+}
+
+.about-numbers-item{
+    text-align: center;
+}
+
+.about-numbers-item h4{
+    font-size: 45px;
+}
+
+.about-numbers-item p{
+    padding: 0.5rem 0;
+    font-size: 18px;
+}
+
+.our-history{
+    padding-top: 4rem;
+}
+
+
+.our-history h4{
+    font-size: 20px;
+    color: #2a66ff;
+    letter-spacing: 1.5px;
+    text-align: center;
+
+}
+
+.our-history h3{
+    font-size: 35px;
+    text-align: center;
+    padding-top: 0.6rem;
+    padding-bottom: 1rem;
+}
+
+.our-history p{
+    width: 80%;
+    margin: auto;
+    columns: #181b32;
+    padding: 0.8rem 0;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.about-filler{
+    background-color: #0d2ea2;
+    margin: 4rem 0;
+    color: white;
+    padding: 3rem 0;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-filler h3{
+    font-size: 40px;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.about-filler p{
+    font-size: 18px;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    padding: 1.4rem 0;
+}
+
+.about-filler a{
+    border-radius: 6px;
+    color: #0d2ea2;
+    background-color: white;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    width: max-content;
+    font-size: 17px;
+    font-family: 'CircularStd-Book',sans-serif;
+    text-decoration: none;
+}
+
