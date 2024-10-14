@@ -12,29 +12,29 @@ const Header = () => {
         </div>
         <div className="header-info">
           <nav className="navbar user-navbar">
-            <Link href="/exani-iii">
+            <Link href="/curso">
               <Image src="/layout/home-icon2.png" alt="Inicio" width={20} height={20} />
               Inicio
             </Link>
-            <Link href="/simuladores">
+            <Link href="/curso/simuladores">
               <Image src="/layout/writing.svg" alt="Simuladores" width={20} height={20} />
               Simuladores
             </Link>
-            <Link href="/lecciones">
+            <Link href="/curso/lecciones">
               <Image src="/layout/open-book.png" alt="Lecciones" width={20} height={20} />
               Lecciones
             </Link>
-            <Link href="/cuestionarios/metodologia-de-la-investigacion">
+            <Link href="/curso/cuestionarios/metodologia-de-la-investigacion">
               <Image src="/layout/test-icon.png" alt="Cuestionarios" width={20} height={20} />
               Cuestionarios
             </Link>
-            <Link href="/planes">
+            <Link href="/curso/planes">
               <Image src="/layout/payment-icon.png" alt="Planes" width={20} height={20} />
               Planes
             </Link>
           </nav>
 
-          <Link href="/perfil" className="navbar-button user-header-button">
+          <Link href="/curso/cuenta" className="navbar-button user-header-button">
             <Image src="/layout/user-icon.png" alt="Perfil" width={25} height={25} />
           </Link>
         </div>

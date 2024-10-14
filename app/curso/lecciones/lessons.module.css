@@ -1,0 +1,143 @@
+.titles{
+    /* padding-top: 4rem; */
+}
+.lessons-page-container{
+    font-family: 'CircularStd-Book',sans-serif;
+}
+
+.lessons-page-container .titles h2{
+    padding-top: 2rem;
+    width: 80%;
+    margin: auto;
+    padding-top: 2rem;
+    font-size: 26px;
+}
+
+
+
+.lessons-container{
+    /* display: flex;
+    flex-wrap:wrap ; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 1rem;
+    width: 80%;
+    margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* justify-content: center; */
+}
+
+.lessons-container .lesson-item{
+    border-radius: 10px;
+    border: 1px solid #c8ced3;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* padding-bottom: 1.5rem; */
+    margin-bottom: 1rem;
+}
+
+.lesson-item-titles{
+    padding: 1rem 1.6rem;
+    font-size: 16px;
+    background-color: #0056D2 !important;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+
+.lesson-item-content{
+    display: flex;
+    padding:1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lesson-item-content p{
+    font-size: 19px;
+}
+
+.lesson-item-progress{
+    padding-top: 0.5rem;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    display: flex;
+
+}
+
+.lesson-item-progress div:first-of-type{
+    flex-grow: 1;
+}
+
+
+
+.lessons-page-container .lesson-play-container{
+    /* flex-grow: 1; */
+    display: flex;
+    background-color: #0056D2;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+
+.lesson-play-container img{
+    /* width: 17px; */
+}
+
+
+
+.lessons-page-container .item{
+
+        border-radius: 10px;
+        border: 1px solid #c8ced3;
+        padding-bottom: 1rem;
+}
+
+.lessons-page-container .item-img{
+    position: relative;
+    /* height: 180px; */
+    height: 150px;
+
+    display: flex;
+    /* background-image: url('/img/simulator/mathematics.jpg'); */
+    /* background-position:center; */
+    background-size:cover;
+    
+}
+
+.lessons-page-container .overlay{
+ 
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.lessons-page-container .overlay h2{
+    font-size: 29px;
+}
+
+.lessons-page-container .item-img img{
+    height: 150px; 
+    height:auto;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

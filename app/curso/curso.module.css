@@ -1,18 +1,17 @@
 .user-dashboard-container{
   font-family: 'CircularStd-Book',sans-serif;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 
 .dashboard-titles{
   width: 70%;
   margin: auto;
-  padding-top: 3rem;
+  margin-top:1.3rem;
   text-align: center;
 }
 
 .dashboard-titles h2{
-  margin-top: 64px;
   font-size: 27px;
 }
 

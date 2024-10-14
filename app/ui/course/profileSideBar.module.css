@@ -1,0 +1,46 @@
+.profile-sidebar{
+    min-width: 250px;
+    padding-top: 1rem;
+}
+
+.profile-sidebar h4{
+    font-size: 20px;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-bottom: none;
+}
+
+.profile-content-container{
+    width: 100%;
+}
+
+.profile-content{
+    width: 80%;
+    margin: auto;
+}
+
+
+.profile-sidebar-item{
+    padding: 0px;
+    display: flex;
+    padding: 0.9rem;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.profile-sidebar-item:hover{
+    background-color: #EEEEEE;
+}
+
+.profile-item-selected{
+    background-color: #EEEEEE;
+    box-shadow: inset 4.5px 0 #1865f2;
+}
+
+.bb-none{
+    border-bottom: none;
+
+}
+

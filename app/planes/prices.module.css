@@ -134,3 +134,12 @@
 }
 
 
+.course-pricing-container{
+    padding: 0;
+}
+
+.course-pricing-title h3{
+    padding-top: 3rem;
+    /* margin-top: 4rem; */
+}
+
