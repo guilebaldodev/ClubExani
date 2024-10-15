@@ -38,7 +38,7 @@ const LessonsPage = () => {
                 <ProgressBarItem isLabelVisible={false} porcentage={60} color='#0056D2'></ProgressBarItem>
 
 
-                  <Link  className={styles['lesson-play-container']} href="/lecciones/paradigmas-de-investigacion">
+                  <Link  className={styles['lesson-play-container']} href="/curso/lecciones/paradigmas-de-investigacion">
                       <Image
                         src="/course/play-icon.png"
                         alt="Play icon"

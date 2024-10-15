@@ -19,7 +19,8 @@ const Profile = () => {
 
                     <div className={styles['profile-credentials']}>
                         <div className={styles['circle-div']}>
-                            <Image src="/icons/user-icon-profile.png" alt="User Icon" width={50} height={50} />
+                            <Image  src="/layout/user-icon.png"  alt="Perfil" width={65} height={65} />
+
                         </div>
 
                         <div className={styles['credentials-text']}>

@@ -7,9 +7,7 @@
     /* width: 70%; */
     width: 90%;
     margin: auto;
-    margin-top: 64px;
-    padding-top: 2rem;
-    font-family: 'CircularStd-Book',sans-serif;
+    padding-top: 1rem;
     display: flex;
 }
 
@@ -89,24 +87,19 @@
 .circle-div{
     width: 90px;
     height: 90px;
-    border-radius: 200px;
-    background-color:blue;
+    border-radius: 100%;
+    background-color:#0056D2;
     display: flex;
     align-content: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
-.circle-div img{
-    padding: 1rem;
-}
 
 .credentials-text{
 padding-left: 2rem;
 }
 
-.credentials-text p:first-of-type{
-  font-family: 'CircularStd-Bold',sans-serif;
-}
 
 
 .profile-double-input{
@@ -154,7 +147,7 @@ padding-left: 2rem;
 
 .profile-button{
     display: flex;
-    justify-content: end;
+    justify-content:flex-end;
     padding-bottom: 2rem;
 
 }

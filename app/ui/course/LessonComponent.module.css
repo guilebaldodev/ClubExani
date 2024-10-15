@@ -1,0 +1,203 @@
+
+.lesson-content-container{
+    display: flex;
+  }
+  
+  .lesson-content{
+    width: 83%;
+    margin: auto;
+    margin-top: 64px;
+    padding-top: 3rem;
+    font-size: 18px;
+    padding-bottom: 1rem;
+  }
+  
+  .lesson-content h2{
+    font-size: 35px;
+  }
+  
+  .lesson-content h3{
+    font-size: 21px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .lesson-content h4{
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  
+  }
+  
+  .lesson-paragraph{
+    padding: 1rem 0;
+  }
+  
+  .lesson-ul li{
+    /* padding: 4px; */
+    margin-left: 16px;
+  }
+  
+  .lesson-ul li::marker{
+    font-size: 24px;
+  
+  }
+  
+  
+  .lesson-content .pb-0{
+    padding-bottom: 0px ;
+  }
+  
+.lesson-ol li{
+    padding: 0.5rem 0;
+    list-style: none;
+    display: flex;
+  } 
+  
+  .lesson-ol-text{
+    padding-left: 10px;
+  }
+  
+  
+  
+  .lesson-ol-text p{
+    display: inline;
+  }
+  
+  
+  .counter-ul{
+    min-width: 27px;
+    max-width: 27px;
+    min-height: 27px;
+    max-height: 27px;
+    border-radius: 26px;
+    background-color: #0056D2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .note-container{
+    background-color: #fefad8;
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin: 16px 0;
+  }
+  
+  .example{
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 16px 0;
+    background-color: #D9EEE1;
+  }
+  
+  
+  
+  .note-title{
+    display: flex;
+    align-items: center;
+  }
+  
+  .example-title{
+    display: flex;
+    align-items: center;
+  }
+  
+  .note-title h4{
+    font-size: 24px;
+    color: #e6bf00;
+  }
+  
+  .example h4{
+    color: #04aa6d;
+    padding: 0.3rem 0;
+    font-size: 22px;
+  }
+  
+  .example-title img{
+    width: 30px;
+    height: 30px;
+    /* margin-top: 6px; */
+    margin-right: 5px;
+  }
+  
+  
+  .note-container p,.example p{
+    padding-top: 0.5rem;
+  }
+  
+  .pt-0{
+    padding-top: 0;
+  }
+  
+  .example{
+    padding-top: 1rem;
+  }
+  
+  .lesson-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem  0;
+  }
+  
+  .example .lesson-ul{
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+  }
+  
+  .lesson-buttons-container button{
+    /* width: 7rem; */
+    /* height: 2rem; */
+    border: none;
+    background-color: #0056D2;
+    padding: 0.7rem 1rem;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .lesson-buttons-container .desactivate{
+    background-color: rgb(193, 193, 194);
+  }
+  
+  .lesson-title{
+    display: flex;
+    color: #14a2ff;
+    color: #0056d2;
+    align-items: center;
+    font-size: 22px;
+  }
+  
+  .lesson-done button{
+    border: none;
+    background-color: #0056D2;
+    padding: 0.6rem 0.8rem;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin: 0.7rem 0;
+  }
+  
+  
+  .lesson-done{
+    margin-top: 1rem;
+    background-color: #e5f5fd;
+    /* background-color: #d4f1ff; */
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  .lesson-done img{
+    width: 35px;
+    margin-top: 9px;
+    margin-right: 6px;
+  }
+  
+  .lesson-done p {
+    padding-top:  0.5rem ;
+    padding-bottom:  0.8rem ;
+  }
