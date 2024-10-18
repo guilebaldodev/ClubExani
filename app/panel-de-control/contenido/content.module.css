@@ -1,0 +1,131 @@
+.content-dashboard-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 1rem;
+}
+
+
+.content-dashboard-card{
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-img-dashboard{
+    width: 56px;
+    height: 56px;
+    border-radius: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.content-img-dashboard.green{
+    background-color: #DAF4F0;
+}
+
+.content-img-dashboard.blue{
+    background-color: #DFF0FA;
+}
+
+.content-img-dashboard.orange{
+    background-color: #FEF4E4;
+}
+
+.content-img-dashboard.red{
+    background-color: #FEE2E2;
+    
+}
+
+
+
+.content-dashboard-card h3{
+    font-size: 24px;
+    padding: 0.5rem 0;
+}
+
+.content-dashboard-card p{
+    color: #647488;
+    text-align: center;
+}
+
+.content-dashboard-items{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.horizontal-bar{
+    width: 70%;
+    max-width: 70%;
+    padding: 1rem;
+    
+}
+
+.horizontal-bar-container{
+    height: 100%;
+    background-color: white;
+    padding: 1.85rem 1rem 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+
+.horizontal-bar-titles p{
+    padding: 0.5rem 0;
+    color: #2F2B3D8C;
+}
+
+.content-pie{
+    width: 30%;
+    padding: 1rem;
+}
+
+.content-pie-container{
+    background-color: white;
+    padding: 1.85rem 1rem 0.5rem 1rem;
+    border-radius: 4px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.content-pie-chart{
+    padding-top: 1rem;
+    flex-grow: 1;
+    align-items: center;
+    display: flex;  
+}
+
+
+.content-table{
+    width: 100%;
+    padding: 1rem;
+}
+
+.content-table-container{
+    background-color: white;
+    padding: 1.85rem 1rem 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.content-line{
+    width: 50%;
+    padding: 1rem;
+}
+
+.content-line-container{
+    background-color: white;
+    padding: 1.85rem 1rem 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.content-line-title h2{
+    padding: 0.8rem 0;
+}

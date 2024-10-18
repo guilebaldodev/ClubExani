@@ -54,7 +54,7 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'dashboards' ? styles["show"] : ''}`}>
-                <Link href="/panel-control/ventas">
+                <Link href="/panel-de-control/ventas">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Ventas Icon"
@@ -64,7 +64,7 @@ const SideBar = () => {
                   <p>Ventas</p>
                 </Link>
 
-                <Link href="/panel-control/contenido">
+                <Link href="/panel-de-control/contenido">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Contenido Icon"
@@ -103,7 +103,7 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'preguntas' ? styles["show"] : ''}`}>
-                <Link href="/panel-control/preguntas">
+                <Link href="/panel-de-control/preguntas">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -113,7 +113,7 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-control/añadir-pregunta">
+                <Link href="/panel-de-control/añadir-pregunta">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Icon"
@@ -152,7 +152,7 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'lecciones' ? styles["show"] : ''}`}>
-                <Link href="/panel-control/lecciones">
+                <Link href="/panel-de-control/lecciones">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -162,7 +162,7 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-control/añadir-leccion">
+                <Link href="/panel-de-control/añadir-leccion">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Icon"
@@ -201,7 +201,7 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'simuladores' ? styles["show"] : ''}`}>
-                <Link href="/panel-control/simuladores">
+                <Link href="/panel-de-control/simuladores">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -211,7 +211,7 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-control/añadir-simulador">
+                <Link href="/panel-de-control/añadir-simulador">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Simulador Icon"
@@ -250,7 +250,7 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'cuestionarios' ? styles["show"] : ''}`}>
-                <Link href="/panel-control/cuestionarios">
+                <Link href="/panel-de-control/cuestionarios">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -260,7 +260,7 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-control/añadir-cuestionario">
+                <Link href="/panel-de-control/añadir-cuestionario">
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Cuestionario Icon"
@@ -272,12 +272,12 @@ const SideBar = () => {
               </div>
             </div>
 
-            <Link href="/panel-control/usuarios">
+            <Link href="/panel-de-control/usuarios">
               <Image src="/layout/admin/user-icon.png" alt="Usuarios Icon" width={20} height={20} />
               <p>Usuarios</p>
             </Link>
 
-            <Link href="/panel-control/subscripciones">
+            <Link href="/panel-de-control/subscripciones">
               <Image
                 src="/layout/admin/money-icon.png"
                 alt="Subscripciones Icon"
@@ -291,12 +291,12 @@ const SideBar = () => {
 
 
         <div className={styles["sidebar-footer"]}>
-  <Link href="/panel-control/preguntas">
+  <Link href="/panel-de-control/preguntas">
     <Image src="/layout/admin/dark-mode-icon.png" alt="Tema Icon" width={20} height={20} />
     <p>Tema</p>
   </Link>
 
-  <Link href="/panel-control/preguntas">
+  <Link href="/panel-de-control/preguntas">
     <Image src="/layout/admin/log-out-icon.png" alt="Cerrar sesión Icon" width={20} height={20} />
     <p>Cerrar sesión</p>
   </Link>
