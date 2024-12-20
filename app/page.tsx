@@ -1,9 +1,13 @@
+'use client'
 import Image from 'next/image';
 import styles from './LandingPage.module.css'; 
 import Footer from './ui/landingPage/Footer';
 import Header from './ui/landingPage/LandingHeader';
 
-const LandingPage = () => {
+const LandingPage = () => {  
+  
+
+  
   return (
     <>
     <Header></Header>
@@ -29,8 +33,8 @@ const LandingPage = () => {
               deseas.
             </p>
             <div className={styles['landing-hero-buttons']}>
-              <button className={styles['primary']}>Ver Planes</button>
-              <button className={styles['secundary']}>Probar Curso</button>
+              <button className={styles['primary']}>Probar Curso</button>
+              {/* <button className={styles['secundary']}>Probar Curso</button> */}
             </div>
           </div>
         </div>
@@ -38,7 +42,6 @@ const LandingPage = () => {
         <div className={styles['landing-numbers']}>
           <div className={styles['landing-number-item']}>
             <div className={styles['landing-number-img']}>
-              {/* <img src="/icons/landing/users.png" alt="" /> */}
             </div>
             <h3>+1000</h3>
             <p>Usuarios</p>
@@ -141,6 +144,12 @@ const LandingPage = () => {
           </div>
 
           <div className={styles['landing-section']}>
+
+          <div className={styles['landing-section-img']}>
+              <Image src={'/landing/hero.png'} width={400} height={400} alt='hero image' style={{width:"100%",height:"auto"}}></Image>
+
+            </div>
+
             <div className={styles['landing-section-texts']}>
               <h4>Examenes simuladores</h4>
               <h3>Prueba tu nivel antes del examen real</h3>
@@ -155,10 +164,7 @@ const LandingPage = () => {
               <button>Examen Diagnostico</button>
             </div>
 
-            <div className={styles['landing-section-img']}>
-              <Image src={'/landing/hero.png'} width={400} height={400} alt='hero image' style={{width:"100%",height:"auto"}}></Image>
-
-            </div>
+        
           </div>
 
           <div className={styles['landing-blue']}>
@@ -179,7 +185,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className={styles['landing-section']}>
+          {/* <div className={styles['landing-section']}>
             <div className={styles['landing-section-texts']}>
               <h4>Tu progreso</h4>
               <h3>Herramientas de seguimiento avanzadas</h3>
@@ -195,7 +201,7 @@ const LandingPage = () => {
 
 
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className={styles['testimonials-container']}>
@@ -218,7 +224,6 @@ const LandingPage = () => {
                   </q>
                 </p>
 
-                <a href="">Ver más</a>
               </div>
             </div>
 
@@ -239,7 +244,6 @@ const LandingPage = () => {
                   </q>
                 </p>
 
-                <a href="">Ver más</a>
               </div>
             </div>
           </div>

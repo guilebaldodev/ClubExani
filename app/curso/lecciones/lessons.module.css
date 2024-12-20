@@ -1,5 +1,5 @@
 .titles{
-    /* padding-top: 4rem; */
+    padding-top: 4rem;
 }
 .lessons-page-container{
     font-family: 'CircularStd-Book',sans-serif;
@@ -135,9 +135,10 @@
 }
 
 .lessons-page-container .item-img img{
-    height: 150px; 
+    height: 160px; 
     height:auto;
     width: 100%;
+    object-fit: cover;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }

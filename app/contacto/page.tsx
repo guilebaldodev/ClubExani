@@ -16,13 +16,15 @@ const Contacto = () => {
 
             <div className={style['contact-info']}>
                 <div className={style['contact-text']}>
-
+                    
+                    <div className={style["contact-text-subtitle"]}>
                     <h4>ClubExani</h4>
                     <p>
                         Una plataforma comprometida con ayudarte en tu camino al posgrado. Responderemos tus consultas en menos de 24 horas para garantizar que estés siempre informado.
                     </p>
+
+                    </div>
                     
-                    <div className={style['contact-text-items']}>
    
                     <div className={style['contact-text-items']}>
     <div className={style['contact-text-item']}>
@@ -54,7 +56,6 @@ const Contacto = () => {
     </div>
 </div>
 
-                    </div>
 
                 </div>
 

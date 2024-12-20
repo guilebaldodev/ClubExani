@@ -1,7 +1,8 @@
-import { Poppins } from 'next/font/google';
+import { Lora,Source_Sans_3 } from 'next/font/google';
 
-export const poppins = Poppins({
-  subsets: ['latin'], // Puedes especificar los idiomas que necesitas, como 'latin'.
-  weight: ['300',"500","600",'800','400', '700'], // Añade los pesos que vas a utilizar.
-  style: ['normal', 'italic'], // Si necesitas estilos como 'normal' o 'italic'.
+
+export const poppins = Source_Sans_3({
+  subsets: ['latin'], 
+  weight: ["500","600",'400', '700'], 
+  style: ['normal', 'italic'],
 });

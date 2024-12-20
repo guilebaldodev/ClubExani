@@ -35,8 +35,6 @@
 }
 
 .admin-table-header .input-container img{
-    width: 25px;
-    height: 25px;
     padding: 5px;
     margin-bottom: 1px;
 }
@@ -75,7 +73,7 @@
 }
 
 .admin-table-left button img{
-    width: 18px;
+    /* width: 18px; */
     margin-right: 5px;
 }
 
@@ -167,9 +165,7 @@
     
 }
 
-.footer-button img{
-    width: 13px;
-}
+
 
 .footer-button.rotate{
     transform: rotate(180deg);

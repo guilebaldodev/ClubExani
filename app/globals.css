@@ -26,6 +26,7 @@
   display: flex;
   align-items: center;
   margin-left: 25px;
+  cursor: pointer;
 }
 
 .logotype h2{
@@ -70,6 +71,11 @@
   font-family: var(--font-CircularBold);
   font-weight: 600;
   font-size: 14px;
+}
+
+.burger-menu{
+  display: none;
+  cursor: pointer;
 }
 
 
@@ -270,5 +276,147 @@
 .admin-img img{
   margin: 8px;
 }
+
+
+/* admin cards tilte */
+.admin-question-container{
+  font-family: 'CircularStd-Book',sans-serif;
+  padding: 1rem;
+  padding-bottom: 2rem;
+}
+
+.admin-question-title h2{
+  font-size: 20px;
+  padding-bottom: 1rem;
+}
+
+.admin-question-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 15px;
+}
+
+.admin-question-card{
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.admin-question-card .question-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.admin-question-card .question-text p{
+  padding-bottom: 1.5rem;
+  font-size: 14px;
+}
+
+.admin-question-card .question-text h4{
+  font-size: 22px;
+}
+
+.question-img{
+  width: 40px;
+  height: 40px;
+  background-color: #DFF0FA;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.admin-question-img .question-img img{
+  width: 25px;
+}
+
+@media (max-width: 950px) {
+  .logotype h2{
+    font-size: 26px;
+  }
+
+  .footer-content,.footer-info{
+    width: 90%;
+  }
+
+
+}
+
+@media (max-width: 750px) {
+
+  .navbar{
+    display: none;
+  }
+
+  .navbar__button{
+    display: none;
+  }
+
+  .header{
+    align-items: center;
+  }
+
+  .burger-menu{
+    display: flex;
+    margin-right: 2rem;
+  }
+
+  .footer-content{
+    flex-wrap: wrap;
+    width: 80%;
+  }
+
+  .footer-logotype{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-section{
+    width: 33.333%;
+    padding-top: 2rem;
+  }
+
+
+
+}
+
+@media (max-width: 640px) {
+  .footer-info{
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  
+ 
+}
+
+
+@media (max-width: 550px) {
+
+  .footer-section{
+    width: 100%;
+  }
+
+  .footer-section h4{
+    padding: 0;
+    font-size: 17px;
+  }
+
+  .footer-content{
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+  }
+
+}
+
+
+
+
+
 
 

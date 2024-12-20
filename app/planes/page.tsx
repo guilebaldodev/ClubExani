@@ -8,7 +8,7 @@ const PricingPage = () => {
     <Header></Header>
       <div className={styles['pricing-page-container']}>
         <div className={styles['pricing-page-titles']}>
-          <h3>Escoge tu plan</h3>
+          <h2>Escoge tu plan</h2>
           <p>Elige la duración que mejor se ajuste a tus necesidades.</p>
         </div>
 

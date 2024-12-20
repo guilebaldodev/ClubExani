@@ -326,3 +326,68 @@ export const contentLineChart={
         colors: ['#FF5733'], // Color del gráfico
       },
 }
+
+
+// Simuladores
+
+export interface Simulator {
+  title: string;
+  time: string;
+  questions: string;
+  link: string;
+  img: string;
+}
+
+export const simulators: Simulator[] = [
+  {
+    title: "Examen Diagnostico",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/diagnostico.webp",
+  },
+  {
+    title: "Examen Simulador #1",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/simulador.webp",
+  },
+  {
+    title: "Examen Simulador #2",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/simulador2.webp",
+  },
+  {
+    title: "Examen Simulador #3",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/simulador3.webp",
+  },
+  {
+    title: "Examen Simulador #4",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/simulador4.webp",
+  },
+  {
+    title: "Examen Simulador #5",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/simulador5.webp",
+  },
+  {
+    title: "Examen Simulador #6",
+    time: "4.5 horas",
+    questions: "120 preguntas",
+    link: "/curso/simulador",
+    img: "/course/simulators/simulador6.webp",
+  },
+];
+
+

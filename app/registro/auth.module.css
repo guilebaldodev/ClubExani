@@ -1,0 +1,147 @@
+.register-page-container{
+    /* background-color: #F5F6F8; */
+    background-color: #F9F9FB;
+    background-image: url("/layout/background.png");
+    background-size: cover;
+    /* background-position: top; */
+    min-height: 100vh;
+    padding-bottom: 2rem;
+}
+
+.register-page-titles{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    font-size: 21px;
+}
+
+.register-page-titles img{
+    width: 42px;
+}
+
+.register-page-content{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.register-info{
+    width: 40%;
+}
+
+.register-info h3{
+    font-size: 30px;
+}
+
+.register-info-items{
+    padding-top: 2rem;
+}
+
+.register-info-items .item{
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.register-info-items .item img{
+    width: 24px;
+    margin-right: 5px;
+}
+
+.register-form{
+    width: 45%;
+    max-width: 420px;
+}
+
+
+.register-form h3{
+    font-size: 28px;
+    text-align: center;
+
+}
+
+
+.register-form .form-input-duo{
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.9rem;
+}
+
+.register-form .form-input-duo label{
+    padding-bottom: 5px;
+    color: #2e4970;
+}
+
+.register-form form{
+    padding-top: 1rem;
+}
+
+.register-form .form-input-duo input{
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 17px;
+    /* background-color: #F9F9FB; */
+
+}
+
+.register-form form button{
+    border: none;
+    padding: 0.7rem 1rem;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #3448C5;
+    cursor: pointer;
+}
+
+.register-form .register-to-login{
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.register-to-login p{
+    display: flex;
+}
+
+.register-to-login a{
+    color: black;
+    text-decoration:  none;
+    color: #3448C5;
+    margin-left: 5px;
+}
+
+
+.login-titles{
+    justify-content:left;
+}
+
+.form-input-duo.duo-login{
+    padding-top: 2rem !important;
+}
+
+.register-to-login{
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.forgot-password{
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.forgot-password a{
+    text-decoration: none;
+    color: #3448C5;
+    font-size: 17px;
+}

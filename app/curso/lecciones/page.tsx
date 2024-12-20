@@ -13,12 +13,12 @@ const LessonsPage = () => {
             <div className={styles['lesson-item']}>
               <div className={styles['item-img']}>
                 <Image
-                  src="/course/mathematics.jpg"
+                  src="/course/category/1.png"
                   alt="Metodología de la investigación"
                   width={500} 
                   height={300}
 />
-                <div className={styles['overlay']}>
+                {/* <div className={styles['overlay']}>
                   <div className={styles['overlay-text']}>
                     <h2>
                       Metodología
@@ -28,7 +28,7 @@ const LessonsPage = () => {
                       investigación
                     </h2>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className={styles['lesson-item-content']}>
@@ -53,12 +53,12 @@ const LessonsPage = () => {
             <div className={styles['lesson-item']}>
               <div className={styles['item-img']}>
               <Image
-                  src="/course/mathematics.jpg"
+                  src="/course/category/2.png"
                   alt="Metodología de la investigación"
                   width={500} 
                   height={300}
 />
-                <div className={styles['overlay']}>
+                {/* <div className={styles['overlay']}>
                   <div className={styles['overlay-text']}>
                     <h2>
                       Pensamiento
@@ -66,7 +66,7 @@ const LessonsPage = () => {
                       matemático
                     </h2>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className={styles['lesson-item-content']}>
@@ -90,12 +90,12 @@ const LessonsPage = () => {
             <div className={styles['lesson-item']}>
               <div className={styles['item-img']}>
               <Image
-                  src="/course/mathematics.jpg"
+                  src="/course/category/3.png"
                   alt="Metodología de la investigación"
                   width={500} 
                   height={300}
 />
-                <div className={styles['overlay']}>
+                {/* <div className={styles['overlay']}>
                   <div className={styles['overlay-text']}>
                     <h2>
                       Redaccion
@@ -103,7 +103,7 @@ const LessonsPage = () => {
                       Indirecta
                     </h2>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className={styles['lesson-item-content']}>
@@ -129,12 +129,12 @@ const LessonsPage = () => {
             <div className={styles['lesson-item']}>
               <div className={styles['item-img']}>
               <Image
-                  src="/course/mathematics.jpg"
+                  src="/course/category/4.png"
                   alt="Metodología de la investigación"
                   width={500} 
                   height={300}
 />
-                <div className={styles['overlay']}>
+                {/* <div className={styles['overlay']}>
                   <div className={styles['overlay-text']}>
                     <h2>
                       Comprensión
@@ -142,7 +142,7 @@ const LessonsPage = () => {
                       lectora
                     </h2>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className={styles['lesson-item-content']}>

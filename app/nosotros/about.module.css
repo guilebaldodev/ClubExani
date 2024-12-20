@@ -1,7 +1,6 @@
 .about-us-container{
     width: 80%;
     margin: auto;
-    font-family: 'CircularStd-Book',sans-serif;
 }
 
 .about-us-titles{
@@ -11,7 +10,6 @@
 }
 
 .about-us-titles h2{
-    font-family: 'CircularStd-Bold',sans-serif;
     font-size: 40px;
     padding-bottom: 2rem;
 }
@@ -121,7 +119,55 @@
     margin-top: 0.5rem;
     width: max-content;
     font-size: 17px;
-    font-family: 'CircularStd-Book',sans-serif;
     text-decoration: none;
+}
+
+@media (max-width: 950px) {
+
+    .about-us-titles h2{
+        font-size: 30px;
+    }
+
+    .our-history h3{
+        font-size: 30px;
+    }
+
+    .about-us-numbers h3{
+        font-size: 30px;
+    }
+
+    .about-numbers-item h4{
+        font-size: 30px;
+    }
+
+    .about-filler h3{
+        font-size: 25px;
+    }
+
+}  
+@media(max-width:650px){
+    .about-numbers-items{
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    .about-filler h3{
+        width: 80%;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .our-history p{
+        text-align: left;
+        padding: 0;
+        width: 100%;
+    }
+
+    .about-filler{
+        margin-top: 1rem;
+    }
+
 }
 

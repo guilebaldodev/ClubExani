@@ -1,17 +1,15 @@
 .pricing-page-container{
     margin-top: 64px;
-    font-family: 'CircularStd-Book',sans-serif;
     padding-bottom: 3rem;
 }
 
 .pricing-page-titles{
     text-align: center;
-    width: 40%;
+    width: 80%;
     margin: auto;
 }
 
-.pricing-page-titles h3{
-    font-weight: 600;
+.pricing-page-titles h2{
     color: rgb(10, 12, 15);
     color: black;
     font-size: 38px;
@@ -71,8 +69,7 @@
 
 
 .plan-info h4{
-  font-family: 'CircularStd-Bold',sans-serif; 
-    font-size: 24px;
+    font-size: 25px;
 }
 
 .plan-info p{
@@ -80,7 +77,6 @@
 }
 
 .plan-info-last{
-  font-family: 'CircularStd-Bold',sans-serif; 
     font-size: 14px;
 }
 
@@ -143,3 +139,18 @@
     /* margin-top: 4rem; */
 }
 
+
+@media (max-width: 640px) {
+    .footer-info{
+      flex-direction: column;
+      gap: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    
+    .pricing-page-titles h2{
+        font-size: 30px;
+    }
+
+}

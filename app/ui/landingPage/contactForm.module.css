@@ -68,4 +68,27 @@
     font-size: 16px;
 }
 
+@media(max-width:950px){
+    
+    .contact-form{
+        width: 100%;
+    }
+
+
+}
+
+@media(max-width:500px){
+    
+   .double-input{
+    flex-direction: column;
+   }
+
+   .input-duo{
+    width: 100%;
+   }
+
+
+}
+
+
 

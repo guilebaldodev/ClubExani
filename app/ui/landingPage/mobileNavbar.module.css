@@ -1,0 +1,138 @@
+/* Mobile Navigation */
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: black;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    z-index: 1100;
+  }
+  
+  .menu-header {
+    height: 4.25rem; /* equivalente a h-17 */
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .menu-header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-title {
+    font-weight: bold;
+    font-size: 26px; /* equivalente a text-lg */
+  }
+  
+  .menu-close-icon {
+    cursor: pointer;
+  }
+  
+  .menu-options {
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: column;
+    font-size: 1.125rem; /* equivalente a text-lg */
+  }
+  
+  .menu-item {
+    display: flex;
+    /* align-items: center; */
+    border-bottom: 1px solid #ececec;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .menu-item-border{
+    border-bottom: none;
+  }
+  
+  .menu-item-info{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .menu-item-info img{
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  
+  }
+  
+  .content .menu-item a{
+    margin-left: 4rem;
+  }
+  
+  .rotate{
+    transform: rotate(90deg);
+  
+  }
+  
+  
+  
+  
+  .consulta-button {
+    padding: 0.5rem 1.5rem; /* equivalente a px-6 py-2 */
+    border-radius: 0.125rem; /* equivalente a rounded-sm */
+    display: flex;
+  }
+  
+  .menu-item a{
+    margin-left: 2rem;
+    text-decoration: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: black;
+    font-weight: 600;
+  }
+  
+  
+  .content{
+    max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0, 1, 0, 1);
+  }
+  
+  .content.show{
+    max-height: 999px;
+    transition: all 0.3s cubic-bezier(1, 0, 1, 0);
+  }
+  
+  .whatsapp-div{
+    background-color: #4b22f4;
+    display: flex;
+    width:fit-content;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px!important;
+  }
+  
+  
+
+  
+  .whatsapp-div p{
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+  
+  }
+
+  .mobile-menu a{
+    text-decoration: none;
+    color: black;
+  }

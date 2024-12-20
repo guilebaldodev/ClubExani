@@ -1,5 +1,4 @@
 .landing-page{
-    font-family: 'CircularStd-Book',sans-serif;
 }
 .landing-hero{
     display: flex;
@@ -10,7 +9,7 @@
 
 }
 
-.landing-hero-img{
+.ehero-img{
     width: 50%;
 }
 
@@ -24,8 +23,7 @@
 
 .landing-hero-texts h1{
     padding: 0.4rem 0rem 1rem;
-    font-size: 50px;
-    /* font-family: 'CircularStd-Bold',sans-serif; */
+    font-size: 40px;
 
 }
 
@@ -38,6 +36,7 @@
     line-height: 26px;
     padding-bottom: 1rem;
 }
+
 
 .landing-hero-buttons button{
     padding: 13px 2rem;
@@ -58,15 +57,18 @@
     color: white;
 }
 
+
+.landing-hero-buttons .primary{
+    margin-bottom: 1rem;
+}
+
 .landing-numbers{
     display: flex;
-    /* width: 80%; */
     background-color: #022EE1;
     color: white;
     align-items: center;
     margin: auto;
     gap: 15px;
-    /* padding-bottom: 4rem; */
     padding: 1.5rem 0;
     justify-content: space-evenly;
     
@@ -155,8 +157,8 @@
 
 
 .landing-sections-title h2{
-    padding: 2rem 0;
-    font-size: 33px;
+    padding-top: 2rem;
+    font-size: 30px;
 }
 
 .landing-section{
@@ -164,7 +166,8 @@
     width: 80%;
     margin: auto;
     gap: 20px;
-    padding: 2rem 0;
+    padding: 1rem 0;
+    padding-bottom: 2rem;
 }
 
 .landing-section-texts{
@@ -237,8 +240,7 @@
 .testimonials-container{
     width: 80%;
     margin: auto;
-    padding: 2rem 0;
-    /* background-color: #F5F5F5; */
+    padding: 3rem 0 2rem;
 }
 
 .testimonials{
@@ -249,7 +251,7 @@
 }
 
 .testimonials-container h2{
-    font-size: 32px;
+    font-size: 30px;
     text-align: center;
 
 }
@@ -296,4 +298,133 @@
     color:#6584ff;
 }
 
+
+@media(max-width:1200px){
+    .landing-hero-texts h1{
+        font-size: 40px;
+    }
+
+    .landing-hero-texts{
+        padding: 2rem 0;
+    }
+
+}
+
+@media(max-width:950px){
+    .landing-hero-texts h1{
+        font-size: 35px;
+    }
+
+    .landing-section{
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .landing-section-texts{
+        width: 100%;
+    }
+
+    .landing-section-img{
+        width: 70%;
+        margin: auto;
+    }
+
+    .testimonial-item{
+        flex-direction: column;
+        gap: 0px;
+    }
+
+
+
+
+}
+
+@media(max-width:850px){
+
+    .landing-hero{
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .landing-hero-texts{
+        padding: 0rem 0;
+        width: 100%;
+        padding-bottom: 2rem;
+    }
+
+
+}
+
+@media(max-width:750px){
+    .landing-cards{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .landing-cards-titles h2{
+        font-size: 30px;
+    }
+
+    .testimonials{
+        grid-template-columns: repeat(1,1fr);
+    }
+
+
+
+}
+
+
+
+@media(max-width:550px){
+
+    .landing-hero-texts h1{
+        font-size: 30px;
+    }
+
+    
+    .landing-cards-titles h2{
+        font-size: 25px;
+    }
+
+    .landing-hero-img{
+        width: 80%;
+    }
+
+    .landing-numbers{
+        flex-direction: column;
+    }
+
+    .landing-cards{
+        grid-template-columns: repeat(1,1fr);
+    }
+
+
+    .landing-sections-title h2{
+        font-size: 25px                                                                                                                                                                                                                                                                                                                                                                     ;
+    }
+
+    .landing-section-texts h3{
+        font-size: 25px;
+    }
+
+    .testimonials-container h2{
+        font-size: 25px;
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    .landing-hero-buttons{
+        
+    }
+
+    .landing-hero-buttons button{
+        margin-right: 1rem;
+    }
+
+   
+
+
+}
 
