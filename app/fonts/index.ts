@@ -1,4 +1,4 @@
-import { Lora,Source_Sans_3 } from 'next/font/google';
+import { Source_Sans_3 } from 'next/font/google';
 
 
 export const poppins = Source_Sans_3({

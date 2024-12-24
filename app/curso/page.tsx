@@ -8,13 +8,13 @@ import ProgressBarItem from '../ui/course/ProgressBar';
 const CourseHome = () => {
     return ( 
     <>
-           <div className={style['user-dashboard-container']}>
+      <div className={style['user-dashboard-container']}>
       <div className={style['dashborad-banner']}></div>
 
       <div className={style['dashboard-titles']}>
         <h2>
           ¡El primer paso hacia tu posgrado empieza con{" "}
-          <span className={style['primary-color']}>Club</span>EXANI!
+          <span className={style['primary-color']}>Club</span>Exani!
         </h2>
         <p>
           Las herramientas que ofrecemos te ayudarán a consolidar tus
@@ -183,7 +183,7 @@ const CourseHome = () => {
                 <p>8/10</p>
               </div>
 
-            <ProgressBarItem color='blue' porcentage={80}></ProgressBarItem>
+            <ProgressBarItem color='#0056D2' porcentage={80}></ProgressBarItem>
 
             </div>
             <div className={style['progress-item']}>
@@ -191,7 +191,7 @@ const CourseHome = () => {
                 <p>Cuestionarios</p>
                 <p>7/7</p>
               </div>
-                <ProgressBarItem porcentage={60} color='blue'></ProgressBarItem>
+                <ProgressBarItem porcentage={60} color='#0056D2'></ProgressBarItem>
             </div>
 
             <div className={style['progress-item']}>
@@ -199,7 +199,7 @@ const CourseHome = () => {
                 <p>Metodología</p>
                 <p>7/22</p>
               </div>
-              <ProgressBarItem porcentage={30} color='blue'></ProgressBarItem>
+              <ProgressBarItem porcentage={30} color='#0056D2'></ProgressBarItem>
 
             </div>
             <div className={style['progress-item']}>
@@ -207,7 +207,7 @@ const CourseHome = () => {
                 <p>Redacción</p>
                 <p>7/140</p>
               </div>
-              <ProgressBarItem porcentage={60} color='blue'></ProgressBarItem>
+              <ProgressBarItem porcentage={60} color='#0056D2'></ProgressBarItem>
               
             </div>
 
@@ -216,7 +216,7 @@ const CourseHome = () => {
                 <p>Compresión</p>
                 <p>15/20</p>
               </div>
-              <ProgressBarItem porcentage={60} color='blue'></ProgressBarItem>
+              <ProgressBarItem porcentage={60} color='#0056D2'></ProgressBarItem>
             
             </div>
 
@@ -225,7 +225,7 @@ const CourseHome = () => {
                 <p>Pensamiento</p>
                 <p>14/15</p>
               </div>
-              <ProgressBarItem porcentage={60} color='blue'></ProgressBarItem>
+              <ProgressBarItem porcentage={60} color='#0056D2'></ProgressBarItem>
             
             </div>
           </div>
