@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const CoursePricing = () => {
     return ( 
-        <div className={styles['pricing-page-container course-pricing-container']}>
+        <div className={`${styles['pricing-page-container']} ${styles['course-pricing-container']}`}>
         <div className={`${styles['pricing-page-titles']} ${styles['course-pricing-title']}`}>
-          <h3>Escoge tu plan</h3>
+          <h2>Escoge tu plan</h2>
           <p>Elige la duración que mejor se ajuste a tus necesidades.</p>
         </div>
 

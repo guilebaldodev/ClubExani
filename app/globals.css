@@ -5,7 +5,6 @@
   box-sizing: border-box;
   margin:0px;
   padding: 0px;
-  /* overflow-x:scroll; */
 } 
 .primary-color{
   color: #022EE1 !important;
@@ -16,7 +15,6 @@
 .header{
   display: flex;
   height: 74px;
-  /* border-bottom: 1px solid rgba(0,0,0,.12); */
   justify-content: space-between;
 
   
@@ -204,7 +202,7 @@
     flex-direction: column;
   }
 
-  main{
+main{
   display: flex;
   flex-direction: column;
 }

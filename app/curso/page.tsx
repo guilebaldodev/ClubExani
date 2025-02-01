@@ -1,13 +1,13 @@
-// import ProgressBar from "@ramonak/react-progress-bar";
 import style from './curso.module.css'
 import Image from "next/image";
 import Link from "next/link";
 import ProgressBarItem from '../ui/course/ProgressBar';
 
-
 const CourseHome = () => {
     return ( 
     <>
+
+
       <div className={style['user-dashboard-container']}>
       <div className={style['dashborad-banner']}></div>
 

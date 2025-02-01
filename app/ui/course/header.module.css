@@ -1,0 +1,142 @@
+.primary-color{
+    color: #022EE1 !important;
+  }
+  
+
+
+.header{
+    display: flex;
+    height: 74px;
+    justify-content: space-between;
+  
+    
+  }
+  
+  .logotype{
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    cursor: pointer;
+  }
+  
+  .logotype h2{
+    font-size: 28px;
+  }
+
+  .logotype h2 a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .navbar{
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar a{
+    text-decoration: none;
+    padding: 0 9px;
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+  
+  }
+  
+  
+  .logotype img{
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .user-header > img{
+    display: none;
+    margin-left: 25px;
+    cursor: pointer;
+  }
+  
+
+  
+.user-header{
+    position:fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+    align-items: center;
+  }
+  
+  .user-navbar{
+    margin-right: 2rem;
+  
+  }
+  
+  .user-navbar a{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .user-navbar a img{
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+  }
+  
+  .user-header-button{
+    background-color: #0056D2;
+    border-radius: 25px;
+    width: 36px;
+    height: 36px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user-header-button img{
+    width: 25px;
+  }
+  
+  .navbar-button {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;}
+  
+    .header-info{
+        display: flex;
+    }
+
+@media (max-width: 950px) {
+
+    .user-header > img{
+        display:block;
+      }
+
+      .user-navbar{
+        display: none;
+      }
+
+}
+
+@media (max-width: 450px) {
+
+    .user-header-button{
+        display: none;
+    }
+
+    .user-header{
+        justify-content: space-between;
+        flex-direction:row-reverse;
+    }
+
+    .header-info{
+        display: none;
+    }
+
+
+    .user-header > img{
+        margin-left: 0px;
+        margin-right: 1rem;
+    }
+
+}
+      
