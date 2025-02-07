@@ -86,7 +86,7 @@
 
 .admin-table{
     padding: 1rem;
-
+    overflow-x: auto;
 
 }
 
@@ -143,7 +143,7 @@
 .admin-table-footer{
     display: flex;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding: 1rem;
     color: #212529;
     align-items: center;
 }
@@ -280,6 +280,54 @@
 
  .admin-table .container .menu.none{
     display: none;
+}
+
+
+@media (max-width:850px) {
+    .admin-table-header{
+        flex-direction: column;
+    }
+
+    .admin-table-left{
+        padding-top: 1rem;
+    }
+
+    .admin-table-left button{
+        width: 50%;
+        justify-content: center;
+    }
+}
+
+@media (max-width:500px) {
+
+    .admin-table-footer{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .admin-table-footer > div{
+        width: 100%;
+    }
+
+    .admin-footer-right{
+        justify-content: flex-end;
+        padding-top: 1rem;
+    }
+
+
+}
+
+
+
+@media (max-width:400px) {
+
+    .admin-table-left{
+        flex-direction: column;
+    }
+
+    .admin-table-left button{
+        width: 100%;
+    }
 }
 
 

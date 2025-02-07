@@ -3,6 +3,8 @@
     padding-top: 1rem;
 }
 
+
+
 .profile-sidebar h4{
     font-size: 20px;
     border: 1px solid #ccc;
@@ -44,3 +46,8 @@
 
 }
 
+@media (max-width:950px){
+    .profile-sidebar{
+        display: none;
+    }
+}

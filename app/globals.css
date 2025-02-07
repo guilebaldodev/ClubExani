@@ -58,6 +58,7 @@
 }
 
 .navbar__button button{
+  cursor: pointer;
   width: 7rem;
   height: 2.5rem;
   background-color: #022EE1;
@@ -250,6 +251,10 @@ main{
   align-items: center;
 }
 
+.admin-left-menu > img{
+  cursor: pointer;
+}
+
 .admin-right-menu{    display: flex;
   align-items: center;
   margin-right: 5rem;
@@ -339,6 +344,10 @@ main{
     width: 90%;
   }
 
+  .admin-right-menu{    
+    margin-right: 2rem;
+  }
+
 
 }
 
@@ -385,6 +394,9 @@ main{
     flex-direction: column;
     gap: 15px;
   }
+
+ 
+  
 
   
  

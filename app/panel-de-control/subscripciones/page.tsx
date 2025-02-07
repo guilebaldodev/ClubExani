@@ -199,7 +199,11 @@ const SubsPage = () => {
               </tbody>
             </table>
   
-            <div className={dataStyles['admin-table-footer']}>
+
+
+          </div>
+
+          <div className={dataStyles['admin-table-footer']}>
             <div className={dataStyles['admin-footer-left']}>
               <p>Preguntas por página: 10</p>
             </div>
@@ -214,7 +218,6 @@ const SubsPage = () => {
             </div>
           </div>
 
-          </div>
         </div>
       </div> );
 }

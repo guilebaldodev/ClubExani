@@ -5,7 +5,13 @@ import styles from './SideBar.module.css'; // Asegúrate de migrar los estilos a
 import Image from 'next/image';
 
 
-const SideBar = () => {
+interface AdminHeaderProps{
+  isSideBarActive:boolean,
+  toggleSideBar:()=>void
+  }
+
+
+    const SideBar = ({toggleSideBar,isSideBarActive}:AdminHeaderProps) => {
 
     const [activeMenu, setActiveMenu] = useState(null);
 
@@ -16,14 +22,31 @@ const SideBar = () => {
 
     return ( 
     <>
+
+{(!isSideBarActive) && (<>
+    <div className={styles["overlay"]}>
+
+    </div>
+  </>)}
     
-    <div className={styles["sidebar-container"]}>
-        <div className={styles["sidebar-top"]}>
+  <div className={`${styles['sidebar-container']} ${isSideBarActive ? styles['close'] : ''} ${styles["slide-enter"]}`}>
+          <div className={styles["sidebar-top"]}>
           <div className={styles["sidebar-header"]}>
             <div className={styles["sidebar-title"]}>
               <Image src="/layout/black-logo.png" alt="Logo" width={32} height={32} />
               <h3>Club<span className='primary-color'>Exani</span></h3>
             </div>
+
+              <Image
+                    onClick={() => {
+                      toggleSideBar()
+                    }}
+                    alt="x icon"
+                    width={25}
+                    height={25}
+                    src="/admin/x.png"
+                  />
+
           </div>
 
           <div className={styles["sidebar-options"]}>
@@ -54,7 +77,13 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'dashboards' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/ventas">
+                <Link href="/panel-de-control/ventas"
+                onClick={()=>{
+                  if((!isSideBarActive) && (window.innerWidth < 750)){
+                    toggleSideBar()
+                  }
+                }}
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Ventas Icon"
@@ -64,7 +93,12 @@ const SideBar = () => {
                   <p>Ventas</p>
                 </Link>
 
-                <Link href="/panel-de-control/contenido">
+                <Link href="/panel-de-control/contenido"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}>
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Contenido Icon"
@@ -103,7 +137,13 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'preguntas' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/preguntas">
+                <Link href="/panel-de-control/preguntas"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -113,7 +153,13 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-de-control/añadir-pregunta">
+                <Link href="/panel-de-control/añadir-pregunta"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}                
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Icon"
@@ -152,7 +198,12 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'lecciones' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/lecciones">
+                <Link href="/panel-de-control/lecciones"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}>
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -162,7 +213,13 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-de-control/añadir-leccion">
+                <Link href="/panel-de-control/añadir-leccion"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}                  
+                  >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Icon"
@@ -201,7 +258,13 @@ const SideBar = () => {
               </div>
 
               <div className={`${styles["content"]} ${activeMenu === 'simuladores' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/simuladores">
+                <Link href="/panel-de-control/simuladores"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -211,7 +274,14 @@ const SideBar = () => {
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-de-control/añadir-simulador">
+                <Link href="/panel-de-control/añadir-simulador"
+                   onClick={()=>{
+                    if((!isSideBarActive) && (window.innerWidth < 750)){
+                      toggleSideBar()
+                    }
+                  }}
+
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Añadir Simulador Icon"
@@ -224,7 +294,7 @@ const SideBar = () => {
             </div>
 
             {/* Cuestionarios */}
-            <div className={styles["option-menu"]}>
+            {/* <div className={styles["option-menu"]}>
               <div
                 className={`${styles["option-menu-title"]} ${
                   activeMenu === 'cuestionarios' ? `${styles["active"]} ${styles["option-menu-selected"]}` : ''
@@ -270,14 +340,25 @@ const SideBar = () => {
                   <p>Construir cuestionario</p>
                 </Link>
               </div>
-            </div>
+            </div> */}
 
-            <Link href="/panel-de-control/usuarios">
+            <Link href="/panel-de-control/usuarios"
+               onClick={()=>{
+                if((!isSideBarActive) && (window.innerWidth < 750)){
+                  toggleSideBar()
+                }
+              }}>
               <Image src="/layout/admin/user-icon.png" alt="Usuarios Icon" width={20} height={20} />
               <p>Usuarios</p>
             </Link>
 
-            <Link href="/panel-de-control/subscripciones">
+            <Link href="/panel-de-control/subscripciones"
+               onClick={()=>{
+                if((!isSideBarActive) && (window.innerWidth < 750)){
+                  toggleSideBar()
+                }
+              }}
+            >
               <Image
                 src="/layout/admin/money-icon.png"
                 alt="Subscripciones Icon"

@@ -71,6 +71,7 @@ const ContentPage = () => {
                     <div className={styles['content-pie-container']}>
                         <div className={styles['content-pie-title']}>
                             <h3>Categoría de preguntas</h3>
+                        </div>
                             <div className={styles['content-pie-chart']}>
                                 <ChartComponent
                                 type={'pie'}
@@ -81,7 +82,6 @@ const ContentPage = () => {
                                 
                                 ></ChartComponent>
                             </div>
-                        </div>
                     </div>
                 </div>
 
@@ -188,10 +188,10 @@ const ContentPage = () => {
                 </div>
               </td>
             </tr>
-            {/* Añade más filas según sea necesario */}
           </tbody>
         </table>
-        <div className={tableStyles['admin-table-footer']}>
+      </div>
+      <div className={tableStyles['admin-table-footer']}>
           <div className={tableStyles['admin-footer-left']}>
             <p>Preguntas por página: 5</p>
           </div>
@@ -216,7 +216,6 @@ const ContentPage = () => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

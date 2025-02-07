@@ -138,7 +138,10 @@ const UsersPage = () => {
               {/* Agrega más filas aquí */}
             </tbody>
           </table>
-          <div className={dataStyles['admin-table-footer']}>
+
+        </div>
+
+        <div className={dataStyles['admin-table-footer']}>
             <div className={dataStyles['admin-footer-left']}>
               <p>Preguntas por pagina: 10</p>
             </div>
@@ -153,7 +156,7 @@ const UsersPage = () => {
               </div>
             </div>
           </div>
-        </div>
+
       </div>
 
     </div>

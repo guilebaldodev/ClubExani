@@ -66,6 +66,10 @@
     
 }
 
+.content-pie-title{
+    width: 100% ;
+}
+
 .horizontal-bar-container{
     height: 100%;
     background-color: white;
@@ -128,4 +132,28 @@
 
 .content-line-title h2{
     padding: 0.8rem 0;
+}
+
+
+@media (max-width:1000px) {
+    
+    .horizontal-bar{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .content-pie{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .content-pie-container{
+        padding: 1.85rem 1rem 1.5rem 1rem;;
+    }
+
+    .content-line{
+        width: 100%;
+    }
+
+
 }

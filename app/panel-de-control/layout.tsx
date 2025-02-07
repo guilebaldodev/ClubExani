@@ -1,18 +1,31 @@
-// import Header from "../ui/course/Header";
-// import Footer from "../ui/landingPage/Footer";
+"use client"
 import AdminHeader from '@/app/ui/admin/AdminHeader'
 
 import SideBar from "../ui/admin/SideBar";
+import { useEffect, useState } from 'react';
 
 const Layout = ({children}:{children:React.ReactNode}) => {
+    
+  const [isSideBarActive, setIsSideBarActive] = useState(true);
+
+  useEffect(() => {
+    setIsSideBarActive(!(window.innerWidth >= 900));
+  }, []);
+
+
+  const changeSideBar=()=>{
+    setIsSideBarActive(!isSideBarActive)
+  }
+    
+    
     return ( 
         <>
 
             <div className="super-container">
 
-                <SideBar></SideBar>
+                <SideBar toggleSideBar={changeSideBar} isSideBarActive={isSideBarActive}></SideBar>
                 <div className="outlet">
-                <AdminHeader></AdminHeader>
+                <AdminHeader toggleSideBar={changeSideBar}></AdminHeader>
                 {children}
                 </div>
             </div>

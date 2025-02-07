@@ -105,6 +105,25 @@
         display: flex;
     }
 
+
+  
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    .slide-enter {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+  
+
 @media (max-width: 950px) {
 
     .user-header > img{

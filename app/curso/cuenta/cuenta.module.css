@@ -8,6 +8,7 @@
     width: 90%;
     margin: auto;
     padding-top: 1rem;
+    margin-top: 5rem;
     display: flex;
 }
 
@@ -123,7 +124,6 @@ padding-left: 2rem;
 .profile-form-duo label{
     padding-bottom: 8px;
     color: rgb(122, 122, 122);
-  font-family: 'CircularStd-Bold',sans-serif;
     font-size: 15px;
 }
 
@@ -156,7 +156,6 @@ padding-left: 2rem;
     border: none;
     background-color: #0056D2;
     padding: 0.7rem 1rem;
-    font-family: 'CircularStd-Book',sans-serif;
     color: white;
     font-size: 16px;
     border-radius: 5px;
@@ -182,3 +181,49 @@ padding-left: 2rem;
 .pt-16{
     padding-top: 1.5rem;
 }
+
+@media (max-width: 900px) {
+
+    .profile-content{
+        width: 100%;
+    }
+
+
+
+}
+
+@media (max-width: 500px) {
+
+    .profile-content{
+        width: 100%;
+    }
+
+    .profile-credentials{
+        flex-direction: column;
+    }
+
+    .credentials-text h2{
+        font-size: 20px;
+    }
+
+    .credentials-text{
+        padding: 0px;
+    }
+
+    .credentials-text{
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .profile-double-input{
+        flex-direction: column;
+    }
+
+    .profile-double-input .profile-form-duo{
+        width: 100%;
+    }
+
+
+}
+
+

@@ -136,3 +136,20 @@
     text-decoration: none;
     color: black;
   }
+
+  /* Mobile Navigation */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-enter {
+  animation: slideIn 0.4s ease-out forwards;
+}

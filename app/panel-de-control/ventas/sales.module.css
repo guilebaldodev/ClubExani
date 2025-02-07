@@ -133,6 +133,7 @@
     background-color: white;
     padding: 1.85rem 1rem 0.5rem 1rem;
     border-radius: 4px;
+    height: 100%;
 
 
 }
@@ -337,4 +338,26 @@
 
 .sales-dash-chart{
     padding-top: 1rem;
+}
+
+@media (max-width:1100px){
+    .sales-bars,.sales-dashed{
+        flex: 0 0 100%;
+        max-width: 100%;  
+    }
+
+    .sales-pie,.sales-transactions{
+        flex: 0 0 50%;
+        max-width: 50%;  
+    }
+}
+
+@media (max-width:850px){
+
+
+    .sales-pie,.sales-transactions{
+        flex: 0 0 100%;
+        max-width: 100%;  
+    }
+
 }

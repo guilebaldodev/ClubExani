@@ -87,7 +87,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-        </div>Información general
+        </div>
 
 
 

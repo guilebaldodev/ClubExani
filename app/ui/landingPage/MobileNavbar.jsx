@@ -6,7 +6,7 @@ const MobileMenu = ({ onClose }) => {
 
 
   return (
-    <div className={style["mobile-menu"]}>
+    <div className={`${style["mobile-menu"]} ${style["slide-enter"]}`}>
       <div className={style["menu-header"]}>
         <div className={style["menu-header-left"]}>
           <Image

@@ -42,7 +42,7 @@ const Header = () => {
     </nav>
 
     <div className="navbar__button">
-      <button onClick={() => router.push("/exani-iii")}>Ir al Curso</button>
+      <button onClick={() => router.push("/curso")}>Ir al Curso</button>
     </div>
   </header>
   );
