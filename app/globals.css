@@ -281,7 +281,6 @@ main{
 
 /* admin cards tilte */
 .admin-question-container{
-  font-family: 'CircularStd-Book',sans-serif;
   padding: 1rem;
   padding-bottom: 2rem;
 }
@@ -334,6 +333,20 @@ main{
 .admin-question-img .question-img img{
   width: 25px;
 }
+
+.add_question_container{
+  padding: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 950px) {
   .logotype h2{

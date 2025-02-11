@@ -1,0 +1,10 @@
+.admin-question-container{
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+.admin-question-title h2{
+    font-size: 20px;
+    padding-bottom: 1rem;
+}
+

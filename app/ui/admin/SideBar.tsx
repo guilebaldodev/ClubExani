@@ -153,7 +153,7 @@ interface AdminHeaderProps{
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-de-control/añadir-pregunta"
+                <Link href="/panel-de-control/crear-pregunta"
                    onClick={()=>{
                     if((!isSideBarActive) && (window.innerWidth < 750)){
                       toggleSideBar()
@@ -341,6 +341,17 @@ interface AdminHeaderProps{
                 </Link>
               </div>
             </div> */}
+
+            <Link href="/panel-de-control/temas"
+               onClick={()=>{
+                if((!isSideBarActive) && (window.innerWidth < 750)){
+                  toggleSideBar()
+                }
+              }}>
+              <Image src="/layout/admin/category.png" alt="Usuarios Icon" width={20} height={20} />
+              <p>Temas</p>
+            </Link>
+
 
             <Link href="/panel-de-control/usuarios"
                onClick={()=>{
