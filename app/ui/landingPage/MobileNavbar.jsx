@@ -15,7 +15,7 @@ const MobileMenu = ({ onClose }) => {
             width={32}
             height={32}
           />
-          <p className={style["menu-title"]}><span className="primary-color">Club</span>Exani</p>
+          <p className={style["menu-title"]}><span className="primary-color">Simu</span>landum</p>
         </div>
 
         <Image

@@ -11,10 +11,24 @@ import {
   SubjectsOptions,
   UserOptions,
 } from "@/consts/options";
+import { useState } from "react";
+import UploadModal from "@/app/ui/admin/UploadModal";
 
 const AddQuestion = () => {
+
+  const [modal, setModal] = useState(false);
+
+
   return (
     <>
+
+      {modal && 
+      <>
+        <UploadModal closeModal={()=>{
+          setModal(false)
+        }}></UploadModal>
+      </>}
+
       <div className={styles.add_question_container}>
         <div className={styles.add_question_title}>
           <h2>Crear una pregunta</h2>
@@ -31,7 +45,11 @@ const AddQuestion = () => {
               <Image src="/admin/watch.png" alt="Vista previa" width={20} height={20} />
               Vista previa
             </button>
-            <button>
+            <button onClick={(e)=>{
+              e.preventDefault()
+              console.log("Hola click")
+              setModal(true)
+            }}>
               <Image src="/admin/upload-file.png" alt="Añadir" width={20} height={20} />
               Subir imagen
             </button>
@@ -101,7 +119,7 @@ const AddQuestion = () => {
               </div>
             </div>
 
-            <div className={styles.right_form}>
+            {/* <div className={styles.right_form}>
               <div className={styles.right_form_titles}>
                 <h3>Respuestas</h3>
                 <p>
@@ -242,11 +260,11 @@ const AddQuestion = () => {
                 <button className={styles.red_button}>Cancelar</button>
                 <button>Crear</button>
               </div>
-            </div>
+            </div> */}
 
             {/* Text answers */}
 
-                {/* <div className={styles.right_form}>
+                <div className={styles.right_form}>
                 <div className={styles.right_form_titles}>
                     <h3>Respuestas</h3>
                     <p>Añade uno a uno las respuestas correspondientes</p>
@@ -283,7 +301,7 @@ const AddQuestion = () => {
                     <button className={styles.red_button}>Cancelar</button>
                     <button>Crear</button>
                 </div>
-                </div> */}
+                </div>
           </div>
         </form>
       </div>

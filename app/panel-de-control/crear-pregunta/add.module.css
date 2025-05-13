@@ -66,7 +66,7 @@
   
   .input_duo label{
     padding-bottom: 0.6rem;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
   }
   
@@ -243,4 +243,55 @@
     background-color: white;
     border:1px solid #0056D2;
     color: #0056D2;
+}
+
+
+@media (max-width: 1250px) {
+
+  .form_container{
+    flex-direction: column;
+  }
+
+  .left_form,.right_form{
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .add_product_title{
+    flex-direction: column;
+  }
+
+  .titles_buttons{
+    padding-top: 1rem;
+  }
+
+  .titles_buttons button{
+    width: 100%;
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .double_input{
+    flex-direction: column;
+  }
+
+  .double_input .input_duo{
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 460px) {
+
+  .titles_buttons{
+    flex-direction: column;
+  }
+
 }

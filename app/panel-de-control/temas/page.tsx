@@ -3,13 +3,24 @@
 import Image from "next/image";
 import dataStyles from '@/app/ui/admin/DataTable.module.css'
 import { useState } from "react";
+import CategoryModal from "@/app/ui/admin/CategoryModal";
 
 const UsersPage = () => {
-    const [filters, setFilters] = useState(false);
     const [menu, setMenu] = useState(false);
-    console.log(setMenu)
-    console.log(filters,setFilters)
+
+    const [modal, setModal] = useState(false);
+
+
     return ( <>
+
+
+{modal && 
+  <CategoryModal closeModal={()=>{
+    setModal(false)
+  }}></CategoryModal>
+}
+
+
        <div className="admin-question-container">
       <div className="admin-question-title">
         <h2>Lista de temas</h2>
@@ -84,8 +95,10 @@ const UsersPage = () => {
               <Image src="/admin/filters.png" alt="" width={20} height={20} />
               Filtros
             </button>
-            <button className={dataStyles['add-button']}>
-              <Image src="/admin/add-icon.png" alt="" width={20} height={20} />
+            <button onClick={()=>{
+                setModal(true)
+              }} className={dataStyles['add-button']}>
+              <Image  src="/admin/add-icon.png" alt="" width={20} height={20} />
               Añadir
             </button>
           </div>

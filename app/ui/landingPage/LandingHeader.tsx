@@ -24,8 +24,8 @@ const Header = () => {
     <div className="logotype" onClick={() => router.push("/")}>
       <Image src="/layout/black-logo.png" alt="Logotipo" width={32} height={32} />
       <h2>
-        <span className="primary-color">Club</span>
-        Exani
+        <span className="primary-color">Simu</span>
+        landum
       </h2>
     </div>
 
