@@ -18,9 +18,9 @@ const Contacto = () => {
                 <div className={style['contact-text']}>
                     
                     <div className={style["contact-text-subtitle"]}>
-                    <h4>ClubExani</h4>
+                    <h4>Simulandum</h4>
                     <p>
-                        Una plataforma comprometida con ayudarte en tu camino al posgrado. Responderemos tus consultas en menos de 24 horas para garantizar que estés siempre informado.
+                        Una plataforma comprometida con ayudarte a aprobar tus examenes de admision. Responderemos tus consultas en menos de 24 horas para garantizar que estés siempre informado.
                     </p>
 
                     </div>

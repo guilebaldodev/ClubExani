@@ -1,4 +1,4 @@
-import styles from "./about.module.css"; // Importa el CSS como un módulo
+import styles from "./about.module.css";
 import Header from "../ui/landingPage/LandingHeader";
 import Footer from "../ui/landingPage/Footer";
 import Link from "next/link";
@@ -6,92 +6,72 @@ import Link from "next/link";
 const AboutUs = () => {
   return (
     <>
-      <Header></Header>
+      <Header />
       <div className={styles["about-us-container"]}>
         <div className={styles["about-us-titles"]}>
           <h2>
-            Somos la plataforma más completa para tu preparación del examen de
-            posgrado
+            Somos la plataforma más completa para tu preparación de exámenes de admisión
           </h2>
           <p>
-            ClubExani es la plataforma de preparación y simulación de exámenes
-            que conecta a estudiantes con el éxito en su acceso a programas de
-            posgrado. Ofrecemos herramientas integrales para mejorar el
-            rendimiento y asegurar el mejor desempeño en el examen, todo en un
-            solo lugar. Nuestro enfoque personalizado y fácil de usar te
-            garantiza una experiencia de aprendizaje eficiente y efectiva.
+            Simulandum es una plataforma especializada en la simulación y preparación de exámenes de ingreso, 
+            diseñada para conectar a los aspirantes con el éxito académico. Ofrecemos herramientas inteligentes 
+            para mejorar el rendimiento y asegurar un alto desempeño en distintas evaluaciones, todo en un solo lugar. 
+            Nuestra experiencia de aprendizaje es eficiente, personalizada y centrada en lo que realmente importa.
           </p>
         </div>
 
         <div className={styles["about-us-banner"]}></div>
 
-        <div className={styles["our-history"]}>
-          <h4>Nuestra historia</h4>
-          <h3>El origen de ClubExani</h3>
-          <div className={styles["our-history-text"]}>
-            <p>
-              ClubExani comenzó como una meta compartida entre compañeros de una
-              universidad de matemáticas, quienes aspiraban a acceder a un
-              posgrado. Sin embargo, al explorar los recursos disponibles en
-              línea, se dieron cuenta de que había una escasez alarmante de
-              material de estudio. Esta necesidad los llevó a crear una
-              herramienta que facilitaría el camino hacia la maestría,
-              transformando un proceso complicado en una experiencia más
-              accesible.
-            </p>
-            <br />
-            <p>
-              El examen EXANI contaba con un simulador oficial, pero su limitado
-              número de preguntas y la abrumadora cantidad de libros de estudio
-              disponibles complicaban la preparación de los estudiantes. Nos
-              propusimos simplificar este proceso, centrándonos en presentar de
-              manera clara los temas del examen y proporcionando un enfoque
-              directo que evitara la confusión. A medida que el proyecto
-              avanzaba, el equipo se expandió, incorporando programadores y
-              especialistas en diseño educativo que trabajan en la creación de
-              lecciones atractivas y efectivas. Nuestra misión se mantiene
-              firme: ayudar a los estudiantes a prepararse para el examen de
-              forma justa y accesible. A diferencia de otros cursos que pueden
-              costar el doble o el triple, ClubExani se compromete a ofrecer
-              precios competitivos para asegurar que más personas tengan acceso
-              a nuestros recursos de calidad.
-            </p>
-            <br />
-            <p>
-              Hoy, ClubExani es la plataforma que transforma la preparación para
-              el posgrado, ayudando a los estudiantes a enfocarse en lo que
-              realmente importa y brindando el apoyo necesario para alcanzar sus
-              objetivos académicos.
-            </p>
-          </div>
-        </div>
+<div className={styles["our-history"]}>
+  <h4>Nuestra historia</h4>
+  <h3>El origen de Simulandum</h3>
+  <div className={styles["our-history-text"]}>
+    <p>
+      Sim nació como una respuesta a la falta de herramientas efectivas para prepararse ante distintos tipos de exámenes de admisión. 
+      Lo que comenzó como un proyecto enfocado en posgrados, pronto se transformó en una plataforma más amplia, 
+      diseñada para apoyar a estudiantes en múltiples niveles educativos y áreas de evaluación.
+    </p>
+    <br />
+    <p>
+      En sus inicios, el equipo identificó una carencia de simuladores claros, organizados y accesibles. 
+      Muchos aspirantes enfrentaban plataformas poco intuitivas o con contenidos limitados. 
+      Simulandum surgió para llenar ese vacío, ofreciendo simulaciones realistas, contenido bien estructurado y herramientas que realmente ayudan a avanzar.
+    </p>
+    <br />
+    <p>
+      Hoy, Simulandum es una plataforma en expansión que cubre exámenes de ingreso a preparatoria, universidad, posgrado y más. 
+      Nuestra misión es brindar a cada estudiante —sin importar su nivel— una preparación justa, accesible y enfocada, 
+      con materiales de calidad y tecnología educativa de vanguardia.
+    </p>
+  </div>
+</div>
+
 
         <div className={styles["about-us-numbers"]}>
-          <h3>Construyendo el camino hacia el éxito en el posgrado</h3>
+          <h3>Construyendo el camino hacia el éxito académico</h3>
           <div className={styles["about-numbers-items"]}>
             <div className={styles["about-numbers-item"]}>
-              <h4>+2,500</h4>
-              <p>Estudiantes en nuestra plataforma.</p>
+              <h4>+1,000</h4>
+              <p>Estudiantes confían en nuestra plataforma.</p>
             </div>
             <div className={styles["about-numbers-item"]}>
-              <h4>+15,000</h4>
+              <h4>+5,000</h4>
               <p>Simulaciones de examen realizadas.</p>
             </div>
             <div className={styles["about-numbers-item"]}>
               <h4>+220</h4>
-              <p>Recursos y materiales de estudio ofrecidos.</p>
+              <p>Recursos y materiales disponibles.</p>
             </div>
           </div>
         </div>
 
         <div className={styles["about-filler"]}>
-          <h3>Comienza tu preparación para el posgrado hoy mismo</h3>
-          <p>Accede a 4 lecciones y un examen diagnóstico gratis.</p>
-
-          <Link href="/exani-iii">Descubre la plataforma</Link>
+          <h3>Comienza tu preparación hoy mismo</h3>
+          <p>Conoce toda la variedad de examenes que tenemos</p>
+          <Link href="/exani-iii">Explora nuestros simuladores</Link>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };

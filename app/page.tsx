@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './LandingPage.module.css'; 
 import Footer from './ui/landingPage/Footer';
 import Header from './ui/landingPage/LandingHeader';
+import Link from 'next/link';
 
 const LandingPage = () => {  
   
@@ -13,100 +14,212 @@ const LandingPage = () => {
     <Header></Header>
    <div className={styles['landing-page']}>
       <div className={styles['content-container']}>
-        <div className={styles['landing-hero']}>
-          <div className={styles['landing-hero-img']}>
-            <Image src={'/landing/hero.png'} width={400} height={400} alt='hero image' style={{width:"100%",height:"auto"}}></Image>
-          </div>
 
-          <div className={styles['landing-hero-texts']}>
-            <h3>
-              <span className={styles['primary-color']}>
-                Prepárate para el EXANI III
-              </span>
-            </h3>
-            <h1>INGRESA A UN POSGRADO EN MEXICO</h1>
-            <p>
-              Prepárate para tu examen de admisión con nuestro curso en línea,
-              donde encontrarás una amplia variedad de recursos que te
-              permitirán medir y mejorar tus habilidades. Aumenta tus
-              posibilidades de éxito en el EXANI III y accede al posgrado que
-              deseas.
-            </p>
-            <div className={styles['landing-hero-buttons']}>
-              <button className={styles['primary']}>Probar Curso</button>
-              {/* <button className={styles['secundary']}>Probar Curso</button> */}
-            </div>
-          </div>
-        </div>
 
-        <div className={styles['landing-numbers']}>
-          <div className={styles['landing-number-item']}>
-            <div className={styles['landing-number-img']}>
-            </div>
-            <h3>+1000</h3>
-            <p>Usuarios</p>
-          </div>
+<div className={styles['landing-hero']}>
 
-          <div className={styles['landing-number-item']}>
-            <h3>+1500</h3>
-            <p>Ejercicios</p>
-          </div>
+  <div className={styles['landing-hero-img']}>
+    <Image
+      src={'/landing/hero.png'}
+      width={400}
+      height={400}
+      alt='Simulandum hero image'
+      style={{ width: "100%", height: "auto" }}
+    />
+  </div>
 
-          <div className={styles['landing-number-item']}>
-            <h3>+300</h3>
-            <p>Lecciones</p>
-          </div>
+  <div className={styles['landing-hero-texts']}>
+    <h3>
+      <span className={styles['primary-color']}>
+        Simula, Aprende y Avanza.
+      </span>
+    </h3>
+    <h1>
+Simuladores para cada examen
+    </h1>
+    <p>
+      En Simulandum te enfrentas a simuladores que replican exámenes reales. 
+      Practica con tiempos, estructura y preguntas diseñadas para evaluar lo que realmente importa. 
+      Sin mensualidades, sin complicaciones. Solo lo que necesitas para avanzar con confianza.
+    </p>
+    <div className={styles['landing-hero-buttons']}>
+        <Link href={"/simuladores"} className={styles["primary"]}>Ver simuladores</Link>
 
-          <div className={styles['landing-number-item']}>
-            <h3>+250</h3>
-            <p>Cuestionarios</p>
-          </div>
-        </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div className={styles['landing-numbers']}>
+
+  <div className={styles['landing-number-item']}>
+    <div className={styles['landing-number-img']}>
+      {/* Aquí puedes colocar un ícono si lo deseas */}
+    </div>
+    <h3>+1000</h3>
+    <p>Usuarios</p>
+  </div>
+
+  <div className={styles['landing-number-item']}>
+    <h3>+1500</h3>
+    <p>Ejercicios</p>
+  </div>
+
+  <div className={styles['landing-number-item']}>
+    <h3>+200</h3>
+    <p>Temas por área</p>
+  </div>
+
+  <div className={styles['landing-number-item']}>
+    <h3>+5000</h3>
+    <p>Exámenes aplicados</p>
+  </div>
+
+</div>
+
+<div className={styles["landing-options-container"]}>
+  <h2>Selecciona el examen que necesitas</h2>
+
+  <div className={styles["examen-options"]}>
+
+
+<div className={styles["examen-option"]}>
+  <div className={styles["examen-img"]}>
+    <Image
+      src="/landing/exadiems.png"
+      alt="EXADIEMS"
+      width={300}
+      height={180}
+      style={{ width: "100%", height: "auto", objectFit: "cover" }}
+    />
+  </div>
+
+  <div className={styles["examen-info"]}>
+    <h3>EXADIEMS</h3>
+    <p>Examen de admisión aplicado por la UAGro para ingresar a nivel medio superior (preparatoria).</p>
+    <div className={styles["examen-meta"]}>
+      <span>3 simuladores</span> | <span>360 preguntas</span>
+    </div>
+    <Link href={"/exadiems"} className={styles["examen-boton"]}>Ver simuladores</Link>
+  </div>
+</div>
+
+
+
+
+
+<div className={styles["examen-option"]}>
+  <div className={styles["examen-img"]}>
+    <Image
+      src="/landing/exani-iii.png"
+      alt="EXANI III"
+      width={300}
+      height={180}
+      style={{ width: "100%", height: "auto", objectFit: "cover" }}
+    />
+  </div>
+
+  <div className={styles["examen-info"]}>
+    <h3>EXANI III</h3>
+<p>Examen utilizado para el ingreso a maestrías, especialidades y doctorados en México</p>
+
+    <div className={styles["examen-meta"]}>
+      <span>3 simuladores</span> | <span>360 preguntas</span>
+    </div>
+    <Link href={"/exani-iii"} className={styles["examen-boton"]}>Ver simuladores</Link>
+
+  </div>
+</div>
+
+<div className={styles["examen-option"]}>
+  <div className={styles["examen-img"]}>
+    <Image
+      src="/landing/exadies.png"
+      alt="EXADIES"
+      width={300}
+      height={180}
+      style={{ width: "100%", height: "auto", objectFit: "cover" }}
+    />
+  </div>
+
+  <div className={styles["examen-info"]}>
+    <h3>EXADIES 2025</h3>
+<p>Examen de ingreso al nivel superior aplicado por la UAGro para aspirantes a licenciatura.</p>
+
+    <div className={styles["examen-meta"]}>
+      <span>2 simuladores</span> | <span>240 preguntas</span>
+    </div>
+    <Link href={"/exadies"} className={styles["examen-boton"]}>Ver simuladores</Link>
+
+  </div>
+</div>
+
+
+
+      </div>
+
+    </div>
+
 
         <div className={styles['landing-cards-container']}>
-          <div className={styles['landing-cards-titles']}>
-            <div className={styles['landing-cards-logo']}>
-            </div>
-            <h2>
-              Conoce todo lo que <span className={styles['primary-color']}>Club</span>
-              Exani tiene para ti
-            </h2>
 
-            <p>
-              Hemos desarrollado un programa de preparación enfocado en el
-              EXANI III, diseñado para facilitar tu aprendizaje y asegurarte
-              de dominar los temas esenciales. Nuestro objetivo es
-              proporcionarte los recursos para que superes con éxito tu examen
-              de admisión.
-            </p>
-          </div>
+
+
+
+<div className={styles['landing-cards-titles']}>
+  <div className={styles['landing-cards-logo']}>
+    {/* Aquí podrías colocar un logo o ícono si lo deseas */}
+  </div>
+  
+  <h2>
+    Descubre todo lo que <span className={styles['primary-color']}>Simulandum</span> puede hacer por ti
+  </h2>
+
+  <p>
+    Hemos creado una plataforma de simuladores para que te prepares de forma efectiva, sin pagar de más.
+    Ya sea que vayas a presentar el EXANI III, el EXADIEMS o cualquier otro examen de admisión, 
+    aquí encontrarás herramientas que simulan con precisión el entorno real del examen y te ayudan a mejorar con cada intento.
+  </p>
+</div>
+
 
 
 <div className={styles['landing-cards']}>
-  <div className={styles['landing-card']}>
-    <Image src="/landing/test.png" alt="Simuladores" width={40} height={40} />
-    <h3>Simuladores</h3>
-    <p>
-      Realiza simulaciones completas del EXANI III, con preguntas y
-      tiempos similares al examen real.
-    </p>
-  </div>
-  <div className={styles['landing-card']}>
-    <Image src="/landing/book.png" alt="Lecciones" width={40} height={40} />
-    <h3>Lecciones</h3>
-    <p>
-      Accede a contenido teórico detallado y estructurado para cada
-      área del EXANI III.
-    </p>
-  </div>
-  <div className={styles['landing-card']}>
-    <Image src="/landing/test2.png" alt="Cuestionarios" width={40} height={40} />
-    <h3>Cuestionarios</h3>
-    <p>
-      Practica de forma interactiva con cuestionarios diseñados para
-      evaluar tus conocimientos.
-    </p>
-  </div>
+
+
+
+<div className={styles['landing-card']}>
+  <Image src="/landing/test.png" alt="Simuladores" width={40} height={40} />
+  <h3>Simuladores realistas</h3>
+  <p>
+    Practica con exámenes que simulan fielmente la estructura, dificultad y tiempos del examen real. 
+    Una forma efectiva de prepararte sin sorpresas.
+  </p>
+</div>
+
+
+
+<div className={styles['landing-card']}>
+  <Image src="/landing/book.png" alt="Variedad de simuladores" width={40} height={40} />
+  <h3>Variedad</h3>
+  <p>
+    Cada examen disponible en Simulandum cuenta con múltiples simuladores distintos, 
+    todos con preguntas únicas y niveles variados para que practiques tantas veces como quieras sin repetir.
+  </p>
+</div>
+
+
+<div className={styles['landing-card']}>
+  <Image src="/landing/test2.png" alt="Créditos flexibles" width={40} height={40} />
+  <h3>Créditos que se adaptan a ti</h3>
+  <p>
+    En Simulandum usas monedas (créditos) para acceder a simuladores cuando tú lo decidas. 
+    Sin planes forzosos ni mensualidades. Paga solo por lo que usas, a tu ritmo.
+  </p>
+</div>
+
+
   <div className={styles['landing-card']}>
     <Image src="/landing/chart.png" alt="Seguimiento de Progreso" width={40} height={40} />
     <h3>Seguimiento de Progreso</h3>
@@ -131,6 +244,10 @@ const LandingPage = () => {
       a identificar tus fortalezas y áreas de oportunidad.
     </p>
   </div>
+
+
+
+
 </div>
 
         </div>
@@ -138,52 +255,71 @@ const LandingPage = () => {
         <div className={styles['landing-sections-container']}>
           <div className={styles['landing-sections-title']}>
             <h2>
-              ¿Por qué elegir <span className={styles['primary-color']}>Exani</span>
-              Exani para prepararte para el EXANI III?
+              ¿Por qué elegir <span className={styles['primary-color']}>Simu</span>
+              landum para prepararte para tus examenes?
             </h2>
           </div>
 
-          <div className={styles['landing-section']}>
 
-          <div className={styles['landing-section-img']}>
-              <Image src={'/landing/hero.png'} width={400} height={400} alt='hero image' style={{width:"100%",height:"auto"}}></Image>
 
-            </div>
+{/* Sección 1 – Evita sorpresas */}
+<div className={styles['landing-section']}>
 
-            <div className={styles['landing-section-texts']}>
-              <h4>Examenes simuladores</h4>
-              <h3>Prueba tu nivel antes del examen real</h3>
-              <p>
-                Los simuladores de Club Exani te permiten enfrentar
-                escenarios realistas del EXANI III, preparándote para los
-                desafíos que encontrarás en el examen oficial. Practica bajo
-                condiciones reales, detecta áreas de mejora y optimiza tu
-                tiempo de respuesta para maximizar tus posibilidades de
-                éxito.
-              </p>
-              <button>Examen Diagnostico</button>
-            </div>
+  <div className={styles['landing-section-img']}>
+    <Image
+      src={'/landing/hero.png'}
+      width={400}
+      height={400}
+      alt="Simulandum simuladores"
+      style={{ width: "100%", height: "auto" }}
+    />
+  </div>
 
-        
-          </div>
+  <div className={styles['landing-section-texts']}>
+    <h4>Evita sorpresas en el examen real</h4>
+    <h3>Practica antes, aprueba con confianza</h3>
+    <p>
+      Muchos estudiantes fallan no por falta de conocimientos, sino por no saber a qué se enfrentan. 
+      Con Simulandum puedes prepararte con simuladores que replican el formato real del examen. 
+      Así, cuando llegue el día, nada te tomará por sorpresa.
+    </p>
+    <Link href={"/simuladores"}>Ver simuladores</Link>
 
-          <div className={styles['landing-blue']}>
-            <div className={styles['landing-section']}>
-              <div className={styles['landing-section-img']}>
-              <Image src={'/landing/hero.png'} width={400} height={400} alt='hero image' style={{width:"100%",height:"auto"}}></Image>
+  </div>
 
-              </div>
+</div>
 
-              <div className={styles['landing-section-texts']}>
-                <h4>Lecciones Interactivas</h4>
-                <h3>Domina los temas clave del EXANI III</h3>
-                <p>
-                  Las lecciones de Club Exani están diseñadas para que aprendas de manera efectiva cada uno de los temas que verás en el examen. Con explicaciones claras y ejemplos prácticos, podrás comprender incluso los conceptos más complejos.
-                </p>
-                <button>Ver lecciones</button>
-              </div>
-            </div>
-          </div>
+{/* Sección 2 – Flexibilidad y control */}
+<div className={styles['landing-blue']}>
+  <div className={styles['landing-section']}>
+
+
+
+    <div className={styles['landing-section-texts']}>
+      <h4>Entrena a tu ritmo</h4>
+      <h3>Elige qué simulador resolver, cuándo y cuántas veces</h3>
+      <p>
+        En Simulandum tú tienes el control. Compra monedas, selecciona el examen que necesitas y resuélvelo cuando estés listo. 
+        No necesitas suscripciones ni compromisos. Aquí estudias a tu manera, con libertad total.
+      </p>
+          <Link href={"/simuladores"}>Explorar simuladores</Link>
+
+    </div>
+
+        <div className={styles['landing-section-img']}>
+      <Image
+        src="/landing/hero.png"
+        width={400}
+        height={400}
+        alt="Simuladores flexibles"
+        style={{ width: "100%", height: "auto" }}
+      />
+    </div>
+
+  </div>
+</div>
+
+
 
           {/* <div className={styles['landing-section']}>
             <div className={styles['landing-section-texts']}>
@@ -207,45 +343,42 @@ const LandingPage = () => {
         <div className={styles['testimonials-container']}>
           <h2>Historias de éxito de nuestros estudiantes</h2>
           <div className={styles['testimonials']}>
-            <div className={styles['testimonial-item']}>
-              <div className={styles['testimonial-img']}>
-                <Image src={'/landing/person.jpg'} width={310} height={310} alt='persona' ></Image>
+     
 
-              </div>
-
-              <div className={styles['testimonial-texts']}>
-                <div className={styles['testimonial-title']}>
-                  <h4>Esteban de Jesus</h4>
-                  <p>Estudiante de posgrado en Matemáticas</p>
-                </div>
-                <p>
-                  <q>
-                    Usar Club Exani fue clave para mi preparación para el EXANI III. Las lecciones son súper claras y los simuladores realmente me ayudaron a entender cómo sería el examen. Me sentí más seguro gracias al seguimiento que recibí. ¡Sin duda, les debo mi éxito!
-                  </q>
-                </p>
-
-              </div>
+           <div className={styles['testimonial-item']}>
+            <div className={styles['testimonial-img']}>
+              <Image src="/landing/person.jpg" alt="Esteban de Jesus" width={80} height={80} />
             </div>
-
-            <div className={styles['testimonial-item']}>
-              <div className={styles['testimonial-img']}>
-              <Image src={'/landing/person.jpg'} width={310} height={310} alt='persona' ></Image>
-
+            <div className={styles['testimonial-texts']}>
+              <div className={styles['testimonial-title']}>
+                <h4>Esteban de Jesus</h4>
+                <p>EXANI III</p>
               </div>
-
-              <div className={styles['testimonial-texts']}>
-                <div className={styles['testimonial-title']}>
-                  <h4>Maria Gonzalez</h4>
-                  <p>Estudiante de posgrado en Ingeniería</p>
-                </div>
-                <p>
-                  <q>
-                    Club Exani me proporcionó todas las herramientas necesarias para estudiar y afrontar el EXANI III. Las lecciones son interactivas y los ejercicios fueron muy útiles para reforzar mi aprendizaje. ¡Lo recomiendo!
-                  </q>
-                </p>
-
-              </div>
+              <p className={styles['testimonial-pb']}>
+                <q>
+                  Usar Simulandum fue clave para mi preparación para el EXANI III. Las lecciones son claras y los simuladores me ayudaron a entender cómo sería el examen real. Me sentí mucho más seguro.
+                </q>
+              </p>
             </div>
+          </div>
+
+          <div className={styles['testimonial-item']}>
+            <div className={styles['testimonial-img']}>
+              <Image src="/landing/person.jpg" alt="Daniela Martínez" width={80} height={80} />
+            </div>
+            <div className={styles['testimonial-texts']}>
+              <div className={styles['testimonial-title']}>
+                <h4>Daniela Martínez</h4>
+                <p>EXADIEMS</p>
+              </div>
+              <p className={styles['testimonial-pb']}>
+                <q>
+                  Siempre pensé que el examen sería muy difícil, pero después de practicar con Simulandum, me sentí tranquila y confiada el día del EXADIEMS.
+                </q>
+              </p>
+            </div>
+          </div>
+
           </div>
         </div>
 

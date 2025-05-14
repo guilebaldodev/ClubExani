@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="footer-content">
 
           <div className="footer-logotype">
-            <Image src="/layout/white-logo.png" alt="Logo" width={32} height={32} />
-            <h3>ClubExani</h3>
+            <Image src="/layout/logo.png" alt="Logo" width={50} height={50} />
+            <h3>Simulandum</h3>
           </div>
 
           <div className="footer-section">
@@ -22,7 +22,7 @@ const Footer = () => {
                 <Link href="/testimonios">Testimonios</Link>
               </li>
               <li>
-                <Link href="/planes">Planes</Link>
+                <Link href="/creditos">Creditos</Link>
               </li>
               <li>
                 <Link href="/politicas">Políticas</Link>
@@ -31,19 +31,17 @@ const Footer = () => {
           </div>
 
           <div className="footer-section">
-            <h4>Curso</h4>
+            <h4>Simuladores</h4>
             <ul>
+  
               <li>
-                <Link href="/lecciones">Lecciones</Link>
+                <Link href="/simuladores">Exadiems</Link>
               </li>
               <li>
-                <Link href="/simuladores">Simuladores</Link>
+                <Link href="/cuestionarios">Exani iii</Link>
               </li>
               <li>
-                <Link href="/cuestionarios">Cuestionarios</Link>
-              </li>
-              <li>
-                <Link href="/mi-progreso">Mi progreso</Link>
+                <Link href="/mi-progreso">Todos</Link>
               </li>
             </ul>
           </div>
@@ -67,7 +65,7 @@ const Footer = () => {
 
         <div className="footer-info">
           <p>
-            Copyright © 2024 ClubExani. Todos los derechos reservados.
+            Copyright © 2025 Simulandum. Todos los derechos reservados.
           </p>
           <p>Web hecha con el ♥ por Solaria</p>
         </div>

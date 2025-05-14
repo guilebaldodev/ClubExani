@@ -1,0 +1,115 @@
+.catalogo-container {
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+.catalogo-title {
+  margin-bottom: 2rem;
+  font-size: 40px;    text-align: center;
+}
+
+.filtros-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filtros-izquierda {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filtros-derecha {
+  min-width: 200px;
+}
+
+.filtros-row select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 180px;
+}
+
+/* Simuladores */
+.catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.grupo-examen h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #004aad;
+}
+
+.grid-simuladores {
+ display: grid
+;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin: auto;
+    padding-bottom: 2rem;
+    grid-gap: 25px;
+    grid-gap: 25px;
+    gap: 25px;
+    margin-top: 3rem;
+
+}
+
+.simulador-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.5rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.simulador-card:hover {
+  transform: translateY(-4px);
+}
+
+.simulador-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* margin-bottom: 0.5rem; */
+}
+
+.simulador-card h4 {
+  font-size: 1.3rem;
+  margin: 0.3rem 0;
+}
+
+.simulador-card p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.simulador-card .dificultad {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.simulador-card button {
+  background-color: #004aad;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+}

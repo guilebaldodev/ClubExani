@@ -34,7 +34,7 @@ interface AdminHeaderProps{
           <div className={styles["sidebar-header"]}>
             <div className={styles["sidebar-title"]}>
               <Image src="/layout/black-logo.png" alt="Logo" width={32} height={32} />
-              <h3>Club<span className='primary-color'>Exani</span></h3>
+              <h3>Simu<span className='primary-color'>landum</span></h3>
             </div>
 
               <Image

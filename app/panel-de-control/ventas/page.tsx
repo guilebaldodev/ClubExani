@@ -60,12 +60,12 @@ const SalesPage = () => {
               </div>
 
               <div className={styles['sales-card-title']}>
-                <h4>Subscripciones</h4>
+                <h4>Monedas</h4>
               </div>
 
               <div className={styles['sales-card-info']}>
                 <div className={styles['text']}>
-                  <h3>120</h3>
+                  <h3>1200</h3>
                   <p>
                     <span className={styles['span-green']}>+10%</span> vs el mes anterior
                   </p>
@@ -160,7 +160,7 @@ const SalesPage = () => {
           <div className={styles['bars-img-container']}>
             <Image src="/admin/grey-tag.png" alt="" width={22} height={23} />
           </div>
-          <p>Subscripciones</p>
+          <p>Compras</p>
         </div>
 
         <div className={styles['bars-card']}>
@@ -193,7 +193,7 @@ const SalesPage = () => {
   <div className={styles['sales-pie']}>
     <div className={styles['sales-pie-container']}>
       <div className={styles['sales-pie-title']}>
-        <h3>Categoría de subscripciones</h3>
+        <h3>Categoría de compras</h3>
       </div>
 
       <div className={styles['sales-pie-chart']}>
@@ -299,7 +299,7 @@ const SalesPage = () => {
   <div className={styles['sales-dashed']}>
     <div className={styles['sales-dashed-container']}>
       <div className={styles['sales-dashed-title']}>
-        <h3>Tendencia de usuarios y subscripciones</h3>
+        <h3>Tendencia de usuarios y compras</h3>
         <p>Tendencia de este año</p>
       </div>
 

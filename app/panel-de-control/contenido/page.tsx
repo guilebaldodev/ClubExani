@@ -21,7 +21,7 @@ const ContentPage = () => {
                     <p>Preguntas totales</p>
                 </div>
 
-                <div className={styles['content-dashboard-card']}>
+                {/* <div className={styles['content-dashboard-card']}>
                     <div className={`${styles['content-img-dashboard']} ${styles['green']}`}>
                         <Image src="/admin/green-book.png" alt="" width={25} height={25} />
                     </div>
@@ -35,7 +35,7 @@ const ContentPage = () => {
                     </div>
                     <h3>150</h3>
                     <p>Cuestionarios totales</p>
-                </div>
+                </div> */}
 
                 <div className={`${styles['content-dashboard-card']}`}>
                     <div className={`${styles['content-img-dashboard']} ${styles['orange']}`}>
