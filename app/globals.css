@@ -51,13 +51,14 @@
   height: 2.5rem;
 }
 
-.navbar__button{
-  display: flex;
+
+.right-buttons{
+ display: flex;
   align-items: center;
   margin-right: 25px;
 }
 
-.navbar__button button{
+.navbar__button,.login-button{
   cursor: pointer;
   width: 7rem;
   height: 2.5rem;
@@ -70,6 +71,14 @@
   font-family: var(--font-CircularBold);
   font-weight: 600;
   font-size: 14px;
+  margin-right: 1rem;
+}
+
+.login-button{
+  background-color: white !important;
+  border: 1px solid #022EE1 !important;
+  color: #0056D2 !important;
+
 }
 
 .burger-menu{

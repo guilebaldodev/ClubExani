@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { sourceSans } from "./fonts";
+import { ClerkProvider } from "@clerk/nextjs";
+import { esMX } from "@clerk/localizations";
 
 
 export const metadata: Metadata = {
@@ -14,10 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+
+    <ClerkProvider localization={esMX}>
+    <html lang="es">
       <body className={`${sourceSans.className}`}>
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }

@@ -1,4 +1,5 @@
 'use client';
+import Footer from '../ui/landingPage/Footer';
 import Header from '../ui/landingPage/LandingHeader';
 import styles from './simuladores.module.css';
 import { useState } from 'react';
@@ -101,6 +102,8 @@ export default function SimuladoresPage() {
         ))}
       </main>
     </div>
+
+    <Footer></Footer>
     </>
 
   );

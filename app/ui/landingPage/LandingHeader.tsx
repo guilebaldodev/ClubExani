@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import MobileNavbar from './MobileNavbar'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
   const [menu, setmenu] = useState(false);
@@ -41,8 +42,21 @@ const Header = () => {
       <Link href="/contacto">Contacto</Link>
     </nav>
 
-    <div className="navbar__button">
-      <button onClick={() => router.push("/simuladores")}>Simuladores</button>
+    <div className='right-buttons'>
+      <button className='navbar__button' onClick={() => router.push("/simuladores")}>Simuladores</button>
+    
+      <SignedOut>
+        <SignInButton mode='modal'>
+          <button className='login-button'>Iniciar sesion</button>
+        </SignInButton>
+      </SignedOut>
+
+      <SignedIn>
+        <UserButton appearance={{elements:{userButtonAvatarBox:{
+          width:"38px",
+          height:"38px"
+        }}}}></UserButton>
+      </SignedIn>
     </div>
   </header>
   );
