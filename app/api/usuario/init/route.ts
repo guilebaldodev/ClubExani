@@ -8,7 +8,7 @@ export async function POST() {
   await connectDB();
 
 
-  const { default: Usuario } = await import("@/models/UsuarioTempt"); 
+  const { default: Usuario } = await import("@/models/Usuario"); 
 
   const existente = await Usuario.findOne({ userId });
   
