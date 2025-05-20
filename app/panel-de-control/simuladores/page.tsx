@@ -4,21 +4,39 @@ import Image from "next/image";
 import dataStyles from '@/app/ui/admin/DataTable.module.css';
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 
-const examenOptions = [
+// Tipo para las opciones del Select
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
+type Simulador = {
+  _id: string;
+  titulo: string;
+  examen: string;
+  tipo: string;
+  precio: number;
+  totalPreguntas: number;
+  contador: number;
+};
+
+
+
+const examenOptions: SelectOption[] = [
   { value: "EXANI III", label: "EXANI III" },
   { value: "EXADIEMS", label: "EXADIEMS" },
   { value: "EXADIES", label: "EXADIES" },
 ];
 
-const tipoOptions = [
+const tipoOptions: SelectOption[] = [
   { value: "Completo", label: "Completo" },
   { value: "Diagnóstico", label: "Diagnóstico" },
   { value: "Parcial", label: "Parcial" },
 ];
 
-const dificultadOptions = [
+const dificultadOptions: SelectOption[] = [
   { value: "Fácil", label: "Fácil" },
   { value: "Intermedio", label: "Intermedio" },
   { value: "Avanzado", label: "Avanzado" },
@@ -27,7 +45,10 @@ const dificultadOptions = [
 ];
 
 const Simuladores = () => {
-  const [simuladores, setSimuladores] = useState([]);
+
+  const [simuladores, setSimuladores] = useState<Simulador[]>([]);
+
+
   const [busqueda, setBusqueda] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -35,9 +56,10 @@ const Simuladores = () => {
   const [menu, setMenu] = useState(false);
   const limit = 10;
 
-  const [filtroExamen, setFiltroExamen] = useState(null);
-  const [filtroTipo, setFiltroTipo] = useState(null);
-  const [filtroDificultad, setFiltroDificultad] = useState(null);
+  // ✅ Tipado correcto
+  const [filtroExamen, setFiltroExamen] = useState<SingleValue<SelectOption>>(null);
+  const [filtroTipo, setFiltroTipo] = useState<SingleValue<SelectOption>>(null);
+  const [filtroDificultad, setFiltroDificultad] = useState<SingleValue<SelectOption>>(null);
 
   const fetchSimuladores = async () => {
     try {
@@ -103,8 +125,6 @@ const Simuladores = () => {
                 }}
               />
             </div>
-
-
           </div>
 
           <div className={dataStyles['admin-table-left']}>
@@ -117,46 +137,43 @@ const Simuladores = () => {
               Añadir
             </button>
           </div>
-
-              
-
         </div>
 
-                    <div style={{ padding:"0px 16px 0px 16px",display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
-              <Select
-                placeholder="Filtrar por examen"
-                options={examenOptions}
-                value={filtroExamen}
-                onChange={(op) => {
-                  setFiltroExamen(op);
-                  setPage(1);
-                }}
-                isClearable
-                styles={{ container: (base) => ({ ...base, minWidth: 180 }) }}
-              />
-              <Select
-                placeholder="Tipo"
-                options={tipoOptions}
-                value={filtroTipo}
-                onChange={(op) => {
-                  setFiltroTipo(op);
-                  setPage(1);
-                }}
-                isClearable
-                styles={{ container: (base) => ({ ...base, minWidth: 140 }) }}
-              />
-              <Select
-                placeholder="Dificultad"
-                options={dificultadOptions}
-                value={filtroDificultad}
-                onChange={(op) => {
-                  setFiltroDificultad(op);
-                  setPage(1);
-                }}
-                isClearable
-                styles={{ container: (base) => ({ ...base, minWidth: 150 }) }}
-              />
-            </div>
+        <div style={{ padding:"0px 16px", display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+          <Select
+            placeholder="Filtrar por examen"
+            options={examenOptions}
+            value={filtroExamen}
+            onChange={(op) => {
+              setFiltroExamen(op);
+              setPage(1);
+            }}
+            isClearable
+            styles={{ container: (base) => ({ ...base, minWidth: 180 }) }}
+          />
+          <Select
+            placeholder="Tipo"
+            options={tipoOptions}
+            value={filtroTipo}
+            onChange={(op) => {
+              setFiltroTipo(op);
+              setPage(1);
+            }}
+            isClearable
+            styles={{ container: (base) => ({ ...base, minWidth: 140 }) }}
+          />
+          <Select
+            placeholder="Dificultad"
+            options={dificultadOptions}
+            value={filtroDificultad}
+            onChange={(op) => {
+              setFiltroDificultad(op);
+              setPage(1);
+            }}
+            isClearable
+            styles={{ container: (base) => ({ ...base, minWidth: 150 }) }}
+          />
+        </div>
 
         <div className={dataStyles['admin-table']}>
           <table>
