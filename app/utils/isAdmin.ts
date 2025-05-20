@@ -1,4 +1,4 @@
-import Usuario from "@/models/Usuario";
+import Usuario from "@/models/UsuarioTempt";
 import { connectDB } from "./mongoose";
 
 export async function esAdmin(userId: string) {
