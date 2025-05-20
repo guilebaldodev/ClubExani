@@ -2,18 +2,29 @@ import mongoose, { Schema, models } from "mongoose";
 
 const SimuladorSchema = new Schema(
   {
-    titulo: { type: String, required: true }, 
-    examen: { type: String, required: true }, 
-    tipo: { type: String, required: true }, 
-    dificultad: {
+    titulo: { type: String, required: true },
+    examen: { type: String,required: true },
+    tipo: {
       type: String,
-      enum: ["Fácil", "Intermedio", "Avanzado"],
+      enum: ["Completo", "Diagnóstico", "Parcial"],
       required: true,
     },
-    precio: { type: Number, required: true }, 
-    imagen: { type: String, required: true }, 
-    totalPreguntas: { type: Number, default: 0 }
-
+    dificultad: {
+      type: String,
+      enum: ["Fácil", "Intermedio", "Dificil"],
+      required: true,
+    },
+    contador: {
+      type: Number,
+      default: 0,
+    },
+    tiempo: {
+      type: Number,
+      required: true,
+    },
+    precio: { type: Number, required: true },
+    imagen: { type: String, required: true },
+    totalPreguntas: { type: Number, default: 0 },
   },
   {
     timestamps: true,

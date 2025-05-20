@@ -8,6 +8,11 @@
     padding-bottom: 1rem;
 }
 
+.error{
+  padding-top: 5px;
+  color: #ff6d43;
+}
+
 
 .add_product_container{
     padding: 2rem;
@@ -28,6 +33,14 @@
     background-color: white;
     padding: 2rem;
     width: 65%;
+    height: fit-content;
+  }
+
+  .complete_form{
+    border-radius: 5px;
+    background-color: white;
+    padding: 2rem;
+    width: 100%;
     height: fit-content;
   }
   

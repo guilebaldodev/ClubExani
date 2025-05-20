@@ -1,8 +1,10 @@
 "use client"
 import AdminHeader from '@/app/ui/admin/AdminHeader'
+import "react-toastify/dist/ReactToastify.css";
 
 import SideBar from "../ui/admin/SideBar";
 import { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 const Layout = ({children}:{children:React.ReactNode}) => {
     
@@ -29,6 +31,9 @@ const Layout = ({children}:{children:React.ReactNode}) => {
                 {children}
                 </div>
             </div>
+
+                  <ToastContainer position="top-right" autoClose={3000} />
+
 
         </>
      );

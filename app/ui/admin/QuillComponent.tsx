@@ -1,36 +1,34 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import "react-quill/dist/quill.snow.css"; 
+import "react-quill/dist/quill.snow.css";
 
-import dynamic from 'next/dynamic';
+// Cargar dinámicamente sin SSR
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-const ReactQuill = dynamic(() => import('react-quill'), {
-  ssr: false,
-});
-
-const QuillComponent = ({ placeholder = "Escribe aquí tu pregunta..." }) => {
+const QuillComponent = ({ placeholder = "Escribe tu pregunta...", onChange }) => {
   const [content, setContent] = useState("");
 
-  return ( 
-    <>
-      <div>
-        <ReactQuill 
-          value={content} 
-          onChange={setContent} 
-          style={{
-            minHeight: "100%",
-            fontFamily: '"Poppins", sans-serif', 
-            fontStyle: "normal",
-            fontSize: "14px" 
-          }}
-          placeholder={placeholder}
-        />
-      </div>
+  const handleChange = (value: string) => {
+    setContent(value);
+    if (onChange) onChange(value);
+  };
 
-
-
-
-    </>
+  return (
+    <div style={{ width: "100%" }}>
+      <ReactQuill
+        value={content}
+        onChange={handleChange}
+        placeholder={placeholder}
+        style={{
+          minHeight: "180px",
+          fontFamily: '"Poppins", sans-serif',
+          fontSize: "14px"
+        }}
+      />
+    </div>
   );
-}
+};
 
 export default QuillComponent;

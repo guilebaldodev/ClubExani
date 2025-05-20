@@ -17,6 +17,8 @@ import UploadModal from "@/app/ui/admin/UploadModal";
 const AddQuestion = () => {
 
   const [modal, setModal] = useState(false);
+  const [contenidoPregunta, setContenidoPregunta] = useState("");
+
 
 
   return (
@@ -60,7 +62,31 @@ const AddQuestion = () => {
               <div className={styles.add_product_inputs}>
                 <div className={styles.input_duo}>
                   <label htmlFor="">Pregunta</label>
-                  <QuillComponent></QuillComponent>
+                  {/* <QuillComponent></QuillComponent> */}
+                  {/* <QuillComponent onChange={(value) => setContenidoPregunta(value)} /> */}
+                  
+
+<label htmlFor="contenidoHTML">Código HTML de la pregunta</label>
+<textarea
+  name="contenidoHTML"
+  rows={10}
+
+  placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+  style={{
+    width: "100%",
+    padding: "1rem",
+    fontFamily: "monospace",
+    fontSize: "14px",
+    border: "1px solid #ccc",
+    borderRadius: "6px",
+    backgroundColor: "#f9f9f9"
+  }}
+/>
+
+
+                <div></div>
+
+
                 </div>
 
                 <div className={styles.double_input}>
@@ -271,30 +297,30 @@ const AddQuestion = () => {
                 </div>
                 <div className={styles.form_img_answer}>
                     <h4>Respuesta 1</h4>
-                    <QuillComponent placeholder="Ingresa la respuesta 1"></QuillComponent>
+                    {/* <QuillComponent placeholder="Ingresa la respuesta 1"></QuillComponent> */}
 
                     <h4>Explicacion 1</h4>
 
-                    <QuillComponent placeholder="Ingresa la explicacion 1"></QuillComponent>
+                    {/* <QuillComponent placeholder="Ingresa la explicacion 1"></QuillComponent> */}
                 </div>
 
                 <div className={styles.form_img_answer}>
                     <h4>Respuesta 2</h4>
 
-                    <QuillComponent placeholder="Ingresa la respuesta 2"></QuillComponent>
+                    {/* <QuillComponent placeholder="Ingresa la respuesta 2"></QuillComponent> */}
 
                     <h4>Explicacion 2</h4>
 
-                    <QuillComponent placeholder="Ingresa la explicacion 2"></QuillComponent>
+                    {/* <QuillComponent placeholder="Ingresa la explicacion 2"></QuillComponent> */}
                 </div>
 
                 <div className={styles.form_img_answer}>
                     <h4>Respuesta 3</h4>
-                    <QuillComponent placeholder="Ingresa la respuesta 3"></QuillComponent>
+                    {/* <QuillComponent placeholder="Ingresa la respuesta 3"></QuillComponent> */}
 
                     <h4>Explicacion 3</h4>
 
-                    <QuillComponent placeholder="Ingresa la explicacion 3"></QuillComponent>
+                    {/* <QuillComponent placeholder="Ingresa la explicacion 3"></QuillComponent> */}
                 </div>
 
                 <div className={styles.form_buttons}>

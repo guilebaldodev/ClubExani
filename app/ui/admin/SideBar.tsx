@@ -1,52 +1,57 @@
-'use client'
-import { useState } from 'react';
-import Link from 'next/link'; // Next.js Link
-import styles from './SideBar.module.css'; // Asegúrate de migrar los estilos a CSS Modules o mantenerlos globales si prefieres
-import Image from 'next/image';
+"use client";
+import { useState } from "react";
+import Link from "next/link"; // Next.js Link
+import styles from "./SideBar.module.css"; // Asegúrate de migrar los estilos a CSS Modules o mantenerlos globales si prefieres
+import Image from "next/image";
 
+interface AdminHeaderProps {
+  isSideBarActive: boolean;
+  toggleSideBar: () => void;
+}
 
-interface AdminHeaderProps{
-  isSideBarActive:boolean,
-  toggleSideBar:()=>void
-  }
+const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
+  const [activeMenu, setActiveMenu] = useState(null);
 
+  const toggleMenu = (menu) => {
+    setActiveMenu(activeMenu === menu ? null : menu);
+  };
 
-    const SideBar = ({toggleSideBar,isSideBarActive}:AdminHeaderProps) => {
-
-    const [activeMenu, setActiveMenu] = useState(null);
-
-    const toggleMenu = (menu) => {
-      setActiveMenu(activeMenu === menu ? null : menu);
-    };
-
-
-    return ( 
+  return (
     <>
+      {!isSideBarActive && (
+        <>
+          <div className={styles["overlay"]}></div>
+        </>
+      )}
 
-{(!isSideBarActive) && (<>
-    <div className={styles["overlay"]}>
-
-    </div>
-  </>)}
-    
-  <div className={`${styles['sidebar-container']} ${isSideBarActive ? styles['close'] : ''} ${styles["slide-enter"]}`}>
-          <div className={styles["sidebar-top"]}>
+      <div
+        className={`${styles["sidebar-container"]} ${
+          isSideBarActive ? styles["close"] : ""
+        } ${styles["slide-enter"]}`}
+      >
+        <div className={styles["sidebar-top"]}>
           <div className={styles["sidebar-header"]}>
             <div className={styles["sidebar-title"]}>
-              <Image src="/layout/black-logo.png" alt="Logo" width={32} height={32} />
-              <h3>Simu<span className='primary-color'>landum</span></h3>
+              <Image
+                src="/layout/black-logo.png"
+                alt="Logo"
+                width={32}
+                height={32}
+              />
+              <h3>
+                Simu<span className="primary-color">landum</span>
+              </h3>
             </div>
 
-              <Image
-                    onClick={() => {
-                      toggleSideBar()
-                    }}
-                    alt="x icon"
-                    width={25}
-                    height={25}
-                    src="/admin/x.png"
-                  />
-
+            <Image
+              onClick={() => {
+                toggleSideBar();
+              }}
+              alt="x icon"
+              width={25}
+              height={25}
+              src="/admin/x.png"
+            />
           </div>
 
           <div className={styles["sidebar-options"]}>
@@ -54,9 +59,11 @@ interface AdminHeaderProps{
             <div className={styles["option-menu"]}>
               <div
                 className={`${styles["option-menu-title"]} ${
-                  activeMenu === 'dashboards' ? `${styles["active"]} ${styles["option-menu-selected"]}` : ''
+                  activeMenu === "dashboards"
+                    ? `${styles["active"]} ${styles["option-menu-selected"]}`
+                    : ""
                 }`}
-                onClick={() => toggleMenu('dashboards')}
+                onClick={() => toggleMenu("dashboards")}
               >
                 <div className={styles["title-right"]}>
                   <Image
@@ -76,13 +83,18 @@ interface AdminHeaderProps{
                 />
               </div>
 
-              <div className={`${styles["content"]} ${activeMenu === 'dashboards' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/ventas"
-                onClick={()=>{
-                  if((!isSideBarActive) && (window.innerWidth < 750)){
-                    toggleSideBar()
-                  }
-                }}
+              <div
+                className={`${styles["content"]} ${
+                  activeMenu === "dashboards" ? styles["show"] : ""
+                }`}
+              >
+                <Link
+                  href="/panel-de-control/ventas"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
+                    }
+                  }}
                 >
                   <Image
                     src="/layout/admin/round-icon.png"
@@ -93,12 +105,14 @@ interface AdminHeaderProps{
                   <p>Ventas</p>
                 </Link>
 
-                <Link href="/panel-de-control/contenido"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
+                <Link
+                  href="/panel-de-control/contenido"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
                     }
-                  }}>
+                  }}
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Contenido Icon"
@@ -110,134 +124,17 @@ interface AdminHeaderProps{
               </div>
             </div>
 
-            {/* Preguntas */}
-            <div className={styles["option-menu"]}>
-              <div
-                className={`${styles["option-menu-title"]} ${
-                  activeMenu === 'preguntas' ? `${styles["active"]} ${styles["option-menu-selected"]}` : ''
-                }`}
-                onClick={() => toggleMenu('preguntas')}
-              >
-                <div className={styles["title-right"]}>
-                  <Image
-                    src="/layout/admin/question-icon.png"
-                    alt="Question Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <p>Preguntas</p>
-                </div>
-                <Image
-                  className={styles["toggle-icon"]}
-                  src="/layout/admin/forward-icon.png"
-                  alt="Toggle Icon"
-                  width={18}
-                  height={18}
-                />
-              </div>
 
-              <div className={`${styles["content"]} ${activeMenu === 'preguntas' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/preguntas"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
-                    }
-                  }}
-                >
-                  <Image
-                    src="/layout/admin/round-icon.png"
-                    alt="Lista Icon"
-                    width={12}
-                    height={12}
-                  />
-                  <p>Lista</p>
-                </Link>
-
-                <Link href="/panel-de-control/crear-pregunta"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
-                    }
-                  }}                
-                >
-                  <Image
-                    src="/layout/admin/round-icon.png"
-                    alt="Añadir Icon"
-                    width={12}
-                    height={12}
-                  />
-                  <p>Añadir pregunta</p>
-                </Link>
-              </div>
-            </div>
-
-            {/* Lecciones */}
-            <div className={styles["option-menu"]}>
-              <div
-                className={`${styles["option-menu-title"]} ${
-                  activeMenu === 'lecciones' ? `${styles["active"]} ${styles["option-menu-selected"]}` : ''
-                }`}
-                onClick={() => toggleMenu('lecciones')}
-              >
-                <div className={styles["title-right"]}>
-                  <Image
-                    src="/layout/admin/open-book.png"
-                    alt="Lecciones Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <p>Lecciones</p>
-                </div>
-                <Image
-                  className={styles["toggle-icon"]}
-                  src="/layout/admin/forward-icon.png"
-                  alt="Toggle Icon"
-                  width={18}
-                  height={18}
-                />
-              </div>
-
-              <div className={`${styles["content"]} ${activeMenu === 'lecciones' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/lecciones"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
-                    }
-                  }}>
-                  <Image
-                    src="/layout/admin/round-icon.png"
-                    alt="Lista Icon"
-                    width={12}
-                    height={12}
-                  />
-                  <p>Lista</p>
-                </Link>
-
-                <Link href="/panel-de-control/añadir-leccion"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
-                    }
-                  }}                  
-                  >
-                  <Image
-                    src="/layout/admin/round-icon.png"
-                    alt="Añadir Icon"
-                    width={12}
-                    height={12}
-                  />
-                  <p>Añadir lección</p>
-                </Link>
-              </div>
-            </div>
 
             {/* Simuladores */}
             <div className={styles["option-menu"]}>
               <div
                 className={`${styles["option-menu-title"]} ${
-                  activeMenu === 'simuladores' ? `${styles["active"]} ${styles["option-menu-selected"]}` : ''
+                  activeMenu === "simuladores"
+                    ? `${styles["active"]} ${styles["option-menu-selected"]}`
+                    : ""
                 }`}
-                onClick={() => toggleMenu('simuladores')}
+                onClick={() => toggleMenu("simuladores")}
               >
                 <div className={styles["title-right"]}>
                   <Image
@@ -257,11 +154,16 @@ interface AdminHeaderProps{
                 />
               </div>
 
-              <div className={`${styles["content"]} ${activeMenu === 'simuladores' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/simuladores"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
+              <div
+                className={`${styles["content"]} ${
+                  activeMenu === "simuladores" ? styles["show"] : ""
+                }`}
+              >
+                <Link
+                  href="/panel-de-control/simuladores"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
                     }
                   }}
                 >
@@ -274,13 +176,13 @@ interface AdminHeaderProps{
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-de-control/añadir-simulador"
-                   onClick={()=>{
-                    if((!isSideBarActive) && (window.innerWidth < 750)){
-                      toggleSideBar()
+                <Link
+                  href="/panel-de-control/crear-simulador"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
                     }
                   }}
-
                 >
                   <Image
                     src="/layout/admin/round-icon.png"
@@ -293,22 +195,26 @@ interface AdminHeaderProps{
               </div>
             </div>
 
-            {/* Cuestionarios */}
-            {/* <div className={styles["option-menu"]}>
+
+
+            {/* Preguntas */}
+            <div className={styles["option-menu"]}>
               <div
                 className={`${styles["option-menu-title"]} ${
-                  activeMenu === 'cuestionarios' ? `${styles["active"]} ${styles["option-menu-selected"]}` : ''
+                  activeMenu === "preguntas"
+                    ? `${styles["active"]} ${styles["option-menu-selected"]}`
+                    : ""
                 }`}
-                onClick={() => toggleMenu('cuestionarios')}
+                onClick={() => toggleMenu("preguntas")}
               >
                 <div className={styles["title-right"]}>
                   <Image
-                    src="/layout/admin/test.png"
-                    alt="Cuestionarios Icon"
+                    src="/layout/admin/question-icon.png"
+                    alt="Question Icon"
                     width={20}
                     height={20}
                   />
-                  <p>Cuestionarios</p>
+                  <p>Preguntas</p>
                 </div>
                 <Image
                   className={styles["toggle-icon"]}
@@ -319,8 +225,19 @@ interface AdminHeaderProps{
                 />
               </div>
 
-              <div className={`${styles["content"]} ${activeMenu === 'cuestionarios' ? styles["show"] : ''}`}>
-                <Link href="/panel-de-control/cuestionarios">
+              <div
+                className={`${styles["content"]} ${
+                  activeMenu === "preguntas" ? styles["show"] : ""
+                }`}
+              >
+                <Link
+                  href="/panel-de-control/preguntas"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
+                    }
+                  }}
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
                     alt="Lista Icon"
@@ -330,43 +247,87 @@ interface AdminHeaderProps{
                   <p>Lista</p>
                 </Link>
 
-                <Link href="/panel-de-control/añadir-cuestionario">
+                <Link
+                  href="/panel-de-control/crear-pregunta"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
+                    }
+                  }}
+                >
                   <Image
                     src="/layout/admin/round-icon.png"
-                    alt="Añadir Cuestionario Icon"
+                    alt="Añadir Icon"
                     width={12}
                     height={12}
                   />
-                  <p>Construir cuestionario</p>
+                  <p>Añadir pregunta</p>
                 </Link>
               </div>
-            </div> */}
+            </div>
 
-            <Link href="/panel-de-control/temas"
-               onClick={()=>{
-                if((!isSideBarActive) && (window.innerWidth < 750)){
-                  toggleSideBar()
+            {/* Imagenes */}
+
+            <Link
+              href="/panel-de-control/temas"
+              onClick={() => {
+                if (!isSideBarActive && window.innerWidth < 750) {
+                  toggleSideBar();
                 }
-              }}>
-              <Image src="/layout/admin/category.png" alt="Usuarios Icon" width={20} height={20} />
+              }}
+            >
+              <Image
+                src="/layout/admin/category.png"
+                alt="Usuarios Icon"
+                width={20}
+                height={20}
+              />
+              <p>Imagenes</p>
+            </Link>
+
+
+
+            {/* Temas */}
+
+            <Link
+              href="/panel-de-control/temas"
+              onClick={() => {
+                if (!isSideBarActive && window.innerWidth < 750) {
+                  toggleSideBar();
+                }
+              }}
+            >
+              <Image
+                src="/layout/admin/category.png"
+                alt="Usuarios Icon"
+                width={20}
+                height={20}
+              />
               <p>Temas</p>
             </Link>
 
-
-            <Link href="/panel-de-control/usuarios"
-               onClick={()=>{
-                if((!isSideBarActive) && (window.innerWidth < 750)){
-                  toggleSideBar()
+            <Link
+              href="/panel-de-control/usuarios"
+              onClick={() => {
+                if (!isSideBarActive && window.innerWidth < 750) {
+                  toggleSideBar();
                 }
-              }}>
-              <Image src="/layout/admin/user-icon.png" alt="Usuarios Icon" width={20} height={20} />
+              }}
+            >
+              <Image
+                src="/layout/admin/user-icon.png"
+                alt="Usuarios Icon"
+                width={20}
+                height={20}
+              />
               <p>Usuarios</p>
             </Link>
 
-            <Link href="/panel-de-control/subscripciones"
-               onClick={()=>{
-                if((!isSideBarActive) && (window.innerWidth < 750)){
-                  toggleSideBar()
+            <Link
+              href="/panel-de-control/subscripciones"
+              onClick={() => {
+                if (!isSideBarActive && window.innerWidth < 750) {
+                  toggleSideBar();
                 }
               }}
             >
@@ -381,30 +342,30 @@ interface AdminHeaderProps{
           </div>
         </div>
 
-
         <div className={styles["sidebar-footer"]}>
-  <Link href="/panel-de-control/preguntas">
-    <Image src="/layout/admin/dark-mode-icon.png" alt="Tema Icon" width={20} height={20} />
-    <p>Tema</p>
-  </Link>
+          <Link href="/panel-de-control/preguntas">
+            <Image
+              src="/layout/admin/dark-mode-icon.png"
+              alt="Tema Icon"
+              width={20}
+              height={20}
+            />
+            <p>Tema</p>
+          </Link>
 
-  <Link href="/panel-de-control/preguntas">
-    <Image src="/layout/admin/log-out-icon.png" alt="Cerrar sesión Icon" width={20} height={20} />
-    <p>Cerrar sesión</p>
-  </Link>
-</div>
-
-
+          <Link href="/panel-de-control/preguntas">
+            <Image
+              src="/layout/admin/log-out-icon.png"
+              alt="Cerrar sesión Icon"
+              width={20}
+              height={20}
+            />
+            <p>Cerrar sesión</p>
+          </Link>
+        </div>
       </div>
+    </>
+  );
+};
 
-
-
-
-
-
-
-
-    </> );
-}
- 
 export default SideBar;
