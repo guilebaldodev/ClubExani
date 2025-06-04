@@ -1,126 +1,216 @@
 "use client";
+import { z } from "zod";
 import Image from "next/image";
 import styles from "./add.module.css";
 import Select from "react-select";
-import QuillComponent from "@/app/ui/admin/QuillComponent";
-import {
-  AnswerOptions,
-  AreasOptions,
-  QuestionOriginOptions,
-  QuestionTypeOptions,
-  SubjectsOptions,
-  UserOptions,
-} from "@/consts/options";
 import { useState } from "react";
 import UploadModal from "@/app/ui/admin/UploadModal";
+import { preguntaSchema } from "@/schemas/preguntaSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  AREAS_POR_EXAMEN,
+  examenOptions,
+  OrigenOptions,
+} from "@/consts/options";
+import { SelectOption } from "@/types/shared";
+import { toast } from "react-toastify";
+
+type FormValues = z.infer<typeof preguntaSchema>;
 
 const AddQuestion = () => {
-
   const [modal, setModal] = useState(false);
-  const [contenidoPregunta, setContenidoPregunta] = useState("");
 
+  const EXAMENES_CON_4 = ["EXHCOBA", "ENARM", "Acredita-Bach"];
 
+  const { register, reset, handleSubmit, setValue, watch } =
+    useForm<FormValues>({
+      resolver: zodResolver(preguntaSchema),
+      defaultValues: {
+        contenidoHTML: "",
+        examen: examenOptions[0].value,
+        area: "",
+        origen: OrigenOptions[0].value,
+        respuestaCorrecta: "0",
+        respuestas: [
+          { html: "", explicacion: "", esCorrecta: false },
+          { html: "", explicacion: "", esCorrecta: false },
+          { html: "", explicacion: "", esCorrecta: false },
+          { html: "", explicacion: "", esCorrecta: false },
+        ],
+      },
+    });
+
+  const examenSeleccionado = watch("examen");
+
+  const areasParaEsteExamen = AREAS_POR_EXAMEN[examenSeleccionado] || [];
+
+  const areaOptions: SelectOption[] = areasParaEsteExamen.map((area) => ({
+    label: area,
+    value: area,
+  }));
+
+  const areaSeleccionada =
+    areaOptions.find((op) => op.value === watch("area")) || null;
+
+  const respuestas = watch("respuestas") as [
+    { html: string; explicacion: string; esCorrecta: boolean },
+    { html: string; explicacion: string; esCorrecta: boolean },
+    { html: string; explicacion: string; esCorrecta: boolean },
+    { html: string; explicacion: string; esCorrecta: boolean }
+  ];
+  const requiere4 = EXAMENES_CON_4.includes(examenSeleccionado);
+
+  const AnswerOptions = respuestas
+    .filter((_, index) => requiere4 || index < 3)
+    .map((_, index) => ({
+      value: index.toString(),
+      label: `Respuesta ${index + 1}`,
+    }));
+
+  const onSubmit = async (data: FormValues) => {
+    console.log("Datos del formulario:", data);
+
+    try {
+      const respuestasFiltradas = requiere4
+        ? data.respuestas
+        : data.respuestas.slice(0, 3);
+
+      const payload = {
+        ...data,
+        respuestas: respuestasFiltradas,
+      };
+
+      const res = await fetch("/api/preguntas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+
+      reset({
+        contenidoHTML: "",
+        examen: examenOptions[0].value,
+        area: "",
+        origen: OrigenOptions[0].value,
+        respuestaCorrecta: "0",
+        respuestas: [
+          { html: "", explicacion: "", esCorrecta: false },
+          { html: "", explicacion: "", esCorrecta: false },
+          { html: "", explicacion: "", esCorrecta: false },
+          { html: "", explicacion: "", esCorrecta: false },
+        ],
+      });
+
+      console.log(result);
+
+      toast.success("Pregunta generada correctamente");
+    } catch (error) {
+      console.log(error);
+      toast.error("Ocurrio un errro");
+    }
+  };
 
   return (
     <>
-
-      {modal && 
-      <>
-        <UploadModal closeModal={()=>{
-          setModal(false)
-        }}></UploadModal>
-      </>}
+      {modal && (
+        <>
+          <UploadModal
+            closeModal={() => {
+              setModal(false);
+            }}
+          ></UploadModal>
+        </>
+      )}
 
       <div className={styles.add_question_container}>
         <div className={styles.add_question_title}>
           <h2>Crear una pregunta</h2>
         </div>
 
-        <form className={styles.add_product_form}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.add_product_form}
+        >
           <div className={styles.form_container}>
             <div className={styles.left_form}>
               <div className={styles.add_product_title}>
                 <h3>Añadir una pregunta</h3>
 
                 <div className={styles.titles_buttons}>
-            <button className={styles.bordered}>
-              <Image src="/admin/watch.png" alt="Vista previa" width={20} height={20} />
-              Vista previa
-            </button>
-            <button onClick={(e)=>{
-              e.preventDefault()
-              console.log("Hola click")
-              setModal(true)
-            }}>
-              <Image src="/admin/upload-file.png" alt="Añadir" width={20} height={20} />
-              Subir imagen
-            </button>
-          </div>
-
+                  <button className={styles.bordered}>
+                    <Image
+                      src="/admin/watch.png"
+                      alt="Vista previa"
+                      width={20}
+                      height={20}
+                    />
+                    Vista previa
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setModal(true);
+                    }}
+                  >
+                    <Image
+                      src="/admin/upload-file.png"
+                      alt="Añadir"
+                      width={20}
+                      height={20}
+                    />
+                    Subir imagen
+                  </button>
+                </div>
               </div>
 
               <div className={styles.add_product_inputs}>
                 <div className={styles.input_duo}>
-                  <label htmlFor="">Pregunta</label>
-                  {/* <QuillComponent></QuillComponent> */}
-                  {/* <QuillComponent onChange={(value) => setContenidoPregunta(value)} /> */}
-                  
-
-<label htmlFor="contenidoHTML">Código HTML de la pregunta</label>
-<textarea
-  name="contenidoHTML"
-  rows={10}
-
-  placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
-  style={{
-    width: "100%",
-    padding: "1rem",
-    fontFamily: "monospace",
-    fontSize: "14px",
-    border: "1px solid #ccc",
-    borderRadius: "6px",
-    backgroundColor: "#f9f9f9"
-  }}
-/>
-
-
-                <div></div>
-
-
+                  <label htmlFor="contenidoHTML">
+                    Código HTML de la pregunta
+                  </label>
+                  <textarea
+                    rows={10}
+                    {...register("contenidoHTML")}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                    style={{
+                      width: "100%",
+                      padding: "1rem",
+                      fontFamily: "monospace",
+                      fontSize: "14px",
+                      border: "1px solid #ccc",
+                      borderRadius: "6px",
+                      backgroundColor: "#f9f9f9",
+                    }}
+                  />
                 </div>
 
                 <div className={styles.double_input}>
+                  <div className={styles.input_duo}>
+                    <label htmlFor="">Examen</label>
+                    <Select
+                      placeholder="Selecciona el examen"
+                      value={examenOptions.find(
+                        (op) => op.value === examenSeleccionado
+                      )}
+                      options={examenOptions}
+                      onChange={(selected) => {
+                        if (selected) setValue("examen", selected.value);
+                      }}
+                    ></Select>
+                  </div>
+
                   <div className={styles.input_duo}>
                     <label htmlFor="">Area</label>
                     <Select
                       placeholder="Selecciona el area"
-                      options={AreasOptions}
-                    ></Select>
-                  </div>
-
-                  <div className={styles.input_duo}>
-                    <label htmlFor="">Tema</label>
-                    <Select
-                      placeholder="Selecciona el tema"
-                      options={SubjectsOptions}
-                    ></Select>
-                  </div>
-                </div>
-
-                <div className={styles.double_input}>
-                  <div className={styles.input_duo}>
-                    <label htmlFor="">Autor</label>
-                    <Select
-                      placeholder="Selecciona el autor"
-                      options={UserOptions}
-                    ></Select>
-                  </div>
-
-                  <div className={styles.input_duo}>
-                    <label htmlFor="">Tipo de pregunta</label>
-                    <Select
-                      placeholder="Selecciona tipo"
-                      options={QuestionTypeOptions}
+                      options={areaOptions}
+                      value={areaSeleccionada}
+                      isDisabled={areaOptions.length === 0}
+                      onChange={(selected) => {
+                        if (selected) setValue("area", selected.value);
+                      }}
                     ></Select>
                   </div>
                 </div>
@@ -130,7 +220,13 @@ const AddQuestion = () => {
                     <label htmlFor="">Origen de la pregunta</label>
                     <Select
                       placeholder="Selecciona el origen"
-                      options={QuestionOriginOptions}
+                      value={OrigenOptions.find(
+                        (op) => op.value === watch("origen")
+                      )}
+                      options={OrigenOptions}
+                      onChange={(selected: SelectOption | null) => {
+                        if (selected) setValue("origen", selected.value);
+                      }}
                     ></Select>
                   </div>
 
@@ -139,195 +235,228 @@ const AddQuestion = () => {
                     <Select
                       placeholder="Selecciona la respuesta"
                       options={AnswerOptions}
+                      value={AnswerOptions.find(
+                        (op) => op.value === watch("respuestaCorrecta")
+                      )}
+                      onChange={(selected) => {
+                        if (selected)
+                          setValue(
+                            "respuestaCorrecta",
+                            selected.value as "0" | "1" | "2" | "3"
+                          );
+                      }}
                     ></Select>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* <div className={styles.right_form}>
-              <div className={styles.right_form_titles}>
-                <h3>Respuestas</h3>
-                <p>
-                    Añade uno a uno las respuestas correspondientes
-                </p>
-              </div>
-                <div className={styles.form_img_answer}>
-
-                <h4>Respuesta 1</h4>
-
-              <div className={styles.upload}>
-                <div className={styles.upload_file}>
-                  <Image
-                    src={"/admin/upload-icon.png"}
-                    alt=""
-                    width={40}
-                    height={40}
-                  />
-                  <span>Click aqui para subir una imagen</span>
-                </div>
-
-                <div className={styles.upload_items}>
-          
-
-                  <div className={styles.upload_item}>
-                    <div className={styles.upload_info}>
-                      <Image
-                        src={"/products/bulls/product-3.webp"}
-                        height={36}
-                        width={36}
-                        alt=""
-                      />
-                      <div className={styles.upload_info_texts}>
-                        <p className={styles.grey}>imagen.png</p>
-                        <p>97.KB</p>
-                      </div>
-                    </div>
-                    <Image
-                      src={"/admin/x.png"}
-                      height={15}
-                      width={15}
-                      alt="x"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              </div>
-
-              <div className={styles.form_img_answer}>
-
-<h4>Respuesta 2</h4>
-
-<div className={styles.upload}>
-<div className={styles.upload_file}>
-  <Image
-    src={"/admin/upload-icon.png"}
-    alt=""
-    width={40}
-    height={40}
-  />
-  <span>Click aqui para subir una imagen</span>
-</div>
-
-<div className={styles.upload_items}>
-
-
-  <div className={styles.upload_item}>
-    <div className={styles.upload_info}>
-      <Image
-        src={"/products/bulls/product-3.webp"}
-        height={36}
-        width={36}
-        alt=""
-      />
-      <div className={styles.upload_info_texts}>
-        <p className={styles.grey}>imagen.png</p>
-        <p>97.KB</p>
-      </div>
-    </div>
-    <Image
-      src={"/admin/x.png"}
-      height={15}
-      width={15}
-      alt="x"
-    />
-  </div>
-</div>
-</div>
-
-</div>
-
-<div className={styles.form_img_answer}>
-
-<h4>Respuesta 3</h4>
-
-<div className={styles.upload}>
-<div className={styles.upload_file}>
-  <Image
-    src={"/admin/upload-icon.png"}
-    alt=""
-    width={40}
-    height={40}
-  />
-  <span>Click aqui para subir una imagen</span>
-</div>
-
-<div className={styles.upload_items}>
-
-
-  <div className={styles.upload_item}>
-    <div className={styles.upload_info}>
-      <Image
-        src={"/products/bulls/product-3.webp"}
-        height={36}
-        width={36}
-        alt=""
-      />
-      <div className={styles.upload_info_texts}>
-        <p className={styles.grey}>imagen.png</p>
-        <p>97.KB</p>
-      </div>
-    </div>
-    <Image
-      src={"/admin/x.png"}
-      height={15}
-      width={15}
-      alt="x"
-    />
-  </div>
-</div>
-</div>
-
-</div>
-
-
-              <div className={styles.form_buttons}>
-                <button className={styles.red_button}>Cancelar</button>
-                <button>Crear</button>
-              </div>
-            </div> */}
-
-            {/* Text answers */}
-
-                <div className={styles.right_form}>
+            <>
+              <div className={styles.right_form}>
                 <div className={styles.right_form_titles}>
-                    <h3>Respuestas</h3>
-                    <p>Añade uno a uno las respuestas correspondientes</p>
+                  <h3>Respuestas</h3>
+                  <p>Añade uno a uno las respuestas correspondientes</p>
                 </div>
                 <div className={styles.form_img_answer}>
-                    <h4>Respuesta 1</h4>
-                    {/* <QuillComponent placeholder="Ingresa la respuesta 1"></QuillComponent> */}
-
-                    <h4>Explicacion 1</h4>
-
-                    {/* <QuillComponent placeholder="Ingresa la explicacion 1"></QuillComponent> */}
-                </div>
-
-                <div className={styles.form_img_answer}>
-                    <h4>Respuesta 2</h4>
-
-                    {/* <QuillComponent placeholder="Ingresa la respuesta 2"></QuillComponent> */}
-
-                    <h4>Explicacion 2</h4>
-
-                    {/* <QuillComponent placeholder="Ingresa la explicacion 2"></QuillComponent> */}
+                  <h4>Respuesta 1</h4>
+                  <textarea
+                    {...register(`respuestas.${0}.html`)}
+                    className={styles.text_area}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />
+                  <h4>Explicacion 1</h4>
+                  <textarea
+                    className={styles.text_area}
+                    {...register(`respuestas.${0}.explicacion`)}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />
                 </div>
 
                 <div className={styles.form_img_answer}>
-                    <h4>Respuesta 3</h4>
-                    {/* <QuillComponent placeholder="Ingresa la respuesta 3"></QuillComponent> */}
+                  <h4>Respuesta 2</h4>
+                  <textarea
+                    {...register(`respuestas.${1}.html`)}
+                    className={styles.text_area}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />
+                  <h4>Explicacion 2</h4>
+                  <textarea
+                    className={styles.text_area}
+                    {...register(`respuestas.${1}.explicacion`)}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />{" "}
+                </div>
 
-                    <h4>Explicacion 3</h4>
+                <div className={styles.form_img_answer}>
+                  <h4>Respuesta 3</h4>
+                  <textarea
+                    {...register(`respuestas.${2}.html`)}
+                    className={styles.text_area}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />
+                  <h4>Explicacion 3</h4>
+                  <textarea
+                    className={styles.text_area}
+                    {...register(`respuestas.${2}.explicacion`)}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />{" "}
+                </div>
 
-                    {/* <QuillComponent placeholder="Ingresa la explicacion 3"></QuillComponent> */}
+                <div className={styles.form_img_answer}>
+                  <h4>Respuesta 4</h4>
+                  <textarea
+                    disabled={requiere4 ? false : true}
+                    {...register(`respuestas.${3}.html`)}
+                    required={requiere4?true:false}
+                    className={styles.text_area}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />
+                  <h4>Explicacion 4</h4>
+                  <textarea
+                    disabled={requiere4 ? false : true}
+                    required={requiere4?true:false}
+                    {...register(`respuestas.${3}.explicacion`)}
+                    className={styles.text_area}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                  />{" "}
                 </div>
 
                 <div className={styles.form_buttons}>
+                  <button className={styles.red_button}>Cancelar</button>
+                  <button>Crear</button>
+                </div>
+              </div>
+            </>
+
+            {/* <>
+                <div className={styles.right_form}>
+                  <div className={styles.right_form_titles}>
+                    <h3>Respuestas</h3>
+                    <p>Añade uno a uno las respuestas correspondientes</p>
+                  </div>
+                  <div className={styles.form_img_answer}>
+                    <h4>Respuesta 1</h4>
+
+                    <div className={styles.upload}>
+                      <div className={styles.upload_file}>
+                        <Image
+                          src={"/admin/upload-icon.png"}
+                          alt=""
+                          width={40}
+                          height={40}
+                        />
+                        <span>Click aqui para subir una imagen</span>
+                      </div>
+
+                      <div className={styles.upload_items}>
+                        <div className={styles.upload_item}>
+                          <div className={styles.upload_info}>
+                            <Image
+                              src={"/products/bulls/product-3.webp"}
+                              height={36}
+                              width={36}
+                              alt=""
+                            />
+                            <div className={styles.upload_info_texts}>
+                              <p className={styles.grey}>imagen.png</p>
+                              <p>97.KB</p>
+                            </div>
+                          </div>
+                          <Image
+                            src={"/admin/x.png"}
+                            height={15}
+                            width={15}
+                            alt="x"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={styles.form_img_answer}>
+                    <h4>Respuesta 2</h4>
+
+                    <div className={styles.upload}>
+                      <div className={styles.upload_file}>
+                        <Image
+                          src={"/admin/upload-icon.png"}
+                          alt=""
+                          width={40}
+                          height={40}
+                        />
+                        <span>Click aqui para subir una imagen</span>
+                      </div>
+
+                      <div className={styles.upload_items}>
+                        <div className={styles.upload_item}>
+                          <div className={styles.upload_info}>
+                            <Image
+                              src={"/products/bulls/product-3.webp"}
+                              height={36}
+                              width={36}
+                              alt=""
+                            />
+                            <div className={styles.upload_info_texts}>
+                              <p className={styles.grey}>imagen.png</p>
+                              <p>97.KB</p>
+                            </div>
+                          </div>
+                          <Image
+                            src={"/admin/x.png"}
+                            height={15}
+                            width={15}
+                            alt="x"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={styles.form_img_answer}>
+                    <h4>Respuesta 3</h4>
+
+                    <div className={styles.upload}>
+                      <div className={styles.upload_file}>
+                        <Image
+                          src={"/admin/upload-icon.png"}
+                          alt=""
+                          width={40}
+                          height={40}
+                        />
+                        <span>Click aqui para subir una imagen</span>
+                      </div>
+
+                      <div className={styles.upload_items}>
+                        <div className={styles.upload_item}>
+                          <div className={styles.upload_info}>
+                            <Image
+                              src={"/products/bulls/product-3.webp"}
+                              height={36}
+                              width={36}
+                              alt=""
+                            />
+                            <div className={styles.upload_info_texts}>
+                              <p className={styles.grey}>imagen.png</p>
+                              <p>97.KB</p>
+                            </div>
+                          </div>
+                          <Image
+                            src={"/admin/x.png"}
+                            height={15}
+                            width={15}
+                            alt="x"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={styles.form_buttons}>
                     <button className={styles.red_button}>Cancelar</button>
                     <button>Crear</button>
+                  </div>
                 </div>
-                </div>
+              </> */}
           </div>
         </form>
       </div>

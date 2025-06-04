@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link"; // Next.js Link
-import styles from "./SideBar.module.css"; // Asegúrate de migrar los estilos a CSS Modules o mantenerlos globales si prefieres
+import styles from "./SideBar.module.css";
 import Image from "next/image";
 
 interface AdminHeaderProps {
@@ -33,7 +33,7 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
           <div className={styles["sidebar-header"]}>
             <div className={styles["sidebar-title"]}>
               <Image
-                src="/layout/black-logo.png"
+                src="/layout/logo.png"
                 alt="Logo"
                 width={32}
                 height={32}
@@ -269,7 +269,7 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
             {/* Imagenes */}
 
             <Link
-              href="/panel-de-control/temas"
+              href="/panel-de-control/imagenes"
               onClick={() => {
                 if (!isSideBarActive && window.innerWidth < 750) {
                   toggleSideBar();
@@ -289,7 +289,7 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
 
             {/* Temas */}
 
-            <Link
+            {/* <Link
               href="/panel-de-control/temas"
               onClick={() => {
                 if (!isSideBarActive && window.innerWidth < 750) {
@@ -304,7 +304,7 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
                 height={20}
               />
               <p>Temas</p>
-            </Link>
+            </Link> */}
 
             <Link
               href="/panel-de-control/usuarios"
@@ -337,7 +337,7 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
                 width={20}
                 height={20}
               />
-              <p>Subscripciones</p>
+              <p>Transacciones</p>
             </Link>
           </div>
         </div>

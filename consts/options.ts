@@ -1,101 +1,168 @@
-export const AreasOptions=[
-    {
-        value:1,
-        label:"Metodologia"
-    },
-    {
-        value:2,
-        label:"Pensamiento Matematico"
-    },
-    {
-        value:3,
-        label:"Redaccion Indirecta"
-    },
-    {
-        value:4,
-        label:"Comprension Lectora"
-    },
+import { SelectOption } from "@/types/simulador";
 
-]
+export const EXAMENES = [
+  "EXANI III",
+  "Acredita-Bach",
+  "EXHCOBA",
+  "ENARM",
+  "EGEL Medicina",
+  "EGEL Derecho",
+  "EGEL Administración",
+  "EGEL Enfermería",
+  "EGEL Contaduría",
+  "EGEL Psicología",
+  "EGEL Odontología",
+  "EGEL Ingeniería Industrial"
+] as const;
 
-export const SubjectsOptions=[
-    {
-        value:1,
-        label:"Paradigmas de la investigacion"
-    },
-    {
-        value:2,
-        label:"Niveles de medicion"
-    },
-    {
-        value:3,
-        label:"Enfoques de una investigacion"
-    },
-    {
-        value:4,
-        label:"Tipos de validez"
-    },
 
-]
 
-export const UserOptions=[
-    {
-        value:1,
-        label:"Guilebaldo"
-    },
-    {
-        value:2,
-        label:"Alexandra"
-    },
+export type Examen = (typeof EXAMENES)[number];
 
-]
 
-export const QuestionTypeOptions=[
-    {
-        value:1,
-        label:"Pregunta simple"
-    },
-    {
-        value:2,
-        label:"Pregunta Compuesta"
-    },
-    {
-        value:3,
-        label:"Simple / Compuesta"
-    },
+export const examenOptions = EXAMENES.map((examen) => ({
+  value: examen,
+  label: examen,
+})) satisfies SelectOption[];
 
-    {
-        value:4,
-        label:"Compuesta / Simple"
-    },
-]
 
-export const QuestionOriginOptions=[
-    {
-        value:1,
-        label:"Original"
-    },
-    {
-        value:2,
-        label:"Examen"
-    },
-    {
-        value:3,
-        label:"Modificada"
-    },
-]
+export const tipoOptions: SelectOption[] = [
+  { value: "Completo", label: "Completo" },
+  { value: "Diagnóstico", label: "Diagnóstico" },
+  { value: "Parcial", label: "Parcial" },
+];
 
-export const AnswerOptions=[
-    {
-        value:1,
-        label:"Respuesta 1"
-    },
-    {
-        value:2,
-        label:"Respuesta 2"
-    },
-    {
-        value:3,
-        label:"Respuesta 3"
-    },
-]
+export const imageOptions: SelectOption[] = [
+  { value: "Pregunta", label: "Pregunta" },
+  { value: "Respuesta", label: "Respuesta" },
+];
+
+
+
+export const ImagenOptions: SelectOption[] = [
+  { value: "Pregunta", label: "Pregunta" },
+  { value: "Respuesta", label: "Respuesta" },
+];
+
+
+
+export const AsignadoOptions: SelectOption[] = [
+  { value: "Asignada", label: "Asignada" },
+  { value: "No asignada", label: "No asignada" },
+];
+
+export const OrigenOptions: SelectOption[] = [
+  { value: "Examen", label: "Examen" },
+  { value: "IA", label: "IA" },
+];
+
+
+export const dificultadOptions: SelectOption[] = [
+  { value: "Facil", label: "Fácil" },
+  { value: "Intermedio", label: "Intermedio" },
+  { value: "Avanzado", label: "Avanzado" },
+  { value: "Experto", label: "Experto" },
+  { value: "Mixto", label: "Mixto" },
+];
+
+
+export const AREAS_POR_EXAMEN = {
+  "EXANI III": [
+    "Metodología de la investigación",
+    "Comprensión lectora",
+    "Redacción indirecta",
+    "Pensamiento matemático"
+  ],
+  "Acredita-Bach": [
+    "Matemáticas",
+    "Ciencias sociales",
+    "Humanidades",
+    "Ciencias experimentales",
+    "Comunicación"
+  ],
+  "ENARM": [
+    "Medicina Interna y derivados",
+    "Pediatría",
+    "Cirugía y derivados",
+    "Ginecología y Obstetricia",
+    "Salud Pública",
+    "Medicina Familiar",
+    "Urgencias"
+  ],
+  "EGEL Medicina": [
+    "Abordaje clínico",
+    "Promoción de la salud",
+    "Fundamento de las decisiones médicas",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Derecho": [
+    "Función pública",
+    "Litigio",
+    "Justicia alternativa y fe pública",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Administración": [
+    "Recursos humanos",
+    "Mercadotecnia",
+    "Finanzas",
+    "Administración estratégica",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Enfermería": [
+    "Atención primaria para la salud",
+    "Cuidados integrales de enfermería",
+    "Investigación y métodos en enfermería",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Contaduría": [
+    "Sistema de información financiera",
+    "Contabilidad administrativa y gestión financiera",
+    "Tributación",
+    "Auditoría y gobierno corporativo",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Psicología": [
+    "Diagnóstico psicológico",
+    "Intervención psicológica",
+    "Investigación psicológica",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Ingeniería Industrial": [
+    "Estudio del trabajo",
+    "Gestión de la cadena de suministro",
+    "Proyectos de inversión, estratégicos y operativos",
+    "Sistemas operativos de manufactura y servicios",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EGEL Odontología": [
+    "Medicina estomatológica",
+    "Promoción de la salud y prevención de riesgos",
+    "Rehabilitación del sistema estomatognático",
+    "Comprensión lectora",
+    "Redacción indirecta"
+  ],
+  "EXHCOBA": [
+    "Habilidad verbal",
+    "Habilidad cuantitativa",
+    "Español",
+    "Matemáticas",
+    "Ciencias naturales",
+    "Ciencias sociales",
+    "Matemáticas para el cálculo",
+    "Matemáticas para la estadística",
+    "Física",
+    "Química",
+    "Biología",
+    "Ciencias Sociales",
+    "Humanidades",
+    "Lenguaje",
+    "Ciencias económico-administrativas"
+  ]
+};

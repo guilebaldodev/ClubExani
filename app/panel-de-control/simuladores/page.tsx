@@ -5,58 +5,20 @@ import dataStyles from '@/app/ui/admin/DataTable.module.css';
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Select, { SingleValue } from "react-select";
+import { SelectOption, Simulador } from "@/types/simulador";
+import { dificultadOptions, examenOptions, tipoOptions } from "@/consts/options";
+import Link from "next/link";
 
-// Tipo para las opciones del Select
-type SelectOption = {
-  value: string;
-  label: string;
-};
-
-type Simulador = {
-  _id: string;
-  titulo: string;
-  examen: string;
-  tipo: string;
-  precio: number;
-  totalPreguntas: number;
-  contador: number;
-};
-
-
-
-const examenOptions: SelectOption[] = [
-  { value: "EXANI III", label: "EXANI III" },
-  { value: "EXADIEMS", label: "EXADIEMS" },
-  { value: "EXADIES", label: "EXADIES" },
-];
-
-const tipoOptions: SelectOption[] = [
-  { value: "Completo", label: "Completo" },
-  { value: "Diagnóstico", label: "Diagnóstico" },
-  { value: "Parcial", label: "Parcial" },
-];
-
-const dificultadOptions: SelectOption[] = [
-  { value: "Fácil", label: "Fácil" },
-  { value: "Intermedio", label: "Intermedio" },
-  { value: "Avanzado", label: "Avanzado" },
-  { value: "Experto", label: "Experto" },
-  { value: "Mixto", label: "Mixto" },
-];
 
 const Simuladores = () => {
-
   const [simuladores, setSimuladores] = useState<Simulador[]>([]);
-
-
   const [busqueda, setBusqueda] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState<string| null>(null);
   const limit = 10;
 
-  // ✅ Tipado correcto
   const [filtroExamen, setFiltroExamen] = useState<SingleValue<SelectOption>>(null);
   const [filtroTipo, setFiltroTipo] = useState<SingleValue<SelectOption>>(null);
   const [filtroDificultad, setFiltroDificultad] = useState<SingleValue<SelectOption>>(null);
@@ -81,7 +43,7 @@ const Simuladores = () => {
       setSimuladores(data.simuladores);
       setTotalPages(data.pages);
       setTotal(data.total);
-    } catch (error: any) {
+    } catch (error) {
       toast.error("Error al cargar simuladores");
     }
   };
@@ -128,18 +90,20 @@ const Simuladores = () => {
           </div>
 
           <div className={dataStyles['admin-table-left']}>
-            <button className={dataStyles['bordered']}>
+            {/* <button className={dataStyles['bordered']}>
               <Image src="/admin/filters.png" alt="" width={20} height={20} />
               Filtros
-            </button>
+            </button> */}
+            <Link href={"/panel-de-control/crear-simulador"}>
             <button>
               <Image src="/admin/add-icon.png" alt="" width={20} height={20} />
               Añadir
             </button>
+            </Link>
           </div>
         </div>
 
-        <div style={{ padding:"0px 16px", display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+        <div style={{ padding: "0px 16px", display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
           <Select
             placeholder="Filtrar por examen"
             options={examenOptions}
@@ -202,13 +166,16 @@ const Simuladores = () => {
                   <td className={dataStyles['td-center']}>
                     <div className={dataStyles['container']}>
                       <Image
-                        onClick={() => setMenu(!menu)}
+                        onClick={() => setMenu(menu === s._id ? null : s._id)}
                         src="/admin/3points.png"
                         alt=""
                         width={20}
                         height={20}
                       />
-                      <div className={`${dataStyles['menu']} ${menu ? "" : dataStyles['hidden']}`}></div>
+                      <div className={`${dataStyles['menu']} ${menu === s._id ? "" : dataStyles['none']}`}>
+                          <button>Eliminar</button>
+                          <button>Editar</button>
+                      </div>
                     </div>
                   </td>
                 </tr>

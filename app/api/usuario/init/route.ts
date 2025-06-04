@@ -12,13 +12,17 @@ export async function POST() {
 
   const existente = await Usuario.findOne({ userId });
   
+
+
+  
   if (!existente) {
     await Usuario.create({
       userId,
       rol: "estudiante",
       simuladoresCanjeados: [],
-      historial: [
-      ]
+      nombre:"",
+      estado:"",
+      edad:0
     });
   }
 

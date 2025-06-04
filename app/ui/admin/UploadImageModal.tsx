@@ -44,7 +44,6 @@ const CategoryModal = ({ closeModal }: CategoryModalProps) => {
               <label htmlFor="">Area del tema</label>
               <Select
                       placeholder="Selecciona el area"
-                      options={AreasOptions}
                     ></Select>
 
             </div>

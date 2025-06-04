@@ -3,15 +3,27 @@ import { Schema, model, models } from "mongoose";
 const UsuarioSchema = new Schema(
   {
     userId: {
-      type: "String",
+      type: String,
       require,
       unique: true,
     },
+    nombre: {
+      type: String,
+    },
+    estado: {
+      type: String,
+    },
+
+    edad:{
+      type:Number
+    },
+    
     rol: { type: String, enum: ["estudiante", "admin"], default: "estudiante" },
     monedas: {
       type: Number,
       default: 0,
     },
+    
     simuladoresCanjeados: [
       {
         simuladorId: { type: Schema.Types.ObjectId, ref: "Simulador" },

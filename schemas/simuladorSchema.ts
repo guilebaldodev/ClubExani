@@ -1,4 +1,4 @@
-import { dificultadOptions, tipoOptions } from "@/app/utils/consts";
+import { dificultadOptions, EXAMENES, tipoOptions } from "@/consts/options";
 import { z } from "zod";
 
 export const simuladorSchema = z.object({
@@ -6,10 +6,7 @@ export const simuladorSchema = z.object({
     required_error: "El título es requerido",
   }).min(1, "El título no puede estar vacío"),
 
-  examen: z.string({
-    required_error: "El examen es requerido",
-  }).min(1, "El nombre del examen no puede estar vacío"),
-
+  examen: z.enum(EXAMENES),
   tipo: z.enum(
     tipoOptions.map((op) => op.value) as [string, ...string[]],
     { required_error: "El tipo es requerido" }
