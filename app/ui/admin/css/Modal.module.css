@@ -187,4 +187,31 @@
 
 
 
-  
+  /*  */
+
+
+
+
+
+.add_modal_form {
+  padding: 1.5rem;
+}
+
+.add_modal_form h5{
+  padding: 0rem 0 1rem 0;
+  font-size: 16px;
+}
+
+
+
+
+.modal_img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_img img{
+  width: 50%;
+  height: auto;
+}

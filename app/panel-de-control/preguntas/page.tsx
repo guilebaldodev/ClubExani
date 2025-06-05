@@ -14,6 +14,7 @@ import {
   examenOptions,
   OrigenOptions,
 } from "@/consts/options";
+import { Imagen } from "@/types/imagen";
 
 const QuestionsPage = () => {
   const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
@@ -66,6 +67,11 @@ const QuestionsPage = () => {
   useEffect(()=>{
     fetchPreguntas()
   },[busqueda,page,filtroAsignado,filtroExamen,filtroOrigen,filtroSimulador])
+
+
+
+
+
 
   return (
     <>
