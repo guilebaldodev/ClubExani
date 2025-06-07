@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 // import { useState } from 'react'
 // import AnswerSheet from '../../components/AnswerSheet'
 import styles from './simulator.module.css'
@@ -10,7 +9,6 @@ import Image from 'next/image'
 
 const Simulator = () => {
   const [SideBar, setSideBar] = useState(false)
-  const router = useRouter()
 
   return (
     <>

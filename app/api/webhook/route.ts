@@ -3,6 +3,8 @@ import { headers } from "next/headers";
 import { NextRequest } from "next/server";
 import { connectDB } from "@/app/utils/mongoose";
 import User from "@/models/Usuario";
+import Venta from "@/models/Venta";
+import { email } from "zod/v4";
 
 export const config = {
   api: {
@@ -38,6 +40,7 @@ export async function POST(req: NextRequest) {
     const session = event.data.object as Stripe.Checkout.Session;
     const userId = session.metadata?.userId;
 
+    console.log(session)
 
     try {
       await connectDB();
@@ -58,6 +61,17 @@ export async function POST(req: NextRequest) {
       else if (amount === 34900) user.monedas += 500;
 
       await user.save();
+
+
+      await Venta.create({
+        userId,
+  	    email: session.customer_email || session.customer_details?.email || null,
+        amountPaid:session.amount_total,
+        paymentStatus:session.payment_status||"unpaid",
+        paymentMethod:session.payment_method_types?.[0] || null,
+        stripeSessionId:session.id,
+        stripeCreatedAt:new Date(session.created * 1000)
+      })
 
       return new Response("Success", { status: 200 });
     } catch (err) {

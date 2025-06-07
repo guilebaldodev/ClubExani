@@ -65,6 +65,36 @@ export const dificultadOptions: SelectOption[] = [
   { value: "Mixto", label: "Mixto" },
 ];
 
+export const PlanOptions: SelectOption[] = [
+  { value: "4900,", label: "Basica" },
+  { value: "8900", label: "Estandar" },
+  { value: "19900", label: "Pro" },
+  { value: "34900", label: "Elite" },
+];
+
+
+export const PaidOptions: SelectOption[] = [
+  { value: "paid", label: "Paid" },
+  { value: "paid", label: "Unpaid" },
+];
+
+
+export type QuestionTemplate = {
+  id: string;
+  label: string;
+  filled: {
+    questionHTML: string;
+    answerHTML: string;
+  };
+  empty: {
+    questionHTML: string;
+    answerHTML: string;
+  };
+};
+
+
+
+
 
 export const AREAS_POR_EXAMEN = {
   "EXANI III": [

@@ -14,9 +14,13 @@ import {
   examenOptions,
   OrigenOptions,
 } from "@/consts/options";
-import { Imagen } from "@/types/imagen";
+import ViewQuestionModal from "@/app/ui/admin/QuestionViewModal";
 
 const QuestionsPage = () => {
+
+  const [viewQuestion, setViewQuestion] = useState<Pregunta | null>(null);
+
+
   const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
   const [busqueda, setBusqueda] = useState("");
   const [page, setPage] = useState(1);
@@ -71,10 +75,35 @@ const QuestionsPage = () => {
 
 
 
+useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (
+        !target.closest("[data-menu-content]") &&
+        !target.closest("[data-menu-id]")
+      ) {
+        setMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
 
 
   return (
     <>
+
+      {viewQuestion && (
+          <ViewQuestionModal question={viewQuestion} closeModal={()=>setViewQuestion(null)}/>
+      )}
+
+
       <div className={styles["admin-question-container"]}>
         <div className={styles["admin-question-title"]}>
           <h2>Lista de preguntas</h2>
@@ -258,60 +287,8 @@ const QuestionsPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {/*
-              <tr>
-                <td>1</td>
-                <td>¿Qué es el positivismo aplicado?</td>
-                <td>Html</td>
-                <td>Examen</td>
-                <td>Metodología</td>
-                <td className={`${dataStyles['color-td']} ${dataStyles.red}`}>
-                  <span>Pendiente</span>
-                </td>
-                <td className={dataStyles['td-center']}>
-                  <div className={dataStyles.container}>
-                    <Image src="/admin/3points.png" alt="Más opciones" width={20} height={20} />
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>¿Cuál es la capital de Francia?</td>
-                <td>Html</td>
-                <td>Examen</td>
-                <td>Geografía</td>
-                <td className={`${dataStyles['color-td']} ${dataStyles.green}`}>
-                  <span>Completo</span>
-                </td>
-                <td className={dataStyles['td-center']}>
-                  <div className={dataStyles.container}>
-                    <Image src="/admin/3points.png" alt="Más opciones" width={20} height={20} />
-                  </div>
-                </td>
-              </tr> */}
-
-                {/* <tr>
-                  <td>1</td>
-                  <td>¿Qué es el positivismo aplicado?</td>
-                  <td>Examen</td>
-                  <td>Metodología</td>
-                  <td className={`${dataStyles["color-td"]} ${dataStyles.red}`}>
-                    <span>Pendiente</span>
-                  </td>
-                  <td className={dataStyles["td-center"]}>
-                    <div className={dataStyles.container}>
-                      <Image
-                        src="/admin/3points.png"
-                        alt="Más opciones"
-                        width={20}
-                        height={20}
-                      />
-                    </div>
-                  </td>
-                </tr> */}
-
+   
                 {preguntas.map((pregunta, index) => (
-                  <>
                     <tr key={pregunta._id}>
                       <td>{(page - 1) * limit + index + 1}</td>
                       <td>Contenido</td>
@@ -335,11 +312,12 @@ const QuestionsPage = () => {
                       <td className={dataStyles["td-center"]}>
                         <div className={dataStyles.container}>
                           <Image
-                            onClick={() =>
+                            onClick={(e) =>{ 
+                              e.stopPropagation();
                               setMenu(
                                 menu === pregunta._id ? null : pregunta._id
                               )
-                            }
+                            }}
                             src="/admin/3points.png"
                             alt="Más opciones"
                             width={20}
@@ -349,14 +327,21 @@ const QuestionsPage = () => {
                             className={`${dataStyles["menu"]} ${
                               menu === pregunta._id ? "" : dataStyles["none"]
                             }`}
+                              data-menu-content
+
                           >
+                            <button 
+
+                            onClick={() => {
+                              console.log(pregunta,"Preguntaa")
+                              setViewQuestion(pregunta)
+                              }}>Asignar</button>
                             <button>Eliminar</button>
                             <button>Editar</button>
                           </div>
                         </div>
                       </td>
                     </tr>
-                  </>
                 ))}
               </tbody>
             </table>
@@ -367,7 +352,10 @@ const QuestionsPage = () => {
               <p>Preguntas por página: {limit}</p>
             </div>
             <div className={dataStyles["admin-footer-right"]}>
-                          <p>{(page - 1) * limit + 1} - {Math.min(page * limit, total)} de {total}</p>
+                          <p>
+                            {(page - 1) * limit + 1} - {Math.min(page * limit, total)} de {total}
+
+                          </p>
 
               <div
                 className={`${dataStyles["footer-button"]} ${dataStyles.rotate}`} onClick={()=> page > 1 && setPage(page - 1)}

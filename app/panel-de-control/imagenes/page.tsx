@@ -67,7 +67,6 @@ const UsersPage = () => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
 
-      // Solo cerrar si el clic no fue dentro de un menú ni en el icono de abrirlo
       if (
         !target.closest("[data-menu-content]") &&
         !target.closest("[data-menu-id]")
@@ -245,6 +244,8 @@ const UsersPage = () => {
                     <td className={dataStyles["td-center"]}>
                       {imagen.preguntas.length}
                     </td>
+
+
                     <td className={dataStyles["td-center"]}>
                       <div
                         className={dataStyles["container"]}
@@ -275,6 +276,8 @@ const UsersPage = () => {
                         </div>
                       </div>
                     </td>
+
+                    
                   </tr>
                 ))}
               </tbody>

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import Imagen from "@/models/Imagen";
 import Pregunta from "@/models/Pregunta";
 
-export async function POST(req, { params }) {
+export async function POST(req:Request, { params }) {
   try {
     await connectDB();
 

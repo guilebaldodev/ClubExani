@@ -15,11 +15,16 @@ import {
 } from "@/consts/options";
 import { SelectOption } from "@/types/shared";
 import { toast } from "react-toastify";
+import Link from "next/link";
+import { QUESTION_TEMPLATES } from "@/consts/questions_templates";
 
 type FormValues = z.infer<typeof preguntaSchema>;
 
 const AddQuestion = () => {
   const [modal, setModal] = useState(false);
+  const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(
+    null
+  );
 
   const EXAMENES_CON_4 = ["EXHCOBA", "ENARM", "Acredita-Bach"];
 
@@ -127,6 +132,35 @@ const AddQuestion = () => {
       <div className={styles.add_question_container}>
         <div className={styles.add_question_title}>
           <h2>Crear una pregunta</h2>
+
+          <div style={{ maxWidth: "300px", marginTop: "1rem" }}>
+            <Select
+              placeholder="Selecciona una plantilla"
+              options={QUESTION_TEMPLATES.map((t) => ({
+                value: t.id,
+                label: t.label,
+              }))}
+              isClearable
+              onChange={(option) => {
+                const id = option?.value || null;
+                setSelectedTemplateId(id);
+
+                if (id) {
+                  const template = QUESTION_TEMPLATES.find((t) => t.id === id);
+                  if (template) {
+                    setValue("contenidoHTML", template.empty.questionHTML);
+                    for (let i = 0; i <= 3; i++) {
+                      setValue(
+                        `respuestas.${i}.html` as any,
+                        template.empty.answerHTML
+                      );
+                      setValue(`respuestas.${i}.explicacion` as any, "");
+                    }
+                  }
+                }
+              }}
+            />
+          </div>
         </div>
 
         <form
@@ -148,20 +182,16 @@ const AddQuestion = () => {
                     />
                     Vista previa
                   </button>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setModal(true);
-                    }}
-                  >
+
+                  <Link href={"/panel-de-control/configuraciones"}>
                     <Image
-                      src="/admin/upload-file.png"
-                      alt="Añadir"
+                      src="/admin/configuraciones.png"
+                      alt="Configuraciones"
                       width={20}
                       height={20}
                     />
-                    Subir imagen
-                  </button>
+                    Configuraciones
+                  </Link>
                 </div>
               </div>
 
@@ -307,14 +337,14 @@ const AddQuestion = () => {
                   <textarea
                     disabled={requiere4 ? false : true}
                     {...register(`respuestas.${3}.html`)}
-                    required={requiere4?true:false}
+                    required={requiere4 ? true : false}
                     className={styles.text_area}
                     placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
                   />
                   <h4>Explicacion 4</h4>
                   <textarea
                     disabled={requiere4 ? false : true}
-                    required={requiere4?true:false}
+                    required={requiere4 ? true : false}
                     {...register(`respuestas.${3}.explicacion`)}
                     className={styles.text_area}
                     placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
@@ -322,8 +352,8 @@ const AddQuestion = () => {
                 </div>
 
                 <div className={styles.form_buttons}>
-                  <button className={styles.red_button}>Cancelar</button>
-                  <button>Crear</button>
+                  {/* <button className={styles.red_button}>Cancelar</button> */}
+                  <button type="submit">Crear</button>
                 </div>
               </div>
             </>

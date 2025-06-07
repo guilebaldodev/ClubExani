@@ -18,15 +18,21 @@ const Footer = () => {
               <li>
                 <Link href="/contacto">Contacto</Link>
               </li>
+    
+   
+
               <li>
-                <Link href="/testimonios">Testimonios</Link>
+                <Link href="/terminos-y-condiciones">Terminos y condiciones</Link>
               </li>
+
               <li>
-                <Link href="/creditos">Creditos</Link>
+                <Link href="/politica-de-privacidad">Políticas de privacidad</Link>
               </li>
+
               <li>
-                <Link href="/politicas">Políticas</Link>
+                <Link href="/politica-de-devoluciones">Políticas de devolucion</Link>
               </li>
+
             </ul>
           </div>
 
@@ -34,9 +40,6 @@ const Footer = () => {
             <h4>Simuladores</h4>
             <ul>
   
-              <li>
-                <Link href="/simuladores">Exadiems</Link>
-              </li>
               <li>
                 <Link href="/cuestionarios">Exani iii</Link>
               </li>

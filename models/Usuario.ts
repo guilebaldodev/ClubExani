@@ -4,7 +4,7 @@ const UsuarioSchema = new Schema(
   {
     userId: {
       type: String,
-      require,
+      required:true,
       unique: true,
     },
     nombre: {

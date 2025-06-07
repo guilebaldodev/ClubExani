@@ -1,19 +1,22 @@
-import { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from "mongoose";
 
-const VentaSchema = new Schema({
-  userId: { type: String, required: true },
-  monedasCompradas: { type: Number, required: true },
-  montoPagado: { type: Number, required: true },
-  status: {
-    type: String,
-    enum: ['completada', 'pendiente', 'fallida'],
-    default: 'completada'
+const VentaSchema = new Schema(
+  {
+    userId: { type: String, required: true },
+    email: { type: String},
+    amountPaid: { type: Number, required: true },
+    paymentStatus: {
+      type: String,
+      required: true,
+    },
+    paymentMethod:{ type: String},
+    stripeSessionId: { type: String},
+    stripeCreatedAt:{type:Date}
   },
-  stripeSessionId: { type: String },
-  fecha: { type: Date, default: Date.now }
-}, {
-  timestamps: true
-});
+  {
+    timestamps: true,
+  }
+);
 
-const Venta = models.Venta || model('Venta', VentaSchema);
+const Venta = models.Venta || model("Venta", VentaSchema);
 export default Venta;

@@ -292,6 +292,12 @@ main{
 .admin-question-container{
   padding: 1rem;
   padding-bottom: 2rem;
+  min-height: 70vh;
+}
+
+.admin-question-title{
+  display: flex;
+  justify-content: space-between;
 }
 
 .admin-question-title h2{
@@ -349,12 +355,86 @@ main{
 
 
 
+.terms-page-container {
+    width: 60%;
+    margin: auto;
+    padding: 5rem 0;
+}
+
+.terms-page-container div{
+    padding-bottom: 3rem;
+}
+
+.terms-page-container h2 {
+    font-size: 35px;
+    padding-bottom: 4rem;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+}
+
+.terms-page-container h3 {
+    font-size: 20px;
+    padding-bottom: 10px;
+
+}
+
+.terms-page-container p {
+    color: #333;
+    line-height: 1.35;
+    font-size: 18px;
+}
+
+
+.terms-page-container h3 {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.terms-page-container ul{
+  margin-left: 2rem;
+}
+
+.terms-page-container ul li{
+  padding-top: 6px;
+    color: #333;
+    line-height: 1.35;
+    font-size: 18px;
+}
+
+
+/* CSS simulator */
+
+.config-text-simple{
+  font-family: "Source Sans 3", "Source Sans 3 Fallback";
+}
+
+.config-text-simple-answer{
+  font-family: "Source Sans 3", "Source Sans 3 Fallback";
+}
+
+.config-text-with-image div{
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.config-text-with-image p{
+  padding-bottom: 8px;
+}
+
+.config-text-with-image img{
+    width: 140px;
+}
+
+.config-image-answer img{
+    width: 200px;
+}
 
 
 
 
 
-
+/* ----------- */
 
 
 @media (max-width: 950px) {

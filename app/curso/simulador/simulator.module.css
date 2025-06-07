@@ -1,5 +1,4 @@
 .simulator-container{
-    font-family: 'CircularStd-Book',sans-serif;
     padding-bottom: 2rem;
     position: relative;
 
@@ -236,3 +235,4 @@
 .simulator-answer-content img{
     width: 200px;
 }
+
