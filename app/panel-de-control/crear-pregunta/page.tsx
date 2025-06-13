@@ -28,7 +28,7 @@ const AddQuestion = () => {
 
   const EXAMENES_CON_4 = ["EXHCOBA", "ENARM", "Acredita-Bach"];
 
-  const { register, reset, handleSubmit, setValue, watch } =
+  const { register, reset, handleSubmit, setValue, watch, trigger, getValues } =
     useForm<FormValues>({
       resolver: zodResolver(preguntaSchema),
       defaultValues: {
@@ -74,17 +74,26 @@ const AddQuestion = () => {
     }));
 
   const onSubmit = async (data: FormValues) => {
-    console.log("Datos del formulario:", data);
-
     try {
       const respuestasFiltradas = requiere4
         ? data.respuestas
         : data.respuestas.slice(0, 3);
 
+      const cleanText = (html: string) => html.trim();
+
       const payload = {
         ...data,
-        respuestas: respuestasFiltradas,
+        contenidoHTML: cleanText(data.contenidoHTML),
+        respuestas: respuestasFiltradas.map((r) => ({
+          html: cleanText(r.html),
+          explicacion: cleanText(r.explicacion),
+          esCorrecta: r.esCorrecta,
+        })),
       };
+
+      console.log(payload,"paaaayload")
+
+
 
       const res = await fetch("/api/preguntas", {
         method: "POST",
@@ -173,7 +182,42 @@ const AddQuestion = () => {
                 <h3>Añadir una pregunta</h3>
 
                 <div className={styles.titles_buttons}>
-                  <button className={styles.bordered}>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      const isValid = await trigger();
+                      if (!isValid) {
+                        toast.error(
+                          "Por favor completa todos los campos antes de continuar"
+                        );
+                        return;
+                      }
+
+                      toast.success("Todos completos");
+
+                      const form = getValues();
+
+                      const respuestasFiltradas = requiere4
+                        ? form.respuestas
+                        : form.respuestas.slice(0, 3);
+
+                      const formData = {
+                        ...form,
+                        respuestas: respuestasFiltradas,
+                      };
+
+                      localStorage.setItem(
+                        "preview-question",
+                        JSON.stringify(formData)
+                      );
+
+                      window.open(
+                        "/panel-de-control/vista-previa-pregunta",
+                        "_blank"
+                      );
+                    }}
+                    className={styles.bordered}
+                  >
                     <Image
                       src="/admin/watch.png"
                       alt="Vista previa"

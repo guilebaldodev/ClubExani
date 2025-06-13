@@ -279,6 +279,7 @@
      border-top: 1px solid #ebeaea;
      text-align: left;
      border: none;
+     cursor: pointer;
 }
 
 .admin-table .container img{

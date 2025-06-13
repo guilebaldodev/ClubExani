@@ -4,12 +4,13 @@ import mongoose, { Schema, models } from "mongoose";
 const SimuladorSchema = new Schema(
   {
     titulo: { type: String, required: true },
+    descripcion: { type: String, required: true },
 
-examen: {
-  type: String,
-  enum: EXAMENES,
-  required: true,
-},
+    examen: {
+      type: String,
+      enum: EXAMENES,
+      required: true,
+    },
     tipo: {
       type: String,
       enum: ["Completo", "Diagnóstico", "Parcial"],

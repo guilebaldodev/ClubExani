@@ -4,11 +4,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { simuladorSchema } from "@/schemas/simuladorSchema";
 import { z } from "zod";
-import { tipoOptions, dificultadOptions, examenOptions, Examen } from "@/consts/options";
+import {
+  tipoOptions,
+  dificultadOptions,
+  examenOptions,
+  Examen,
+} from "@/consts/options";
 import styles from "../crear-pregunta/add.module.css";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { SelectOption } from "@/types/simulador"; // Asegúrate que esté definido ahí
+import { SelectOption } from "@/types/simulador"; 
+
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+
 
 type FormValues = z.infer<typeof simuladorSchema>;
 
@@ -30,12 +39,17 @@ const AddSimulador = () => {
       precio: 0,
       tiempo: 60,
       imagen: "",
+      descripcion: "",
     },
   });
 
-  const selectedExamen = examenOptions.find((op) => op.value === watch("examen"));
+  const selectedExamen = examenOptions.find(
+    (op) => op.value === watch("examen")
+  );
   const selectedTipo = tipoOptions.find((op) => op.value === watch("tipo"));
-  const selectedDificultad = dificultadOptions.find((op) => op.value === watch("dificultad"));
+  const selectedDificultad = dificultadOptions.find(
+    (op) => op.value === watch("dificultad")
+  );
 
   const onSubmit = async (data: FormValues) => {
     try {
@@ -73,7 +87,10 @@ const AddSimulador = () => {
         <h2>Crear un simulador</h2>
       </div>
 
-      <form className={styles.add_product_form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={styles.add_product_form}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className={styles.form_container}>
           <div className={styles.complete_form}>
             <div className={styles.add_product_title}>
@@ -84,7 +101,22 @@ const AddSimulador = () => {
               <div className={styles.input_duo}>
                 <label>Título</label>
                 <input {...register("titulo")} />
-                {errors.titulo && <p className={styles.error}>{errors.titulo.message}</p>}
+                {errors.titulo && (
+                  <p className={styles.error}>{errors.titulo.message}</p>
+                )}
+              </div>
+
+              <div className={styles.input_duo}>
+                <label>Descripción</label>
+                <ReactQuill
+                  theme="snow"
+                  value={watch("descripcion")}
+                  onChange={(content) => setValue("descripcion", content)}
+                  style={{ height: "120px", marginBottom: "3rem" }}
+                />
+                {errors.descripcion && (
+                  <p className={styles.error}>{errors.descripcion.message}</p>
+                )}
               </div>
 
               <div className={styles.input_duo}>
@@ -97,7 +129,9 @@ const AddSimulador = () => {
                   }}
                   placeholder="Selecciona el examen"
                 />
-                {errors.examen && <p className={styles.error}>{errors.examen.message}</p>}
+                {errors.examen && (
+                  <p className={styles.error}>{errors.examen.message}</p>
+                )}
               </div>
 
               <div className={styles.double_input}>
@@ -111,7 +145,9 @@ const AddSimulador = () => {
                     }}
                     placeholder="Selecciona el tipo"
                   />
-                  {errors.tipo && <p className={styles.error}>{errors.tipo.message}</p>}
+                  {errors.tipo && (
+                    <p className={styles.error}>{errors.tipo.message}</p>
+                  )}
                 </div>
 
                 <div className={styles.input_duo}>
@@ -124,28 +160,42 @@ const AddSimulador = () => {
                     }}
                     placeholder="Selecciona la dificultad"
                   />
-                  {errors.dificultad && <p className={styles.error}>{errors.dificultad.message}</p>}
+                  {errors.dificultad && (
+                    <p className={styles.error}>{errors.dificultad.message}</p>
+                  )}
                 </div>
               </div>
 
               <div className={styles.double_input}>
                 <div className={styles.input_duo}>
                   <label>Precio (monedas)</label>
-                  <input type="number" {...register("precio", { valueAsNumber: true })} />
-                  {errors.precio && <p className={styles.error}>{errors.precio.message}</p>}
+                  <input
+                    type="number"
+                    {...register("precio", { valueAsNumber: true })}
+                  />
+                  {errors.precio && (
+                    <p className={styles.error}>{errors.precio.message}</p>
+                  )}
                 </div>
 
                 <div className={styles.input_duo}>
                   <label>Tiempo (minutos)</label>
-                  <input type="number" {...register("tiempo", { valueAsNumber: true })} />
-                  {errors.tiempo && <p className={styles.error}>{errors.tiempo.message}</p>}
+                  <input
+                    type="number"
+                    {...register("tiempo", { valueAsNumber: true })}
+                  />
+                  {errors.tiempo && (
+                    <p className={styles.error}>{errors.tiempo.message}</p>
+                  )}
                 </div>
               </div>
 
               <div className={styles.input_duo}>
                 <label>URL de imagen</label>
                 <input {...register("imagen")} />
-                {errors.imagen && <p className={styles.error}>{errors.imagen.message}</p>}
+                {errors.imagen && (
+                  <p className={styles.error}>{errors.imagen.message}</p>
+                )}
               </div>
             </div>
 

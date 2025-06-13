@@ -14,11 +14,13 @@ import {
 import { toast } from "react-toastify";
 import UploadModal from "@/app/ui/admin/UploadModal";
 import ViewModal from "@/app/ui/admin/ImageViewModal";
+import ConfirmDeleteModal from "@/app/ui/admin/ConfirmModal";
 
 const UsersPage = () => {
   const [modal, setModal] = useState(false);
   const [menu, setMenu] = useState<string | null>(null);
   const [viewImagen, setViewImagen] = useState<Imagen | null>(null);
+  const [showConfirm, setShowConfirm] = useState("");
 
   const [imagenes, setImagenes] = useState<Imagen[]>([]);
   const [busqueda, setBusqueda] = useState("");
@@ -81,15 +83,48 @@ const UsersPage = () => {
     };
   }, []);
 
+  const deleteImage = async (imagenId: string) => {
+    try {
+      const res = await fetch(`/api/imagenes/${imagenId}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Error al eliminar imagen");
+        return false;
+      }
+
+      toast.success("Imagen eliminada correctamente");
+      return true;
+    } catch (error) {
+      toast.error("Error del servidor");
+      return false;
+    }
+  };
+
   return (
     <>
       {modal && <UploadModal closeModal={() => setModal(false)} />}
 
-      {viewImagen && (
-        <ViewModal
-          imagen={viewImagen}
-          closeModal={() => setViewImagen(null)}
+      {showConfirm && (
+        <ConfirmDeleteModal
+          title="¿Eliminar imagen?"
+          message="Esta acción no se puede deshacer."
+          onConfirm={async () => {
+            const success = await deleteImage(showConfirm);
+            if (success) {
+              fetchPreguntas(); 
+            }
+            setShowConfirm("");
+          }}
+          onCancel={() => setShowConfirm("")}
         />
+      )}
+
+      {viewImagen && (
+        <ViewModal imagen={viewImagen} closeModal={() => setViewImagen(null)} />
       )}
 
       <div className="admin-question-container">
@@ -98,7 +133,6 @@ const UsersPage = () => {
         </div>
 
         <div className="admin-question-cards">
-          {/* Tarjetas (puedes ajustar contadores reales si los tienes) */}
           <div className="admin-question-card">
             <div className="question-text">
               <p>Imágenes</p>
@@ -116,7 +150,6 @@ const UsersPage = () => {
               </div>
             </div>
           </div>
-          {/* Más tarjetas... */}
         </div>
 
         <div className={dataStyles["admin-table-container"]}>
@@ -236,15 +269,12 @@ const UsersPage = () => {
                       }`}
                     >
                       <span>
-                        {imagen.preguntas.length > 0
-                          ? "Asignada"
-                          : "Pendiente"}
+                        {imagen.preguntas.length > 0 ? "Asignada" : "Pendiente"}
                       </span>
                     </td>
                     <td className={dataStyles["td-center"]}>
                       {imagen.preguntas.length}
                     </td>
-
 
                     <td className={dataStyles["td-center"]}>
                       <div
@@ -271,13 +301,12 @@ const UsersPage = () => {
                           <button onClick={() => setViewImagen(imagen)}>
                             Ver
                           </button>
-                          <button>Editar</button>
-                          <button>Eliminar</button>
+                          <button onClick={() => setShowConfirm(imagen._id)}>
+                            Eliminar
+                          </button>
                         </div>
                       </div>
                     </td>
-
-                    
                   </tr>
                 ))}
               </tbody>

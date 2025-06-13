@@ -431,9 +431,51 @@ main{
 }
 
 
+/* modal */
+
+.modal-info{
+  padding: 1.5rem;
+}
+
+.modal-circle-container{
+  display: flex;
+  justify-content: center;
+}
+
+.modal-circle{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  background-color: #0056D2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-circle h3{
+    font-size: 20px;
+    color: white;
+}
+
+.modal-info-items{
+  padding-top: 1rem;
+}
+
+.modal-info-item{
+  display: flex;
+  gap: 5px;
+  padding-top: 8px;
+}
+
+.modal-info-item p{
+  word-break: break-all;
+  white-space: normal;
+}
 
 
 
+
+/* modal */
 /* ----------- */
 
 

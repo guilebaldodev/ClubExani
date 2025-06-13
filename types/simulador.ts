@@ -8,6 +8,7 @@ export type SelectOption = {
 export type Simulador = {
   _id: string;
   titulo: string;
+  descripcion: string;
   examen: string;
   tipo: string;
   precio: number;

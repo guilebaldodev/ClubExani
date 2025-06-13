@@ -272,6 +272,24 @@
 }
 
 
+.quill {
+  border-radius: 12px;
+  overflow: hidden; /* para que los bordes no se salgan del contenedor */
+  border: 1px solid #ccc;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.ql-container.ql-snow {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+
+
 @media (max-width: 1250px) {
 
   .form_container{

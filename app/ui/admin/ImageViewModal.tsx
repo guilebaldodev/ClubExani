@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import styles from "./css/Modal.module.css";
+import ConfirmDeleteModal from "./ConfirmModal";
 
 type Props = {
   imagen: Imagen;
@@ -12,6 +13,8 @@ type Props = {
 
 const ViewModal = ({ imagen, closeModal }: Props) => {
   const [preguntaId, setPreguntaId] = useState("");
+    const [showConfirm, setShowConfirm] = useState("");
+
 
   const asociarPregunta = async () => {
     try {
@@ -32,13 +35,55 @@ const ViewModal = ({ imagen, closeModal }: Props) => {
 
       toast.success("Pregunta asociada");
       setPreguntaId("");
+      closeModal()
     } catch (err) {
       toast.error("Error al asociar pregunta");
     }
   };
 
+  const deleteAssociation = async (preguntaId: string) => {
+
+
+    try {
+      const res = await fetch(`/api/imagenes/${imagen._id}/asociar`, {
+        method: "DELETE",
+        body: JSON.stringify({ preguntaId}),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Error al eliminar asociacion");
+        return false;
+      }
+      
+      closeModal()
+      toast.success("asociacion eliminada correctamente");
+      return true;
+    } catch (error) {
+      toast.error("Error del servidor");
+      return false;
+    }
+  };
+
+
   return (
     <div className={styles.modal_container}>
+
+      {showConfirm && (
+        <ConfirmDeleteModal
+          title="¿Eliminar asociacion?"
+          message="Esta acción no se puede revertir."
+          onConfirm={async () => {
+            await deleteAssociation(showConfirm);
+            setShowConfirm("");
+          }}
+          onCancel={() => setShowConfirm("")}
+        />
+      )}
+
+
       <div className={styles.add_modal}>
         <div className={styles.add_modal_title}>
           <div>
@@ -58,7 +103,14 @@ const ViewModal = ({ imagen, closeModal }: Props) => {
           <h5>Preguntas asociadas:</h5>
           <ul style={{ marginBottom: "1rem", paddingLeft: "1.2rem" }}>
             {imagen.preguntas.length > 0 ? (
-              imagen.preguntas.map((id) => <li key={id}>{id}</li>)
+              imagen.preguntas.map((id) => <li className={styles.modal_li} key={id}>
+                <p>
+                  {id}
+                </p>
+                  <Image onClick={()=>{
+                      setShowConfirm(id)
+                  }} src={"/admin/x.png"} width={30} height={30} alt="x"></Image>
+                </li>)
             ) : (
               <li>No hay preguntas asociadas</li>
             )}

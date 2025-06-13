@@ -5,8 +5,7 @@ export const QUESTION_TEMPLATES: QuestionTemplate[] = [
     id: "text-only",
     label: "Text only",
     filled: {
-      questionHTML: `
-        <div class="config-text-simple">
+      questionHTML: `<div class="config-text-simple">
           <p>What is the capital of France?</p>
         </div>
       `,

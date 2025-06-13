@@ -17,6 +17,7 @@ export async function POST(req:Request){
         }
 
 
+
       const newImage = await new Imagen(parsed.data)
 
       const saved = await newImage.save()

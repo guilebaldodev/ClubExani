@@ -1,7 +1,12 @@
 import Image from "next/image";
 import styles from "./css/Modal.module.css";
-import Select, { SingleValue } from "react-select";
-import { Examen, examenOptions, ImagenOptions, imageOptions } from "@/consts/options";
+import Select from "react-select";
+import {
+  Examen,
+  examenOptions,
+  ImagenOptions,
+  imageOptions,
+} from "@/consts/options";
 import { useState } from "react";
 import { SelectOption } from "@/types/shared";
 import { toast } from "react-toastify";
@@ -19,7 +24,6 @@ type FormValues = z.infer<typeof imageSchema>;
 const UploadModal = ({ closeModal }: UploadModalProps) => {
   const {
     register,
-    reset,
     handleSubmit,
     setValue,
     watch,
@@ -31,25 +35,25 @@ const UploadModal = ({ closeModal }: UploadModalProps) => {
       examen: examenOptions[0].value,
       tipo: imageOptions[0].value,
       url: "",
+      public_id: "",
     },
   });
 
-
-    const selectedExamen = examenOptions.find((op) => op.value === watch("examen"));
-    const selectedTipo = imageOptions.find((op) => op.value === watch("tipo"));
-  
+  const selectedExamen = examenOptions.find(
+    (op) => op.value === watch("examen")
+  );
+  const selectedTipo = imageOptions.find((op) => op.value === watch("tipo"));
 
   const [imagen, setImagen] = useState<File | null>(null);
 
-  const onSubmit = async (data:FormValues) => {
-
+  const onSubmit = async (data: FormValues) => {
     try {
       const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
-      if (!imagen){
+      if (!imagen) {
         toast.error("Selecciona una imagen antes de subir");
         return;
-      };
+      }
 
       const formData = new FormData();
       formData.append("file", imagen);
@@ -65,29 +69,31 @@ const UploadModal = ({ closeModal }: UploadModalProps) => {
 
       const data_img = await res.json();
       const url = data_img.secure_url;
-      setValue("url",url)
+      setValue("url", url);
+      setValue("public_id",data_img.public_id)
 
+      
+      const payload = {
+        descripcion: data.descripcion,
+        url,
+        tipo: data.tipo,
+        examen: data.examen,
+        public_id:data_img.public_id    
+      };
+      
 
-const payload = {
-  descripcion: data.descripcion,
-  url,
-  tipo: data.tipo,
-  examen: data.examen,
-};
-      const request=await fetch("/api/imagenes", {
+      const request = await fetch("/api/imagenes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
-      console.log(request)
+      console.log(request);
 
-      
       await navigator.clipboard.writeText(watch("url"));
       toast.success("Subida correcta, link copiado al portapapeles");
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error("Ocurrio un error");
     }
   };
@@ -118,7 +124,10 @@ const payload = {
             />
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.add_modal_form}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.add_modal_form}
+          >
             <div className={styles.upload}>
               <label className={styles.upload_file}>
                 <input
@@ -141,7 +150,6 @@ const payload = {
               </label>
 
               <div className={styles.upload_items}>
- 
                 {imagen && (
                   <div className={styles.upload_item}>
                     <div className={styles.upload_info}>
@@ -170,9 +178,8 @@ const payload = {
             <div className={styles.input_duo}>
               <label htmlFor="">Descripcion</label>
               <input
-                  {...register("descripcion")}              
+                {...register("descripcion")}
                 className={styles.link_input}
-                
               />
             </div>
             <div className={styles.double_input}>
@@ -183,10 +190,10 @@ const payload = {
                     options={ImagenOptions}
                     placeholder="Selecciona el tipo"
                     value={selectedTipo}
-             onChange={(selected: SelectOption | null) => {
+                    onChange={(selected: SelectOption | null) => {
                       if (selected) setValue("tipo", selected.value);
                     }}
-></Select>
+                  ></Select>
                 </div>
               </div>
 
@@ -198,8 +205,9 @@ const payload = {
                     placeholder="Selecciona el area"
                     value={selectedExamen}
                     onChange={(selected: SelectOption | null) => {
-                                         if (selected) setValue("examen", selected.value as Examen);
-                                       }}
+                      if (selected)
+                        setValue("examen", selected.value as Examen);
+                    }}
                   ></Select>
                 </div>
               </div>

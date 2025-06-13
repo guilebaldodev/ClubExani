@@ -35,6 +35,11 @@ export async function POST(req:Request, { params} : any) {
     }
 
     pregunta.simuladores.push(simulatorId);
+
+    await Simulador.findByIdAndUpdate(simulatorId, {
+    $inc: { contador: 1 },
+    });
+
     await pregunta.save();
 
     return NextResponse.json({ ok: true });

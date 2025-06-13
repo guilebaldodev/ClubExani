@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import dataStyles from '@/app/ui/admin/DataTable.module.css'
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Usuarios } from "@/types/usuarios";
 import { toast } from "react-toastify";
+import ViewUserModal from "@/app/ui/admin/UserViewModal";
 
 const UsersPage = () => {
 
-
+  const [viewUser, setviewUser] = useState<Usuarios | null>(null);
   const [menu, setMenu] = useState<string | null>("");
   const [usuarios, setUsuarios] = useState<Usuarios[]>([]);
   const [busqueda, setBusqueda] = useState("");
@@ -54,7 +55,36 @@ const UsersPage = () => {
     fetchUsuarios()
   },[busqueda,page])
 
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (
+        !target.closest("[data-menu-content]") &&
+        !target.closest("[data-menu-id]")
+      ) {
+        setMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   return ( <>
+
+
+    {viewUser && (
+      <ViewUserModal
+        user={viewUser}
+        closeModal={()=>setviewUser(null)}
+      ></ViewUserModal>
+    )}
+
        <div className="admin-question-container">
       <div className="admin-question-title">
         <h2>Lista de usuarios</h2>
@@ -170,7 +200,9 @@ const UsersPage = () => {
                 <td className={dataStyles["td-center"]}>{user.monedas}</td>
                 <td className={dataStyles["td-center"]}>{user.createdAt?getDate(user.createdAt):"Sin fecha"}</td>
                 <td className={dataStyles["td-center"]}>
-                  <div className={dataStyles['container']}>
+                  <div className={dataStyles['container']}
+                  data-menu-id={user._id}
+                  >
                     <Image
                       onClick={() => setMenu(menu === user._id ? null : user._id)}
                       src="/admin/3points.png"
@@ -179,8 +211,10 @@ const UsersPage = () => {
                       height={20}
                     />
 
-                      <div className={`${dataStyles['menu']} ${menu === user._id ? "" : dataStyles['none']}`}>
-                          <button>Ver</button>
+                      <div className={`${dataStyles['menu']} ${menu === user._id ? "" : dataStyles['none']}`}
+                      data-menu-content
+                      >
+                          <button onClick={()=>setviewUser(user)}>Ver</button>
                       </div>
                   </div>
                 </td>

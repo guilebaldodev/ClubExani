@@ -15,10 +15,12 @@ import {
   OrigenOptions,
 } from "@/consts/options";
 import ViewQuestionModal from "@/app/ui/admin/QuestionViewModal";
+import ConfirmDeleteModal from "@/app/ui/admin/ConfirmModal";
 
 const QuestionsPage = () => {
 
   const [viewQuestion, setViewQuestion] = useState<Pregunta | null>(null);
+  const [showConfirm, setShowConfirm] = useState("");
 
 
   const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
@@ -68,6 +70,29 @@ const QuestionsPage = () => {
     }
   };
 
+  const deleteQuestion = async (questionId: string) => {
+  try {
+    const res = await fetch(`/api/preguntas/${questionId}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      toast.error(data.error || "Error al eliminar pregunta");
+      return false;
+    }
+
+    toast.success("Pregunta eliminada correctamente");
+    return true;
+  } catch (error) {
+    toast.error("Error del servidor");
+    return false;
+  }
+};
+
+
+
   useEffect(()=>{
     fetchPreguntas()
   },[busqueda,page,filtroAsignado,filtroExamen,filtroOrigen,filtroSimulador])
@@ -102,6 +127,22 @@ useEffect(() => {
       {viewQuestion && (
           <ViewQuestionModal question={viewQuestion} closeModal={()=>setViewQuestion(null)}/>
       )}
+
+
+      {showConfirm && (
+  <ConfirmDeleteModal
+    title="¿Eliminar pregunta?"
+    message="Esta acción no se puede deshacer."
+    onConfirm={async () => {
+      const success = await deleteQuestion(showConfirm);
+      if (success) {
+        fetchPreguntas(); 
+      }
+      setShowConfirm("");
+    }}
+    onCancel={() => setShowConfirm("")}
+  />
+)}
 
 
       <div className={styles["admin-question-container"]}>
@@ -336,7 +377,9 @@ useEffect(() => {
                               console.log(pregunta,"Preguntaa")
                               setViewQuestion(pregunta)
                               }}>Asignar</button>
-                            <button>Eliminar</button>
+                            <button
+                            onClick={()=>setShowConfirm(pregunta._id)}
+                            >Eliminar</button>
                             <button>Editar</button>
                           </div>
                         </div>

@@ -8,8 +8,13 @@ import { SelectOption } from "@/types/shared";
 import { toast } from "react-toastify";
 import { PaidOptions, PlanOptions } from "@/consts/options";
 import { formatCurrency, formatDate, getPlanInfo } from "@/app/utils";
+import ViewSaleModal from "@/app/ui/admin/SaleViewModal";
 
 const SubsPage = () => {
+
+
+  
+  const [viewSale, setViewSale] = useState<Venta | null>(null);
   const [ventas, setVentas] = useState<Venta[]>([]);
   const [busqueda, setBusqueda] = useState("");
   const [page, setPage] = useState(1);
@@ -52,7 +57,36 @@ const SubsPage = () => {
     fetchVentas();
   }, [filtroPlan, filtroStatus, busqueda, page]);
 
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (
+        !target.closest("[data-menu-content]") &&
+        !target.closest("[data-menu-id]")
+      ) {
+        setMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  
+
   return (
+
+
+    <>
+    {viewSale && (
+      <ViewSaleModal sale={viewSale} 
+      closeModal={()=>setViewSale(null)}
+      ></ViewSaleModal>
+    )}
+
     <div className="admin-question-container">
       <div className="admin-question-title">
         <h2>Lista de ventas</h2>
@@ -205,7 +239,9 @@ const SubsPage = () => {
                       {formatDate(venta.stripeCreatedAt)}
                     </td>
                     <td className={dataStyles["td-center"]}>
-                      <div className={dataStyles.container}>
+                      <div className={dataStyles.container}
+                      data-menu-id={venta._id}
+                      >
                         <Image
                           onClick={() =>
                             setMenu(menu === venta._id ? null : venta._id)
@@ -219,8 +255,9 @@ const SubsPage = () => {
                           className={`${dataStyles["menu"]} ${
                             menu === venta._id ? "" : dataStyles["none"]
                           }`}
+                          data-menu-content
                         >
-                          <button>Ver</button>
+                          <button onClick={()=>setViewSale(venta)}>Ver</button>
                         </div>
                       </div>
                     </td>
@@ -268,6 +305,9 @@ const SubsPage = () => {
         </div>
       </div>
     </div>
+
+    </>
+
   );
 };
 

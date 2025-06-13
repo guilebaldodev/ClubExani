@@ -184,7 +184,15 @@
     cursor: not-allowed; /* Cambia el cursor */
   }
 
+  .modal_li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
+  .modal_li img{
+    cursor: pointer;
+  }
 
 
   /*  */

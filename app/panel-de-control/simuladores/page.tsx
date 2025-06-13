@@ -8,9 +8,14 @@ import Select, { SingleValue } from "react-select";
 import { SelectOption, Simulador } from "@/types/simulador";
 import { dificultadOptions, examenOptions, tipoOptions } from "@/consts/options";
 import Link from "next/link";
+import ConfirmDeleteModal from "@/app/ui/admin/ConfirmModal";
 
 
 const Simuladores = () => {
+
+  const [showConfirm, setShowConfirm] = useState("");
+
+
   const [simuladores, setSimuladores] = useState<Simulador[]>([]);
   const [busqueda, setBusqueda] = useState("");
   const [page, setPage] = useState(1);
@@ -48,12 +53,72 @@ const Simuladores = () => {
     }
   };
 
+  const deleteSimulator = async () => {
+    try {
+      const res = await fetch(`/api/simuladores/${showConfirm}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Error al eliminar simulador");
+        return false;
+      }
+
+      toast.success("Simulador eliminada correctamente");
+      return true;
+    } catch (error) {
+      toast.error("Error del servidor");
+      return false;
+    }
+  };
+
+
+
   useEffect(() => {
     fetchSimuladores();
   }, [busqueda, page, filtroExamen, filtroTipo, filtroDificultad]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (
+        !target.closest("[data-menu-content]") &&
+        !target.closest("[data-menu-id]")
+      ) {
+        setMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  
   return (
     <div className="admin-question-container">
+
+   {showConfirm && (
+        <ConfirmDeleteModal
+          title="¿Eliminar simulador?"
+          message="Esta acción no se puede deshacer!!!."
+          onConfirm={async () => {
+            const success = await deleteSimulator();
+            if (success) {
+              fetchSimuladores(); 
+            }
+            setShowConfirm("");
+          }}
+          onCancel={() => setShowConfirm("")}
+        />
+      )}
+
+
+
       <div className="admin-question-title">
         <h2>Lista de simuladores</h2>
       </div>
@@ -164,7 +229,9 @@ const Simuladores = () => {
                   <td className={dataStyles['td-center']}>{s.totalPreguntas}</td>
                   <td className={dataStyles['td-center']}>{s.contador}</td>
                   <td className={dataStyles['td-center']}>
-                    <div className={dataStyles['container']}>
+                    <div className={dataStyles['container']}
+                    data-menu-id={s._id}
+                    >
                       <Image
                         onClick={() => setMenu(menu === s._id ? null : s._id)}
                         src="/admin/3points.png"
@@ -172,9 +239,11 @@ const Simuladores = () => {
                         width={20}
                         height={20}
                       />
-                      <div className={`${dataStyles['menu']} ${menu === s._id ? "" : dataStyles['none']}`}>
-                          <button>Eliminar</button>
-                          <button>Editar</button>
+                      <div className={`${dataStyles['menu']} ${menu === s._id ? "" : dataStyles['none']}`}
+                      data-menu-content
+                      >
+                          <button>Ver</button>
+                          <button onClick={()=>setShowConfirm(s._id)}>Eliminar</button>
                       </div>
                     </div>
                   </td>

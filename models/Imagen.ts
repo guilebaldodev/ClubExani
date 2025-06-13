@@ -5,6 +5,7 @@ const ImagenSchema = new Schema(
   {
     descripcion: { type: String, required: true },
     url: { type: String, required: true },
+    public_id: { type: String, required: true },
     tipo: { type: String, enum: ["Pregunta", "Respuesta"], required: true },
     examen: {
       type: String,

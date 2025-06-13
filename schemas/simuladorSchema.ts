@@ -6,6 +6,12 @@ export const simuladorSchema = z.object({
     required_error: "El título es requerido",
   }).min(1, "El título no puede estar vacío"),
 
+  descripcion: z.string({
+    required_error: "El título es requerido",
+  }).min(1, "El título no puede estar vacío"),
+
+
+
   examen: z.enum(EXAMENES),
   tipo: z.enum(
     tipoOptions.map((op) => op.value) as [string, ...string[]],
