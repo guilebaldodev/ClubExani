@@ -1,11 +1,12 @@
 import { EXAMENES } from "@/consts/options";
 import mongoose, { Schema, models } from "mongoose";
+import { required } from "zod/v4-mini";
 
 const SimuladorSchema = new Schema(
   {
     titulo: { type: String, required: true },
     descripcion: { type: String, required: true },
-
+    descripcion_corta: { type: String, required: true },
     examen: {
       type: String,
       enum: EXAMENES,
@@ -13,18 +14,24 @@ const SimuladorSchema = new Schema(
     },
     tipo: {
       type: String,
-      enum: ["Completo", "Diagnóstico", "Parcial"],
+      enum: ["Completo", "Diagnostico", "Parcial"],
       required: true,
     },
     dificultad: {
       type: String,
-      enum: ["Fácil", "Intermedio", "Dificil"],
+      enum: ["Facil", "Intermedio", "Dificil","Experto","Mixto"],
       required: true,
     },
     contador: {
       type: Number,
       default: 0,
     },
+
+    uso_justo: {
+      type: Number,
+      required:true,
+    },
+
     tiempo: {
       type: Number,
       required: true,

@@ -10,8 +10,7 @@
 }
 
 .pricing-page-titles h2{
-    color: rgb(10, 12, 15);
-    color: black;
+    color: #003a8c;
     font-size: 38px;
 }
 
@@ -39,7 +38,7 @@
 .plan-popular{
     position: absolute;
     right: 0;
-    background-color: #3448C5;
+    background-color: #287CBE;
     color: aliceblue;
     padding: 0.5rem;
     border-radius: 3px;
@@ -49,7 +48,7 @@
     color: white;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-    background-color: #3448C5;
+    background-color: #287CBE;
 }
 
 
@@ -64,7 +63,7 @@
 }
 
 .plan-item-selected{
-    border: 2px solid #3448C5;
+    border: 2px solid #287CBE;
 }
 
 
@@ -96,7 +95,7 @@
     align-items: center;
     width: 100%;
     margin-top: 1rem;
-    background-color: #3448C5;
+    background-color: #287CBE;
     cursor: pointer;
 }
 

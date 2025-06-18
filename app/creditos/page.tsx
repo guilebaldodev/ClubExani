@@ -76,7 +76,7 @@ const PricingPage = () => {
                 <h4>$0</h4>
               </div>
               <p className={styles['plan-info-last']}>Incluye exámenes de prueba</p>
-              <button className={styles['plan-button']}>Plan actual</button>
+              <button className={styles['plan-button']}>Plan inical</button>
             </div>
 
             <div className={styles['plan-item-includes']}>

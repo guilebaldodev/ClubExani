@@ -25,10 +25,12 @@
 .landing-hero-texts h1{
     padding: 0.4rem 0rem 1rem;
     font-size: 40px;
+    color: #06235B;
 
 }
 
 .landing-hero-texts h3{
+    color: #06235B;
     letter-spacing: 2px;
 }
 
@@ -48,14 +50,18 @@
     font-weight: 700;
     color: white;
     background-color: transparent;
-    border: 1px solid #022EE1;
-    color: #022EE1;
+    border: 1px solid #287CBE;
+    color: #287CBE;
     border-radius: 3px;
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 5px;
 }
 
 
 .landing-hero a.primary{
-    background-color: #022EE1;
+    background-color: #287CBE;
     color: white;
 }
 
@@ -66,12 +72,12 @@
 
 .landing-numbers{
     display: flex;
-    background-color: #022EE1;
+    background-color: #287CBE;
     color: white;
     align-items: center;
     margin: auto;
     gap: 15px;
-    padding: 1.5rem 0;
+    padding: 0.6rem 0;
     justify-content: space-evenly;
     
 }
@@ -81,12 +87,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .landing-number-item h3{
     text-align: center;
-    font-size: 35px;
-    padding-bottom: 0.5rem;
+    font-size: 30px;
+    /* padding-bottom: 0.5rem; */
 }
 
 .landing-number-item p{
@@ -113,6 +120,8 @@
 .landing-options-container h2{
   font-size: 33px;
     text-align: center;
+    color: #06235B;
+
 }
 
 .examen-options{
@@ -152,10 +161,15 @@
 .examen-info {
   padding: 1rem;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .examen-info h3 {
   font-size: 1.2rem;
+  color: #06235B;
   margin: 0 0 0.5rem 0;
 }
 
@@ -177,7 +191,7 @@
 }
 
 .examen-boton {
-  background-color: #004aad;
+  background-color: #287CBE;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -187,6 +201,17 @@
   font-weight: bold;
   transition: background-color 0.2s ease;
   font-size: 13px;
+}
+
+.examen-boton.grey{
+    background-color: #e0e0e0;
+    color: #555;
+    transition: background-color 0.2s ease;
+}
+
+.examen-boton.grey:hover{
+      background-color: #d5d5d5;
+  color: #222;
 }
 
 
@@ -209,6 +234,7 @@
 .landing-cards-titles h2{
     font-size: 33px;
     text-align: center;
+    color: #06235B;
 }
 
 .landing-cards-titles p{
@@ -244,6 +270,10 @@
     padding-top:1rem ;
 }
 
+.landing-card h3{
+    color: #06235B;
+}
+
 .landing-sections-title{
     width: 80%;
     margin: auto;
@@ -254,6 +284,7 @@
 .landing-sections-title h2{
     padding-top: 2rem;
     font-size: 30px;
+    color: #06235B;
 }
 
 .landing-section{
@@ -287,18 +318,18 @@
 
 .landing-section-texts h4{
     font-size: 18px;
+    color: #06235B;
 }
 
 .landing-section-texts h3{
     padding: 0.6rem 0;
     font-size: 30px;
-    /* font-family: 'CircularStd-Bold',sans-serif; */
+    color: #06235B;
 }
 
 
 .landing-section-texts p{
     font-size: 18px;
-    color: #2e486f;
     line-height: 25px;
     padding-bottom: 1rem;
 }
@@ -307,6 +338,7 @@
 .landing-section-texts a{
     width: fit-content;
     background-color: #022EE1;
+    background-color: #287CBE;
     color: white;
     padding: 10px 1rem;
     border: none;
@@ -317,7 +349,7 @@
 }
 
 .landing-blue{
-    background-color: #022EE1;
+    background-color: #E2F3FF;
     flex-flow: row-reverse;
 }
 
@@ -327,6 +359,7 @@
 
 .landing-blue .landing-section-texts p{
     color: white;
+    color: black;
 }
 
 .landing-blue a{
@@ -350,6 +383,7 @@
 .testimonials-container h2{
     font-size: 30px;
     text-align: center;
+    color: #06235B;
 
 }
 
@@ -376,10 +410,11 @@
 
 .testimonial-title p{
     padding: 0px !important;
+    font-weight: 600;
 }
 
 .testimonial-title h4{
-    color: #022EE1;
+    color: #003a8c;
     padding-bottom: 5px;
     font-size: 18px;
 }

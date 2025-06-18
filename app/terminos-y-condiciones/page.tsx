@@ -1,11 +1,12 @@
 import Footer from "../ui/landingPage/Footer";
 import Header from "../ui/landingPage/LandingHeader";
+import styles from "../politica-de-privacidad/politics.module.css"
 
 const TermsPage = () => {
   return (
     <>
       <Header></Header>
-      <div className="terms-page-container">
+      <div className={styles["terms-page-container"]}>
         
         <div>
 

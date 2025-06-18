@@ -27,7 +27,7 @@ const AboutUs = () => {
   <h3>El origen de Simulandum</h3>
   <div className={styles["our-history-text"]}>
     <p>
-      Sim nació como una respuesta a la falta de herramientas efectivas para prepararse ante distintos tipos de exámenes de admisión. 
+      Simulandum nació como una respuesta a la falta de herramientas efectivas para prepararse ante distintos tipos de exámenes de admisión. 
       Lo que comenzó como un proyecto enfocado en posgrados, pronto se transformó en una plataforma más amplia, 
       diseñada para apoyar a estudiantes en múltiples niveles educativos y áreas de evaluación.
     </p>

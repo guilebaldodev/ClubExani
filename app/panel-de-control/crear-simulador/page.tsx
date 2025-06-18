@@ -13,11 +13,10 @@ import {
 import styles from "../crear-pregunta/add.module.css";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { SelectOption } from "@/types/simulador"; 
-
+import { SelectOption } from "@/types/simulador";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
-
 
 type FormValues = z.infer<typeof simuladorSchema>;
 
@@ -28,6 +27,8 @@ const AddSimulador = () => {
     handleSubmit,
     setValue,
     watch,
+    trigger,
+    getValues,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(simuladorSchema),
@@ -40,12 +41,15 @@ const AddSimulador = () => {
       tiempo: 60,
       imagen: "",
       descripcion: "",
+      descripcion_corta: "",
+      uso_justo: 0,
     },
   });
 
   const selectedExamen = examenOptions.find(
     (op) => op.value === watch("examen")
   );
+
   const selectedTipo = tipoOptions.find((op) => op.value === watch("tipo"));
   const selectedDificultad = dificultadOptions.find(
     (op) => op.value === watch("dificultad")
@@ -68,6 +72,9 @@ const AddSimulador = () => {
         examen: examenOptions[0].value,
         tipo: tipoOptions[0].value,
         dificultad: dificultadOptions[0].value,
+        uso_justo: 0,
+        descripcion: "",
+        descripcion_corta: "",
         precio: 0,
         tiempo: 60,
         imagen: "",
@@ -95,6 +102,44 @@ const AddSimulador = () => {
           <div className={styles.complete_form}>
             <div className={styles.add_product_title}>
               <h3>Información del simulador</h3>
+
+              <div className={styles.titles_buttons}>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    const isValid = await trigger();
+                    if (!isValid) {
+                      toast.error(
+                        "Por favor completa todos los campos antes de continuar"
+                      );
+                      return;
+                    }
+
+                    toast.success("Todos completos");
+
+                    const formData = getValues();
+
+                    localStorage.setItem(
+                      "preview-simulator",
+                      JSON.stringify(formData)
+                    );
+
+                    window.open(
+                      "/panel-de-control/vista-previa-simulador",
+                      "_blank"
+                    );
+                  }}
+                  className={styles.bordered}
+                >
+                  <Image
+                    src="/admin/watch.png"
+                    alt="Vista previa"
+                    width={20}
+                    height={20}
+                  />
+                  Vista previa
+                </button>
+              </div>
             </div>
 
             <div className={styles.add_product_inputs}>
@@ -103,6 +148,19 @@ const AddSimulador = () => {
                 <input {...register("titulo")} />
                 {errors.titulo && (
                   <p className={styles.error}>{errors.titulo.message}</p>
+                )}
+              </div>
+
+              <div className={styles.input_duo}>
+                <label>Descripcion corta</label>
+                <textarea
+                  {...register(`descripcion_corta`)}
+                  className={styles.text_area}
+                />
+                {errors.descripcion_corta && (
+                  <p className={styles.error}>
+                    {errors.descripcion_corta.message}
+                  </p>
                 )}
               </div>
 
@@ -186,6 +244,19 @@ const AddSimulador = () => {
                   />
                   {errors.tiempo && (
                     <p className={styles.error}>{errors.tiempo.message}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.double_input}>
+                <div className={styles.input_duo}>
+                  <label>Uso justo</label>
+                  <input
+                    type="number"
+                    {...register("uso_justo", { valueAsNumber: true })}
+                  />
+                  {errors.uso_justo && (
+                    <p className={styles.error}>{errors.uso_justo.message}</p>
                   )}
                 </div>
               </div>

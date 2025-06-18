@@ -12,6 +12,7 @@
 .about-us-titles h2{
     font-size: 40px;
     padding-bottom: 2rem;
+    color: #003a8c;;
 }
 
 .about-us-titles p{
@@ -22,7 +23,7 @@
 
 .about-us-banner{
     width: 100%;
-    background-color:#2a66ff;
+    background-color:#003a8c;;
     height: 20rem;
     border-radius: 10px;
 }
@@ -34,6 +35,7 @@
 .about-us-numbers h3{
     font-size: 35px;
     text-align: center;
+    color: #003a8c;;
 }
 
 .about-numbers-items{
@@ -62,7 +64,6 @@
 
 .our-history h4{
     font-size: 20px;
-    color: #2a66ff;
     letter-spacing: 1.5px;
     text-align: center;
 
@@ -73,6 +74,7 @@
     text-align: center;
     padding-top: 0.6rem;
     padding-bottom: 1rem;
+    color: #003a8c;
 }
 
 .our-history p{
@@ -86,7 +88,7 @@
 }
 
 .about-filler{
-    background-color: #0d2ea2;
+    background-color:#003a8c ;
     margin: 4rem 0;
     color: white;
     padding: 3rem 0;

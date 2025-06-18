@@ -28,7 +28,7 @@ export const examenOptions = EXAMENES.map((examen) => ({
 
 export const tipoOptions: SelectOption[] = [
   { value: "Completo", label: "Completo" },
-  { value: "Diagnóstico", label: "Diagnóstico" },
+  { value: "Diagnostico", label: "Diagnostico" },
   { value: "Parcial", label: "Parcial" },
 ];
 
@@ -58,9 +58,9 @@ export const OrigenOptions: SelectOption[] = [
 
 
 export const dificultadOptions: SelectOption[] = [
-  { value: "Facil", label: "Fácil" },
+  { value: "Facil", label: "Facil" },
   { value: "Intermedio", label: "Intermedio" },
-  { value: "Avanzado", label: "Avanzado" },
+  { value: "Avanzado", label: "Dificil" },
   { value: "Experto", label: "Experto" },
   { value: "Mixto", label: "Mixto" },
 ];
@@ -77,6 +77,9 @@ export const PaidOptions: SelectOption[] = [
   { value: "paid", label: "Paid" },
   { value: "paid", label: "Unpaid" },
 ];
+
+
+
 
 
 export type QuestionTemplate = {

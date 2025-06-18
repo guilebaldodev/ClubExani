@@ -1,6 +1,6 @@
-import { Source_Sans_3 } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 
-export const sourceSans = Source_Sans_3({
+export const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],

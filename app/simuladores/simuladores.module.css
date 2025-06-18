@@ -5,11 +5,12 @@
 .catalogo-title {
   margin-bottom: 2rem;
   font-size: 40px;    text-align: center;
+  color: #003a8c;
 }
 
 .filtros-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
@@ -43,8 +44,8 @@
 
 .grupo-examen h3 {
   margin-bottom: 1rem;
-  font-size: 1.4rem;
-  color: #004aad;
+  font-size: 25px;
+  color: #287cbe;
 }
 
 .grid-simuladores {
@@ -56,7 +57,7 @@
     grid-gap: 25px;
     grid-gap: 25px;
     gap: 25px;
-    margin-top: 3rem;
+    margin-top: 1rem;
 
 }
 
@@ -111,5 +112,10 @@
   margin-bottom: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
+}
 
+.simulador-card button.grey{
+  background-color: #E0E0E0 !important;
+  cursor:not-allowed;
+  color: black;
 }

@@ -12,10 +12,6 @@ type PreviewQuestion = {
   }[];
 
 };
-
-
-    
-
 const Page = () => {
 
   const [formData, setFormData] = useState<PreviewQuestion>();

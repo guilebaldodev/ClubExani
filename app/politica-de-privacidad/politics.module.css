@@ -1,0 +1,48 @@
+
+.terms-page-container {
+    width: 60%;
+    margin: auto;
+    padding: 5rem 0;
+}
+
+.terms-page-container div{
+    padding-bottom: 3rem;
+}
+
+.terms-page-container h2 {
+    font-size: 35px;
+    padding-bottom: 4rem;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: #003a8c;
+}
+
+.terms-page-container h3 {
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: #003a8c;
+
+}
+
+.terms-page-container p {
+    color: #333;
+    line-height: 1.35;
+    font-size: 18px;
+}
+
+
+.terms-page-container h3 {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.terms-page-container ul{
+  margin-left: 2rem;
+}
+
+.terms-page-container ul li{
+  padding-top: 6px;
+    color: #333;
+    line-height: 1.35;
+    font-size: 18px;
+}

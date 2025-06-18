@@ -10,8 +10,9 @@ export const simuladorSchema = z.object({
     required_error: "El título es requerido",
   }).min(1, "El título no puede estar vacío"),
 
-
-
+  descripcion_corta: z.string({
+    required_error: "La descripcion corta es requerida",
+  }).min(1, "La descripcion corta no puede estar vacía"),
   examen: z.enum(EXAMENES),
   tipo: z.enum(
     tipoOptions.map((op) => op.value) as [string, ...string[]],
@@ -30,6 +31,11 @@ export const simuladorSchema = z.object({
   precio: z.number({
     required_error: "El precio es requerido",
   }).nonnegative({ message: "El precio no puede ser negativo" }),
+
+  uso_justo: z.number({
+    required_error: "El uso justo es requerido",
+  }).nonnegative({ message: "El uso justo no puede ser negativo" }),
+
 
   imagen: z.string({
     required_error: "La imagen es requerida",

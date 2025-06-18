@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import 'react-quill-new/dist/quill.snow.css';
-import { sourceSans } from "./fonts";
+import { poppins } from "./fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 import { esMX } from "@clerk/localizations";
 import InitUser from "./ui/InitUser";
@@ -22,7 +22,7 @@ export default function RootLayout({
 
     <ClerkProvider localization={esMX}>
     <html lang="es">
-      <body className={`${sourceSans.className}`}>
+      <body className={`${poppins.className}`}>
         <InitUser></InitUser>
         {children}
       </body>

@@ -37,21 +37,21 @@ const Contacto = () => {
     <div className={style['contact-text-item']}>
         <Image src="/landing/whatsapp-icon.png" alt="WhatsApp" width={26} height={26} />
         <p>
-            7443112193
+            +52 7445329953
         </p>
     </div>
 
-    <div className={style['contact-text-item']}>
+    {/* <div className={style['contact-text-item']}>
         <Image src="/landing/email.png" alt="Correo electrónico" width={26} height={26} />
         <p>
             sporte@clubexani.com
         </p>
-    </div>
+    </div> */}
 
     <div className={style['contact-text-item']}>
         <Image src="/landing/location.png" alt="Ubicación" width={26} height={26} />
         <p>
-            Acapulco, Guerrero
+            Guerrero, México
         </p>
     </div>
 </div>

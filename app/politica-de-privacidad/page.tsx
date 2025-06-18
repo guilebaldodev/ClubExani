@@ -1,11 +1,13 @@
 import Footer from "../ui/landingPage/Footer";
 import Header from "../ui/landingPage/LandingHeader";
+import styles from "./politics.module.css"
+
 
 const PrivacyPolicyPage = () => {
   return (
     <>
       <Header />
-      <div className="terms-page-container">
+      <div className={styles["terms-page-container"]}>
         <h2>POLÍTICA DE PRIVACIDAD</h2>
 
         <div>

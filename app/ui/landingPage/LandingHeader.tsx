@@ -36,14 +36,14 @@ const Header = () => {
     }}
     className='burger-menu' src='/layout/black-burger.png' height={28} width={28} alt='burger menu'></Image>
     <nav className="navbar">
-      <Link href="/testimonios">Testimonios</Link>
+      <Link href="/simuladores">Simuladores</Link>
       <Link href="/nosotros">Nosotros</Link>
       <Link href="/creditos">Creditos</Link>
       <Link href="/contacto">Contacto</Link>
     </nav>
 
     <div className='right-buttons'>
-      <button className='navbar__button' onClick={() => router.push("/simuladores")}>Simuladores</button>
+      <button className='navbar__button' onClick={() => router.push("/dashboard")}>Simular</button>
     
       <SignedOut>
         <SignInButton mode='modal'>

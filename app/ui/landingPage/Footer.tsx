@@ -39,10 +39,6 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Simuladores</h4>
             <ul>
-  
-              <li>
-                <Link href="/cuestionarios">Exani iii</Link>
-              </li>
               <li>
                 <Link href="/mi-progreso">Todos</Link>
               </li>
@@ -53,13 +49,13 @@ const Footer = () => {
             <h4>Cuenta</h4>
             <ul>
               <li>
-                <Link href="/login">Inicio de sesión</Link>
+                <Link href="/usuario">Inicio</Link>
               </li>
               <li>
-                <Link href="/registro">Registro</Link>
+                <Link href="/usuario/simuladores">Registro</Link>
               </li>
               <li>
-                <Link href="/perfil">Perfil</Link>
+                <Link href="/usuario/progreos">Progreso</Link>
               </li>
             </ul>
           </div>
@@ -70,7 +66,8 @@ const Footer = () => {
           <p>
             Copyright © 2025 Simulandum. Todos los derechos reservados.
           </p>
-          <p>Web hecha con el ♥ por Solaria</p>
+
+          <p>Web hecha con el ♥ por <a target='_blank' href="https://solariasoftware.com">Solaria</a></p>
         </div>
       </footer>
     </>

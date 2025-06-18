@@ -37,4 +37,24 @@ export function getPlanInfo(amountPaid: string) {
 }
 
 
+export function formatExamDuration(minutes: number): string {
+  if (minutes < 60) {
+    return `${minutes} minutos`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  const hourLabel = hours === 1 ? "hora" : "horas";
+  const minuteLabel = remainingMinutes === 1 ? "minuto" : "minutos";
+
+  if (remainingMinutes === 0) {
+    return `${hours} ${hourLabel}`;
+  }
+
+  return `${hours} ${hourLabel} ${remainingMinutes} ${minuteLabel}`;
+}
+
+
+
 

@@ -29,47 +29,47 @@ const ViewSaleModal = ({ sale, closeModal }: Props) => {
           </div>
         </div>
 
-        <div className="modal-info">
-          <div className="modal-circle-container">
-            <div className="modal-circle">
-              <h3>{sale.email?.charAt(0) || "U"}</h3>
-            </div>
-          </div>
+ <div className={styles.modal_info}>
+  <div className={styles.modal_circle_container}>
+    <div className={styles.modal_circle}>
+      <h3>{sale.email?.charAt(0) || "U"}</h3>
+    </div>
+  </div>
 
-          <div className="modal-info-items">
-            <div className="modal-info-item">
-              <h4>Email: </h4>
-              <p>{sale.email || "No definido"}</p>
-            </div>
-            <div className="modal-info-item">
-              <h4>UserId</h4>
-              <p>{sale.userId}</p>
-            </div>
-            <div className="modal-info-item">
-              <h4>Monto: </h4>
-              <p>{formatCurrency(sale.amountPaid)}</p>
-            </div>
-            <div className="modal-info-item">
-              <h4>Estado: </h4>
-              <p>{sale.paymentStatus}</p>
-            </div>
-            <div className="modal-info-item">
-              <h4>Metodo: </h4>
-              <p>{sale.paymentMethod}</p>
-            </div>
+  <div className={styles.modal_info_items}>
+    <div className={styles.modal_info_item}>
+      <h4>Email: </h4>
+      <p>{sale.email || "No definido"}</p>
+    </div>
+    <div className={styles.modal_info_item}>
+      <h4>UserId</h4>
+      <p>{sale.userId}</p>
+    </div>
+    <div className={styles.modal_info_item}>
+      <h4>Monto: </h4>
+      <p>{formatCurrency(sale.amountPaid)}</p>
+    </div>
+    <div className={styles.modal_info_item}>
+      <h4>Estado: </h4>
+      <p>{sale.paymentStatus}</p>
+    </div>
+    <div className={styles.modal_info_item}>
+      <h4>Método: </h4>
+      <p>{sale.paymentMethod}</p>
+    </div>
+    <div className={styles.modal_info_item}>
+      <h4>Stripe Session: </h4>
+      <p>{sale.stripeSessionId}</p>
+    </div>
+    <div className={styles.modal_info_item}>
+      <h4>Fecha: </h4>
+      <p>{formatDate(sale.stripeCreatedAt)}</p>
+    </div>
+  </div>
+</div>
 
-            <div className="modal-info-item">
-              <h4>Stripe Session: </h4>
-              <p>{sale.stripeSessionId}</p>
-            </div>
 
-            <div className="modal-info-item">
-              <h4>Fecha: </h4>
-              <p>{formatDate(sale.stripeCreatedAt)}</p>
-            </div>
-            
-          </div>
-        </div>
+
       </div>
     </div>
   );
