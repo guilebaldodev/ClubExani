@@ -41,18 +41,18 @@ const CourseMobileMenu = ({ onClose }) => {
 
         <div className={style["menu-item"]}>
           <Link href="/curso/simuladores" onClick={onClose}>
-            Simuladores
+            Mis Simuladores
           </Link>
         </div>
 
         <div className={style["menu-item"]}>
           <Link href="/curso/lecciones" onClick={onClose}>
-            Lecciones
+            Resultados
           </Link>
         </div>
         <div className={style["menu-item"]}>
           <Link href="/curso/cuestionarios/metodologia-de-la-investigacion" onClick={onClose}>
-            Cuestionarios
+            Comprar monedas
           </Link>
         </div>
 
@@ -95,7 +95,7 @@ const CourseMobileMenu = ({ onClose }) => {
         
         <div className={style["menu-item"]}>
           <Link href="/curso/planes" onClick={onClose}>
-            Planes
+            Cerrar sesion
           </Link>
         </div>
 

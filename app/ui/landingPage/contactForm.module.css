@@ -56,8 +56,8 @@
     padding: 1rem 0;
 }
 
+
 .contact-button button{
-    width: 7rem;
     height: 2.5rem;
     background-color: #FAC82C;
     color: white;
@@ -66,6 +66,8 @@
     border-radius: 6px;
     font-family: 'CircularStd-Bold', sans-serif;
     font-size: 16px;
+    cursor: pointer;
+    padding: 0 2rem;
 }
 
 .error-text{

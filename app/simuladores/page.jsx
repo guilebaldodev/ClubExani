@@ -5,7 +5,7 @@ import Header from '../ui/landingPage/LandingHeader';
 import styles from './simuladores.module.css';
 import Select from 'react-select';
 import { useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 const data = [
   {
     examen: "EXANI-III",
@@ -48,6 +48,8 @@ export default function SimuladoresPage() {
     categoria === "Todos" || examen.examen === categoria
   );
 
+  const router= useRouter()
+
   return (
     <>
       <Header />
@@ -80,7 +82,10 @@ export default function SimuladoresPage() {
                       <p><strong>{sim.preguntas}</strong> preguntas</p>
                       <p><strong>{sim.monedas}</strong> monedas</p>
                     </div>
-                    <button className={sim.estado === "listo" ? styles["boton"] : styles["grey"]}>
+                    <button onClick={()=>{
+                      if(sim.estado!=="listo") return;
+                        router.push(`/simuladores/${sim.id}`)
+                    }} className={sim.estado === "listo" ? styles["boton"] : styles["grey"]}>
                       {sim.estado === "listo" ? "Detalles" : "Próximamente..."}
                     </button>
                   </div>

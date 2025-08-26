@@ -1,0 +1,30 @@
+.modal_container{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.4);
+    z-index: 1000;
+    align-items:center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .add_modal{
+    background-color: white;
+    max-height: 90vh;
+    width: 500px;
+    border-radius: 5px;
+    scrollbar-width: none;
+    width: 32em;
+    max-width: 100%;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    text-align: center;
+  }
+  

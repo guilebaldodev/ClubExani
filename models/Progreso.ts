@@ -13,7 +13,6 @@ const ProgresoSchema = new Schema({
   ],
 
   puntuacion: { type: Number, required: true },
-  fechaFin: { type: Date, default: Date.now }
 }, {
   timestamps: true
 });

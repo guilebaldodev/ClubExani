@@ -283,7 +283,7 @@ const LandingPage = () => {
               </div>
               <div className={styles["landing-card"]}>
                 <Image
-                  src="/landing/medidor.png"
+                  src="/landing/speed.png"
                   alt="Exámen Diagnóstico"
                   width={40}
                   height={40}

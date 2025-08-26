@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import style from "./contactForm.module.css";
+import { toast } from "react-toastify";
 
 type FormData = {
   nombre: string;
@@ -15,6 +16,9 @@ type FormData = {
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
 const ContactForm = () => {
+
+
+
   const [formData, setFormData] = useState<FormData>({
     nombre: "",
     apellidos: "",
@@ -82,7 +86,6 @@ const ContactForm = () => {
     const data = await res.json();
 
     if (res.ok) {
-      alert("Formulario enviado con éxito");
       setFormData({
         nombre: "",
         apellidos: "",
@@ -91,8 +94,9 @@ const ContactForm = () => {
         mensaje: "",
         privacy: false,
       });
+      toast.success("Correo enviado correctamente")
     } else {
-      alert("Hubo un error al enviar el formulario");
+      toast.error("Ocurrio un error")
     }
 
     setLoading(false);
@@ -137,11 +141,23 @@ const ContactForm = () => {
         <label htmlFor="privacy">
           Al hacer click confirmas que has leído y aceptas nuestras Políticas de Privacidad.
         </label>
-        {errors.privacy && <p className={style["error-text"]}>{errors.privacy}</p>}
       </div>
+        {errors.privacy && <p className={style["error-text"]}>{errors.privacy}</p>}
 
       <div className={style["contact-button"]}>
-        <button disabled={loading}>{loading ? "Enviando..." : "Enviar"}</button>
+        <button disabled={loading}>
+          
+   {loading ? (
+                    <div className="loading-div">
+                    <div className="lds-dual-ring"></div>
+                    <p>Enviando</p>
+                    </div>
+                ) : (
+                    <label>
+                      Enviar
+                  </label>
+                )}
+          </button>
       </div>
     </form>
   );

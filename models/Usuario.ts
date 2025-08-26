@@ -29,7 +29,7 @@ const UsuarioSchema = new Schema(
         simuladorId: { type: Schema.Types.ObjectId, ref: "Simulador" },
         fecha: { type: Date, default: Date.now },
         monedasPagadas: Number,
-        expiracion: { type: Date, required: true }, 
+        uso_justo: Number,
       },
     ],
   },

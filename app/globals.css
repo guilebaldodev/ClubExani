@@ -69,8 +69,6 @@
   border: none;
   border-radius: 0.5rem;
   border-radius: 6px;
-  /* font-family: 'CircularStd-Bold',sans-serif; */
-  font-family: var(--font-CircularBold);
   font-weight: 600;
   font-size: 14px;
   margin-right: 1rem;
@@ -154,6 +152,11 @@
   border-top: 1px solid rgb(255, 245, 245);
   padding-top: 1rem;
 }
+
+.footer-info a{
+  color: white;
+}
+
 
 /* user header */
 
@@ -385,6 +388,87 @@ main {
 .config-image-answer img {
   width: 200px;
 }
+
+/* Loader */
+
+
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Modal */
+
+.div_coins img{
+  width: 4em;
+  height: 4em;
+}
+
+.confirm_modal_info h3{
+  /* color: #595959; */
+  font-weight: 600;
+  font-size:20px;
+  padding: 0.3rem;
+}
+
+.buttons{
+  padding-top:1rem;
+}
+
+.buttons button{
+  cursor: pointer;
+  width: 7rem;
+  height: 2.5rem;
+  background-color: #FFC74F;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  border-radius: 6px;
+  font-family: var(--font-CircularBold);
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 1rem;
+}
+
+.buttons button.red{
+  border:2px solid crimson;
+  color: crimson !important;
+  background-color: white;
+  color: black;
+}
+
 
 
 

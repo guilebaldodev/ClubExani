@@ -12,8 +12,6 @@ const Header = () => {
 
 
     return ( <>
-
-
 {
       menu && 
       <>
@@ -28,10 +26,10 @@ const Header = () => {
         setMenu(true)
     }} src="/layout/burger-menu.png" alt="Logo" width={32} height={32} />
     <div className={styles["logotype"]}>
-    <Image src="/layout/black-logo.png" alt="Logo" width={32} height={32} />
+    <Image src="/layout/logo.png" alt="Logo" width={40} height={40} />
         <h2>
             <Link href={"/curso"}>
-                <span className={styles["primary-color"]}>Club</span>Exani
+                <span className={styles["primary-color"]}>Simu</span>landum
             </Link>
         </h2>
     </div>
@@ -42,26 +40,29 @@ const Header = () => {
                 Inicio
             </Link>
             <Link href="/curso/simuladores">
-                <Image src="/layout/writing.svg" alt="Simuladores" width={20} height={20} />
-                Simuladores
+                <Image src="/layout/writing.svg" alt="Mis Simuladores" width={20} height={20} />
+                Mis Simuladores
             </Link>
             <Link href="/curso/lecciones">
-                <Image src="/layout/open-book.png" alt="Lecciones" width={20} height={20} />
-                Lecciones
+                <Image src="/layout/test-icon.png" alt="Resultados" width={20} height={20} />
+                Resultados
             </Link>
             <Link href="/curso/cuestionarios/metodologia-de-la-investigacion">
-                <Image src="/layout/test-icon.png" alt="Cuestionarios" width={20} height={20} />
-                Cuestionarios
-            </Link>
-            <Link href="/curso/planes">
-                <Image src="/layout/payment-icon.png" alt="Planes" width={20} height={20} />
-                Planes
+                <Image src="/layout/black-coins.png" alt="Cuestionarios" width={20} height={20} />
+                Comprar Monedas
             </Link>
         </nav>
+        <div className={styles["user-info"]}>
+        
+        <div className={styles["div-coins"]}>
+            <Image src={"/layout/yellow-coins.png"} alt="coins" width={25} height={25}></Image>
+            <p>x 250</p>
+        </div>
 
         <Link href="/curso/cuenta" className={styles["navbar-button"] + " " + styles["user-header-button"]}>
             <Image src="/layout/user-icon.png" alt="Perfil" width={25} height={25} />
         </Link>
+        </div>
     </div>
 </header>
 

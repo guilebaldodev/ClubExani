@@ -4,10 +4,14 @@ import Simulador from "@/models/Simulador";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req: Request, { params }) {
+export async function DELETE(req: Request, { params }) 
+{
   try {
+
+    
     await connectDB();
     const { id } = await params;
+    console.log("Hola",id)
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json({ error: "ID inválido" }, { status: 400 });
     }
@@ -32,3 +36,27 @@ export async function DELETE(req: Request, { params }) {
     return NextResponse.json({ error: "Error del servidor" }, { status: 500 });
   }
 }
+
+export async function GET(req: Request, { params }) {
+  try {
+
+    await connectDB();
+    const { id } = await params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "ID inválido" }, { status: 400 });
+    }
+
+    const simulator = await Simulador.findById(id)
+
+    if (!simulator) {
+      return NextResponse.json({ error: "Simulador no encontrado" }, { status: 404 });
+    }
+
+    return NextResponse.json(simulator);
+  } catch (error) {
+    console.error("Error al obtener simulador:", error);
+    return NextResponse.json({ error: "Error del servidor" }, { status: 500 });
+  }
+}
+
+

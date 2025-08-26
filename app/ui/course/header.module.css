@@ -1,5 +1,5 @@
 .primary-color{
-    color: #022EE1 !important;
+    color:#287cbe !important;
   }
   
 
@@ -41,12 +41,7 @@
     font-weight: 600;
   
   }
-  
-  
-  .logotype img{
-    width: 2rem;
-    height: 2rem;
-  }
+
 
   .user-header > img{
     display: none;
@@ -104,6 +99,19 @@
     .header-info{
         display: flex;
     }
+
+    .user-info{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-left: 1rem;
+    }
+
+  .div-coins{
+    display: flex;
+    gap: 5px;
+    font-weight: bold;
+  }
 
 
   
