@@ -1,0 +1,209 @@
+/* simulador page*/
+
+.simulator-header {
+  display: flex;
+  width: 75%;
+  margin: auto;
+  gap: 20px;
+  margin-top: 7rem;
+  justify-content: space-between;
+}
+
+.simulator-img {
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.simulator-img img {
+  max-width: 400px;
+  border-radius: 7px;
+}
+
+.your-class {
+  max-width: 420px !important;
+  /* width: 100% !important; */
+  border-radius: 7px;
+  aspect-ratio: 1;
+}
+
+.simulator-info-title {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  width: 55%;
+}
+
+.simulator-info-title h1 {
+  font-size: 45px;
+  color: var(--primary-color);
+  /* color: #06235B; */
+
+}
+
+.simulator-info-title>p {
+  font-size: 19px;
+  padding-top: 1rem;
+}
+
+
+.simulator-title-item img {
+  width: 35px;
+}
+
+.simulator-title-items {
+  padding-top: 1.5rem;
+}
+
+.simulator-title-items>div {
+  display: flex;
+  padding-bottom: 1.5rem;
+}
+
+.simulator-title-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simulator-title-item p {
+  font-size: 22px;
+  /* font-weight: 600; */
+  margin-left: 0.5rem;
+
+}
+
+.title-item-p {
+  padding-left: 2rem;
+}
+
+
+.simulator-title-buttons {
+  padding-top: 2rem;
+  display: flex;
+}
+
+.simulator-title-buttons button {
+  cursor: pointer;
+  color: #fff;
+  height: 3rem;
+  font-family: var(--font-CircularBold);
+  border: none;
+  border-radius: 6px;
+  margin-right: 1rem;
+  font-size: 22px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  background-color: #FFC74F;
+}
+
+.simulator-title-buttons button img {
+  margin-left: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+
+.simulator-title-buttons button.yellow {
+  color: black !important;
+  border: 2px solid #FFC74F !important;
+  background-color: white;
+  color: #FFC74F !important;
+}
+
+.separation {
+  height: 3rem;
+  background-color: #5092FC;
+  width: 100%;
+  margin: 4rem 0;
+  color: white;
+  font-size: 17px;
+}
+
+.separation div {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+.instructions-container {
+  padding-top: 5rem;
+  width: 75%;
+  margin: auto;
+}
+
+.instructions-container h2,
+.description-container h2 {
+  font-size: 30px;
+}
+
+.instructions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 1rem;
+  gap: 25px;
+}
+
+.instructions-item-title {
+  display: flex;
+  align-items: center;
+}
+
+.instructions-item-title p {
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 0.8rem;
+}
+
+.instructions-item {
+  padding: 1rem;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+
+  border-radius: 4px;
+}
+
+.instructions-item-title .circle {
+  width: 34px;
+  height: 34px;
+  background-color: #5092FC;
+  background-color: #12BAB6;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.instructions-item>p {
+  font-size: 18px;
+  padding-top: 1rem;
+}
+
+.description-container {
+  width: 75%;
+  margin: auto;
+}
+
+.description {
+  padding: 1.5rem 0;
+}
+
+.description p {
+  font-size: 18px;
+  line-height: 1.75;
+  padding: 0.2rem;
+}
+
+.description ul,
+.description ol {
+  font-size: 18px;
+  line-height: 1.75;
+  padding: 0.5rem 2rem;
+}

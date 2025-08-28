@@ -1,0 +1,112 @@
+/* Simulators */
+
+
+.container{
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    font-weight: 500;
+    width: 70%;
+    margin: 1.3rem auto auto;
+}
+
+.simulators-title h2{
+  font-size: 30px;
+}
+
+
+.simulators-title p{
+    padding-top: 1rem;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.simulators-grid{
+    grid-gap: 25px;
+    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(0, 250px));
+    gap: 25px;
+    margin: 1rem auto auto;
+    padding-bottom: 2rem;
+    display: grid;
+    margin-top: 3rem;
+  }
+
+.simulators-grid.group{
+  margin-top: 1rem ;
+}
+
+.groups{
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.groups h2{
+  font-size: 30px;
+  padding-bottom: 1rem;
+}
+
+.simulador-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.5rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.simulador-card:hover {
+  transform: translateY(-4px);
+}
+
+.simulador-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* margin-bottom: 0.5rem; */
+}
+
+.simulador-card h4 {
+  font-size: 1.2rem;
+  margin: 0.3rem 0;
+}
+
+.simulador-card p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.simulador-card .dificultad {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.simulador-card button {
+  background-color: #FFC74F;
+  color: white;
+  padding: 0.3rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 16px;
+  font-family: Poppins, Poppins Fallback;
+}
+
+.simulador-card button.button-blue{
+  background-color: #287CBE !important;
+}
+
+
+.simulador-card button.grey{
+  background-color: #E0E0E0 !important;
+  cursor:not-allowed;
+  color: black;
+}  

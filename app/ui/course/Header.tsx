@@ -28,26 +28,26 @@ const Header = () => {
     <div className={styles["logotype"]}>
     <Image src="/layout/logo.png" alt="Logo" width={40} height={40} />
         <h2>
-            <Link href={"/curso"}>
+            <Link href={"/plataforma"}>
                 <span className={styles["primary-color"]}>Simu</span>landum
             </Link>
         </h2>
     </div>
     <div className={styles["header-info"]}>
         <nav className={styles["navbar"] + " " + styles["user-navbar"]}>
-            <Link href="/curso">
+            <Link href="/plataforma">
                 <Image src="/layout/home-icon2.png" alt="Inicio" width={20} height={20} />
                 Inicio
             </Link>
-            <Link href="/curso/simuladores">
+            <Link href="/plataforma/mis-simuladores">
                 <Image src="/layout/writing.svg" alt="Mis Simuladores" width={20} height={20} />
                 Mis Simuladores
             </Link>
-            <Link href="/curso/lecciones">
+            <Link href="/plataforma/resultados">
                 <Image src="/layout/test-icon.png" alt="Resultados" width={20} height={20} />
                 Resultados
             </Link>
-            <Link href="/curso/cuestionarios/metodologia-de-la-investigacion">
+            <Link href="/plataforma/monedas">
                 <Image src="/layout/black-coins.png" alt="Cuestionarios" width={20} height={20} />
                 Comprar Monedas
             </Link>

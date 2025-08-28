@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image';
-import styles from '@/app/curso/simulador/simulator.module.css'
+import styles from "@/app/plataforma/simulador/simulator.module.css"
 import Select from 'react-select';
 import { useState } from 'react';
 import { QUESTION_TEMPLATES } from '@/consts/questions_templates';

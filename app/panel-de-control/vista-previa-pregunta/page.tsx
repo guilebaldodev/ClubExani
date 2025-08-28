@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import styles from "@/app/curso/simulador/simulator.module.css";
+import styles from "@/app/plataforma/simulador/simulator.module.css";
 import { useEffect, useState } from "react";
 import MathQuestion from "@/app/ui/shared/RenderHtml";
 

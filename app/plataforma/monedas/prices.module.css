@@ -1,0 +1,153 @@
+.pricing-page-container{
+    padding-bottom: 3rem;
+
+    padding-top: 6rem;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+
+.pricing-page-titles h2{
+    font-size: 30px;
+}
+
+.pricing-page-titles p{
+    padding: 1rem 0;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.pricing-plans-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem ;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.plan-item{
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 6px 0px;
+    position: relative;
+}
+
+.plan-popular{
+    position: absolute;
+    right: 0;
+    background-color: #287CBE;
+    color: aliceblue;
+    padding: 0.5rem;
+    border-radius: 3px;
+}
+
+.free-plan .plan-info{
+    color: white;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    background-color: #287CBE;
+}
+
+
+.plan-info{
+    padding: 2rem;
+    border-bottom:1px solid #e0dddd ;
+
+}
+
+.plan-item .plan-info-price h4{
+    font-size: 34px;
+}
+
+.plan-item-selected{
+    border: 2px solid #287CBE;
+}
+
+
+.plan-info h4{
+    font-size: 25px;
+}
+
+.plan-info p{
+    padding: 0.5rem 0 1rem;
+}
+
+.plan-info-last{
+    font-size: 14px;
+}
+
+.p-100{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.plan-button{
+    border: none;
+    padding: 0.7rem 1rem;
+    font-family: 'CircularStd-Bold', sans-serif;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #287CBE;
+    cursor: pointer;
+}
+
+
+.plan-item-includes{
+    width: 80%;
+    margin: auto;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+
+
+}
+
+.plan-item-includes h4{
+    padding-bottom: 0.5rem;
+}
+
+.plan-include-item{
+    display: flex;
+    align-items: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 0.3rem;
+
+}
+
+
+.plan-include-item img{
+    width: 22px;
+    height: 22px;
+    margin-right: 0.5rem;
+}
+
+
+.course-pricing-container{
+    padding-top: 5rem;
+    }
+
+
+.course-pricing-title h3{
+}
+
+
+@media (max-width: 640px) {
+    .footer-info{
+      flex-direction: column;
+      gap: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    
+    .pricing-page-titles h2{
+        font-size: 30px;
+    }
+
+}

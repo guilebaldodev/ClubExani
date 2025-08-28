@@ -12,7 +12,6 @@ const Simulator = () => {
 
   return (
     <>
-        {/* <UserHeader></UserHeader> */}
         <div className={styles['simulator-container']}>
           <div className={styles['simulator']}>
             <div className={styles['simulator-titles']}>
@@ -106,13 +105,13 @@ const Simulator = () => {
           </div>
             
 
-            {SideBar &&
+            {/* {SideBar &&
           <AnswerSheet
             closeSideBar={() => {
               setSideBar(false)
             }}
           ></AnswerSheet>
-            }
+            } */}
         </div>
     </>
   )
