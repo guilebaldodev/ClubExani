@@ -23,7 +23,7 @@
 .simulators-grid{
     grid-gap: 25px;
     grid-gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(0, 250px));
+    grid-template-columns: repeat(auto-fit, minmax(0, 240px));
     gap: 25px;
     margin: 1rem auto auto;
     padding-bottom: 2rem;
@@ -109,4 +109,58 @@
   background-color: #E0E0E0 !important;
   cursor:not-allowed;
   color: black;
-}  
+}
+
+
+@media (width <= 1050px) {
+   .container{
+        width: 80%;
+    }
+}
+
+
+@media (width <= 950px) {
+   .container{
+        width: 90%;
+    }
+
+    .simulators-title p{
+      font-size: 17px;
+    }
+
+}
+
+@media (width <= 570px) {
+    .container {
+      padding-top: 7rem;
+    }
+}
+
+
+
+
+@media (width <= 750px) {
+  .simulators-title h2{
+    font-size: 25px;
+  }
+
+    .simulators-title p{
+      font-size: 16px;
+    }
+
+    .groups h2{
+      font-size:25px;
+    }
+
+}
+
+@media (width <= 550px) {
+
+  .simulators-grid{
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(0, 280px));
+  }
+
+
+
+}

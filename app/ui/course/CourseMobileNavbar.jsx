@@ -13,12 +13,12 @@ const CourseMobileMenu = ({ onClose }) => {
       <div className={style["menu-header"]}>
         <div className={style["menu-header-left"]}>
           <Image
-            src={"/layout/black-logo.png"}
+            src={"/layout/logo.png"}
             alt="justice icon"
             width={32}
             height={32}
           />
-          <p className={style["menu-title"]}><span className="primary-color">Club</span>Exani</p>
+          <p className={style["menu-title"]}><span className="primary-color">Simu</span>landum</p>
         </div>
 
         <Image
@@ -34,31 +34,31 @@ const CourseMobileMenu = ({ onClose }) => {
       <div className={style["menu-options"]}>
 
         <div className={style["menu-item"]}>
-          <Link href="/curso" onClick={onClose}>
+          <Link href="/plataforma" onClick={onClose}>
             Inicio
           </Link>
         </div>
 
         <div className={style["menu-item"]}>
-          <Link href="/curso/simuladores" onClick={onClose}>
+          <Link href="/plataforma/mis-simuladores" onClick={onClose}>
             Mis Simuladores
           </Link>
         </div>
 
         <div className={style["menu-item"]}>
-          <Link href="/curso/lecciones" onClick={onClose}>
+          <Link href="/plataforma/resultados" onClick={onClose}>
             Resultados
           </Link>
         </div>
         <div className={style["menu-item"]}>
-          <Link href="/curso/cuestionarios/metodologia-de-la-investigacion" onClick={onClose}>
+          <Link href="/plataforma/monedas" onClick={onClose}>
             Comprar monedas
           </Link>
         </div>
 
 
 
-        <div className={style["menu-item"]}>
+        {/* <div className={style["menu-item"]}>
             <div className={style["menu-item-info"]} onClick={()=>{
             setmenu(!menu)
           }}>
@@ -90,7 +90,7 @@ const CourseMobileMenu = ({ onClose }) => {
 
 
             </div>
-        </div>
+        </div> */}
 
         
         <div className={style["menu-item"]}>

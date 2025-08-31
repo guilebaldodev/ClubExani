@@ -31,10 +31,8 @@ const LandingPage = () => {
               <h1>Simuladores para cada examen</h1>
               <p>
                 En Simulandum te enfrentas a simuladores que replican exámenes
-                reales. Practica con tiempos, estructura y preguntas diseñadas
-                para evaluar lo que realmente importa. Sin mensualidades, sin
-                complicaciones. Solo lo que necesitas para avanzar con
-                confianza.
+                reales. Sin mensualidades. Practica con tiempos, estructura y
+                preguntas diseñadas para evaluar lo que realmente importa.
               </p>
               <div className={styles["landing-hero-buttons"]}>
                 <Link href={"/dashboard"} className={styles["primary"]}>
@@ -64,12 +62,12 @@ const LandingPage = () => {
 
             <div className={styles["landing-number-item"]}>
               <h3>+20</h3>
-              <p>Temas por área</p>
+              <p>Temas</p>
             </div>
 
             <div className={styles["landing-number-item"]}>
               <h3>+50</h3>
-              <p>Programas cubiertos</p>
+              <p>Programas </p>
             </div>
           </div>
 
@@ -143,7 +141,10 @@ const LandingPage = () => {
                     <div className={styles["examen-meta"]}>
                       <span>2 simuladores</span> | <span>+200 preguntas</span>
                     </div>
-                    <Link href={"/simuladores"} className={`${styles["examen-boton"]} ${styles["grey"]}`}>
+                    <Link
+                      href={"/simuladores"}
+                      className={`${styles["examen-boton"]} ${styles["grey"]}`}
+                    >
                       Proximamente...
                     </Link>
                   </div>
@@ -178,7 +179,10 @@ const LandingPage = () => {
                     <div className={styles["examen-meta"]}>
                       <span>5 simuladores</span> | <span>+500 preguntas</span>
                     </div>
-                    <Link href={"/simuladores"} className={`${styles["examen-boton"]} ${styles["grey"]}`}>
+                    <Link
+                      href={"/simuladores"}
+                      className={`${styles["examen-boton"]} ${styles["grey"]}`}
+                    >
                       Proximamente...
                     </Link>
                   </div>
@@ -189,8 +193,7 @@ const LandingPage = () => {
 
           <div className={styles["landing-cards-container"]}>
             <div className={styles["landing-cards-titles"]}>
-              <div className={styles["landing-cards-logo"]}>
-              </div>
+              <div className={styles["landing-cards-logo"]}></div>
 
               <h2>
                 Descubre todo lo que{" "}
@@ -198,14 +201,14 @@ const LandingPage = () => {
                 puede hacer por ti
               </h2>
 
-              <p>
+              {/* <p>
                 Hemos creado una plataforma de simuladores para que te prepares
                 de forma efectiva, sin pagar de más. Ya sea que vayas a
                 presentar el EXANI III, el EXADIEMS o cualquier otro examen de
                 admisión, aquí encontrarás herramientas que simulan con
                 precisión el entorno real del examen y te ayudan a mejorar con
                 cada intento.
-              </p>
+              </p> */}
             </div>
 
             <div className={styles["landing-cards"]}>
@@ -219,8 +222,7 @@ const LandingPage = () => {
                 <h3>Simuladores realistas</h3>
                 <p>
                   Practica con exámenes que simulan fielmente la estructura,
-                  dificultad y tiempos del examen real. Una forma efectiva de
-                  prepararte sin sorpresas.
+                  dificultad y tiempos del examen real.
                 </p>
               </div>
 
@@ -234,9 +236,7 @@ const LandingPage = () => {
                 <h3>Variedad</h3>
                 <p>
                   Cada examen disponible en Simulandum cuenta con múltiples
-                  simuladores distintos, todos con preguntas únicas y niveles
-                  variados para que practiques tantas veces como quieras sin
-                  repetir.
+                  simuladores distintos.
                 </p>
               </div>
 
@@ -249,9 +249,8 @@ const LandingPage = () => {
                 />
                 <h3>Créditos que se adaptan a ti</h3>
                 <p>
-                  En Simulandum usas monedas (créditos) para acceder a
-                  simuladores cuando tú lo decidas. Sin planes forzosos ni
-                  mensualidades. Paga solo por lo que usas, a tu ritmo.
+                  En Simulandum usas monedas para acceder a simuladores cuando
+                  tú lo decidas.
                 </p>
               </div>
 
@@ -328,7 +327,7 @@ const LandingPage = () => {
                   examen. Así, cuando llegue el día, nada te tomará por
                   sorpresa.
                 </p>
-                <Link href={"/simuladores"}>Ver simuladores</Link>
+                <Link href={"/plataforma"}>Ver plataforma</Link>
               </div>
             </div>
 
@@ -336,14 +335,17 @@ const LandingPage = () => {
             <div className={styles["landing-blue"]}>
               <div className={styles["landing-section"]}>
                 <div className={styles["landing-section-texts"]}>
-                  <h4>Entrena a tu ritmo</h4>
-                  <h3>Elige qué simulador resolver, cuándo y cuántas veces</h3>
+                  <h4>Conoce tu desempeño</h4>
+                  <h3>
+                    Obtén reportes detallados de cada simulador que resuelvas
+                  </h3>
                   <p>
-                    En Simulandum tú tienes el control. Compra monedas,
-                    selecciona el examen que necesitas y resuélvelo cuando estés
-                    listo. No necesitas suscripciones ni compromisos. Aquí
-                    estudias a tu manera, con libertad total.
+                    En Simulandum cada examen que completes genera un reporte
+                    claro y preciso. Podrás ver tu puntaje total, aciertos
+                    obtenidos y un desglose de cada respuesta marcada. Así
+                    identificas tus fortalezas y áreas de mejora.
                   </p>
+
                   <Link href={"/simuladores"}>Explorar simuladores</Link>
                 </div>
 

@@ -1,10 +1,13 @@
+"use client"
+
 import style from "./curso.module.css";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 
 
 const CourseHome = () => {
+  const router =useRouter()
   return (
     <>
       <div className={style["user-dashboard-container"]}>
@@ -147,7 +150,7 @@ const CourseHome = () => {
               <h3>Herramientas</h3>
 
               <div className={style["tools-container"]}>
-                <div className={style["tool-card"]}>
+                <div onClick={()=>router.push("/plataforma/mis-simuladores")} className={style["tool-card"]}>
                   <div className={style["tool-container"]}>
                     <div
                       className={`${style["tool-img"]} ${style["circle-div"]}`}
@@ -173,7 +176,7 @@ const CourseHome = () => {
                   </div>
                 </div>
 
-                <div className={style["tool-card"]}>
+                <div onClick={()=>router.push("/plataforma/resultados")} className={style["tool-card"]}>
                   <div className={style["tool-container"]}>
                     <div
                       className={`${style["tool-img"]} ${style["circle-div"]}`}
@@ -199,7 +202,7 @@ const CourseHome = () => {
                   </div>
                 </div>
 
-                <div className={style["tool-card"]}>
+                <div onClick={()=>router.push("/plataforma/monedas")} className={style["tool-card"]}>
                   <div className={style["tool-container"]}>
                     <div
                       className={`${style["tool-img"]} ${style["circle-div"]}`}

@@ -43,7 +43,7 @@
   }
 
 
-  .user-header > img{
+  .header-logotype > img{
     display: none;
     margin-left: 25px;
     cursor: pointer;
@@ -113,6 +113,12 @@
     font-weight: bold;
   }
 
+  .sub-header .user-info{
+    margin-top: 4.8rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
 
   
 
@@ -132,19 +138,37 @@
     }
   
 
-@media (max-width: 950px) {
-
-    .user-header > img{
-        display:block;
-      }
-
-      .user-navbar{
+@media (max-width:1150) {
+    .user-navbar{
         display: none;
       }
 
+    .header-logotype  img{
+        display:block;
+      }
+
+      .header-logotype{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 60%;
+      }
+
+
 }
 
-@media (max-width: 450px) {
+
+@media (max-width: 750px) {
+      .header-logotype{
+        width: 50%;
+      }
+}
+
+@media (max-width: 570px) {
+
+  .logotype h2{
+    font-size: 24px;
+  }
 
     .user-header-button{
         display: none;
@@ -152,18 +176,60 @@
 
     .user-header{
         justify-content: space-between;
-        flex-direction:row-reverse;
+        flex-direction:column;
+    }
+
+    .header-logotype{
+      width: 100%;
+      flex-direction: row-reverse;
+      padding-top: 0.5rem;
     }
 
     .header-info{
-        display: none;
+      width: 100%;
+    }
+    
+    .user-info{
+      width: 100%;
+      margin-left: 0;
+      justify-content: space-between;
+    }
+
+      .header-logotype > img{
+        margin-right: 25px;
+      }
+
+    .div-coins{
+      margin-left: 35px;
+      gap: 10px;
+    }
+
+    .user-header{
+      border-bottom:1px solid #ebe9e9 ;
+      height: auto;
+      padding-bottom: 0.4rem;
     }
 
 
-    .user-header > img{
+
+
+  
+
+
+}
+
+
+
+@media (max-width: 450px) {
+
+
+   
+
+
+    /* .user-header > img{
         margin-left: 0px;
         margin-right: 1rem;
-    }
+    } */
 
 }
       

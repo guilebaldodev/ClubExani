@@ -30,6 +30,31 @@ export const questionResults = [
   { id: 27, status: "unanswered", summary: "Conversión de unidades de longitud" },
   { id: 28, status: "correct", summary: "Resolver una proporción" },
   { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+   { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+   { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+   { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
+ 
+  { id: 29, status: "incorrect", summary: "Probabilidad simple de un evento" },
   { id: 30, status: "unanswered", summary: "Identificar un polígono regular" },
 ];
 
@@ -155,7 +180,7 @@ const ResultPage = () => {
             </div>
 
             <div className={styles["question-item-button"]}>
-              <button>Revisar</button>
+              <a href="/plataforma/revision">Revisar</a>
             </div>
           </div>
         ))}

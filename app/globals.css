@@ -93,7 +93,7 @@
 }
 
 .footer-content {
-  width: 80%;
+  width: 85%;
   margin: auto;
   /* justify-content:space-around; */
   display: flex;
@@ -481,6 +481,25 @@ main {
 
 /* /////////////////////////////////// */
 
+@media(max-width:1050px){
+    .footer-logotype {
+    width: 100%;
+    justify-content: center;
+  }
+
+    .footer-content {
+    flex-wrap: wrap;
+    width: 90%;
+  }
+
+
+
+  .footer-section {
+    width: 33.333%;
+    padding-top: 2rem;
+  }
+}
+
 @media (max-width: 950px) {
   .logotype h2 {
     font-size: 26px;
@@ -495,14 +514,26 @@ main {
     margin-right: 2rem;
   }
 
+  .navbar {
+    display: none;
+  }
+
+  .header{
+    align-items: center;
+  }
+
+    .burger-menu {
+    display: flex;
+    /* margin-right: 2rem; */
+  }
+
+
+
 
 }
 
 @media (max-width: 750px) {
 
-  .navbar {
-    display: none;
-  }
 
   .navbar__button {
     display: none;
@@ -512,25 +543,9 @@ main {
     align-items: center;
   }
 
-  .burger-menu {
-    display: flex;
-    margin-right: 2rem;
-  }
 
-  .footer-content {
-    flex-wrap: wrap;
-    width: 80%;
-  }
 
-  .footer-logotype {
-    width: 100%;
-    justify-content: center;
-  }
 
-  .footer-section {
-    width: 33.333%;
-    padding-top: 2rem;
-  }
 
 
 
@@ -542,9 +557,21 @@ main {
     gap: 15px;
   }
 
+}
 
+@media (max-width: 570px) {
+  
+  .login-button{
+    height: 1.9rem;
+    font-size: 13px;
+    margin-right: 1.5rem;
 
+  }
 
+.cl-internal-friqq3 {
+    margin-right: 0.4rem;
+;
+}
 
 
 }
@@ -558,13 +585,21 @@ main {
 
   .footer-section h4 {
     padding: 0;
-    font-size: 17px;
+    font-size: 19px;
   }
 
   .footer-content {
     width: 50%;
     justify-content: center;
     text-align: center;
+  }
+
+  .right-buttons{
+    display: none;
+  }
+
+  .burger-menu{
+    margin-right: 2rem;
   }
 
 }

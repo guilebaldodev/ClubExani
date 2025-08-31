@@ -13,15 +13,20 @@
   padding-top: 1rem;
 }
 
+.user-dashboard-historial{
+  overflow-x: auto;
+}
 
 
 .user-dashboard-historial table{
+  overflow-x: auto;
+
   width: 100%;
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
 
-.user-dashboard-historial table button{
+.user-dashboard-historial table a{
     color: #fff;
     cursor: pointer;
     background-color: #f6bf19;
@@ -68,7 +73,44 @@
   border-radius: 100%;
   width: 40px;
   height: 40px;
-  width: 100%;
 }
 
+@media (width <= 1050px) {
+    .container {
+        width: 90%;
+    }
+}
+
+
+@media (width <= 950px) {
+    .container {
+        width: 80%;
+    }
+
+    .results-title p{
+      font-size: 17px;
+    }
+
+}
+
+
+
+@media (width <= 750px){
+  .results-title h2{
+    font-size: 25px;
+  }
+
+   .results-title p{
+      font-size: 16px;
+    }
+
+
+}
+
+
+@media (width <= 570px) {
+    .container {
+      margin-top: 8rem;
+    }
+}
 

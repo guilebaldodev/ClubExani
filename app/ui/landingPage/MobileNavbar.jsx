@@ -10,7 +10,7 @@ const MobileMenu = ({ onClose }) => {
       <div className={style["menu-header"]}>
         <div className={style["menu-header-left"]}>
           <Image
-            src={"/layout/black-logo.png"}
+            src={"/layout/logo.png"}
             alt="justice icon"
             width={32}
             height={32}
@@ -71,22 +71,18 @@ const MobileMenu = ({ onClose }) => {
         </div> */}
 
         <div className={style["menu-item"]}>
-          <Link href="/planes" onClick={onClose}>
-            Planes
+          <Link href="/simuladores" onClick={onClose}>
+            Simuladores
           </Link>
         </div>
 
         <div className={style["menu-item"]}>
-          <Link href="/testimonios" onClick={onClose}>
-            Testimonios
+          <Link href="/creditos" onClick={onClose}>
+            Monedas
           </Link>
         </div>
 
-        <div className={style["menu-item"]}>
-          <Link href="/nosotros" onClick={onClose}>
-            Nosotros
-          </Link>
-        </div>
+
         <div className={style["menu-item"]}>
           <Link href="/contacto" onClick={onClose}>
             Contacto
@@ -95,10 +91,10 @@ const MobileMenu = ({ onClose }) => {
       </div>
 
       <Link
-        href="/curso"
+        href="/plataforma"
         className={style["whatsapp-div"]}
       >
-        <p>Ir al curso</p>
+        <p>Ir a la plataforma</p>
       </Link>
     </div>
   );

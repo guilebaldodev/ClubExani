@@ -137,7 +137,7 @@
 }
 
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
     .footer-info{
       flex-direction: column;
       gap: 15px;
@@ -149,5 +149,78 @@
     .pricing-page-titles h2{
         font-size: 30px;
     }
+ */
+/* } */
+
+
+@media (width <= 1050px) {
+    .pricing-page-container {
+        width: 90%;
+    }
+}
+
+
+
+@media (width <= 950px) {
+    .pricing-page-container {
+        width: 80%;
+    }
+
+    .pricin p{
+      font-size: 17px;
+    }
 
 }
+
+@media (width <= 850px) {
+
+    .pricing-plans-container{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        display: grid;
+        gap: 20px;
+        }
+
+    .plan-item{
+        width: auto;
+    }
+
+}
+
+
+
+
+
+
+
+@media (width <= 750px){
+
+    .pricing-page-titles h2{
+        font-size: 25px;
+    }
+
+
+   .results-title p{
+      font-size: 16px;
+    }
+
+
+        .pricing-plans-container{
+        grid-template-columns: repeat(1,minmax(0,300px));
+        display: grid;
+        gap: 20px;
+        }
+
+
+
+}
+
+
+
+@media (width <= 570px) {
+    .pricing-page-container {
+      padding-top: 8rem;
+    }
+}
+
+
+

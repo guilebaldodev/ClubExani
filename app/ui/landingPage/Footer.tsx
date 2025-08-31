@@ -12,6 +12,28 @@ const Footer = () => {
             <h3>Simulandum</h3>
           </div>
 
+
+
+
+                    <div className="footer-section">
+            <h4>Plataforma</h4>
+            <ul>
+              <li>
+                <Link href="/plataforma">Inicio</Link>
+              </li>
+              <li>
+                <Link href="/plataforma/mis-simuladores">Mis Simuladores</Link>
+              </li>
+              <li>
+                <Link href="/plataforma/resultados">Resultados</Link>
+              </li>
+                    <li>
+                <Link href="/plataforma/monedas">Monedas</Link>
+              </li>
+            </ul>
+          </div>
+
+
           <div className="footer-section">
             <h4>Nosotros</h4>
             <ul>
@@ -36,6 +58,8 @@ const Footer = () => {
             </ul>
           </div>
 
+
+
           <div className="footer-section">
             <h4>Simuladores</h4>
             <ul>
@@ -45,20 +69,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="footer-section">
-            <h4>Cuenta</h4>
-            <ul>
-              <li>
-                <Link href="/usuario">Inicio</Link>
-              </li>
-              <li>
-                <Link href="/usuario/simuladores">Registro</Link>
-              </li>
-              <li>
-                <Link href="/usuario/progreos">Progreso</Link>
-              </li>
-            </ul>
-          </div>
+
 
         </div>
 

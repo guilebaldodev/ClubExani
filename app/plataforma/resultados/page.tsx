@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./results.module.css"
 
 const ResultsPage = () => {
@@ -35,7 +36,7 @@ const ResultsPage = () => {
           <td className={styles["right"]}>95/120</td>
           <td className={styles["right"]}>120 minutos</td>
           <td className={styles["right"]}>
-            <button>Ver Reporte</button>
+            <Link href="/plataforma/resultados/5">Reporte</Link>
           </td>
         </tr>
 
@@ -49,7 +50,8 @@ const ResultsPage = () => {
           <td className={styles["right"]}>95/120</td>
           <td className={styles["right"]}>120 minutos</td>
           <td className={styles["right"]}>
-            <button>Ver Reporte</button>
+            <Link href="/plataforma/resultados/5">Reporte</Link>
+
           </td>
         </tr>
 
@@ -63,7 +65,9 @@ const ResultsPage = () => {
           <td className={styles["right"]}>95/120</td>
           <td className={styles["right"]}>120 minutos</td>
           <td className={styles["right"]}>
-            <button>Ver Reporte</button>
+            <Link href="/plataforma/resultados/5">Reporte</Link>
+
+
           </td>
         </tr>
 
@@ -77,7 +81,8 @@ const ResultsPage = () => {
           <td className={styles["right"]}>95/120</td>
           <td className={styles["right"]}>120 minutos</td>
           <td className={styles["right"]}>
-            <button>Ver Reporte</button>
+            <Link href="/plataforma/resultados/5">Reporte</Link>
+
           </td>
         </tr>
 
@@ -91,7 +96,8 @@ const ResultsPage = () => {
           <td className={styles["right"]}>95/120</td>
           <td className={styles["right"]}>120 minutos</td>
           <td className={styles["right"]}>
-            <button>Ver Reporte</button>
+            <Link href="/plataforma/resultados/5">Reporte</Link>
+
           </td>
         </tr>
       </tbody>

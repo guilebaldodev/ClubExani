@@ -1,5 +1,4 @@
 'use client';
-
 import Footer from '../ui/landingPage/Footer';
 import Header from '../ui/landingPage/LandingHeader';
 import styles from './simuladores.module.css';

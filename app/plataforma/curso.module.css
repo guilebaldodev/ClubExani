@@ -32,7 +32,7 @@
   width: 60%;
   flex-direction: column;
   gap: 1rem;
-  min-height:max-con;
+  min-height:max-content;
 }
 
 .user-dashboard-info h3{
@@ -117,10 +117,13 @@
   font-size: 30px;
 }
 
+.user-dashboard-historial{
+  overflow-x: auto;
+}
 
 .user-dashboard-historial table{
   width: 100%;
-  margin-bottom: 2rem;
+  overflow-x: auto;
 }
 
 .user-dashboard-historial table thead tr th{
@@ -214,6 +217,11 @@
   height: 40px;
 }
 
+
+
+.dashboard-section{
+  padding-top: 2rem;
+}
 
 /* diagnostic card */
 
@@ -311,6 +319,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .tool-img{
@@ -318,9 +327,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45px;
-  width: 45px;
+  min-height: 45px;
+  min-width: 45px;
   border-radius: 100%;
+}
+
+.tool-img{
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -419,6 +433,21 @@
   justify-content: space-between;
 }
 
+
+@media (max-width:1050px){
+
+  .user-dashboard-columns{
+    width: 80%;
+  }
+
+  .dashboard-titles{
+    width: 80%;
+  }
+
+
+}
+
+
 @media (max-width:950px) {
   .user-dashboard-columns{
     flex-direction: column;
@@ -433,7 +462,80 @@
     width: 90%;
   }
 
+  .dashboard-titles h2{
+    font-size: 28px;
+  }
+
+   .user-dashboard-info h3{
+    font-size: 20px;
+  }
+
+  .user-dashboard-columns{
+    padding-top: 2rem;
+  }
+
+
+  .user-dashboard-data div h4{
+    font-size: 25px;
+  }
+
 }
+
+
+@media (max-width:750px) {
+    .user-dashboard-columns{
+    width: 85%;
+  }
+
+  .dashboard-titles{
+    width: 85%;
+  }
+
+    .dashboard-titles h2{
+    font-size: 25px;
+  }
+
+  .dashboard-titles p{
+    font-size: 17px;
+  }
+
+
+}
+
+@media (max-width:650px){
+
+  .user-dashboard-section{
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
+
+  .user-dashboards-cards{
+    width: 100%;
+  }
+
+  .user-dashboard-number{
+    width: 100%;
+  }  
+
+
+  .user-dashboard-data{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .user-dashboard-data div{
+    align-items: center;
+  }
+
+}
+
+@media (width <= 570px) {
+    .user-dashboard-container {
+      padding-top: 7rem;
+    }
+}
+
 
 @media (max-width:550px){
   .diagnostic-button{
@@ -447,12 +549,14 @@
 
 
 
-  .dashboard-titles h2{
-    font-size: 25px;
-  }
 
   .user-dashboard-columns{
     padding-top: 2rem;
+  }
+
+
+    .dashboard-titles h2{
+    font-size: 22px;
   }
 
 
