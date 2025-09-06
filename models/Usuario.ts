@@ -2,11 +2,17 @@ import { Schema, model, models } from "mongoose";
 
 const UsuarioSchema = new Schema(
   {
-    userId: {
+    clerkId: {
       type: String,
       required:true,
       unique: true,
     },
+
+    email: {
+      type: String,
+      unique: true,
+    },
+
     nombre: {
       type: String,
     },

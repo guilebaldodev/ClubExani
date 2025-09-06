@@ -3,6 +3,7 @@ import { Schema, model, models } from "mongoose";
 
 const PreguntaSchema = new Schema({
   contenidoHTML: { type: String, required: true },
+  resumen: { type: String, required: true },
   origen: { type: String, required: true,enum:["Examen","IA"] },
   examen: {
   type: String,

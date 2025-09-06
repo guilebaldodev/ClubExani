@@ -1,5 +1,5 @@
-import { auth } from "@clerk/nextjs/server";
-import {connectDB} from "@/app/utils/mongoose"
+import { auth, currentUser } from "@clerk/nextjs/server";
+import {connectDB } from "@/app/utils/mongoose"
 
 export async function POST() {
   const { userId } = await auth();
@@ -10,17 +10,17 @@ export async function POST() {
 
   const { default: Usuario } = await import("@/models/Usuario"); 
 
-  const existente = await Usuario.findOne({ userId });
-  
+  const user = await currentUser()
 
+  const existente = await Usuario.findOne({ clerkId:userId });
 
-  
   if (!existente) {
     await Usuario.create({
-      userId,
+      clerkId:userId,
       rol: "estudiante",
+      email: user?.emailAddresses[0]?.emailAddress || "" ,
       simuladoresCanjeados: [],
-      nombre:"",
+      nombre: user?.firstName || "",
       estado:"",
       edad:0
     });

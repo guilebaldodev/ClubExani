@@ -1,6 +1,5 @@
 import { EXAMENES } from "@/consts/options";
 import mongoose, { Schema, models } from "mongoose";
-import { required } from "zod/v4-mini";
 
 const SimuladorSchema = new Schema(
   {

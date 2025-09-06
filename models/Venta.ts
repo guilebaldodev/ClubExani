@@ -2,7 +2,8 @@ import { Schema, model, models } from "mongoose";
 
 const VentaSchema = new Schema(
   {
-    userId: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "Usuario", required: true},
+    clerkId: { type: String, required: true},
     email: { type: String},
     amountPaid: { type: Number, required: true },
     paymentStatus: {

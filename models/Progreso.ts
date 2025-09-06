@@ -1,7 +1,9 @@
 import { Schema, model, models } from "mongoose";
 
 const ProgresoSchema = new Schema({
-  userId: { type: String, required: true },
+
+  userId: { type: Schema.Types.ObjectId, ref: "Usuario", required: true},
+  clerkId: { type: String, required: true},
   simuladorId: { type: Schema.Types.ObjectId, ref: "Simulador", required: true },
 
   preguntasResueltas: [

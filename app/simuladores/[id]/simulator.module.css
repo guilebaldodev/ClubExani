@@ -17,13 +17,11 @@
 }
 
 .simulator-img img {
-  max-width: 400px;
+  /* max-width: 400px; */
   border-radius: 7px;
 }
 
 .your-class {
-  max-width: 420px !important;
-  width: 100% !important;
   border-radius: 7px;
   aspect-ratio: 1;
 }
@@ -206,4 +204,10 @@
   font-size: 18px;
   line-height: 1.75;
   padding: 0.5rem 2rem;
+}
+
+@media (max-width:1200px){
+  /* .your-class{
+    width: auto;
+  } */
 }
