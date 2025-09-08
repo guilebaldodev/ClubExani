@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import MobileNavbar from './MobileNavbar'
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
+import UserIcon from '../shared/UserIcon';
 
 const Header = () => {
   const [menu, setmenu] = useState(false);
@@ -52,10 +53,13 @@ const Header = () => {
       </SignedOut>
 
       <SignedIn>
-        <UserButton appearance={{elements:{userButtonAvatarBox:{
+        {/* <UserButton appearance={{elements:{userButtonAvatarBox:{
           width:"38px",
           height:"38px"
-        }}}}></UserButton>
+        }}}}></UserButton> */}
+
+        <UserIcon></UserIcon>
+
       </SignedIn>
     </div>
   </header>

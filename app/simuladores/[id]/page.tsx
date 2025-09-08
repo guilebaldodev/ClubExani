@@ -12,11 +12,16 @@ import ConfirmModal from "@/app/ui/shared/ConfirmModal";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/stores/userStore";
+import { SignedIn } from '@clerk/nextjs';
+
 
 export default function Page() {
   const { id } = useParams<{ id: string }>();
   const { user } = useUser();
   const [modal, setModal] = useState(false);
+  const {monedas} =useUserStore()
+  
 
   const [simulador, setSimulador] = useState<Simulador | null>(null);
   useEffect(() => {
@@ -25,9 +30,9 @@ export default function Page() {
       .then((data) => setSimulador(data));
   }, [id]);
 
+  const router= useRouter()
   if (!simulador) return <p>Cargando...</p>;
 
-  const router= useRouter()
 
   return (
     <>
@@ -65,6 +70,19 @@ export default function Page() {
                 </div>
               </div>
             </div>
+
+              <SignedIn>
+              <div className={style["div-coins"]}>
+                <Image
+                  src={"/layout/yellow-coins.png"}
+                  alt="coins"
+                  width={25}
+                  height={25}
+                ></Image>
+                <p>Cuentas con {monedas} monedas</p>
+              </div>
+              </SignedIn>
+
 
             <div className={style["simulator-title-buttons"]}>
               <button

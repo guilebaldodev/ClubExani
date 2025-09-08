@@ -6,6 +6,10 @@ import Select from 'react-select';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {simulators} from "../../consts/simulators"
+import { SignedIn } from '@clerk/nextjs';
+import Image from 'next/image';
+import { useUserStore } from "@/stores/userStore";
+
 
 const examenOptions = [
   { value: "Todos", label: "Todos los exámenes" },
@@ -23,6 +27,8 @@ export default function SimuladoresPage() {
 
   const router= useRouter()
 
+  const {monedas} = useUserStore()
+
   return (
     <>
       <Header />
@@ -30,6 +36,28 @@ export default function SimuladoresPage() {
         <h2 className={styles["catalogo-title"]}>Todos los simuladores</h2>
 
         <div className={styles["filtros-row"]}>
+
+
+
+              <div className={styles["div-coins"]}>
+              <SignedIn>
+                
+                <p>Cuentas con </p>
+                <div>
+                <Image
+                  src={"/layout/yellow-coins.png"}
+                  alt="coins"
+                  width={25}
+                  height={25}
+                ></Image>
+                <p>{monedas} monedas</p>
+
+                </div>
+              </SignedIn>
+              </div>
+
+
+
           <div className={styles["filtros-izquierda"]}>
             <Select
               isClearable

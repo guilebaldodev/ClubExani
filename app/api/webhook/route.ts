@@ -4,7 +4,6 @@ import { NextRequest } from "next/server";
 import { connectDB } from "@/app/utils/mongoose";
 import User from "@/models/Usuario";
 import Venta from "@/models/Venta";
-import { email } from "zod/v4";
 
 export const config = {
   api: {
@@ -22,7 +21,6 @@ export async function POST(req: NextRequest) {
   const signature = (await headers()).get("stripe-signature");
 
 
-
   let event;
 
   try {
@@ -38,21 +36,22 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    const userId = session.metadata?.userId;
+    const clerkId = session.metadata?.userId;
 
-    console.log(session)
 
     try {
       await connectDB();
 
-      const user = await User.findOne({ userId });
+      const user = await User.findOne({ clerkId });
 
       if (!user) {
-        console.error("User not found:", userId);
+        console.error("User not found:", clerkId);
         return new Response("User not found", { status: 404 });
       }
 
       const amount = session.amount_total;
+
+      console.log("Hola")
 
 
       if (amount === 4900) user.monedas += 50;
@@ -64,7 +63,8 @@ export async function POST(req: NextRequest) {
 
 
       await Venta.create({
-        userId,
+        userId:user._id,
+        clerkId,
   	    email: session.customer_email || session.customer_details?.email || null,
         amountPaid:session.amount_total,
         paymentStatus:session.payment_status||"unpaid",

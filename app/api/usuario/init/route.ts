@@ -10,22 +10,22 @@ export async function POST() {
 
   const { default: Usuario } = await import("@/models/Usuario"); 
 
-  const user = await currentUser()
+  const userClerk = await currentUser()
 
-  const existente = await Usuario.findOne({ clerkId:userId });
+  let user = await Usuario.findOne({ clerkId:userId });
 
-  if (!existente) {
-    await Usuario.create({
+  if (!user) {
+    user = await Usuario.create({
       clerkId:userId,
       rol: "estudiante",
-      email: user?.emailAddresses[0]?.emailAddress || "" ,
+      email: userClerk?.emailAddresses[0]?.emailAddress || "" ,
       simuladoresCanjeados: [],
-      nombre: user?.firstName || "",
+      nombre: userClerk?.firstName || "",
       estado:"",
       edad:0
     });
   }
 
-  return Response.json({ ok: true });
+  return Response.json(user);
 }
 

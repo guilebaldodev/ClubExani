@@ -10,11 +10,23 @@
 
 .filtros-row {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.div-coins{
+  display: flex;
+  gap: 5px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.div-coins div{
+  display: flex;
+  gap: 10px;
 }
 
 .filtros-izquierda {
@@ -150,6 +162,11 @@
   .grid-simuladores{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .div-coins{
+  font-size: 16px;
+}
+
 
 }
 

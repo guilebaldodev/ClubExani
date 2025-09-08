@@ -59,7 +59,7 @@
 
 .simulator-title-items>div {
   display: flex;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .simulator-title-item {
@@ -81,7 +81,7 @@
 
 
 .simulator-title-buttons {
-  padding-top: 2rem;
+  padding-top: 1rem;
   display: flex;
 }
 
@@ -207,6 +207,20 @@
   padding: 0.5rem 2rem;
 }
 
+.div-coins{
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 500;
+
+}
+
+.div-coins div{
+  display: flex;
+  gap: 10px;
+}
+
+
 
 @media (max-width:1300px) {
   
@@ -239,6 +253,10 @@
     flex-direction: column;
     gap: 15px;
     padding-top: 0;
+  }
+
+  .div-coins{
+    padding-bottom: 0.8rem;
   }
 
 

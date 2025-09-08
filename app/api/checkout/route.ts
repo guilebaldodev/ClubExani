@@ -8,6 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(req: NextRequest) {
   const { priceId, user:userId } = await req.json();
 
+  console.log("aquii",priceId,userId)
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -25,6 +27,7 @@ export async function POST(req: NextRequest) {
       cancel_url: "http://localhost:3000/creditos",
     });
 
+    console.log()
     return NextResponse.json({ url: session.url });
   } catch (err) {
     console.error("Error al crear sesión de checkout:", err);

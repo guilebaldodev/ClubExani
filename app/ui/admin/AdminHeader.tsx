@@ -1,10 +1,16 @@
 import Image from "next/image";
+import UserIcon from "../shared/UserIcon";
+import { useUserStore } from "@/stores/userStore";
+
 
 interface AdminHeaderProps {
   toggleSideBar: () => void;
 }
 
 const AdminHeader = ({ toggleSideBar }: AdminHeaderProps) => {
+  
+    const { nombre } = useUserStore();
+  
   return (
     <>
       <div className="admin-header">
@@ -28,15 +34,16 @@ const AdminHeader = ({ toggleSideBar }: AdminHeaderProps) => {
 
         <div className="admin-right-menu">
           <div className="admin-img">
-            <Image
+            {/* <Image
               src="/layout/user-icon-profile.png"
               alt="User Profile Icon"
               width={19}
               height={19}
-            />
+            /> */}
+            <UserIcon></UserIcon>
           </div>
           <div className="navbar-credentials">
-            <h4>Guilebaldo Vargas</h4>
+            <h4>{nombre}</h4>
             <p>Administrador</p>
           </div>
         </div>

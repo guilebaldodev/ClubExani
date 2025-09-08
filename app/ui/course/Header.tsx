@@ -4,10 +4,14 @@ import Link from "next/link";
 import styles from "./header.module.css";
 import { useState } from "react";
 import CourseMobileMenu from "./CourseMobileNavbar";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { useUserStore } from "@/stores/userStore";
+import UserIcon from "../shared/UserIcon";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
+
+  const {monedas} =useUserStore()
 
   return (
     <>
@@ -94,7 +98,7 @@ const Header = () => {
                   width={25}
                   height={25}
                 ></Image>
-                <p>x 250</p>
+                <p>x {monedas}</p>
               </div>
 
               {/*  */}
@@ -106,7 +110,7 @@ const Header = () => {
               </SignedOut>
 
               <SignedIn>
-                <UserButton
+                {/* <UserButton
                   appearance={{
                     elements: {
                       userButtonAvatarBox: {
@@ -116,7 +120,8 @@ const Header = () => {
                       },
                     },
                   }}
-                ></UserButton>
+                ></UserButton> */}
+                <UserIcon></UserIcon>
               </SignedIn>
 
               {/*  */}
