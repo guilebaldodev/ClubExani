@@ -92,6 +92,7 @@ export type QuestionTemplate = {
   empty: {
     questionHTML: string;
     answerHTML: string;
+    explanationHTML: string;
   };
 };
 

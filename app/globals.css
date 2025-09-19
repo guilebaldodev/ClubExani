@@ -364,11 +364,9 @@ main {
 /* CSS simulator */
 
 .config-text-simple {
-  font-family: "Source Sans 3", "Source Sans 3 Fallback";
 }
 
 .config-text-simple-answer {
-  font-family: "Source Sans 3", "Source Sans 3 Fallback";
 }
 
 .config-text-with-image div {
@@ -388,6 +386,15 @@ main {
 .config-image-answer img {
   width: 200px;
 }
+
+.config-text-simple h3{
+  padding-bottom: 1rem;
+}
+
+.config-text-simple p,.config-text-simple ul,.config-text-simple ol{
+  padding-bottom: 0.8rem;
+}
+
 
 /* Loader */
 

@@ -59,7 +59,7 @@ export default function Page() {
               <div>
                 <div className={style["simulator-title-item"]}>
                   <img src="/landing/simulatorTime.svg" alt="sss" />
-                  <p>120 preguntas</p>
+                  <p>1200 preguntas</p>
                 </div>
 
                 <div

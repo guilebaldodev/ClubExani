@@ -9,6 +9,7 @@ import { Pregunta } from "@/types/pregunta";
 import Select, { SingleValue } from "react-select";
 import { SelectOption } from "@/types/shared";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import {
   AsignadoOptions,
   examenOptions,
@@ -18,10 +19,10 @@ import ViewQuestionModal from "@/app/ui/admin/QuestionViewModal";
 import ConfirmDeleteModal from "@/app/ui/admin/ConfirmModal";
 
 const QuestionsPage = () => {
+  const router = useRouter();
 
   const [viewQuestion, setViewQuestion] = useState<Pregunta | null>(null);
   const [showConfirm, setShowConfirm] = useState("");
-
 
   const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
   const [busqueda, setBusqueda] = useState("");
@@ -57,8 +58,7 @@ const QuestionsPage = () => {
       const res = await fetch(`/api/preguntas?${queryParams.toString()}`);
       const data = await res.json();
 
-      console.log(data)
-
+      console.log(data);
 
       if (!res.ok) throw new Error();
 
@@ -71,36 +71,38 @@ const QuestionsPage = () => {
   };
 
   const deleteQuestion = async (questionId: string) => {
-  try {
-    const res = await fetch(`/api/preguntas/${questionId}`, {
-      method: "DELETE",
-    });
+    try {
+      const res = await fetch(`/api/preguntas/${questionId}`, {
+        method: "DELETE",
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      toast.error(data.error || "Error al eliminar pregunta");
+      if (!res.ok) {
+        toast.error(data.error || "Error al eliminar pregunta");
+        return false;
+      }
+
+      toast.success("Pregunta eliminada correctamente");
+      return true;
+    } catch (error) {
+      toast.error("Error del servidor");
       return false;
     }
+  };
 
-    toast.success("Pregunta eliminada correctamente");
-    return true;
-  } catch (error) {
-    toast.error("Error del servidor");
-    return false;
-  }
-};
+  useEffect(() => {
+    fetchPreguntas();
+  }, [
+    busqueda,
+    page,
+    filtroAsignado,
+    filtroExamen,
+    filtroOrigen,
+    filtroSimulador,
+  ]);
 
-
-
-  useEffect(()=>{
-    fetchPreguntas()
-  },[busqueda,page,filtroAsignado,filtroExamen,filtroOrigen,filtroSimulador])
-
-
-
-
-useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
 
@@ -118,32 +120,29 @@ useEffect(() => {
     };
   }, []);
 
-
-
-
   return (
     <>
-
       {viewQuestion && (
-          <ViewQuestionModal question={viewQuestion} closeModal={()=>setViewQuestion(null)}/>
+        <ViewQuestionModal
+          question={viewQuestion}
+          closeModal={() => setViewQuestion(null)}
+        />
       )}
 
-
       {showConfirm && (
-  <ConfirmDeleteModal
-    title="¿Eliminar pregunta?"
-    message="Esta acción no se puede deshacer."
-    onConfirm={async () => {
-      const success = await deleteQuestion(showConfirm);
-      if (success) {
-        fetchPreguntas(); 
-      }
-      setShowConfirm("");
-    }}
-    onCancel={() => setShowConfirm("")}
-  />
-)}
-
+        <ConfirmDeleteModal
+          title="¿Eliminar pregunta?"
+          message="Esta acción no se puede deshacer."
+          onConfirm={async () => {
+            const success = await deleteQuestion(showConfirm);
+            if (success) {
+              fetchPreguntas();
+            }
+            setShowConfirm("");
+          }}
+          onCancel={() => setShowConfirm("")}
+        />
+      )}
 
       <div className={styles["admin-question-container"]}>
         <div className={styles["admin-question-title"]}>
@@ -328,63 +327,78 @@ useEffect(() => {
                 </tr>
               </thead>
               <tbody>
-   
                 {preguntas.map((pregunta, index) => (
-                    <tr key={pregunta._id}>
-                      <td>{(page - 1) * limit + index + 1}</td>
-                      <td>Contenido</td>
-                      <td>{pregunta.origen}</td>
-                      <td>{pregunta.examen}</td>
+                  <tr key={pregunta._id}>
+                    <td>{(page - 1) * limit + index + 1}</td>
+                    <td>{pregunta.resumen}</td>
+                    <td>{pregunta.origen}</td>
+                    <td>{pregunta.examen}</td>
 
-                      {pregunta.simuladores.length > 0 ? (
-                        <td
-                          className={`${dataStyles["color-td"]} ${dataStyles.green}`}
-                        >
-                          <span>Asignada</span>
-                        </td>
-                      ) : (
-                        <td
-                          className={`${dataStyles["color-td"]} ${dataStyles.red}`}
-                        >
-                          <span>Pendiente</span>
-                        </td>
-                      )}
-
-                      <td className={dataStyles["td-center"]}>
-                        <div className={dataStyles.container}>
-                          <Image
-                            onClick={(e) =>{ 
-                              e.stopPropagation();
-                              setMenu(
-                                menu === pregunta._id ? null : pregunta._id
-                              )
-                            }}
-                            src="/admin/3points.png"
-                            alt="Más opciones"
-                            width={20}
-                            height={20}
-                          />
-                          <div
-                            className={`${dataStyles["menu"]} ${
-                              menu === pregunta._id ? "" : dataStyles["none"]
-                            }`}
-                              data-menu-content
-
-                          >
-                            <button 
-
-                            onClick={() => {
-                              console.log(pregunta,"Preguntaa")
-                              setViewQuestion(pregunta)
-                              }}>Asignar</button>
-                            <button
-                            onClick={()=>setShowConfirm(pregunta._id)}
-                            >Eliminar</button>
-                            <button>Editar</button>
-                          </div>
-                        </div>
+                    {pregunta.simuladores.length > 0 ? (
+                      <td
+                        className={`${dataStyles["color-td"]} ${dataStyles.green}`}
+                      >
+                        <span>Asignada</span>
                       </td>
-                    </tr>
+                    ) : (
+                      <td
+                        className={`${dataStyles["color-td"]} ${dataStyles.red}`}
+                      >
+                        <span>Pendiente</span>
+                      </td>
+                    )}
+
+                    <td className={dataStyles["td-center"]}>
+                      <div className={dataStyles.container}>
+                        <Image
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setMenu(
+                              menu === pregunta._id ? null : pregunta._id
+                            );
+                          }}
+                          src="/admin/3points.png"
+                          alt="Más opciones"
+                          width={20}
+                          height={20}
+                        />
+                        <div
+                          className={`${dataStyles["menu"]} ${
+                            menu === pregunta._id ? "" : dataStyles["none"]
+                          }`}
+                          data-menu-content
+                        >
+                          <button
+                            onClick={() => {
+                              localStorage.setItem(
+                                "preview-question",
+                                JSON.stringify(pregunta)
+                              );
+
+                              window.open(
+                                "/panel-de-control/vista-previa-pregunta",
+                                "_blank"
+                              );
+                            }}
+                          >
+                            Ver
+                          </button>
+                          <button
+                            onClick={() => {
+                              console.log(pregunta, "Preguntaa");
+                              setViewQuestion(pregunta);
+                            }}
+                          >
+                            Asignar
+                          </button>
+                          <button onClick={() => setShowConfirm(pregunta._id)}>
+                            Eliminar
+                          </button>
+                          <button>Editar</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -395,13 +409,14 @@ useEffect(() => {
               <p>Preguntas por página: {limit}</p>
             </div>
             <div className={dataStyles["admin-footer-right"]}>
-                          <p>
-                            {(page - 1) * limit + 1} - {Math.min(page * limit, total)} de {total}
-
-                          </p>
+              <p>
+                {(page - 1) * limit + 1} - {Math.min(page * limit, total)} de{" "}
+                {total}
+              </p>
 
               <div
-                className={`${dataStyles["footer-button"]} ${dataStyles.rotate}`} onClick={()=> page > 1 && setPage(page - 1)}
+                className={`${dataStyles["footer-button"]} ${dataStyles.rotate}`}
+                onClick={() => page > 1 && setPage(page - 1)}
               >
                 <Image
                   src="/admin/arrow.png"
@@ -410,7 +425,10 @@ useEffect(() => {
                   height={15}
                 />
               </div>
-            <div className={dataStyles['footer-button']} onClick={() => page < TotalPages && setPage(page + 1)}>
+              <div
+                className={dataStyles["footer-button"]}
+                onClick={() => page < TotalPages && setPage(page + 1)}
+              >
                 <Image
                   src="/admin/arrow.png"
                   alt="Siguiente"

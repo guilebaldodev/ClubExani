@@ -10,6 +10,8 @@ export async function POST(req: Request, { params }) {
 
   const { userId } = await auth();
 
+  console.log(id,userId)
+
   if (!userId)
     return NextResponse.json(
       { error: "Usuario no encontrado" },
@@ -25,7 +27,8 @@ export async function POST(req: Request, { params }) {
       { status: 404 }
     );
 
-  const usuario = await Usuario.findOne({ userId });
+
+  const usuario = await Usuario.findOne({ clerkId: userId });
   if (!usuario)
     return NextResponse.json(
       { error: "Usuario no encontrado" },
@@ -38,7 +41,7 @@ export async function POST(req: Request, { params }) {
 
   if (canje && canje.uso_justo > 0) {
     return NextResponse.json(
-      { error: "Ya tienes este simulador activo" },
+      { error: "Ya compraste este simulador" },
       { status: 400 }
     );
   }
@@ -65,5 +68,5 @@ export async function POST(req: Request, { params }) {
 
   await usuario.save();
 
-  return NextResponse.json({ ok: true, nuevoSaldo: usuario.monedas });
+  return NextResponse.json({ ok: true, nuevoSaldo: usuario.monedas,simulador});
 }

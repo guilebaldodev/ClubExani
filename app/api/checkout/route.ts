@@ -8,7 +8,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(req: NextRequest) {
   const { priceId, user:userId } = await req.json();
 
-  console.log("aquii",priceId,userId)
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -23,8 +22,8 @@ export async function POST(req: NextRequest) {
        metadata: {
         userId,
       },
-      success_url: "http://localhost:3000/simuladores", 
-      cancel_url: "http://localhost:3000/creditos",
+      success_url: "http://localhost:3000/plataforma/mis-simuladores", 
+      cancel_url: "http://localhost:3000/plataforma/monedas",
     });
 
     console.log()

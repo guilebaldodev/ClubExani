@@ -2,6 +2,8 @@
 import { toast } from "react-toastify";
 import styles from "./css/confirmModal.module.css";
 import { Simulador } from "@/types";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/stores/userStore";
 
 type Props = {
   simulator: Simulador;
@@ -10,7 +12,9 @@ type Props = {
 
 const ConfirmModal = ({ simulator, closeModal }: Props) => {
 
-
+  const router= useRouter()
+  const addSimuladorCanjeado = useUserStore((state) => state.addSimuladorCanjeado);
+  const updateMonedas = useUserStore((state) => state.updateMonedas);
 
   const handlePurchase = async (
     simulatorId: string,
@@ -25,7 +29,18 @@ const ConfirmModal = ({ simulator, closeModal }: Props) => {
       if (res.ok) {
         toast.success("Simulador canjeado 🎉");
         closeModal();
-        // Aquí podrías refrescar datos o monedas si lo necesitas
+
+        // Actualizar zustand
+        console.log("DATAAA",data)
+        updateMonedas(data.nuevoSaldo)
+        addSimuladorCanjeado({
+          simuladorId: data.simulador,
+          monedasPagadas:data.simulador.precio,
+          uso_justo:data.simulador.uso_justo,
+          fecha:new Date().toISOString(),
+        })
+        router.push("/plataforma/mis-simuladores")
+
       } else {
         toast.error(data.error || "Error al canjear");
       }

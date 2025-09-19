@@ -17,13 +17,12 @@
 }
 
 .simulator-img img {
-  max-width: 400px;
+  max-width: 350px;
   border-radius: 7px;
 }
 
 .your-class {
   max-width: 420px !important;
-  /* width: 100% !important; */
   border-radius: 7px;
   aspect-ratio: 1;
 }
@@ -60,7 +59,7 @@
 
 .simulator-title-items>div {
   display: flex;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .simulator-title-item {
@@ -82,7 +81,7 @@
 
 
 .simulator-title-buttons {
-  padding-top: 2rem;
+  padding-top: 1rem;
   display: flex;
 }
 
@@ -206,4 +205,259 @@
   font-size: 18px;
   line-height: 1.75;
   padding: 0.5rem 2rem;
+}
+
+.div-coins{
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 500;
+
+}
+
+.div-coins div{
+  display: flex;
+  gap: 10px;
+}
+
+
+
+@media (max-width:1300px) {
+  
+  .simulator-header{
+    width: 80%;
+  }
+
+  .simulator-info-title h1{
+    font-size: 40px;
+  }
+  
+  .simulator-info-title p{
+    font-size: 18px;
+  }
+
+  .your-class{
+    max-width: 420px !important;
+    height: auto !important;
+
+
+  }
+
+}
+
+
+
+@media (max-width:1250px) {
+  
+  .simulator-title-buttons{
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 0;
+  }
+
+  .div-coins{
+    padding-bottom: 0.8rem;
+  }
+
+
+  .simulator-title-items{
+    padding-top: 0.5rem;
+  }
+
+  .instructions-container{
+    width: 85%;
+  }
+
+
+}
+
+@media (max-width:1200px) {
+  .separation div p:first-of-type{
+    display: none;
+  }
+
+  .separation div{
+    justify-content: center;
+  }
+
+}
+
+
+
+
+@media (max-width:1100px) {
+  
+  .simulator-header{
+    width: 90%;
+    gap: 40px;
+  }
+
+
+
+
+  .simulator-info-title h1{
+    font-size: 35px;
+  }
+
+
+  
+  .your-class{
+    max-width: 350px !important;
+  }
+
+  .simulator-title-items > div {
+    padding-bottom: 1rem;
+  }
+
+  .simulator-title-item img{
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .instructions-container h2,.description-container h2{
+    font-size: 25px;
+  }
+  
+
+
+
+}
+
+
+@media (max-width:900px) {
+  
+  .simulator-header{
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .simulator-img{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .simulator-info-title{
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .simulator-info-title h1{
+    font-size: 30px;
+  }
+
+  
+  .simulator-title-buttons{
+    flex-direction:row;
+    padding-top: 0;
+  }
+
+
+  .simulator-title-items > div {
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+  }
+
+    .instructions-container{
+    width: 90%;
+  }
+
+  .separation{
+    margin: 3rem 0;
+  }
+
+    .description-container{
+    width: 85%;
+  }
+
+
+
+  
+}
+
+@media (max-width:650px) {
+  
+  
+  .simulator-title-buttons{
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 0;
+  }
+
+  .instructions-container{
+    padding-top: 2.5rem;
+  }
+
+  .instructions-item p{
+    font-size: 16px;
+  }
+
+  .description p{
+    font-size: 17px;
+  }
+
+
+
+
+}
+
+
+@media (max-width:550px) {
+  
+  .simulator-header{
+    margin-top: 7rem;
+  }
+
+  .simulator-img{
+    width: 90%;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .simulator-img img{
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+   .simulator-info-title h1{
+    font-size: 27px;
+  }
+
+    .simulator-title-items > div {
+    padding-bottom: 1rem;
+    padding-top: 0rem;
+  }
+
+  .simulator-info-title > p{
+    font-size: 17px;
+    padding-top: 0.5rem;
+  }
+
+   .instructions-container h2,.description-container h2{
+    font-size: 23px;
+  }
+
+  .instructions{
+    grid-template-columns: repeat(1,1fr);
+    gap: 10px;
+  }
+
+  .separation{
+    height: auto;
+    margin: 2rem 0;
+  }
+
+  .separation div{
+    width: 100%;
+    padding: 1rem;
+    font-size: 16px;
+    /* height: 4rem; */
+  }
+
+  .description-container{
+    width: 90%;
+  }
+
+
+  
 }

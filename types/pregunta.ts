@@ -10,6 +10,7 @@ export type Pregunta = {
   _id: string;
   contenidoHTML: string;
   origen:string;
+  resumen:string;
   examen:string;
   respuestas: Respuesta[];
   simuladores: string[]; 

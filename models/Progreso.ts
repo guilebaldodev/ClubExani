@@ -4,17 +4,19 @@ const ProgresoSchema = new Schema({
 
   userId: { type: Schema.Types.ObjectId, ref: "Usuario", required: true},
   clerkId: { type: String, required: true},
-  simuladorId: { type: Schema.Types.ObjectId, ref: "Simulador", required: true },
+  simulatorId: { type: Schema.Types.ObjectId, ref: "Simulador", required: true },
 
-  preguntasResueltas: [
+  solvedQuestions: [
     {
-      preguntaId: { type: Schema.Types.ObjectId, ref: "Pregunta" },
-      respuestaSeleccionada: Number,
-      fueCorrecta: Boolean
+      questionId: { type: Schema.Types.ObjectId, ref: "Pregunta" },
+      selectedAnswer: Number,
+      wasCorrect: Boolean
     }
   ],
 
-  puntuacion: { type: Number, required: true },
+  score: { type: Number, required: true },
+  totalScore: { type: Number, required: true },
+  time: { type: Number, required: true },
 }, {
   timestamps: true
 });

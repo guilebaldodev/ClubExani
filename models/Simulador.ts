@@ -35,6 +35,7 @@ const SimuladorSchema = new Schema(
       type: Number,
       required: true,
     },
+
     precio: { type: Number, required: true },
     imagen: { type: String, required: true },
     totalPreguntas: { type: Number, default: 0 },

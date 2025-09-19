@@ -1,5 +1,6 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import {connectDB } from "@/app/utils/mongoose"
+  await import("@/models/Simulador");
 
 export async function POST() {
   const { userId } = await auth();
@@ -12,7 +13,11 @@ export async function POST() {
 
   const userClerk = await currentUser()
 
-  let user = await Usuario.findOne({ clerkId:userId });
+  let user = await Usuario.findOne({ clerkId:userId }).populate(
+    {
+      path:"simuladoresCanjeados.simuladorId"}
+  )
+
 
   if (!user) {
     user = await Usuario.create({

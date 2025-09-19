@@ -8,6 +8,8 @@ import styles from "./css/userIcon.module.css"
 
 const UserIcon = () => {
   const { nombre, monedas, email } = useUserStore();
+    const reset = useUserStore((state) => state.resetUser);
+
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const router= useRouter()
@@ -75,6 +77,7 @@ const UserIcon = () => {
           <div
             onClick={() => {
               signOut()
+              reset()
               setIsOpen(false)
             }}
             className={styles["menu-item"]}

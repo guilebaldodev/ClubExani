@@ -14,7 +14,7 @@
 }
 
 
-.simulators-title p{
+.simulators-title p,.login-div p{
     padding-top: 1rem;
     font-size: 18px;
     font-weight: 300;
@@ -84,7 +84,7 @@
   color: #777;
 }
 
-.simulador-card button {
+.simulador-card button,.login-div button {
   background-color: #FFC74F;
   color: white;
   padding: 0.3rem 1rem;
@@ -92,12 +92,22 @@
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  /* margin-top: 0.5rem; */
+  /* margin-bottom: 1rem; */
   margin-left: 1rem;
   margin-right: 1rem;
   font-size: 16px;
   font-family: Poppins, Poppins Fallback;
+}
+
+.simulador-card button:first-of-type{
+  margin-top: 0.2rem;
+}
+
+.second-button{
+    background-color: #FFC74F;
+  background-color: #287CBE !important;
+
 }
 
 .simulador-card button.button-blue{
@@ -109,6 +119,45 @@
   background-color: #E0E0E0 !important;
   cursor:not-allowed;
   color: black;
+}
+
+.login-div{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.login-div button{
+  background-color: #26B67C;
+  font-weight: 400;
+  color: white;
+}
+
+.login-div p{
+  font-weight: 400;
+}
+
+.simulators-div{
+    display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.simulators-div img{
+  margin-bottom: 1rem;
+}
+
+.simulators-div p{
+  font-size: 18px;
+  font-weight: 400;
 }
 
 
@@ -124,7 +173,7 @@
         width: 90%;
     }
 
-    .simulators-title p{
+    .simulators-title p,.simulators-div p,.login-div p{
       font-size: 17px;
     }
 
@@ -144,12 +193,17 @@
     font-size: 25px;
   }
 
-    .simulators-title p{
+    .simulators-title p,.simulators-div p,.login-div p{
       font-size: 16px;
+      padding-top: 0;
     }
 
     .groups h2{
       font-size:25px;
+    }
+
+    .login-div{
+      padding-top: 1rem;
     }
 
 }

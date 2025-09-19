@@ -290,7 +290,7 @@
   margin: 16px;
 }
 
-.diagnostic-button button{
+.diagnostic-button button,.login-div button{
   border: none;
   padding: 0.7rem 2rem;
   color: white;
@@ -432,6 +432,18 @@
   padding: 0.5rem 0;
   justify-content: space-between;
 }
+
+.login-div{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-div p{
+  font-weight: 400;
+}
+
 
 
 @media (max-width:1050px){

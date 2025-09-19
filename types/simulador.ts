@@ -10,12 +10,13 @@ export type Simulador = {
   titulo: string;
   descripcion: string;
   descripcion_corta: string;
-  examen: string;
-  imagen:string;
   tipo: string;
-  tiempo: string;
-  precio: number;
-  totalPreguntas: number;
+  dificultad: string;
   contador: number;
   uso_justo:number;
+  tiempo: string;
+  precio: number;
+  imagen:string;
+  totalPreguntas: number;
+  examen: string;
 };

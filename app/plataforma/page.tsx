@@ -1,13 +1,23 @@
-"use client"
+"use client";
 
+import { useUserStore } from "@/stores/userStore";
 import style from "./curso.module.css";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import { useClerk, useUser } from "@clerk/nextjs";
+import { useDashboardStore } from "@/stores/progessStore";
 
 const CourseHome = () => {
-  const router =useRouter()
+  const router = useRouter();
+
+  const { openSignIn } = useClerk();
+
+  const { nombre } = useUserStore();
+
+  const { isSignedIn } = useUser();
+
+  const statsInfo = useDashboardStore();
+
   return (
     <>
       <div className={style["user-dashboard-container"]}>
@@ -27,7 +37,7 @@ const CourseHome = () => {
 
         <div className={style["user-dashboard-columns"]}>
           <div className={style["user-dashboard-info"]}>
-          <h3>Tu informacion</h3>
+            <h3>Tu informacion</h3>
 
             <div className={style["user-dashboard-section"]}>
               <div className={style["user-dashboards-cards"]}>
@@ -44,113 +54,198 @@ const CourseHome = () => {
                   </div>
 
                   <div className={style["dashboard-card-text"]}>
-                    <h4 className={style["title-card"]}>
-                      ¡Hola de nuevo!
-                    </h4>
-                    <h5>Hoy es 25 de agosto de 2025</h5>
+                    {isSignedIn ? (
+                      <>
+                        <h4 className={style["title-card"]}>
+                          ¡Hola de nuevo {nombre}!
+                        </h4>
+                        <h5>
+                          Hoy es{" "}
+                          {new Intl.DateTimeFormat("es-MX", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          }).format(new Date())}
+                        </h5>
+                        <p>
+                          “El éxito es la suma de pequeños esfuerzos repetidos
+                          cada día.”
+                        </p>
+                        <button
+                          onClick={() =>
+                            router.push("/plataforma/mis-simuladores")
+                          }
+                        >
+                          Empezar un examen
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <h4 className={style["title-card"]}>
+                          ¡Bienvenido a Simulandum!
+                        </h4>
+                        <h5>
+                          Hoy es{" "}
+                          {new Intl.DateTimeFormat("es-MX", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          }).format(new Date())}
+                        </h5>
+                        <p>
+                          Inicia sesión para acceder a tus estadísticas y
+                          aprovechar todas las funciones de la plataforma.
+                        </p>
 
-                    <p>
-                        “El éxito es la suma de pequeños esfuerzos repetidos cada día.”
-                    </p>
-
-                    <button>Empezar un examen</button>
-
+                        <button onClick={() => openSignIn()}>
+                          Iniciar sesion
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
-
-
               </div>
 
               <div className={style["user-dashboard-number"]}>
-
-                  <p>50%</p>
-                  <h4>Tu promedio acumulado</h4>
-                  <div>
-                    <button>Ver historial</button>
-                  </div>
-
+                <p>{isSignedIn ? <>{statsInfo.stats?.average}</> : <>0</>}%</p>
+                <h4>Tu promedio acumulado</h4>
+                <div>
+                  <button onClick={()=>{
+                    router.push("/plataforma/resultados")
+                  }}>Ver historial</button>
+                </div>
               </div>
-
             </div>
 
-              <div className={style["user-dashboard-data"]}>
-              
-                <div>
-                  <h4>25</h4>
-                  <p>Simulaciones</p>
-                </div>
-
-                                <div>
-                  <h4>160</h4>
-                  <p>Horas</p>
-                </div>
-
-                                <div>
-                  <h4>3500</h4>
-                  <p>Aciertos</p>
-                </div>
-
-                                <div>
-                  <h4>4500</h4>
-                  <p>Errores</p>
-                </div>
-
+            <div className={style["user-dashboard-data"]}>
+              <div>
+                <h4>
+                  {isSignedIn ? (
+                    <>{statsInfo.stats?.totalSimulations}</>
+                  ) : (
+                    <>0</>
+                  )}
+                </h4>
+                <p>Simulaciones</p>
+              </div>
+              <div>
+                <h4>
+                  {isSignedIn ? (
+                    <>{Math.floor((statsInfo.stats?.totalTime ?? 0) / 60)}</>
+                  ) : (
+                    <>0</>
+                  )}
+                </h4>
+                <p>Horas</p>
               </div>
 
-
-              <div className={style["user-dashboard-historial"]}>
-                <h3>Ultimas Simulaciones</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Examen</th>
-                      <th className={style["right"]}>Aciertos</th>
-                      <th className={style["right"]}>Duracion</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>
-                        EXANI-III Dianóstico
-                      </td>
-                      <td className={style["right"]}>95/120</td>
-                      <td className={style["right"]}>120 minutos</td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        EXANI-III Dianóstico
-                      </td>
-                      <td className={style["right"]}>95/120</td>
-                      <td className={style["right"]}>120 minutos</td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        EXANI-III Dianóstico
-                      </td>
-                      <td className={style["right"]}>95/120</td>
-                      <td className={style["right"]}>120 minutos</td>
-                    </tr>
-
-
-
-
-                    
-                  </tbody>
-
-                </table>
-
+              <div>
+                <h4>
+                  {isSignedIn ? <>{statsInfo.stats?.totalScore}</> : <>0</>}
+                </h4>
+                <p>Aciertos</p>
               </div>
 
+              <div>
+                <h4>
+                  {isSignedIn ? (
+                    <>
+                      {(statsInfo.stats?.totalPossible ?? 0) -
+                        (statsInfo.stats?.totalScore ?? 0)}
+                    </>
+                  ) : (
+                    <>0</>
+                  )}
+                </h4>
+                <p>Errores</p>
+              </div>
+            </div>
 
+            <div className={style["user-dashboard-historial"]}>
+              <h3>Ultimas Simulaciones</h3>
+
+              {isSignedIn ? (
+                <>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Examen</th>
+                        <th className={style["right"]}>Aciertos</th>
+                        <th className={style["right"]}>Duracion</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {statsInfo.lastProgress.length > 0 ? (
+                        <>
+                          {statsInfo.lastProgress.slice(0, 3).map((sim) => (
+                            <>
+                              <tr>
+                                <td>{sim.simulatorId.nombre}</td>
+                                <td className={style["right"]}>
+                                  {sim.score}/{sim.totalScore}
+                                </td>
+                                <td className={style["right"]}>
+                                  {sim.time} minutos
+                                </td>
+                              </tr>
+                            </>
+                          ))}
+                        </>
+                      ) : (
+                        <>
+                          <tr>
+                            <td>------</td>
+                            <td className={style["right"]}>------</td>
+                            <td className={style["right"]}>-----</td>
+                          </tr>
+
+                          <tr>
+                            <td>------</td>
+                            <td className={style["right"]}>------</td>
+                            <td className={style["right"]}>-----</td>
+                          </tr>
+
+
+                          <tr>
+                            <td>------</td>
+                            <td className={style["right"]}>------</td>
+                            <td className={style["right"]}>-----</td>
+                          </tr>
+                        </>
+                      )}
+                    </tbody>
+                  </table>
+                </>
+              ) : (
+                <>
+                  <div className={style["login-div"]}>
+                    <Image
+                      width={100}
+                      height={100}
+                      src={"/course/login.png"}
+                      alt="login"
+                    ></Image>
+                    <p>
+                      Inicia sesión o regístrate para acceder a tus estadísticas
+                      y aprovechar todas las funciones de la plataforma.
+                    </p>
+                    <button onClick={() => openSignIn()}>
+                      Iniciar sesión / Registrarse
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
 
             <div className={style["dashboard-section"]}>
               <h3>Herramientas</h3>
 
               <div className={style["tools-container"]}>
-                <div onClick={()=>router.push("/plataforma/mis-simuladores")} className={style["tool-card"]}>
+                <div
+                  onClick={() => router.push("/plataforma/mis-simuladores")}
+                  className={style["tool-card"]}
+                >
                   <div className={style["tool-container"]}>
                     <div
                       className={`${style["tool-img"]} ${style["circle-div"]}`}
@@ -176,7 +271,10 @@ const CourseHome = () => {
                   </div>
                 </div>
 
-                <div onClick={()=>router.push("/plataforma/resultados")} className={style["tool-card"]}>
+                <div
+                  onClick={() => router.push("/plataforma/resultados")}
+                  className={style["tool-card"]}
+                >
                   <div className={style["tool-container"]}>
                     <div
                       className={`${style["tool-img"]} ${style["circle-div"]}`}
@@ -202,7 +300,10 @@ const CourseHome = () => {
                   </div>
                 </div>
 
-                <div onClick={()=>router.push("/plataforma/monedas")} className={style["tool-card"]}>
+                <div
+                  onClick={() => router.push("/plataforma/monedas")}
+                  className={style["tool-card"]}
+                >
                   <div className={style["tool-container"]}>
                     <div
                       className={`${style["tool-img"]} ${style["circle-div"]}`}

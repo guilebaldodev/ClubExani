@@ -13,6 +13,7 @@ const Header = () => {
 
   const {monedas} =useUserStore()
 
+
   return (
     <>
       {menu && (
@@ -91,6 +92,7 @@ const Header = () => {
               </Link>
             </nav>
             <div className={styles["user-info"]}>
+              
               <div className={styles["div-coins"]}>
                 <Image
                   src={"/layout/yellow-coins.png"}

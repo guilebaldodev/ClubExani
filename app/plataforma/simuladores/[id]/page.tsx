@@ -10,11 +10,14 @@ import ConfirmModal from "@/app/ui/shared/ConfirmModal";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/stores/userStore";
 
 export default function Page() {
   const { id } = useParams<{ id: string }>();
   const { user } = useUser();
   const [modal, setModal] = useState(false);
+
+  const { simuladoresCanjeados } = useUserStore();
 
   const [simulador, setSimulador] = useState<Simulador | null>(null);
   useEffect(() => {
@@ -23,13 +26,12 @@ export default function Page() {
       .then((data) => setSimulador(data));
   }, [id]);
 
-  if (!simulador) return <p>Cargando...</p>;
+  const router = useRouter();
 
-  const router= useRouter()
+  if (!simulador) return <p>Cargando...</p>;
 
   return (
     <>
-
       {/* <BuySimulatorModal simulator={simulador} closeModal={()=>{
 
   }}></BuySimulatorModal> */}
@@ -50,14 +52,23 @@ export default function Page() {
             <div className={style["simulator-title-items"]}>
               <div>
                 <div className={style["simulator-title-item"]}>
-                  <img src="/landing/simulatorTime.svg" alt="sss" />
-                  <p>120 preguntas</p>
+                  <Image
+                    src={"/course/question-black.png"}
+                    width={30}
+                    height={30}
+                    alt={"icono de preguntas"}
+                  ></Image>
+                  <p>{simulador.totalPreguntas} Preguntas</p>
                 </div>
-
                 <div
                   className={`${style["simulator-title-item"]} ${style["title-item-p"]}`}
                 >
-                  <img src="/landing/simulatorTime.svg" alt="sss" />
+                  <Image
+                    src={"/landing/simulatorTime.svg"}
+                    width={30}
+                    height={30}
+                    alt={"icono de preguntas"}
+                  ></Image>
                   <p>{formatExamDuration(parseInt(simulador.tiempo))}</p>
                 </div>
               </div>
@@ -66,41 +77,59 @@ export default function Page() {
             <div className={style["simulator-title-buttons"]}>
               <button
                 onClick={() => {
-
                   if (!user) {
                     toast.error(
                       "Debes iniciar sesión para usar este simulador"
                     );
                     return;
                   }
-                  if(simulador.tipo==="Diagnostico"){
-                    console.log("Diagnostico")
-                    router.push(`/usuario/simulador/${simulador._id}`)
-                    return
+
+                  if(simuladoresCanjeados.find(item=>item.simuladorId._id == id && item.uso_justo>0)){
+                    router.push(`/plataforma/simular/${id}`)
+                  }else{
+                    setModal(true);
                   }
 
-
-                  setModal(true);
                 }}
               >
+
+                {
+                  simuladoresCanjeados.find(item=>item.simuladorId._id == id && item.uso_justo>0)?
+                  <>
+                    <p>Simular</p>
+                  </>
+                  :
+                  <>
+
                 {simulador.tipo == "Diagnostico" ? (
                   <>
-                    <p>Simular gratis</p>
+                    <p>Obtener Gratis</p>
                   </>
                 ) : (
                   <>
                     <p>Comprar por {simulador.precio}</p>
-                    <img
+     
+                    <Image
                       src="/landing/landing-white-coins.png"
                       alt="simbolo de monedas"
-                    />
+                      width={30}
+                      height={30}
+                    ></Image>
                   </>
                 )}
+
+                  </>
+                }
+
+
               </button>
 
-              <button onClick={()=>{
-                router.push("/creditos")
-              }} className={style["yellow"]}>
+              <button
+                onClick={() => {
+                  router.push("/plataforma/monedas");
+                }}
+                className={style["yellow"]}
+              >
                 <p>Comprar monedas</p>
               </button>
             </div>

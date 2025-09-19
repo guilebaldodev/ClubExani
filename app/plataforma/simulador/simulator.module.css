@@ -142,6 +142,8 @@
     cursor: pointer;
 }
 
+
+
 .simulator-buttons button img{
     width: 23px;
     padding: 0 3px;
@@ -155,6 +157,8 @@
 .simulator-answer-option{
     height: 25px;
     width: 25px;
+    min-height: 25px;
+    min-width: 25px;
     border:1px solid #256AB9;
     color: #256AB9;
     display: flex;
@@ -169,13 +173,13 @@
 .simulator-answers .red {
     border: 1px solid #cc183a;
     color: #cc183a;
-    background-color: #FCF5F5;
+    /* background-color: #FCF5F5; */
 }
 
 .simulator-answers .green{
     border: 1px solid #73b438;
     color:#73b438 ;
-    background-color: #f2faea;
+    /* background-color: #f2faea; */
 }
 
 .simulator-answers .red .simulator-answer-option{
@@ -188,13 +192,19 @@
     color: #73b438;
 }
 
-
-
-
 .simulator-answer .selected{
     background-color:  #256AB9;
     color: white; 
+}
 
+.simulator-explanation{
+    padding: 0.75rem;
+    display: flex;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    align-items: center;
+    box-shadow: 0 2px 4px #2b2b2b1a;
 }
 
 

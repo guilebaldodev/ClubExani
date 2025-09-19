@@ -3,6 +3,7 @@ import { EXAMENES, OrigenOptions } from "@/consts/options";
 
 export const preguntaSchema = z.object({
   contenidoHTML: z.string().min(1, "La pregunta es obligatoria"),
+  resumen: z.string().min(1, "El resumen es obligatorio"),
   origen: z.enum(
       OrigenOptions.map((op) => op.value) as [string, ...string[]],
       { required_error: "El tipo es requerido" }

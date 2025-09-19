@@ -35,7 +35,7 @@ const LandingPage = () => {
                 preguntas diseñadas para evaluar lo que realmente importa.
               </p>
               <div className={styles["landing-hero-buttons"]}>
-                <Link href={"/dashboard"} className={styles["primary"]}>
+                <Link href={"/plataforma"} className={styles["primary"]}>
                   Empezar
                   <Image
                     src={"/landing/start-arrow.png"}

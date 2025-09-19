@@ -33,6 +33,7 @@ const AddQuestion = () => {
       resolver: zodResolver(preguntaSchema),
       defaultValues: {
         contenidoHTML: "",
+        resumen: "",
         examen: examenOptions[0].value,
         area: "",
         origen: OrigenOptions[0].value,
@@ -78,9 +79,7 @@ const AddQuestion = () => {
       const respuestasFiltradas = requiere4
         ? data.respuestas
         : data.respuestas.slice(0, 3);
-
       const cleanText = (html: string) => html.trim();
-
       const payload = {
         ...data,
         contenidoHTML: cleanText(data.contenidoHTML),
@@ -90,10 +89,6 @@ const AddQuestion = () => {
           esCorrecta: r.esCorrecta,
         })),
       };
-
-      console.log(payload,"paaaayload")
-
-
 
       const res = await fetch("/api/preguntas", {
         method: "POST",
@@ -116,8 +111,6 @@ const AddQuestion = () => {
           { html: "", explicacion: "", esCorrecta: false },
         ],
       });
-
-      console.log(result);
 
       toast.success("Pregunta generada correctamente");
     } catch (error) {
@@ -163,7 +156,10 @@ const AddQuestion = () => {
                         `respuestas.${i}.html` as any,
                         template.empty.answerHTML
                       );
-                      setValue(`respuestas.${i}.explicacion` as any, "");
+                      setValue(
+                        `respuestas.${i}.explicacion` as any,
+                        template.empty.explanationHTML
+                      );
                     }
                   }
                 }
@@ -201,10 +197,18 @@ const AddQuestion = () => {
                         ? form.respuestas
                         : form.respuestas.slice(0, 3);
 
+                      const respuestasConFlag = respuestasFiltradas.map(
+                        (r, i) => ({
+                          ...r,
+                          esCorrecta: String(i) === form.respuestaCorrecta, // marca true solo en la correcta
+                        })
+                      );
+
                       const formData = {
                         ...form,
-                        respuestas: respuestasFiltradas,
+                        respuestas: respuestasConFlag,
                       };
+
 
                       localStorage.setItem(
                         "preview-question",
@@ -247,6 +251,23 @@ const AddQuestion = () => {
                   <textarea
                     rows={10}
                     {...register("contenidoHTML")}
+                    placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
+                    style={{
+                      width: "100%",
+                      padding: "1rem",
+                      fontFamily: "monospace",
+                      fontSize: "14px",
+                      border: "1px solid #ccc",
+                      borderRadius: "6px",
+                      backgroundColor: "#f9f9f9",
+                    }}
+                  />
+                </div>
+                <div className={styles.input_duo}>
+                  <label htmlFor="contenidoHTML">Resumen de la pregunta</label>
+                  <textarea
+                    rows={1}
+                    {...register("resumen")}
                     placeholder={`<p>¿Cuál es el valor de x?</p>\n<img src="/uploads/x.png" />`}
                     style={{
                       width: "100%",
@@ -396,141 +417,10 @@ const AddQuestion = () => {
                 </div>
 
                 <div className={styles.form_buttons}>
-                  {/* <button className={styles.red_button}>Cancelar</button> */}
                   <button type="submit">Crear</button>
                 </div>
               </div>
             </>
-
-            {/* <>
-                <div className={styles.right_form}>
-                  <div className={styles.right_form_titles}>
-                    <h3>Respuestas</h3>
-                    <p>Añade uno a uno las respuestas correspondientes</p>
-                  </div>
-                  <div className={styles.form_img_answer}>
-                    <h4>Respuesta 1</h4>
-
-                    <div className={styles.upload}>
-                      <div className={styles.upload_file}>
-                        <Image
-                          src={"/admin/upload-icon.png"}
-                          alt=""
-                          width={40}
-                          height={40}
-                        />
-                        <span>Click aqui para subir una imagen</span>
-                      </div>
-
-                      <div className={styles.upload_items}>
-                        <div className={styles.upload_item}>
-                          <div className={styles.upload_info}>
-                            <Image
-                              src={"/products/bulls/product-3.webp"}
-                              height={36}
-                              width={36}
-                              alt=""
-                            />
-                            <div className={styles.upload_info_texts}>
-                              <p className={styles.grey}>imagen.png</p>
-                              <p>97.KB</p>
-                            </div>
-                          </div>
-                          <Image
-                            src={"/admin/x.png"}
-                            height={15}
-                            width={15}
-                            alt="x"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.form_img_answer}>
-                    <h4>Respuesta 2</h4>
-
-                    <div className={styles.upload}>
-                      <div className={styles.upload_file}>
-                        <Image
-                          src={"/admin/upload-icon.png"}
-                          alt=""
-                          width={40}
-                          height={40}
-                        />
-                        <span>Click aqui para subir una imagen</span>
-                      </div>
-
-                      <div className={styles.upload_items}>
-                        <div className={styles.upload_item}>
-                          <div className={styles.upload_info}>
-                            <Image
-                              src={"/products/bulls/product-3.webp"}
-                              height={36}
-                              width={36}
-                              alt=""
-                            />
-                            <div className={styles.upload_info_texts}>
-                              <p className={styles.grey}>imagen.png</p>
-                              <p>97.KB</p>
-                            </div>
-                          </div>
-                          <Image
-                            src={"/admin/x.png"}
-                            height={15}
-                            width={15}
-                            alt="x"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.form_img_answer}>
-                    <h4>Respuesta 3</h4>
-
-                    <div className={styles.upload}>
-                      <div className={styles.upload_file}>
-                        <Image
-                          src={"/admin/upload-icon.png"}
-                          alt=""
-                          width={40}
-                          height={40}
-                        />
-                        <span>Click aqui para subir una imagen</span>
-                      </div>
-
-                      <div className={styles.upload_items}>
-                        <div className={styles.upload_item}>
-                          <div className={styles.upload_info}>
-                            <Image
-                              src={"/products/bulls/product-3.webp"}
-                              height={36}
-                              width={36}
-                              alt=""
-                            />
-                            <div className={styles.upload_info_texts}>
-                              <p className={styles.grey}>imagen.png</p>
-                              <p>97.KB</p>
-                            </div>
-                          </div>
-                          <Image
-                            src={"/admin/x.png"}
-                            height={15}
-                            width={15}
-                            alt="x"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.form_buttons}>
-                    <button className={styles.red_button}>Cancelar</button>
-                    <button>Crear</button>
-                  </div>
-                </div>
-              </> */}
           </div>
         </form>
       </div>
