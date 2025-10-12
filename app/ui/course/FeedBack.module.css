@@ -1,0 +1,23 @@
+.loading-exam p,.complete-exam p{
+  margin-top: 2rem;
+  font-size: 1.15rem; 
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgb(27, 27, 27);
+}
+
+.complete-exam{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.complete-exam .json-container{
+    max-width: 350px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+

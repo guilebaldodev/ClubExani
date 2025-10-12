@@ -7,11 +7,14 @@ import CourseMobileMenu from "./CourseMobileNavbar";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { useUserStore } from "@/stores/userStore";
 import UserIcon from "../shared/UserIcon";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
-
+  const pathname = usePathname()
   const {monedas} =useUserStore()
+
+  if (pathname?.includes("/plataforma/simular/")) return null;
 
 
   return (

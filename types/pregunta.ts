@@ -1,7 +1,6 @@
 
 export type Respuesta = {
-  texto?: string;
-  imagen?: string;
+  html: string;
   esCorrecta: boolean;
   explicacion?: string;
 };

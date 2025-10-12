@@ -7,6 +7,7 @@ import { simulators } from "@/consts/simulators";
 import { useUser, useClerk } from "@clerk/nextjs";
 import Image from "next/image";
 import { useUserStore } from "@/stores/userStore";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const router = useRouter();
@@ -60,7 +61,14 @@ const Page = () => {
                           </p>
                         </div>
                         <button
+                          className={`${sim.uso_justo>0?"":styles["grey-button"]}`}
                           onClick={() => {
+
+                            if(sim.uso_justo<=0){
+                              toast.warn("Vuelve a comprar este simulador para tener mas intentos")
+                              return;
+                            }
+
                             router.push(
                               `/plataforma/simular/${sim.simuladorId._id}`
                             );

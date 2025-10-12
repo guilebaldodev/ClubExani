@@ -9,14 +9,11 @@ export default function InitUser() {
   const setUser = useUserStore((state) => state.setUser);
 
   useEffect(() => {
-    console.log("monto");
     const init = async () => {
       if (isSignedIn) {
         const res = await fetch("/api/usuario/init", { method: "POST" });
         const data = await res.json();
-
-        console.log("Hola", data);
-
+        
         setUser({
           clerkId: data.clerkId,
           email: data.email,

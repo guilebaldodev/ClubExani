@@ -85,7 +85,7 @@
   display: flex;
 }
 
-.simulator-title-buttons button {
+.simulator-title-buttons button, .simulator-buttons-actions button{
   cursor: pointer;
   color: #fff;
   height: 3rem;
@@ -101,6 +101,11 @@
   padding: 0 2rem;
   background-color: #FFC74F;
 }
+
+.simulator-buttons{
+  width: 70%;
+}
+
 
 .simulator-title-buttons button img {
   margin-left: 10px;

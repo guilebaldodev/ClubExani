@@ -17,11 +17,20 @@ export type UsuarioStore = {
   rol: string;
   monedas: number;
   simuladoresCanjeados: SimuladorCanjeado[];
-  setUser: (user: Omit<UsuarioStore, "setUser" | "addSimuladorCanjeado" | "updateMonedas" | "resetUser">) => void;
+  setUser: (
+    user: Omit<
+      UsuarioStore,
+      | "setUser"
+      | "addSimuladorCanjeado"
+      | "updateMonedas"
+      | "updateUsoJusto"
+      | "resetUser"
+    >
+  ) => void;
   addSimuladorCanjeado: (sim: SimuladorCanjeado) => void;
   updateMonedas: (monedas: number) => void;
-    resetUser: () => void;
-
+  updateUsoJusto: (id: string, nuevoUso: number) => void;
+  resetUser: () => void;
 };
 
 export const useUserStore = create<UsuarioStore>((set) => ({
@@ -39,6 +48,12 @@ export const useUserStore = create<UsuarioStore>((set) => ({
       simuladoresCanjeados: [...state.simuladoresCanjeados, sim],
     })),
   updateMonedas: (monedas) => set(() => ({ monedas })),
+  updateUsoJusto: (id, nuevoUso) =>
+    set((state) => ({
+      simuladoresCanjeados: state.simuladoresCanjeados.map((s) =>
+        s.simuladorId._id === id ? { ...s, uso_justo: nuevoUso } : s
+      ),
+    })),
   resetUser: () =>
     set({
       clerkId: "",

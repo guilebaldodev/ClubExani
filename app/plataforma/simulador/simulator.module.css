@@ -1,3 +1,7 @@
+.white-background{
+    background-color: white;
+}
+
 .simulator-container{
     padding-bottom: 2rem;
     position: relative;
@@ -8,6 +12,33 @@
     width: 70%;
     margin: auto;
 }
+
+.header{
+}
+
+.header-titles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding-top: 1.5rem;
+    margin: auto;
+}
+
+.header-titles h3{
+    font-size: 30px;
+}
+
+.header-titles h3 span{
+    color: #0056D2;
+}
+
+.progress-bar{
+    width: 70%;
+    margin: auto;
+    padding-top: 1rem;
+}
+
 
 
 .simulator-header{
@@ -98,9 +129,19 @@
     padding-bottom: 1rem;
     font-size: 17px;
     align-items: center;
+    font-weight: 600;
 }
 
-.simulator-info button,.simulator-buttons button{
+
+.simulator-info div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+.simulator-info button,.simulator-buttons button,.simulator-buttons-actions button{
 
     border: none;
     padding: 0.6rem 1.4rem;
@@ -116,6 +157,31 @@
     background-color: white;
     color: #0056D2;
     cursor: pointer;
+}
+
+.simulator-buttons-actions{
+    width: 70%;
+    margin: auto;
+    justify-content: space-between;
+    display: flex;
+    padding-top: 2rem;
+}
+
+
+.simulator-buttons-actions button{
+    background-color: #0056D2;
+    color: white;
+}
+
+.simulator-buttons-actions div{
+    display: flex;
+    gap: 10px;
+}
+
+.simulator-buttons-actions button:disabled{
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    cursor:auto;
 }
 
 
@@ -192,10 +258,19 @@
     color: #73b438;
 }
 
-.simulator-answer .selected{
-    background-color:  #256AB9;
-    color: white; 
+.simulator-answer.selected{
+    background-color:  #f0f0f0;
 }
+
+.simulator-answer.selected .simulator-answer-option{
+    background-color: #0056D2;
+    color: white;
+}
+
+.simulator-answer.selected .simulator-answer-content{
+    color: black;
+}
+
 
 .simulator-explanation{
     padding: 0.75rem;
@@ -228,9 +303,18 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
     z-index: 1000;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-
 }
 
+.overlay-loader{
+  position: fixed;
+  inset: 0; 
+  z-index: 50; 
+  background-color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 .simulator-content-img{
     display: flex;
@@ -245,4 +329,6 @@
 .simulator-answer-content img{
     width: 200px;
 }
+
+
 
