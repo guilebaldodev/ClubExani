@@ -480,8 +480,274 @@ main {
   color: black;
 }
 
+/* results */
+
+.results-container{
+    width: 65%;
+    margin: 7rem auto;
+    display: flex;
+    gap: 30px;
+  }
+
+  .results-left{
+    max-width: 290px;
+    box-shadow: 0 2px 6px #00000014;
+    height: max-content;
+  }
 
 
+  .result-left-header{
+    padding: 2rem;
+    background-color: #287CBE;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .progress-bar{
+    width: 80%;
+    margin: auto;
+  }
+
+  .result-left-header h3{
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    font-size: 1.3rem;
+  }
+
+  .result-left-footer{
+    padding: 2rem;
+    font-weight: 600;
+  }
+
+  .result-left-footer p{
+    padding-bottom: 1rem;
+  }
+
+  .shared-icons{
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .shared-icon{
+    padding: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 100%;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  
+.results-right{
+    width: 70%;
+    padding: 2rem;
+  border-radius: 5px;
+  /* border: 1px solid #e9e9e9; */
+  height:max-content;
+  border: 1px solid #e5e7eb;
+}
+
+.results-right h3{
+  padding-top: 1rem;
+}
+
+.results-right p{
+  padding: 1rem 0;
+}
+
+
+.results-header {
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.results-header-title {
+  display: flex;
+  gap: 15px;
+  /* border-top: 1px solid #dddddd; */
+}
+
+.results-header-title h3 {
+  font-size: 1.2rem;
+}
+
+.results-header-texts p {
+  color: #767d88;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.results-header-right {
+  text-align: center;
+}
+
+.results-header-right p {
+  color: #767d88;
+}
+
+
+.circle {
+  height: 50px;
+  width: 50px;
+}
+
+.circle img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.results-container-info {
+  padding-top: 1rem;
+  display: flex;
+  padding-bottom: 1rem;
+}
+
+
+.results-data-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+
+.results-data-info div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.results-data-info div img {
+  width: 25px;
+}
+
+
+.results-question-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  width: 100%;
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.question-square {
+  width: 50px;
+  height: 45px;
+  padding: 5px;
+  background-color: #e9e9e9b2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 15px;
+  position: relative;
+}
+
+.question-square-result {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-square-result.green{
+  background-color:#14B88A;
+}
+
+.question-square-result.green img{
+  width: 13px;
+}
+.question-square-result.red{
+  background-color: #F43B29;
+}
+
+.question-square-result.red img,.question-square-result.grey img {
+  width: 13px;
+}
+
+.question-square-result.grey{
+  background-color: #DCDCDC;
+}
+
+.result-squares .square,.question-item-icons div .square{
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+}
+
+.result-squares div .square.green,.question-item-icons div .square.green{
+  background-color:#14B88A;
+}
+
+.result-squares div .square.red, .question-item-icons div .square.red{
+  background-color: #F43B29;
+}
+
+.result-squares div .square.grey, .question-item-icons div .square.grey{
+  background-color: #bdbdbd;
+}
+
+
+
+.result-squares{
+  display: flex;
+  gap: 15px;
+  padding-top: 1.5rem;
+}
+
+.result-squares div{
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+
+.results-buttons{
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+
+.results-buttons a{
+  color: #fff;
+    cursor: pointer;
+    background-color: #287cbe;
+    border: none;
+    border-radius: 6px;
+    width: max-content;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.report-p{
+  padding-top: 2rem !important;
+}
+
+.results-buttons a.border{
+    color: #287cbe;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #287cbe;
+}
 
 
 

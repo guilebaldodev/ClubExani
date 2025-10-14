@@ -1,8 +1,7 @@
 "use client";
 
-import loadingExam from "@/public/animations/loading.json"
-import completeExam from "@/public/animations/loading3.json"
-
+import loadingExam from "@/public/animations/loading.json";
+import completeExam from "@/public/animations/loading3.json";
 
 import { useUserStore } from "@/stores/userStore";
 import { useParams, useRouter } from "next/navigation";
@@ -37,9 +36,11 @@ const Page = () => {
     setSimulator,
     selectAnswer,
     nextQuestion,
-    prevQuestion,
+    score,
+    totalScore,
     tick,
     solvedQuestions,
+    normalizeSolvedQuestions
   } = useSimulatorStore();
 
   const [data, setData] = useState<StartSimulatorResponse | null>(null);
@@ -92,7 +93,6 @@ const Page = () => {
 
       setSimulator(json.simulator, json.questions);
 
-      console.log("--------------------", simulator, questions);
 
       setLoading(false);
     };
@@ -100,9 +100,9 @@ const Page = () => {
     fetchData();
   }, [id]);
 
-useEffect(() => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}, [currentIndex]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentIndex]);
 
   useEffect(() => {
     console.log("Nuevo data:", data);
@@ -125,19 +125,17 @@ useEffect(() => {
     const interval = setInterval(() => {
       tick();
 
-    if (complete) clearInterval(interval);
-
-
+      if (complete) clearInterval(interval);
     }, 1000);
     return () => clearInterval(interval);
-  }, [simulator, tick,complete]);
+  }, [simulator, tick, complete]);
 
-useEffect(() => {
-  if (!simulator) return;
-  if (timeLeft === 0 && !complete) {
-    handleFinishExam();
-  }
-}, [simulator, timeLeft,complete]);
+  useEffect(() => {
+    if (!simulator) return;
+    if (timeLeft === 0 && !complete) {
+      handleFinishExam();
+    }
+  }, [simulator, timeLeft, complete]);
 
   // utils
   const solved = solvedQuestions.find(
@@ -161,17 +159,39 @@ useEffect(() => {
     return false;
   };
 
-  const handleFinishExam = () =>{
-    setComplete(true)
-
-  // setInterval(() => {
-  //   tick();
-  // }, 2000);
-
-  console.log("Hola!")
 
 
+
+  const handleFinishExam = async() => {
+
+    setComplete(true);
+
+  try {
+    const response = await fetch("/api/progreso", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        simulatorId: simulator?._id,
+        solvedQuestions:normalizeSolvedQuestions(),
+        score,
+        totalScore,
+        time: timeLeft,
+      }),
+    });
+
+    if (!response.ok) toast.error("Error al guardar progreso en reportes");
+
+    console.log(response,"------------")
+    
+    setTimeout(() => {
+      router.push(`/plataforma/resultados-preliminares`);
+    }, 2000);
+    
+    if (!response.ok) throw new Error("Error al guardar progreso");
+  }catch(error){
+    console.log(error)
   }
+}
 
   if (loading) {
     return (
@@ -187,20 +207,23 @@ useEffect(() => {
     );
   }
 
-    if (complete) {
+  if (complete) {
     return (
       <>
         <div className={styles["overlay-loader"]}>
           <FeedbackView
             animation={completeExam}
-            message={timeLeft > 0 ?"Simulador finalizado. Procesando tus respuestas con cuidado para mostrarte tus resultados.":"El tiempo ha terminado. Estamos guardando tus respuestas y generando tu reporte…"}
+            message={
+              timeLeft > 0
+                ? "Simulador finalizado. Procesando tus respuestas con cuidado para mostrarte tus resultados."
+                : "El tiempo ha terminado. Estamos guardando tus respuestas y generando tu reporte…"
+            }
             className="complete-exam"
           ></FeedbackView>
         </div>
       </>
     );
   }
-
 
   return (
     <>

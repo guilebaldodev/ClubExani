@@ -20,6 +20,7 @@ interface SimulatorState {
   selectAnswer: (questionId: string, answerIndex: number, wasCorrect: boolean) => void;
   nextQuestion: () => void;
   prevQuestion: () => void;
+  normalizeSolvedQuestions: () => SolvedQuestion[];
   tick: () => void;
   formatTime: () => string;
   reset: () => void;
@@ -102,6 +103,24 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => ({
       set({ timeLeft: timeLeft - 1 });
     }
   },
+
+normalizeSolvedQuestions: () => {
+  const state = get();
+  return state.questions.map((q) => {
+    const solved = state.solvedQuestions.find((s) => s.questionId === q._id);
+
+    if (solved) {
+      return solved;
+    } else {
+      return {
+        questionId: q._id,
+        selectedAnswer: -1,
+        wasCorrect: false,
+      };
+    }
+  });
+},
+
 
   formatTime: () => {
     const { timeLeft } = get();
