@@ -44,6 +44,8 @@ const Page = () => {
 
 
 useEffect(() => {
+  if (typeof window === "undefined") return; // ← Evita ejecución en SSR
+
   const handlePopState = (e: PopStateEvent) => {
     e.preventDefault();
     window.history.pushState(null, "", window.location.href);
