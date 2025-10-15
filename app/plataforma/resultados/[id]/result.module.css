@@ -19,7 +19,7 @@
 .results-header {
   border-bottom: 1px solid #dddddd;
   display: flex;
-
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
   margin-top: 2.5rem;
@@ -243,6 +243,66 @@
 }
 
 
+@media (width <= 600px) {
+
+    .results-header {
+        flex-direction: column;
+        gap: 0;
+}
+
+    .results-container{
+        padding-top: 2rem;
+    }
+
+  
+    .results-data-info{
+        flex-direction: column;
+        width: 100%;
+        gap: 0px;
+        padding-bottom: 0.5rem;
+    }
+
+    .results-container-info{
+        padding-bottom: 0rem;
+    }
+
+
+    .results-data-info div{
+        width: 100%;
+    }
+
+    .results-data-info div p{
+        padding: 0.3rem;
+    }
+
+    .results-header-title{
+        width: 100%;
+    }
+
+
+.results-header-right{
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}
+
+.results-header-texts{
+  display: flex;
+  align-items: center;
+}
+
+.results-header-texts p{
+     padding-bottom: 0;
+     display: none;
+}
+
+    
+}
+
+
+
 @media (width <= 570px) {
 
     .container{
@@ -284,12 +344,21 @@
       align-items: flex-start;
       padding-bottom: 0.5rem;
     }
+}
 
-  
+@media (width <= 550px) {
 
-    .results-header-right{
-      /* width: 100%; */
-      /* justify-content: flex-end; */
-    }
+  .results-header-title h3{
+    font-size: 19px;
+  }
 
+  .results-header-right h3{
+    font-size: 18px;
+  }
+
+  .results-title p{
+    font-size: 16px;
+  }
+
+ 
 }

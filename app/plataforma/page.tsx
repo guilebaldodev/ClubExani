@@ -107,7 +107,7 @@ const CourseHome = () => {
               </div>
 
               <div className={style["user-dashboard-number"]}>
-                <p>{isSignedIn ? <>{statsInfo.stats?.average}</> : <>0</>}%</p>
+                <p>{isSignedIn ? <>{statsInfo.stats?.average.toFixed(0)}</> : <>0</>}%</p>
                 <h4>Tu promedio acumulado</h4>
                 <div>
                   <button onClick={()=>{
@@ -131,7 +131,13 @@ const CourseHome = () => {
               <div>
                 <h4>
                   {isSignedIn ? (
-                    <>{Math.floor((statsInfo.stats?.totalTime ?? 0) / 60)}</>
+                    
+<>
+  {((statsInfo.stats?.totalTime ?? 0) / 3600) === 0
+    ? 0
+    : ((statsInfo.stats?.totalTime ?? 0) / 3600).toFixed(1)}
+</>
+                    
                   ) : (
                     <>0</>
                   )}
@@ -181,12 +187,14 @@ const CourseHome = () => {
                           {statsInfo.lastProgress.slice(0, 3).map((sim) => (
                             <>
                               <tr>
-                                <td>{sim.simulatorId.nombre}</td>
+                                <td>{sim.simulatorId.titulo}</td>
                                 <td className={style["right"]}>
                                   {sim.score}/{sim.totalScore}
                                 </td>
                                 <td className={style["right"]}>
-                                  {sim.time} minutos
+                                  
+                                  {Math.round(sim.time / 60)} minutos
+
                                 </td>
                               </tr>
                             </>

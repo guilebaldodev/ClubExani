@@ -16,6 +16,7 @@ interface SimulatorState {
   score: number;
   totalScore: number;
   timeLeft: number;
+  totalTime: number;
   setSimulator: (sim: Simulador, qs: Pregunta[]) => void;
   selectAnswer: (questionId: string, answerIndex: number, wasCorrect: boolean) => void;
   nextQuestion: () => void;
@@ -34,6 +35,7 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => ({
   score: 0,
   totalScore: 0,
   timeLeft: 0,
+  totalTime: 0,
 
   setSimulator: (sim, qs) =>
     set({
@@ -44,6 +46,7 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => ({
       score: 0,
       totalScore: qs.length,
       timeLeft: (sim.tiempo || 0) * 60,
+      totalTime: (sim.tiempo || 0) * 60,
     }),
 
   selectAnswer: (questionId, answerIndex, wasCorrect) =>

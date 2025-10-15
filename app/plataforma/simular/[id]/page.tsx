@@ -23,7 +23,7 @@ interface StartSimulatorResponse {
   simulator: SimuladorType;
   questions: PreguntaType[];
   totalQuestions: number;
-  user: Usuarios;
+  user: Usuarios; 
 }
 
 const Page = () => {
@@ -40,7 +40,8 @@ const Page = () => {
     totalScore,
     tick,
     solvedQuestions,
-    normalizeSolvedQuestions
+    normalizeSolvedQuestions,
+    totalTime
   } = useSimulatorStore();
 
   const [data, setData] = useState<StartSimulatorResponse | null>(null);
@@ -175,7 +176,7 @@ const Page = () => {
         solvedQuestions:normalizeSolvedQuestions(),
         score,
         totalScore,
-        time: timeLeft,
+        time: totalTime - timeLeft,
       }),
     });
 

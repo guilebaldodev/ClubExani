@@ -14,13 +14,13 @@ export async function GET() {
 
   try {
     const statsAgg = await Progreso.aggregate([
-      { $match: { clerkId: userId } }, // usa clerkId, no userId de ObjectId
+      { $match: { clerkId: userId } }, 
       {
         $group: {
           _id: null,
           totalSimulations: { $sum: 1 },
           totalScore: { $sum: "$score" },
-          totalPossible: { $sum: "$scoreTotal" },
+          totalPossible: { $sum: "$totalScore" },
           totalTime: { $sum: "$time" },
         },
       },
@@ -44,8 +44,8 @@ export async function GET() {
     const lastProgress = await Progreso.find({ clerkId: userId })
       .sort({ createdAt: -1 })
       .limit(5)
-      .populate("simulatorId", "nombre imagen _id")
-      .select("_id simulatorId score totalScore");
+      .populate("simulatorId", "titulo imagen _id ")
+      .select("_id simulatorId score totalScore time");
 
     return NextResponse.json({ stats, lastProgress });
   } catch (err) {

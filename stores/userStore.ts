@@ -43,10 +43,23 @@ export const useUserStore = create<UsuarioStore>((set) => ({
   monedas: 0,
   simuladoresCanjeados: [],
   setUser: (user) => set(user),
-  addSimuladorCanjeado: (sim) =>
-    set((state) => ({
-      simuladoresCanjeados: [...state.simuladoresCanjeados, sim],
-    })),
+
+addSimuladorCanjeado: (sim) =>
+  set((state) => {
+    const index = state.simuladoresCanjeados.findIndex(
+      (s) => s.simuladorId._id === sim.simuladorId._id
+    );
+
+    if (index !== -1) {
+      const updated = [...state.simuladoresCanjeados];
+      updated[index] = { ...updated[index], uso_justo: sim.uso_justo, fecha: sim.fecha };
+      return { ...state, simuladoresCanjeados: updated };
+    } else {
+      return { ...state, simuladoresCanjeados: [...state.simuladoresCanjeados, sim] };
+    }
+  }),
+
+
   updateMonedas: (monedas) => set(() => ({ monedas })),
   updateUsoJusto: (id, nuevoUso) =>
     set((state) => ({
