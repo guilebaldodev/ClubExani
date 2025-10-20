@@ -399,9 +399,47 @@ main {
   color: black;
 }
 
+.error-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 10px;
+}
 
+.error-container img{
+  width: 250px !important;
+  height: 250px !important;
+}
 
+.error-container h2{
+  text-align: center;
+}
 
+.texts{
+  text-align: center;
+  width: 80%;
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 750px) {
+
+  .error-container img{
+
+  width: 200px !important;
+  height: 200px !important;
+
+  }
+
+  .error-container h2{
+    font-size: 20px;
+  }
+
+}
 
 
 /* CSS simulator */
@@ -475,6 +513,8 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+
 
 
 

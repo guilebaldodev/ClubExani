@@ -12,7 +12,6 @@ interface FeedbackViewProps {
 
 const FeedbackView: React.FC<FeedbackViewProps> = ({ animation, message, className }) => {
   
-    console.log(message)
     return (
 
     

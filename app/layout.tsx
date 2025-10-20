@@ -7,8 +7,6 @@ import { esMX } from "@clerk/localizations";
 import InitUser from "./ui/InitUser";
 import { ToastContainer } from "react-toastify";
 
-
-
 export const metadata: Metadata = {
   title: "Simulandum",
   description:
@@ -39,7 +37,6 @@ export default function RootLayout({
             `,
           }}
         />
-
       </body>
     </html>
     <ToastContainer position="bottom-right" autoClose={3000} />

@@ -106,7 +106,6 @@ const Page = () => {
   }, [currentIndex]);
 
   useEffect(() => {
-    console.log("Nuevo data:", data);
 
     if (data && data.simulator) {
       const sim = data.user.simuladoresCanjeados.find(
@@ -114,7 +113,6 @@ const Page = () => {
       );
 
       if (sim) {
-        console.log("Lo encontre", sim);
         updateUsoJusto(sim.simuladorId, sim.uso_justo);
       }
     }
@@ -165,6 +163,7 @@ const Page = () => {
 
   const handleFinishExam = async() => {
 
+
     setComplete(true);
 
   try {
@@ -182,7 +181,6 @@ const Page = () => {
 
     if (!response.ok) toast.error("Error al guardar progreso en reportes");
 
-    console.log(response,"------------")
     
     setTimeout(() => {
       router.push(`/plataforma/resultados-preliminares`);

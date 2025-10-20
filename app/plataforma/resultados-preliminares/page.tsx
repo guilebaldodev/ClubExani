@@ -91,7 +91,9 @@ const Page = () => {
     });
   }, [simulator]);
 
+
   const shareMessage = `¡Acabo de completar el simulador "${simulator?.titulo}" con ${score}/${totalScore}! 🎯`;
+
 
   return (
     <div className={style["results-container"]}>
@@ -123,14 +125,17 @@ const Page = () => {
             {currentUrl && (
               <>
                 <FacebookShareButton
-                  url={currentUrl}
-                  quote={shareMessage}
-                  hashtag="#Simuladum"
+                  url="https://www.simulandum.com/plataforma"
+                  hashtag="#Simulandum"
+                  title={shareMessage}
                 >
                   <FacebookIcon size={50} round />
                 </FacebookShareButton>
 
-                <WhatsappShareButton url={currentUrl} title={shareMessage}>
+                <WhatsappShareButton
+                  url={"https://www.simulandum.com/plataforma"}
+                  title={shareMessage}
+                >
                   <WhatsappIcon size={50} round />
                 </WhatsappShareButton>
               </>
@@ -210,7 +215,10 @@ const Page = () => {
         </p>
 
         <div className={style["results-buttons"]}>
-          <Link href={"/plataforma/mis-simuladores"} className={style["border"]}>
+          <Link
+            href={"/plataforma/mis-simuladores"}
+            className={style["border"]}
+          >
             Ir a simuladores
           </Link>
           <Link href={"/plataforma/resultados"}>Ver reportes completos</Link>

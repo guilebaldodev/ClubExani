@@ -4,6 +4,10 @@
   font-weight: 500;
   line-height: 1.4;
   color: rgb(27, 27, 27);
+
+    width: 80%;
+    margin: auto;
+
 }
 
 .complete-exam{
@@ -20,4 +24,46 @@
     align-items: center;
     display: flex;
 }
+
+.error-container .json-container{
+
+  max-width: 500px;
+
+}
+
+
+
+@media (max-width: 750px) {
+
+  .loading-exam p,.complete-exam P{
+    width: 80%;
+    margin: auto;
+    font-size: 18px;
+    padding-top: 2rem;
+  }
+
+  .complete-exam .json-container{
+    max-width: 200px;
+  }
+
+
+}
+
+@media (max-width: 750px) {
+
+  .loading-exam p,.complete-exam P{
+
+    padding-top: 2rem;
+    font-size: 18px;
+  }
+
+  .complete-exam .json-container{
+    max-width: 200px;
+  }
+
+
+}
+
+
+
 
