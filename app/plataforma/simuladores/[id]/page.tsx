@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import style from "./simulator.module.css";
 import { Simulador } from "@/types";
 import { formatExamDuration } from "@/app/utils";
@@ -9,33 +9,65 @@ import Image from "next/image";
 import ConfirmModal from "@/app/ui/shared/ConfirmModal";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/userStore";
+import LoaderScreen from "@/app/ui/shared/LoaderScreen";
+import ContentNotFound from "@/app/ui/shared/ContentNotFound";
+
+const emptySimulator: Simulador = {
+  _id: "",
+  titulo: "",
+  descripcion_corta: "",
+  descripcion: "",
+  examen: "",
+  dificultad: "",
+  imagen: "",
+  tiempo: "0",
+  totalPreguntas: 0,
+  contador: 0,
+  uso_justo: 0,
+  precio: 0,
+  tipo: "",
+};
 
 export default function Page() {
   const { id } = useParams<{ id: string }>();
   const { user } = useUser();
   const [modal, setModal] = useState(false);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const { simuladoresCanjeados } = useUserStore();
+  const [simulador, setSimulador] = useState<Simulador>(emptySimulator);
 
-  const [simulador, setSimulador] = useState<Simulador | null>(null);
   useEffect(() => {
-    fetch(`/api/simuladores/${id}`)
-      .then((res) => res.json())
-      .then((data) => setSimulador(data));
+    const fetchSimulador = async () => {
+      try {
+        setIsLoading(true);
+        setError(false);
+
+        const res = await fetch(`/api/simuladores/${id}`);
+        if (!res.ok) throw new Error("Error al obtener el simulador");
+
+        const data = await res.json();
+        setSimulador(data);
+      } catch {
+        setError(true);
+        toast.error("Ocurrió un problema al cargar el simulador.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchSimulador();
   }, [id]);
 
-  const router = useRouter();
+  if (isLoading) return <LoaderScreen />;
 
-  if (!simulador) return <p>Cargando...</p>;
+  if (error) return <ContentNotFound link="/plataforma/mis-simuladores" message="Ocurrió un problema al cargar el contenido o el contenido no existe"></ContentNotFound>
 
   return (
     <>
-      {/* <BuySimulatorModal simulator={simulador} closeModal={()=>{
-
-  }}></BuySimulatorModal> */}
-
       {modal && (
         <ConfirmModal
           simulator={simulador}
@@ -46,8 +78,8 @@ export default function Page() {
       <div className={style["simulator-page"]}>
         <div className={style["simulator-header"]}>
           <div className={style["simulator-info-title"]}>
-            <h1>{simulador.titulo}</h1>
-            <p>{simulador.descripcion_corta}</p>
+            <h1>{simulador.titulo || "Cargando..."}</h1>
+            <p>{simulador.descripcion_corta || "Preparando el simulador..."}</p>
 
             <div className={style["simulator-title-items"]}>
               <div>
@@ -57,7 +89,7 @@ export default function Page() {
                     width={30}
                     height={30}
                     alt={"icono de preguntas"}
-                  ></Image>
+                  />
                   <p>{simulador.totalPreguntas} Preguntas</p>
                 </div>
                 <div
@@ -67,8 +99,8 @@ export default function Page() {
                     src={"/landing/simulatorTime.svg"}
                     width={30}
                     height={30}
-                    alt={"icono de preguntas"}
-                  ></Image>
+                    alt={"icono de reloj"}
+                  />
                   <p>{formatExamDuration(parseInt(simulador.tiempo))}</p>
                 </div>
               </div>
@@ -84,44 +116,34 @@ export default function Page() {
                     return;
                   }
 
-                  if(simuladoresCanjeados.find(item=>item.simuladorId._id == id && item.uso_justo>0)){
-                    router.push(`/plataforma/simular/${id}`)
-                  }else{
+                  const canjeado = simuladoresCanjeados.find(
+                    (item) => item.simuladorId._id === id && item.uso_justo > 0
+                  );
+
+                  if (canjeado) {
+                    router.push(`/plataforma/simular/${id}`);
+                  } else {
                     setModal(true);
                   }
-
                 }}
               >
-
-                {
-                  simuladoresCanjeados.find(item=>item.simuladorId._id == id && item.uso_justo>0)?
-                  <>
-                    <p>Simular</p>
-                  </>
-                  :
-                  <>
-
-                {simulador.tipo == "Diagnostico" ? (
-                  <>
-                    <p>Obtener Gratis</p>
-                  </>
+                {simuladoresCanjeados.find(
+                  (item) => item.simuladorId._id === id && item.uso_justo > 0
+                ) ? (
+                  <p>Simular</p>
+                ) : simulador.tipo === "Diagnostico" ? (
+                  <p>Obtener Gratis</p>
                 ) : (
                   <>
                     <p>Comprar por {simulador.precio}</p>
-     
                     <Image
                       src="/landing/landing-white-coins.png"
                       alt="simbolo de monedas"
                       width={30}
                       height={30}
-                    ></Image>
+                    />
                   </>
                 )}
-
-                  </>
-                }
-
-
               </button>
 
               <button
@@ -136,13 +158,15 @@ export default function Page() {
           </div>
 
           <div className={style["simulator-img"]}>
-            <Image
-              src={simulador.imagen}
-              alt="imagen del simulador"
-              height={400}
-              width={380}
-              className={style["your-class"]}
-            ></Image>
+            {simulador.imagen && (
+              <Image
+                src={simulador.imagen}
+                alt="imagen del simulador"
+                height={400}
+                width={380}
+                className={style["your-class"]}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -160,7 +184,7 @@ export default function Page() {
               </div>
               <p>
                 {step === 1 &&
-                  "Inicia el simulador correspondiente al examen seleccionado. Las preguntas han sido cuidadosamente seleccionadas para esta versión"}
+                  "Inicia el simulador correspondiente al examen seleccionado. Las preguntas han sido cuidadosamente seleccionadas para esta versión."}
                 {step === 2 &&
                   "Responde cada pregunta eligiendo una de las opciones disponibles según tu criterio."}
                 {step === 3 &&
@@ -184,12 +208,13 @@ export default function Page() {
       </div>
 
       <div className={style["description-container"]}>
-        <h2>Descripcion del simulador</h2>
-
+        <h2>Descripción del simulador</h2>
         <div
           className={style["description"]}
-          dangerouslySetInnerHTML={{ __html: simulador.descripcion }}
-        ></div>
+          dangerouslySetInnerHTML={{
+            __html: simulador.descripcion || "",
+          }}
+        />
       </div>
     </>
   );

@@ -1,0 +1,42 @@
+/* Content Not Found */
+
+.not-content-container{
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 15px;
+  text-align: center;
+}
+
+.not-content-container img{
+  width: 150px;
+  height: 150px;
+}
+
+.not-content-container p{
+  padding-top: 2rem;
+  font-size: 20px;
+  color: rgb(94, 94, 94);
+  font-weight: 500;
+}
+
+.not-content-container a{
+      color: #fff;
+    cursor: pointer;
+    background-color: #287CBE;
+    
+    border: none;
+    border-radius: 6px;
+    width: max-content;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}

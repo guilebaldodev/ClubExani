@@ -1,0 +1,52 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 60px;
+  height: 60px;
+  --c: no-repeat linear-gradient(#FFC74F 0 0);
+  background: var(--c), var(--c), var(--c), var(--c);
+  background-size: 32px 32px;
+  animation: l5 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+
+@keyframes l5 {
+  0% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  }
+  33% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    width: 80px;
+    height: 80px;
+  }
+  66% {
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+    width: 80px;
+    height: 80px;
+  }
+  100% {
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+  }
+}
+
+.overlay-loader{
+  position: fixed;
+  inset: 0; 
+  z-index: 500000; 
+  background-color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.overlay-loader p{
+  padding-top: 2rem;
+  font-size: 20px;
+  color: rgb(94, 94, 94);
+  font-weight: 500;
+}
+
+
+
+
+

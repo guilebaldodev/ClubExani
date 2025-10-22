@@ -4,6 +4,7 @@ import styles from "./css/confirmModal.module.css";
 import { Simulador } from "@/types";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/userStore";
+import { useState } from "react";
 
 type Props = {
   simulator: Simulador;
@@ -15,23 +16,30 @@ const ConfirmModal = ({ simulator, closeModal }: Props) => {
   const router= useRouter()
   const addSimuladorCanjeado = useUserStore((state) => state.addSimuladorCanjeado);
   const updateMonedas = useUserStore((state) => state.updateMonedas);
+  const [loading, setloading] = useState(false);
+
+
 
   const handlePurchase = async (
     simulatorId: string,
   ) => {
     try {
+
+      setloading(true)
+
       const res = await fetch(`/api/simuladores/canjear/${simulatorId}`, {
         method: "POST",
       });
 
       const data = await res.json();
 
+      setloading(false)
+
+
       if (res.ok) {
         toast.success("Simulador canjeado 🎉");
         closeModal();
 
-        // Actualizar zustand
-        console.log("DATAAA",data)
         updateMonedas(data.nuevoSaldo)
         addSimuladorCanjeado({
           simuladorId: data.simulador,
@@ -39,6 +47,7 @@ const ConfirmModal = ({ simulator, closeModal }: Props) => {
           uso_justo:data.simulador.uso_justo,
           fecha:new Date().toISOString(),
         })
+        
         router.push("/plataforma/mis-simuladores")
 
       } else {
@@ -46,6 +55,8 @@ const ConfirmModal = ({ simulator, closeModal }: Props) => {
       }
     } catch (err) {
       toast.error("Error de conexión");
+      setloading(false)
+
     }
   };
 
@@ -65,9 +76,21 @@ const ConfirmModal = ({ simulator, closeModal }: Props) => {
           <button className="red" onClick={closeModal}>
             Cancelar
           </button>
-          <button onClick={()=>{
+          <button disabled={loading} onClick={()=>{
             handlePurchase(simulator._id)
-          }}>Comprar</button>
+          }}>
+   {loading ? (
+                    <div className="loading-div">
+                    <div className="lds-dual-ring"></div>
+                    <p>Comprando</p>
+                    </div>
+                ) : (
+                    <label>
+                      Comprar
+                  </label>
+                )}
+          
+          </button>
         </div>
       </div>
     </div>

@@ -375,11 +375,12 @@ main {
 
 .buttons {
   padding-top: 1rem;
+  display: flex;
 }
 
 .buttons button {
   cursor: pointer;
-  width: 7rem;
+  padding: 0 1rem;
   height: 2.5rem;
   background-color: #FFC74F;
   color: white;
@@ -513,8 +514,6 @@ main {
   align-items: center;
   justify-content: center;
 }
-
-
 
 
 
