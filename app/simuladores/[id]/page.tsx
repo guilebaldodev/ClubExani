@@ -14,6 +14,25 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/userStore";
 import { SignedIn } from '@clerk/nextjs';
+import LoaderScreen from "@/app/ui/shared/LoaderScreen";
+import ContentNotFound from "@/app/ui/shared/ContentNotFound";
+
+
+const emptySimulator: Simulador = {
+  _id: "",
+  titulo: "",
+  descripcion_corta: "",
+  descripcion: "",
+  examen: "",
+  dificultad: "",
+  imagen: "",
+  tiempo: "0",
+  totalPreguntas: 0,
+  contador: 0,
+  uso_justo: 0,
+  precio: 0,
+  tipo: "",
+};
 
 
 export default function Page() {
@@ -21,18 +40,39 @@ export default function Page() {
   const { user } = useUser();
   const [modal, setModal] = useState(false);
   const {monedas} =useUserStore()
+  const router= useRouter()
+  const [isLoading, setIsLoading] = useState(true);  
+  const [error, setError] = useState(false);
   
+  const [simulador, setSimulador] = useState<Simulador>(emptySimulator);
 
-  const [simulador, setSimulador] = useState<Simulador | null>(null);
-  useEffect(() => {
-    fetch(`/api/simuladores/${id}`)
-      .then((res) => res.json())
-      .then((data) => setSimulador(data));
+
+
+ useEffect(() => {
+    const fetchSimulador = async () => {
+      try {
+        setIsLoading(true);
+        setError(false);
+
+        const res = await fetch(`/api/simuladores/${id}`);
+        if (!res.ok) throw new Error("Error al obtener el simulador");
+
+        const data = await res.json();
+        setSimulador(data);
+      } catch {
+        setError(true);
+        toast.error("Ocurrió un problema al cargar el simulador.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchSimulador();
   }, [id]);
 
-  const router= useRouter()
-  if (!simulador) return <p>Cargando...</p>;
+  if (isLoading) return <LoaderScreen />;
 
+  if (error) return <ContentNotFound link="/simuladores" message="Ocurrió un problema al cargar el contenido o el contenido no existe"></ContentNotFound>
 
   return (
     <>

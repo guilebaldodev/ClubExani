@@ -2,6 +2,10 @@
     background-color: white;
 }
 
+.simulator-s-container{
+    padding: 1rem 0;
+}
+
 .simulator-container{
     padding-bottom: 2rem;
     position: relative;
@@ -14,6 +18,8 @@
 }
 
 .header{
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #aaaaaa80;
 }
 
 .header-titles{
@@ -21,7 +27,6 @@
     justify-content: center;
     align-items: center;
     width: 70%;
-    padding-top: 1.5rem;
     margin: auto;
 }
 

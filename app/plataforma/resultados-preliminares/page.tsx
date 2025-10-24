@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useSimulatorStore } from "@/stores/simulatorStore";
 import style from "./resultados.module.css";
 import { useEffect, useState } from "react";
-import { useDashboardStore } from "@/stores/progessStore";
 import {
   FacebookShareButton,
   WhatsappShareButton,
@@ -20,11 +19,7 @@ const Page = () => {
     score,
     totalScore,
     normalizeSolvedQuestions,
-    totalTime,
-    timeLeft,
   } = useSimulatorStore();
-
-  const { stats, setDashboardData, lastProgress } = useDashboardStore();
 
   const [currentUrl, setCurrentUrl] = useState("");
 
@@ -38,7 +33,6 @@ const Page = () => {
   });
   const cleanDate = formattedDate.replace(",", "");
 
-  // 🧠 Esto solo se ejecuta en el cliente
   useEffect(() => {
     if (typeof window !== "undefined") {
       setCurrentUrl(window.location.href);
@@ -59,37 +53,7 @@ const Page = () => {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
-  useEffect(() => {
-    if (!simulator) return;
 
-    const newProgress = {
-      _id: crypto.randomUUID(),
-      simulatorId: {
-        _id: simulator._id,
-        titulo: simulator.titulo,
-        imagen: simulator.imagen,
-      },
-      score,
-      totalScore,
-      time: totalTime,
-    };
-
-    const newStats = {
-      totalSimulations: (stats?.totalSimulations ?? 0) + 1,
-      totalScore: (stats?.totalScore ?? 0) + score,
-      totalPossible: (stats?.totalPossible ?? 0) + totalScore,
-      totalTime: (stats?.totalTime ?? 0) + (totalTime - timeLeft),
-      average:
-        (((stats?.totalScore ?? 0) + score) /
-          ((stats?.totalPossible ?? 0) + totalScore)) *
-        100,
-    };
-
-    setDashboardData({
-      stats: newStats,
-      lastProgress: [newProgress, ...(lastProgress ?? [])].slice(0, 5),
-    });
-  }, [simulator]);
 
 
   const shareMessage = `¡Acabo de completar el simulador "${simulator?.titulo}" con ${score}/${totalScore}! 🎯`;

@@ -18,6 +18,7 @@ import Image from "next/image";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useSimulatorStore } from "@/stores/simulatorStore";
 import FeedbackView from "@/app/ui/course/FeedbackView";
+import { useDashboardStore } from "@/stores/progessStore";
 
 interface StartSimulatorResponse {
   simulator: SimuladorType;
@@ -43,6 +44,9 @@ const Page = () => {
     normalizeSolvedQuestions,
     totalTime
   } = useSimulatorStore();
+
+    const { stats, setDashboardData, lastProgress } = useDashboardStore();
+  
 
   const [data, setData] = useState<StartSimulatorResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -167,6 +171,9 @@ const Page = () => {
     setComplete(true);
 
   try {
+
+    console.log(`TotalTime ${totalTime}, Timeleft ${timeLeft}, Time: ${totalTime - timeLeft}`)
+
     const response = await fetch("/api/progreso", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -180,6 +187,36 @@ const Page = () => {
     });
 
     if (!response.ok) toast.error("Error al guardar progreso en reportes");
+
+    
+
+    const newProgress = {
+      _id: crypto.randomUUID(),
+      simulatorId: {
+        _id: simulator?._id,
+        titulo: simulator?.titulo,
+        imagen: simulator?.imagen,
+      },
+      score,
+      totalScore,
+      time: totalTime - timeLeft,
+    };
+
+    const newStats = {
+      totalSimulations: (stats?.totalSimulations ?? 0) + 1,
+      totalScore: (stats?.totalScore ?? 0) + score,
+      totalPossible: (stats?.totalPossible ?? 0) + totalScore,
+      totalTime: (stats?.totalTime ?? 0) + (totalTime - timeLeft),
+      average:
+        (((stats?.totalScore ?? 0) + score) /
+          ((stats?.totalPossible ?? 0) + totalScore)) *
+        100,
+    };
+
+    setDashboardData({
+      stats: newStats,
+      lastProgress: [newProgress, ...(lastProgress ?? [])].slice(0, 5),
+    });
 
     
     setTimeout(() => {
@@ -227,7 +264,7 @@ const Page = () => {
   return (
     <>
       <div className={styles["white-background"]}>
-        <div className="admin-question-container">
+        <div className={styles["simulator-s-container"]}>
           <div className={styles["header"]}>
             <div className={styles["header-titles"]}>
               <div className="header-icon">
@@ -246,8 +283,9 @@ const Page = () => {
 
             <div className={styles["progress-bar"]}>
               <ProgressBar
-                height="18px"
-                labelColor="white"
+                height="10px"
+                labelColor="#3261b0"
+                labelSize="10px"
                 bgColor="#3261b0"
                 completed={Math.round(
                   (solvedQuestions.length / questions.length) * 100

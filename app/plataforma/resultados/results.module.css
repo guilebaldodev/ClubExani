@@ -90,6 +90,102 @@
 }
 
 
+
+/* results */
+
+.movil-items{
+  display: none;
+}
+
+.movil-item{
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  margin-top: 2rem;
+  padding: 1rem;
+  
+}
+
+.movil-item-circle{
+  width: 50px;
+  height: 50px;
+}
+
+.movil-item-titles{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.movil-item-circle img{
+  border-radius: 100%;
+    width: 50px;
+    height: 50px;
+}
+
+.movil-item-stats{
+  display: flex;
+  padding-top: 1rem;
+  gap: 15px;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.movil-item-stat{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.movil-item-stat div{
+    border-radius: 2px;
+    width: 20px;
+    height: 20px;
+  background-color: #14b88a;
+  }
+
+  .movil-item-stat div.red{
+  background-color: #f43b29;
+
+  }
+
+  .movil-item-time{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding-top: 0.5rem;
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  .movil-item-time img{
+    width: 25px;
+  }
+
+.movil-item-buttons{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.movil-item-buttons a{
+      color: #fff;
+    cursor: pointer;
+    background-color: #f6bf19;
+    border: none;
+    border-radius: 6px;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.movil-item-buttons a.grey{
+  background-color: #bebebe;
+  pointer-events: none;
+  cursor:not-allowed;
+}
+
+
+
 @media (width <=1050px) {
   .container {
     width: 90%;
@@ -98,9 +194,6 @@
 
 
 @media (width <=950px) {
-  .container {
-    width: 80%;
-  }
 
   .results-title p {
     font-size: 17px;
@@ -119,8 +212,24 @@
     font-size: 16px;
   }
 
+}
+
+@media (width <=650px) {
+
+  .user-dashboard-historial{
+    display: none;
+  }
+
+  .movil-items{
+    display: block;
+  }
+
+  .movil-item.no-item div,.movil-item.no-item h3{
+    font-weight: 300 !important;
+  }
 
 }
+
 
 
 @media (width <=570px) {
@@ -128,3 +237,13 @@
     margin-top: 8rem;
   }
 }
+
+
+@media (width <=450px) {
+  .movil-item-stats{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.4rem;
+  }
+}
+

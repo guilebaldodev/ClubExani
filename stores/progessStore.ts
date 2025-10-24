@@ -10,7 +10,7 @@ interface DashboardStats {
 
 interface Simulator {
   _id: string;
-  nombre: string;
+  titulo: string;
   imagen: string;
 }
 
