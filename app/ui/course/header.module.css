@@ -139,7 +139,7 @@
     }
   
 
-@media (max-width:1150) {
+@media (max-width:1150px) {
     .user-navbar{
         display: none;
       }
@@ -154,7 +154,6 @@
         justify-content: space-between;
         width: 60%;
       }
-
 
 }
 

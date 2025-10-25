@@ -96,8 +96,8 @@ const Page = () => {
       const json = await res.json();
       setData(json);
 
+      setComplete(false)
       setSimulator(json.simulator, json.questions);
-
 
       setLoading(false);
     };
@@ -135,7 +135,8 @@ const Page = () => {
 
   useEffect(() => {
     if (!simulator) return;
-    if (timeLeft === 0 && !complete) {
+    if (timeLeft === 0 && (complete === false)) {
+      console.log("entre en esta parteee")
       handleFinishExam();
     }
   }, [simulator, timeLeft, complete]);
