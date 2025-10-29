@@ -5,15 +5,26 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
 
 export default function InitUser() {
-  const { isSignedIn, user } = useUser();
+  const { isSignedIn, isLoaded, user } = useUser();
   const setUser = useUserStore((state) => state.setUser);
 
   useEffect(() => {
     const init = async () => {
-      if (isSignedIn) {
-        const res = await fetch("/api/usuario/init", { method: "POST" });
+      if (isLoaded && isSignedIn) {
+        const res = await fetch("/api/usuario/init", { method: "POST",
+          credentials:"include"
+        });
+
+
+        if (!res.ok) {
+          console.error("Fallo init user:", res.status);
+          return;
+        }
+
         const data = await res.json();
-        
+
+        console.log(data, "dataa");
+
         setUser({
           clerkId: data.clerkId,
           email: data.email,
@@ -24,13 +35,11 @@ export default function InitUser() {
           monedas: data.monedas,
           simuladoresCanjeados: data.simuladoresCanjeados
         });
-      } else {
-        console.log("no entro");
       }
     };
 
     init();
-  }, [isSignedIn, user, setUser]);
+  }, [isLoaded, isSignedIn, user, setUser]);
 
   return null;
 }

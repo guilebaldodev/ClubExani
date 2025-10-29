@@ -17,6 +17,8 @@ interface SimulatorState {
   totalScore: number;
   timeLeft: number;
   totalTime: number;
+  sound: boolean;
+  explanation: boolean;
   setSimulator: (sim: Simulador, qs: Pregunta[]) => void;
   selectAnswer: (questionId: string, answerIndex: number, wasCorrect: boolean) => void;
   nextQuestion: () => void;
@@ -25,6 +27,8 @@ interface SimulatorState {
   tick: () => void;
   formatTime: () => string;
   reset: () => void;
+  toggleSound: () => void;
+  toggleExplanation: () => void;
 }
 
 export const useSimulatorStore = create<SimulatorState>((set, get) => ({
@@ -36,7 +40,8 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => ({
   totalScore: 0,
   timeLeft: 0,
   totalTime: 0,
-
+  sound: false,
+  explanation: false,
   setSimulator: (sim, qs) =>
     set({
       simulator: sim,
@@ -45,8 +50,8 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => ({
       solvedQuestions: [],
       score: 0,
       totalScore: qs.length,
-      timeLeft: (sim.tiempo || 0) * 60,
-      totalTime: (sim.tiempo || 0) * 60,
+      timeLeft:(Number(sim.tiempo) || 0) * 60,
+      totalTime: (Number(sim.tiempo) || 0) * 60,
     }),
 
   selectAnswer: (questionId, answerIndex, wasCorrect) =>
@@ -143,6 +148,9 @@ normalizeSolvedQuestions: () => {
       )}`;
     }
   },
+
+  toggleSound: () => set((state) => ({ sound: !state.sound })),
+  toggleExplanation: () => set((state) => ({ explanation: !state.explanation })),
 
   reset: () =>
     set({

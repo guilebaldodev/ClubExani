@@ -9,9 +9,6 @@ const LearningSideBar = ( ) => {
     const {tema}=useParams()
 
     console.log(tema,"tema")
-    // console.log(params.tema,"lesson")
-    // const lessonName=params.tema
-
     const lessonName=tema
 
     return (

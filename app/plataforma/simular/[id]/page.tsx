@@ -19,6 +19,8 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useSimulatorStore } from "@/stores/simulatorStore";
 import FeedbackView from "@/app/ui/course/FeedbackView";
 import { useDashboardStore } from "@/stores/progessStore";
+import ConfigurationModal from "@/app/ui/course/ConfigurationModal";
+import { useSound } from "@/app/ui/course/Sound";
 
 interface StartSimulatorResponse {
   simulator: SimuladorType;
@@ -51,7 +53,13 @@ const Page = () => {
   const [data, setData] = useState<StartSimulatorResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [isConfigurationModal, setIsConfigurationModal] = useState(false);
   const { updateUsoJusto } = useUserStore();
+
+  const playCorrect = useSound("/sounds/Win.wav");
+  const playWrong = useSound("/sounds/wrong.wav");
+  const playSelect = useSound("/sounds/click.mp3");
+
   const router = useRouter();
 
   const letters = {
@@ -164,7 +172,11 @@ const Page = () => {
   };
 
 
+  const handleAnswer = async() => {
+      
+    nextQuestion();
 
+  }
 
   const handleFinishExam = async() => {
 
@@ -265,6 +277,11 @@ const Page = () => {
   return (
     <>
       <div className={styles["white-background"]}>
+
+      {isConfigurationModal && (
+        <ConfigurationModal setIsConfiguration={setIsConfigurationModal}></ConfigurationModal>
+      )}
+
         <div className={styles["simulator-s-container"]}>
           <div className={styles["header"]}>
             <div className={styles["header-titles"]}>
@@ -300,13 +317,18 @@ const Page = () => {
               <div className={styles["simulator-titles"]}>
                 <div className={styles["simulator-header"]}>
                   <h3>{data?.simulator.titulo}</h3>
-                </div>
 
-                <div className={styles["simulator-info"]}>
+
                   <p>
                     Pregunta {currentIndex + 1} de {questions.length}
                   </p>
+                </div>
 
+                <div className={styles["simulator-info"]}>
+
+                    <button onClick={()=>{
+                      setIsConfigurationModal(true)
+                    }}>Configuracion </button>
                   <div>
                     <Image
                       src={"/course/stopwatch.png"}
@@ -337,7 +359,7 @@ const Page = () => {
                             index,
                             answer.esCorrecta
                           );
-                          console.log(solvedQuestions);
+
                         }}
                         className={`${styles["simulator-answer"]} ${
                           solved?.selectedAnswer === index
@@ -369,9 +391,7 @@ const Page = () => {
 
                 <button
                   disabled={isDisabled()}
-                  onClick={() => {
-                    nextQuestion();
-                  }}
+                  onClick={handleAnswer}
                 >
                   Siguiente
                 </button>

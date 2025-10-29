@@ -14,12 +14,14 @@ import {
 } from "react-share";
 
 const Page = () => {
-  const {
-    simulator,
-    score,
-    totalScore,
-    normalizeSolvedQuestions,
-  } = useSimulatorStore();
+  const { simulator, score, totalScore, normalizeSolvedQuestions, reset } =
+    useSimulatorStore();
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
 
   const [currentUrl, setCurrentUrl] = useState("");
 
@@ -53,11 +55,7 @@ const Page = () => {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
-
-
-
   const shareMessage = `¡Acabo de completar el simulador "${simulator?.titulo}" con ${score}/${totalScore}! 🎯`;
-
 
   return (
     <div className={style["results-container"]}>
