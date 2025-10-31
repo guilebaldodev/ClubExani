@@ -7,7 +7,6 @@ import "katex/dist/katex.min.css";
 const MathQuestion = ({ html }: { html: string }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-
   useEffect(() => {
     if (containerRef.current) {
       renderMathInElement(containerRef.current, {

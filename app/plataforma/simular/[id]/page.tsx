@@ -20,19 +20,23 @@ import { useSimulatorStore } from "@/stores/simulatorStore";
 import FeedbackView from "@/app/ui/course/FeedbackView";
 import { useDashboardStore } from "@/stores/progessStore";
 import ConfigurationModal from "@/app/ui/course/ConfigurationModal";
-import { useSound } from "@/app/ui/course/Sound";
+
+import useSound from "use-sound";
+import AnswerExplanation from "@/app/ui/course/AnswerExplanation";
 
 interface StartSimulatorResponse {
   simulator: SimuladorType;
   questions: PreguntaType[];
   totalQuestions: number;
-  user: Usuarios; 
+  user: Usuarios;
 }
 
 const Page = () => {
+
   const {
     simulator,
     questions,
+    sound,
     formatTime,
     currentIndex,
     timeLeft,
@@ -44,11 +48,11 @@ const Page = () => {
     tick,
     solvedQuestions,
     normalizeSolvedQuestions,
-    totalTime
+    totalTime,
+    explanation,
   } = useSimulatorStore();
 
-    const { stats, setDashboardData, lastProgress } = useDashboardStore();
-  
+  const { stats, setDashboardData, lastProgress } = useDashboardStore();
 
   const [data, setData] = useState<StartSimulatorResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -56,9 +60,10 @@ const Page = () => {
   const [isConfigurationModal, setIsConfigurationModal] = useState(false);
   const { updateUsoJusto } = useUserStore();
 
-  const playCorrect = useSound("/sounds/Win.wav");
-  const playWrong = useSound("/sounds/wrong.wav");
-  const playSelect = useSound("/sounds/click.mp3");
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [explanationString, setExplanationString] = useState("");
+  const [playWrong] = useSound("/sounds/wrong.wav");
+  const [playCorrect] = useSound("/sounds/Win.wav", { volume: 0.7 });
 
   const router = useRouter();
 
@@ -104,7 +109,7 @@ const Page = () => {
       const json = await res.json();
       setData(json);
 
-      setComplete(false)
+      setComplete(false);
       setSimulator(json.simulator, json.questions);
 
       setLoading(false);
@@ -118,7 +123,6 @@ const Page = () => {
   }, [currentIndex]);
 
   useEffect(() => {
-
     if (data && data.simulator) {
       const sim = data.user.simuladoresCanjeados.find(
         (s) => s.simuladorId === id
@@ -143,8 +147,7 @@ const Page = () => {
 
   useEffect(() => {
     if (!simulator) return;
-    if (timeLeft === 0 && (complete === false)) {
-      console.log("entre en esta parteee")
+    if (timeLeft === 0 && complete === false) {
       handleFinishExam();
     }
   }, [simulator, timeLeft, complete]);
@@ -171,76 +174,113 @@ const Page = () => {
     return false;
   };
 
+  const handleAnswer = async () => {
+    if (explanation) {
+      const currentQuestion = questions[currentIndex];
 
-  const handleAnswer = async() => {
-      
-    nextQuestion();
+      const isCurrentAnswered = solvedQuestions.some(
+        (s) => s.questionId === currentQuestion._id
+      );
+      if (!isCurrentAnswered) {
+        nextQuestion();
+      } else {
+        if (showExplanation) {
+          setShowExplanation(false);
 
-  }
+          nextQuestion();
+        } else {
+          console.log(isCurrentAnswered, currentQuestion);
+          setShowExplanation(true);
 
-  const handleFinishExam = async() => {
+          const current = solvedQuestions.find(
+            (s) => s.questionId === currentQuestion._id
+          );
 
+          // console.log(currentQuestion)
+          setExplanationString(
+            currentQuestion.respuestas[current?.selectedAnswer].explicacion
+          );
 
+          // logica de los sonidos
+          if (sound) {
+            const CurrentAnswered = solvedQuestions.find(
+              (s) => s.questionId === currentQuestion._id
+            );
+
+            if (CurrentAnswered?.wasCorrect) {
+              playCorrect();
+            } else {
+              playWrong();
+            }
+          }
+        }
+      }
+    } else {
+      nextQuestion();
+    }
+  };
+
+  const handleFinishExam = async () => {
     setComplete(true);
 
-  try {
+    try {
+      console.log(
+        `TotalTime ${totalTime}, Timeleft ${timeLeft}, Time: ${
+          totalTime - timeLeft
+        }`
+      );
 
-    console.log(`TotalTime ${totalTime}, Timeleft ${timeLeft}, Time: ${totalTime - timeLeft}`)
+      const response = await fetch("/api/progreso", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          simulatorId: simulator?._id,
+          solvedQuestions: normalizeSolvedQuestions(),
+          score,
+          totalScore,
+          time: totalTime - timeLeft,
+        }),
+      });
 
-    const response = await fetch("/api/progreso", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        simulatorId: simulator?._id,
-        solvedQuestions:normalizeSolvedQuestions(),
+      if (!response.ok) toast.error("Error al guardar progreso en reportes");
+
+      const newProgress = {
+        _id: crypto.randomUUID(),
+        simulatorId: {
+          _id: simulator?._id,
+          titulo: simulator?.titulo,
+          imagen: simulator?.imagen,
+        },
         score,
         totalScore,
         time: totalTime - timeLeft,
-      }),
-    });
+      };
 
-    if (!response.ok) toast.error("Error al guardar progreso en reportes");
+      const newStats = {
+        totalSimulations: (stats?.totalSimulations ?? 0) + 1,
+        totalScore: (stats?.totalScore ?? 0) + score,
+        totalPossible: (stats?.totalPossible ?? 0) + totalScore,
+        totalTime: (stats?.totalTime ?? 0) + (totalTime - timeLeft),
+        average:
+          (((stats?.totalScore ?? 0) + score) /
+            ((stats?.totalPossible ?? 0) + totalScore)) *
+          100,
+      };
 
-    
+      setDashboardData({
+        stats: newStats,
+        lastProgress: [newProgress, ...(lastProgress ?? [])].slice(0, 5),
+      });
 
-    const newProgress = {
-      _id: crypto.randomUUID(),
-      simulatorId: {
-        _id: simulator?._id,
-        titulo: simulator?.titulo,
-        imagen: simulator?.imagen,
-      },
-      score,
-      totalScore,
-      time: totalTime - timeLeft,
-    };
+      setTimeout(() => {
+        router.push(`/plataforma/resultados-preliminares`);
+      }, 2000);
 
-    const newStats = {
-      totalSimulations: (stats?.totalSimulations ?? 0) + 1,
-      totalScore: (stats?.totalScore ?? 0) + score,
-      totalPossible: (stats?.totalPossible ?? 0) + totalScore,
-      totalTime: (stats?.totalTime ?? 0) + (totalTime - timeLeft),
-      average:
-        (((stats?.totalScore ?? 0) + score) /
-          ((stats?.totalPossible ?? 0) + totalScore)) *
-        100,
-    };
-
-    setDashboardData({
-      stats: newStats,
-      lastProgress: [newProgress, ...(lastProgress ?? [])].slice(0, 5),
-    });
-
-    
-    setTimeout(() => {
-      router.push(`/plataforma/resultados-preliminares`);
-    }, 2000);
-    
-    if (!response.ok) throw new Error("Error al guardar progreso");
-  }catch(error){
-    console.log(error)
-  }
-}
+      if (!response.ok) throw new Error("Error al guardar progreso");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (loading) {
     return (
@@ -277,10 +317,19 @@ const Page = () => {
   return (
     <>
       <div className={styles["white-background"]}>
+        {isConfigurationModal && (
+          <ConfigurationModal
+            setIsConfiguration={setIsConfigurationModal}
+          ></ConfigurationModal>
+        )}
 
-      {isConfigurationModal && (
-        <ConfigurationModal setIsConfiguration={setIsConfigurationModal}></ConfigurationModal>
-      )}
+
+        {
+          (showExplanation && explanationString) && <AnswerExplanation setIsShow={()=>{
+            setShowExplanation(false)
+            nextQuestion()
+          }} html={explanationString}></AnswerExplanation>
+        }
 
         <div className={styles["simulator-s-container"]}>
           <div className={styles["header"]}>
@@ -318,17 +367,19 @@ const Page = () => {
                 <div className={styles["simulator-header"]}>
                   <h3>{data?.simulator.titulo}</h3>
 
-
                   <p>
                     Pregunta {currentIndex + 1} de {questions.length}
                   </p>
                 </div>
 
                 <div className={styles["simulator-info"]}>
-
-                    <button onClick={()=>{
-                      setIsConfigurationModal(true)
-                    }}>Configuracion </button>
+                  <button
+                    onClick={() => {
+                      setIsConfigurationModal(true);
+                    }}
+                  >
+                    Configuracion{" "}
+                  </button>
                   <div>
                     <Image
                       src={"/course/stopwatch.png"}
@@ -342,7 +393,7 @@ const Page = () => {
               </div>
 
               <div className={styles["simulator-question"]}>
-                <div className={styles["simulator-content"]}>
+                <div  className={styles["simulator-content"]}>
                   <MathQuestion
                     html={data?.questions[currentIndex].contenidoHTML}
                   ></MathQuestion>
@@ -359,7 +410,6 @@ const Page = () => {
                             index,
                             answer.esCorrecta
                           );
-
                         }}
                         className={`${styles["simulator-answer"]} ${
                           solved?.selectedAnswer === index
@@ -389,10 +439,7 @@ const Page = () => {
               onClick={()=>{prevQuestion()}}
               >Anterior</button> */}
 
-                <button
-                  disabled={isDisabled()}
-                  onClick={handleAnswer}
-                >
+                <button disabled={isDisabled()} onClick={handleAnswer}>
                   Siguiente
                 </button>
               </div>
