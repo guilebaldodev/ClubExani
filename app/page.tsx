@@ -12,15 +12,7 @@ const LandingPage = () => {
       <div className={styles["landing-page"]}>
         <div className={styles["content-container"]}>
           <div className={styles["landing-hero"]}>
-            <div className={styles["landing-hero-img"]}>
-              <Image
-                src={"/landing/hero.png"}
-                width={400}
-                height={400}
-                alt="Simulandum hero image"
-                style={{ width: "100%", height: "auto" }}
-              />
-            </div>
+
 
             <div className={styles["landing-hero-texts"]}>
               <h3>
@@ -46,6 +38,17 @@ const LandingPage = () => {
                 </Link>
               </div>
             </div>
+
+            <div className={styles["landing-hero-img"]}>
+              <Image
+                src={"/landing/containers/3.png"}
+                width={400}
+                height={400}
+                alt="Simulandum hero image"
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
+
           </div>
 
           <div className={styles["landing-numbers"]}>
@@ -309,7 +312,7 @@ const LandingPage = () => {
             <div className={styles["landing-section"]}>
               <div className={styles["landing-section-img"]}>
                 <Image
-                  src={"/landing/hero.png"}
+                  src={"/landing/containers/6.png"}
                   width={400}
                   height={400}
                   alt="Simulandum simuladores"
@@ -351,7 +354,7 @@ const LandingPage = () => {
 
                 <div className={styles["landing-section-img"]}>
                   <Image
-                    src="/landing/hero.png"
+                    src="/landing/containers/4.png"
                     width={400}
                     height={400}
                     alt="Simuladores flexibles"
@@ -386,7 +389,7 @@ const LandingPage = () => {
               <div className={styles["testimonial-item"]}>
                 <div className={styles["testimonial-img"]}>
                   <Image
-                    src="/landing/person.jpg"
+                    src="/landing/person/male.gif"
                     alt="Guilebaldo Vargas Solís"
                     width={80}
                     height={80}
@@ -409,7 +412,7 @@ const LandingPage = () => {
               <div className={styles["testimonial-item"]}>
                 <div className={styles["testimonial-img"]}>
                   <Image
-                    src="/landing/person.jpg"
+                    src="/landing/person/female.gif"
                     alt="Alexandra Olea"
                     width={80}
                     height={80}

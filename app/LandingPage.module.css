@@ -3,15 +3,16 @@
 .landing-hero{
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    margin: auto;
     margin: auto;
     gap: 20px;
     justify-content: center;
 
 }
 
-.hero-img{
-    width: 50%;
+.landing-hero-img{
+    width: 40%;
 }
 
 .landing-hero-img img{
@@ -19,7 +20,7 @@
 }
 
 .landing-hero-texts{
-    width: 50%;
+    width: 60%;
 }
 
 .landing-hero-texts h1{
@@ -290,7 +291,7 @@
 
 .landing-section{
     display: flex;
-    width: 80%;
+    width: 90%;
     margin: auto;
     gap: 20px;
     padding: 1rem 0;
@@ -313,7 +314,7 @@
 
 .landing-section-img img{
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
 }
 
 
@@ -513,13 +514,17 @@
   display: none;
 }
 
+.landing-hero-img{
+    width: 50%;
+}
+
 
 }
 
 @media(max-width:850px){
 
     .landing-hero{
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 0;
     }
 
@@ -528,6 +533,7 @@
         width: 100%;
         padding-bottom: 2rem;
         padding: 0 2rem;
+        padding-bottom: 1rem;
     }
 
     .landing-cards{
@@ -582,6 +588,31 @@
 
 
 }
+
+@media(max-width:650px){
+
+    .landing-section-img{
+        width: 85%;
+    }
+
+    .landing-section-texts{
+        width: 90%;
+        margin: auto;
+    }
+
+    .landing-sections-title{
+        width: 90%;
+    }
+
+    .testimonials-container{
+        width: 90%;
+    }
+
+
+}
+
+
+
 
 @media(max-width:600px){
         .examen-options{
