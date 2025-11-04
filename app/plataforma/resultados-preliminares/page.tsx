@@ -58,6 +58,7 @@ const Page = () => {
   const shareMessage = `¡Acabo de completar el simulador "${simulator?.titulo}" con ${score}/${totalScore}! 🎯`;
 
   return (
+    <>
     <div className={style["results-container"]}>
       <div className={style["results-left"]}>
         <div className={style["result-left-header"]}>
@@ -110,10 +111,9 @@ const Page = () => {
         <h3>Tu puntuación explicada</h3>
 
         <p>
-          Este es un resumen preliminar de tu desempeño en el simulador. Aquí
-          podrás visualizar tu puntaje obtenido, el porcentaje de aciertos y una
-          visión general de cómo te fue en esta sesión antes de acceder al
-          reporte completo.
+          Este es un reporte completo de tu desempeño en el simulador. Aquí
+          puedes revisar tu puntaje, el porcentaje de aciertos y el resultado
+          individual de cada pregunta que resolviste durante esta sesión.
         </p>
 
         <div className={style["results-header"]}>
@@ -150,7 +150,7 @@ const Page = () => {
         <div className={style["results-question-list"]}>
           {questions.map((question, index) => (
             <div key={question.questionId} className={style["question-square"]}>
-              {index}
+              {index + 1}
               <div
                 className={`${style["question-square-result"]} ${
                   question.selectedAnswer === -1
@@ -169,11 +169,23 @@ const Page = () => {
             </div>
           ))}
         </div>
-
-        <p className={style["report-p"]}>
-          Puedes consultar un reporte más completo de tu desempeño en la sección
-          de Resultados, donde encontrarás un análisis detallado de cada
-          simulador que has realizado.
+        <p>
+          Debajo se muestra el{" "}
+          <strong>detalle individual de cada pregunta</strong> de este
+          simulador, con sus aciertos e intentos.
+          <strong>
+            {" "}
+            Esta información solo estará disponible en este momento, justo al
+            terminar tu examen
+          </strong>
+          , como parte del análisis inmediato de desempeño.
+          <br />
+          <br />
+          Podrás consultar en cualquier momento el{" "}
+          <strong>resumen general de tus simulaciones</strong> en la sección de
+          resultados, pero <strong>no el desglose pregunta por pregunta</strong>
+          . Esto se hace para proteger el contenido de los reactivos y mantener
+          un óptimo rendimiento en la plataforma.
         </p>
 
         <div className={style["results-buttons"]}>
@@ -183,10 +195,57 @@ const Page = () => {
           >
             Ir a simuladores
           </Link>
-          <Link href={"/plataforma/resultados"}>Ver reportes completos</Link>
+          <Link href={"/plataforma/resultados"}>Ver todos los reportes</Link>
         </div>
       </div>
     </div>
+    
+          {/* <div className={style["questions-container"]}>
+        {questionResults.map((question, index) => (
+          <div key={question.id} className={style["question-item"]}>
+            <div className={style["question-item-icons"]}>
+              <div>
+                <img src="/course/question-black.png" alt="" />
+                <p>Pregunta {index + 1}</p>
+              </div>
+
+              <div>
+                <div
+                  className={`${style["square"]} ${
+                    question.status === "correct"
+                      ? style["green"]
+                      : question.status === "incorrect"
+                      ? style["red"]
+                      : style["grey"]
+                  }`}
+                ></div>
+                <p>
+                  {question.status === "correct"
+                    ? "Correcta"
+                    : question.status === "incorrect"
+                    ? "Incorrecta"
+                    : "No contestada"}
+                </p>
+              </div>
+            </div>
+
+            <div className={style["question-item-text"]}>
+              <p>{question.summary}</p>
+            </div>
+
+            <div className={style["question-item-button"]}>
+              <a href="/plataforma/revision">Revisar</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className={style["question-more"]}>
+        <button>Cargar más</button>
+      </div> */}
+    
+    
+    </>
   );
 };
 

@@ -14,12 +14,37 @@ interface Simulator {
   imagen: string;
 }
 
+
+// questionId
+// : 
+// "68c431148e5391db56f8d754"
+// selectedAnswer
+// : 
+// 0
+// wasCorrect
+// : 
+// true
+// _id
+// : 
+// "690a12235a43dc493414f752"
+
+
+interface singleProgress{
+  questionId: string;
+  selectedAnswer: number;
+  wasCorrect: boolean;
+  _id: string
+
+}
+
 interface Progress {
   _id: string;
   simulatorId: Simulator;
   score: number;
   totalScore: number;
   time: number;
+  createdAt: string;
+  solvedQuestions: singleProgress[]
 }
 
 interface DashboardState {

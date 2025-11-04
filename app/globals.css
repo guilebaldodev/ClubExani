@@ -520,6 +520,12 @@ main {
 
 /* /////////////////////////////////// */
 
+
+.CircularProgressbar-text{
+  dominant-baseline: middle;
+    text-anchor: middle;
+}
+
 @media(max-width:1050px) {
   .footer-logotype {
     width: 100%;

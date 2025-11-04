@@ -45,7 +45,7 @@ export async function GET() {
       .sort({ createdAt: -1 })
       .limit(5)
       .populate("simulatorId", "titulo imagen _id ")
-      .select("_id simulatorId score totalScore time");
+      // .select("_id simulatorId score totalScore time");
 
     return NextResponse.json({ stats, lastProgress });
   } catch (err) {

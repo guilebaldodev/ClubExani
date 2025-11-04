@@ -196,7 +196,6 @@ const Page = () => {
             (s) => s.questionId === currentQuestion._id
           );
 
-          // console.log(currentQuestion)
           setExplanationString(
             currentQuestion.respuestas[current?.selectedAnswer].explicacion
           );
@@ -244,16 +243,21 @@ const Page = () => {
 
       if (!response.ok) toast.error("Error al guardar progreso en reportes");
 
+      const json = await response.json()
+
+
       const newProgress = {
-        _id: crypto.randomUUID(),
+        _id: json.progreso._id,
         simulatorId: {
           _id: simulator?._id,
           titulo: simulator?.titulo,
           imagen: simulator?.imagen,
         },
+        solvedQuestions:normalizeSolvedQuestions(),
         score,
         totalScore,
         time: totalTime - timeLeft,
+        createdAt : new Date()
       };
 
       const newStats = {
