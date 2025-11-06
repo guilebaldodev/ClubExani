@@ -8,6 +8,9 @@ type AnswerExplanationProps = {
 };
 
 const AnswerExplanation = ({ html, setIsShow }: AnswerExplanationProps) => {
+
+  if(!html) return null
+
   return (
     <div className={style["answer-explanation-container"]}>
       <button

@@ -118,12 +118,20 @@ normalizeSolvedQuestions: () => {
     const solved = state.solvedQuestions.find((s) => s.questionId === q._id);
 
     if (solved) {
-      return solved;
+      return {
+        ...solved,
+        resumen:q.resumen,
+        contenidoHTML:q.contenidoHTML,
+        answers: q.respuestas
+      };
     } else {
       return {
         questionId: q._id,
         selectedAnswer: -1,
         wasCorrect: false,
+        resumen : q.resumen,
+        contenidoHTML:q.contenidoHTML,
+        answers: q.respuestas,
       };
     }
   });

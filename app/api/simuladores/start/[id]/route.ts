@@ -62,7 +62,7 @@ export async function GET(req: Request, { params }) {
     }
 
     const questions = await Pregunta.find({ simuladores: id }).select(
-      "_id contenidoHTML respuestas"
+      "_id contenidoHTML respuestas resumen"
     );
 
     await user.save();

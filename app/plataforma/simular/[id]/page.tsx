@@ -109,6 +109,8 @@ const Page = () => {
       const json = await res.json();
       setData(json);
 
+      console.log(json)
+
       setComplete(false);
       setSimulator(json.simulator, json.questions);
 
