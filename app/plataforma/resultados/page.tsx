@@ -4,14 +4,20 @@ import styles from "./results.module.css";
 import { useDashboardStore } from "@/stores/progessStore";
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 const ResultsPage = () => {
   const stats = useDashboardStore();
 
   const { isSignedIn } = useUser();
 
-  console.log(stats);
 
+
+  useEffect(()=>{
+    localStorage.removeItem("lastSimulatorData");
+  },[])
+
+  
   return (
     <>
       <div className={styles["container"]}>

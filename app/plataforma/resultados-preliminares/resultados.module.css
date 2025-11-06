@@ -188,22 +188,19 @@
   background-color: #DCDCDC;
 }
 
-.result-squares,
-.question-item-icons {
+.result-squares {
   display: flex;
   gap: 15px;
   padding-top: 1.5rem;
 }
 
-.result-squares div,
-.question-item-icons div {
+.result-squares div{
   display: flex;
   gap: 7px;
   align-items: center;
 }
 
-.result-squares .square,
-.question-item-icons div .square {
+.result-squares .square{
   width: 15px;
   height: 15px;
   border-radius: 2px;
@@ -259,52 +256,53 @@
 }
 
 
-.question-item {
-  border: 1px solid #dbdbdb;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-top: 2rem;
-}
-
-.question-item-icons {
-  align-items: center;
-  gap: 25px;
-}
-
-.question-item-icons div {
-  align-items: center;
-  gap: 8px;
-}
-
-.question-item-text {
-  padding-top: 1.2rem;
-  font-size: 17px;
-}
-
-.question-item-button {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.question-item-button a,
-.question-more button {
-  color: #fff;
-  cursor: pointer;
-  background-color: #287CBE;
-  border: none;
-  border-radius: 6px;
-  width: max-content;
-  margin-top: 1rem;
-  padding: .5rem 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-}
 
 .question-more {
   display: flex;
   justify-content: center;
   padding-top: 2rem;
+}
+
+
+.not-content-container{
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 15px;
+  text-align: center;
+}
+
+.not-content-container img{
+  width: 150px;
+  height: 150px;
+}
+
+.not-content-container p{
+  padding-top: 2rem;
+  font-size: 20px;
+  color: rgb(94, 94, 94);
+  font-weight: 500;
+}
+
+.not-content-container a{
+      color: #fff;
+    cursor: pointer;
+    background-color: #287CBE;
+    
+    border: none;
+    border-radius: 6px;
+    width: max-content;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 /* === MEDIA QUERIES === */

@@ -121,6 +121,7 @@ const Page = () => {
   }, [id]);
 
   useEffect(() => {
+    localStorage.removeItem("lastSimulatorData");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentIndex]);
 

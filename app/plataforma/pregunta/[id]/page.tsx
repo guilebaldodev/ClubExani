@@ -4,8 +4,10 @@ import styles from "@/app/plataforma/simulador/simulator.module.css";
 import AnswerExplanation from "@/app/ui/course/AnswerExplanation";
 import MathQuestion from "@/app/ui/shared/RenderHtml";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const letters = {
@@ -26,6 +28,7 @@ const Page = () => {
   const [question, setQuestion] = useState<any>(null);
   const [explanation, setExplanation] = useState(false);
 
+
   useEffect(() => {
     // esto garantiza que solo se ejecuta en cliente
     const data = localStorage.getItem("lastSimulatorData");
@@ -39,14 +42,23 @@ const Page = () => {
         );
         setQuestion(found);
       } catch (err) {
+        toast.error("Ya no puedes acceder a estos resultados")
         console.error("Error al parsear localStorage:", err);
       }
     }
   }, [id]);
 
-  if (!parsed || !question) {
-    return <p style={{ padding: "1rem" }}>No hay información disponible.</p>;
-  }
+  if (!parsed || !question) return (
+
+        <div className={styles["not-content-container"]}>
+            <Image src="/layout/no-content.png" alt="not found" width={100} height={100}></Image>
+            <p>Este contenido no existe o ya no se encuentra disponible</p>
+            <Link href={"/plataforma/mis-simuladores"}>Volver atras</Link>
+        </div>
+    )
+
+    
+  
 
   const explanationString =
     question.answers[question.selectedAnswer]?.explicacion;

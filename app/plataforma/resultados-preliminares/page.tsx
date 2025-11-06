@@ -12,6 +12,8 @@ import {
   FacebookIcon,
   WhatsappIcon,
 } from "react-share";
+import Image from "next/image";
+import QuestionItem from "@/app/ui/course/QuestionItem";
 
 const Page = () => {
   const {
@@ -80,7 +82,14 @@ const Page = () => {
   }, []);
 
   if (!localSimulator) {
-    return <p>No hay información disponible del examen.</p>;
+    return (
+
+        <div className={style["not-content-container"]}>
+            <Image src="/layout/no-content.png" alt="not found" width={100} height={100}></Image>
+            <p>Este contenido ya no se encuentra disponible</p>
+            <Link href={"/plataforma"}>Volver atras</Link>
+        </div>
+    )
   }
 
   const date = new Date();
@@ -236,44 +245,7 @@ const Page = () => {
 
       <div className={style["questions-container"]}>
         {questions.map((question, index) => (
-          <div key={question.questionId} className={style["question-item"]}>
-            <div className={style["question-item-icons"]}>
-              <div>
-                <img src="/course/question-black.png" alt="" />
-                <p>Pregunta {index + 1}</p>
-              </div>
-
-              <div>
-                <div
-                  className={`${style["square"]} ${
-                    question.wasCorrect === true
-                      ? style["green"]
-                      : question.selectedAnswer === -1
-                      ? style["grey"]
-                      : style["red"]
-                  }`}
-                ></div>
-                <p>
-                  {question.wasCorrect === true
-                    ? "Correcta"
-                    : question.selectedAnswer === -1
-                    ? 
-                    "No contestada"
-                    : 
-                    "Incorrecta"
-                  }
-                </p>
-              </div>
-            </div>
-
-            <div className={style["question-item-text"]}>
-              <p>{question.resumen}</p>
-            </div>
-
-            <div className={style["question-item-button"]}>
-              <Link href={`/plataforma/pregunta/${question.questionId}`}>Revisar</Link>
-            </div>
-          </div>
+          <QuestionItem key={index} question={question} index={index}></QuestionItem>
         ))}
       </div>
     </>

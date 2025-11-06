@@ -18,6 +18,8 @@ const CourseHome = () => {
 
   const statsInfo = useDashboardStore();
 
+
+
   return (
     <>
       <div className={style["user-dashboard-container"]}>
