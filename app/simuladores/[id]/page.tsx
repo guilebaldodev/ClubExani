@@ -13,10 +13,9 @@ import { useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/userStore";
-import { SignedIn } from '@clerk/nextjs';
+import { SignedIn } from "@clerk/nextjs";
 import LoaderScreen from "@/app/ui/shared/LoaderScreen";
 import ContentNotFound from "@/app/ui/shared/ContentNotFound";
-
 
 const emptySimulator: Simulador = {
   _id: "",
@@ -34,21 +33,18 @@ const emptySimulator: Simulador = {
   tipo: "",
 };
 
-
 export default function Page() {
   const { id } = useParams<{ id: string }>();
   const { user } = useUser();
   const [modal, setModal] = useState(false);
-  const {monedas} =useUserStore()
-  const router= useRouter()
-  const [isLoading, setIsLoading] = useState(true);  
+  const { monedas, simuladoresCanjeados } = useUserStore();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  
+
   const [simulador, setSimulador] = useState<Simulador>(emptySimulator);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchSimulador = async () => {
       try {
         setIsLoading(true);
@@ -72,7 +68,13 @@ export default function Page() {
 
   if (isLoading) return <LoaderScreen />;
 
-  if (error) return <ContentNotFound link="/simuladores" message="Ocurrió un problema al cargar el contenido o el contenido no existe"></ContentNotFound>
+  if (error)
+    return (
+      <ContentNotFound
+        link="/simuladores"
+        message="Ocurrió un problema al cargar el contenido o el contenido no existe"
+      ></ContentNotFound>
+    );
 
   return (
     <>
@@ -98,8 +100,8 @@ export default function Page() {
             <div className={style["simulator-title-items"]}>
               <div>
                 <div className={style["simulator-title-item"]}>
-                  <img src="/landing/simulatorTime.svg" alt="sss" />
-                  <p>1200 preguntas</p>
+                  <img src="/course/question-black.png" alt="sss" />
+                  <p>{simulador.totalPreguntas} preguntas</p>
                 </div>
 
                 <div
@@ -111,7 +113,7 @@ export default function Page() {
               </div>
             </div>
 
-              <SignedIn>
+            <SignedIn>
               <div className={style["div-coins"]}>
                 <Image
                   src={"/layout/yellow-coins.png"}
@@ -121,47 +123,54 @@ export default function Page() {
                 ></Image>
                 <p>Cuentas con {monedas} monedas</p>
               </div>
-              </SignedIn>
-
+            </SignedIn>
 
             <div className={style["simulator-title-buttons"]}>
               <button
                 onClick={() => {
-
                   if (!user) {
                     toast.error(
                       "Debes iniciar sesión para usar este simulador"
                     );
                     return;
                   }
-                  if(simulador.tipo==="Diagnostico"){
-                    console.log("Diagnostico")
-                    router.push(`/plataforma/simular/${simulador._id}`)
-                    return
+
+                  const canjeado = simuladoresCanjeados.find(
+                    (item) => item.simuladorId._id === id && item.uso_justo > 0
+                  );
+
+                  if (canjeado) {
+                    router.push(`/plataforma/simular/${id}`);
+                  } else {
+                    setModal(true);
                   }
-
-
-                  setModal(true);
                 }}
               >
-                {simulador.tipo == "Diagnostico" ? (
-                  <>
-                    <p>Simular gratis</p>
-                  </>
+                {simuladoresCanjeados.find(
+                  (item) => item.simuladorId._id === id && item.uso_justo > 0
+                ) ? (
+                  <p>Simular</p>
+                ) : simulador.tipo === "Diagnostico" ? (
+                  <p>Obtener Gratis</p>
                 ) : (
                   <>
                     <p>Comprar por {simulador.precio}</p>
-                    <img
+                    <Image
                       src="/landing/landing-white-coins.png"
                       alt="simbolo de monedas"
+                      width={30}
+                      height={30}
                     />
                   </>
                 )}
               </button>
 
-              <button onClick={()=>{
-                router.push("/creditos")
-              }} className={style["yellow"]}>
+              <button
+                onClick={() => {
+                  router.push("/creditos");
+                }}
+                className={style["yellow"]}
+              >
                 <p>Comprar monedas</p>
               </button>
             </div>
