@@ -3,9 +3,9 @@ export const simulators = [
     examen: "EXANI-III",
     simulacros: [
       { id: "68bc679c13da463c7fc7cabe", titulo: "EXANI-III Dianóstico", monedas: 0, preguntas: 15, estado: "listo", imagen: "/simuladores/exani-iii-diagnostico.png" },
-      { id: "68bc6a4013da463c7fc7cac0", titulo: "Simulador EXANI-III #1", monedas: 35, preguntas: 120, estado: "listo", imagen: "/simuladores/exani-iii-1.png" },
-      { id: "68bc6bf413da463c7fc7cac2", titulo: "Simulador EXANI-III #2", monedas: 40, preguntas: 120, estado: "listo", imagen: "/simuladores/exani-iii-2.png" },
-      { id: "68bc6cd013da463c7fc7cac5", titulo: "Simulador EXANI-III #3", monedas: 45, preguntas: 120, estado: "listo", imagen: "/simuladores/exani-iii-3.png" },
+      { id: "68bc6a4013da463c7fc7cac0", titulo: "Simulador EXANI-III #1", monedas: 35, preguntas: 120, estado: "en proceso", imagen: "/simuladores/exani-iii-1.png" },
+      { id: "68bc6bf413da463c7fc7cac2", titulo: "Simulador EXANI-III #2", monedas: 40, preguntas: 120, estado: "en proceso", imagen: "/simuladores/exani-iii-2.png" },
+      { id: "68bc6cd013da463c7fc7cac5", titulo: "Simulador EXANI-III #3", monedas: 45, preguntas: 120, estado: "en proceso", imagen: "/simuladores/exani-iii-3.png" },
     ]
   },
   {

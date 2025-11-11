@@ -136,7 +136,7 @@ export default function Page() {
                   }
                   if(simulador.tipo==="Diagnostico"){
                     console.log("Diagnostico")
-                    router.push(`/usuario/simulador/${simulador._id}`)
+                    router.push(`/plataforma/simular/${simulador._id}`)
                     return
                   }
 
