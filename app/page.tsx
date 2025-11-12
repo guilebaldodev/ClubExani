@@ -107,7 +107,7 @@ const LandingPage = () => {
                       <span>3 simuladores</span> | <span>+300 preguntas</span>
                     </div>
                     <Link
-                      href={"/simuladores"}
+                      href={"/blog/exani-iii"}
                       className={styles["examen-boton"]}
                     >
                       Ver simuladores

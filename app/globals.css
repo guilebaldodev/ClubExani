@@ -400,7 +400,7 @@ main {
   color: black;
 }
 
-.error-container{
+.error-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,16 +409,16 @@ main {
   gap: 10px;
 }
 
-.error-container img{
+.error-container img {
   width: 250px !important;
   height: 250px !important;
 }
 
-.error-container h2{
+.error-container h2 {
   text-align: center;
 }
 
-.texts{
+.texts {
   text-align: center;
   width: 80%;
   font-size: 17px;
@@ -429,14 +429,14 @@ main {
 
 @media (max-width: 750px) {
 
-  .error-container img{
+  .error-container img {
 
-  width: 200px !important;
-  height: 200px !important;
+    width: 200px !important;
+    height: 200px !important;
 
   }
 
-  .error-container h2{
+  .error-container h2 {
     font-size: 20px;
   }
 
@@ -464,11 +464,13 @@ main {
   width: 200px;
 }
 
-.config-text-simple h3{
+.config-text-simple h3 {
   padding-bottom: 1rem;
 }
 
-.config-text-simple p,.config-text-simple ul,.config-text-simple ol{
+.config-text-simple p,
+.config-text-simple ul,
+.config-text-simple ol {
   padding-bottom: 0.8rem;
 }
 
@@ -521,9 +523,9 @@ main {
 /* /////////////////////////////////// */
 
 
-.CircularProgressbar-text{
+.CircularProgressbar-text {
   dominant-baseline: middle;
-    text-anchor: middle;
+  text-anchor: middle;
 }
 
 @media(max-width:1050px) {
@@ -649,6 +651,19 @@ main {
 
 }
 
+@media (max-width: 570px) {
+
+  .login-button {
+    height: 1.9rem;
+    font-size: 13px;
+    margin-right: 1.5rem;
+
+  }
+
+  .cl-internal-friqq3 {
+    margin-right: 0.4rem;
+    ;
+  }
 
 
-
+}

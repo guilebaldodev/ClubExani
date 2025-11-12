@@ -125,7 +125,8 @@ export default function Page() {
                   } else {
                     setModal(true);
                   }
-                }}
+                }
+              }
               >
                 {simuladoresCanjeados.find(
                   (item) => item.simuladorId._id === id && item.uso_justo > 0
