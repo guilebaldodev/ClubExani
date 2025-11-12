@@ -78,7 +78,7 @@ const Footer = () => {
             Copyright © 2025 Simulandum. Todos los derechos reservados.
           </p>
 
-          <p>Web hecha con el ♥ por <a target='_blank' href="https://solariasoftware.com">Solaria</a></p>
+          {/* <p>Web hecha con el ♥ por <a target='_blank' href="https://solariasoftware.com">Solaria</a></p> */}
         </div>
       </footer>
     </>
