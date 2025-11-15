@@ -6,6 +6,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 export async function POST(req: NextRequest) {
+
+const baseUrl = process.env.NODE_ENV === "production"
+  ? "https://www.simulandum.com"
+  : "http://localhost:3000";
+
+
   const { priceId, user:userId } = await req.json();
 
 
@@ -22,8 +28,8 @@ export async function POST(req: NextRequest) {
        metadata: {
         userId,
       },
-      success_url: "http://localhost:3000/plataforma/mis-simuladores", 
-      cancel_url: "http://localhost:3000/plataforma/monedas",
+      success_url: `${baseUrl}/plataforma/mis-simuladores`, 
+      cancel_url: `${baseUrl}/plataforma/monedas`,
     });
 
     console.log()
