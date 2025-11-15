@@ -94,7 +94,7 @@ const PricingPage = () => {
                 <h4>$49</h4>
               </div>
               <p className={styles['plan-info-last']}>50 monedas</p>
-              <button onClick={()=>handlePurchase("price_1RW7jlR9Y0DKMvQGEQRvBtda")} className={styles['plan-button']}>Comprar</button>
+              <button onClick={()=>handlePurchase("price_1STahmJZmqsHSS4EyYDLmutv")} className={styles['plan-button']}>Comprar</button>
             </div>
 
             <div className={styles['plan-item-includes']}>
@@ -119,7 +119,7 @@ const PricingPage = () => {
                 <h4>$89</h4>
               </div>
               <p className={styles['plan-info-last']}>100 monedas</p>
-              <button onClick={()=>handlePurchase("price_1RWLAuR9Y0DKMvQGjytpl2Jh")} className={styles['plan-button']}>Comprar</button>
+              <button onClick={()=>handlePurchase("price_1STahiJZmqsHSS4EB7ZmVFRo")} className={styles['plan-button']}>Comprar</button>
 
            </div>
 
@@ -146,7 +146,7 @@ const PricingPage = () => {
                 <h4>$199</h4>
               </div>
               <p className={styles['plan-info-last']}>250 monedas</p>
-              <button onClick={()=>handlePurchase("price_1RWLQER9Y0DKMvQGZCNhnZm9")} className={styles['plan-button']}>Comprar</button>
+              <button onClick={()=>handlePurchase("price_1STahdJZmqsHSS4EQGlWNzp8")} className={styles['plan-button']}>Comprar</button>
 
             </div>
 
@@ -172,7 +172,7 @@ const PricingPage = () => {
                 <h4>$349</h4>
               </div>
               <p className={styles['plan-info-last']}>500 monedas</p>
-              <button onClick={()=>handlePurchase("price_1RWSz6R9Y0DKMvQG5lOmhzNR")} className={styles['plan-button']}>Comprar</button>
+              <button onClick={()=>handlePurchase("price_1STaguJZmqsHSS4E1qWQPK2J")} className={styles['plan-button']}>Comprar</button>
             </div>
 
             <div className={styles['plan-item-includes']}>

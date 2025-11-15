@@ -89,37 +89,6 @@ const PricingPage = () => {
           </div>
 
 
-{/*  */}
-
-          <div className={styles['plan-item']}>
-            <div className={styles['plan-info']}>
-              <h4>Recarga Básica</h4>
-              <p className={styles['p-100']}>Para probar el sistema de monedas</p>
-              <div className={styles['plan-info-price']}>
-                <h4>$5</h4>
-              </div>
-              <p className={styles['plan-info-last']}>Prueba monedas</p>
-              <button onClick={()=>handlePurchase("price_1STbhaJZmqsHSS4E4FHPEqNF")} className={styles['plan-button']}>Comprar</button>
-            </div>
-
-            <div className={styles['plan-item-includes']}>
-              <h4>Incluye:</h4>
-              <div className={styles['plan-include-item']}>
-                <Image src="/landing/check-icon.png" alt="" width={22} height={22} />
-                <p>Canjea por simuladores</p>
-              </div>
-              <div className={styles['plan-include-item']}>
-                <Image src="/landing/check-icon.png" alt="" width={22} height={22} />
-                <p>Monedas extra como bono de bienvenida</p>
-              </div>
-            </div>
-          </div>
-
-
-{/*  */}
-
-          
-
           {/* Recarga Básica */}
           <div className={styles['plan-item']}>
             <div className={styles['plan-info']}>

@@ -32,7 +32,6 @@ const baseUrl = process.env.NODE_ENV === "production"
       cancel_url: `${baseUrl}/plataforma/monedas`,
     });
 
-    console.log(session)
     return NextResponse.json({ url: session.url });
   } catch (err) {
     console.error("Error al crear sesión de checkout:", err);
