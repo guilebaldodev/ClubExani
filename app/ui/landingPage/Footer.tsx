@@ -64,7 +64,7 @@ const Footer = () => {
             <h4>Simuladores</h4>
             <ul>
               <li>
-                <Link href="/mi-progreso">Todos</Link>
+                <Link href="/simuladores">Todos</Link>
               </li>
             </ul>
           </div>

@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
       const amount = session.amount_total;
 
 
+      if (amount === 1000) user.monedas += 10;
       if (amount === 4900) user.monedas += 50;
       else if (amount === 8900) user.monedas += 100;
       else if (amount === 19900) user.monedas += 250;

@@ -63,7 +63,7 @@ const UserIcon = () => {
             <p>{monedas} monedas</p>
           </div>
 
-          <div
+          {/* <div
             onClick={() => {
               router.push("/plataforma/cuenta")
               setIsOpen(false)
@@ -72,7 +72,7 @@ const UserIcon = () => {
           >
             <img src="/layout/config-icon.png" alt="" />
             <p>Mi cuenta</p>
-          </div>
+          </div> */}
 
           <div
             onClick={() => {
