@@ -11,7 +11,6 @@ const PricingPage = () => {
   const {user} = useUser()
   const {openSignIn}= useClerk()
 
-  console.log(user)
 
   const handlePurchase = async(priceId: string) =>{
     
