@@ -32,9 +32,9 @@ const ConfigurationModal = ({ setIsConfiguration }: ConfigurationModalProps) => 
         <div className={style["configurations-items"]}>
           <div className={style["configuration-item"]}>
             <div className={style["config-text"]}>
-              <h4>Explicaciones al finalizar</h4>
+              <h4>Explicaciones</h4>
               <p>
-                Muestra una explicación al final para entender por qué tus respuestas fueron
+                Muestra una explicación al contestar las preguntas para entender por qué tus respuestas fueron
                 correctas o incorrectas.
               </p>
             </div>
