@@ -443,38 +443,6 @@ main {
 }
 
 
-/* CSS simulator */
-
-
-.config-text-with-image div {
-  display: flex;
-  justify-content: center;
-  padding: 1.5rem 0;
-}
-
-.config-text-with-image p {
-  padding-bottom: 8px;
-}
-
-.config-text-with-image img {
-  width: 140px;
-}
-
-.config-image-answer img {
-  width: 200px;
-}
-
-.config-text-simple h3 {
-  padding-bottom: 1rem;
-}
-
-.config-text-simple p,
-.config-text-simple ul,
-.config-text-simple ol {
-  padding-bottom: 0.8rem;
-}
-
-
 /* Loader */
 
 
@@ -666,4 +634,90 @@ main {
   }
 
 
+}
+
+/* //////////////////////////////////////////////////////////// */
+
+
+/* CSS simulator */
+
+
+.config-text-with-image div {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
+
+.config-text-with-image p {
+  padding-bottom: 8px;
+}
+
+.config-text-with-image img {
+  width: 140px;
+}
+
+.config-image-answer img {
+  width: 200px;
+}
+
+.config-text-simple h3 {
+  padding-bottom: 1rem;
+}
+
+.config-text-simple p,
+.config-text-simple ul,
+.config-text-simple ol {
+  padding-bottom: 0.8rem;
+}
+
+.config-text-simple ul{
+  padding-left: 2rem;
+}
+
+.text-simple-lecture ul,.text-simple-lecture ol{
+  padding-left: 2rem;
+}
+
+.breakword{
+  word-break:break-all;
+}
+
+.content-center{
+  padding-bottom: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.config-simple-image .center-image{
+  display: flex;
+  justify-content: center;
+}
+
+.config-simple-image .center-image img{
+  max-width: 500px;
+}
+
+.simple-table {
+  padding-top: 1rem;
+}
+
+.simple-table th, .simple-table td {
+  border: 1px solid #ddd; /* Línea sutil entre filas */
+}
+
+.simple-table td, .simple-table th{
+    padding: 0.3rem;
+}
+
+
+@media(max-width:600px){
+.config-simple-image .center-image img{
+  max-width: 350px;
+}
+}
+
+@media(max-width:400px){
+.config-simple-image .center-image img{
+  max-width: 300px;
+}
 }
