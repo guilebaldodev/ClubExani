@@ -12,9 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contacto",
   ];
 
-  const simulatorRoutes = simulators.flatMap((grupo) =>
-    grupo.simulacros.map((sim) => `/simuladores/${sim.id}`)
-  );
+  const simulatorRoutes = simulators
+    .filter((grupo) => grupo.examen === "EXANI-III")
+    .flatMap((grupo) =>
+      grupo.simulacros
+        .filter((sim) => sim.estado === "listo")
+        .map((sim) => `/simuladores/${sim.id}`)
+    );
 
   const allRoutes = [...staticRoutes, ...simulatorRoutes];
 
