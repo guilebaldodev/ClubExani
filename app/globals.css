@@ -666,11 +666,13 @@ main {
 
 .config-text-simple p,
 .config-text-simple ul,
-.config-text-simple ol {
+.config-text-simple ol,
+.text-simple-lecture p,
+.text-simple-lecture ul{
   padding-bottom: 0.8rem;
 }
 
-.config-text-simple ul{
+.config-text-simple ul,.config-text-simple ol{
   padding-left: 2rem;
 }
 

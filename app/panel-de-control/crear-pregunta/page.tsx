@@ -18,6 +18,10 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { QUESTION_TEMPLATES } from "@/consts/questions_templates";
 
+import PasteJsonModal from "@/app/ui/admin/PasteModal";
+
+
+
 type FormValues = z.infer<typeof preguntaSchema>;
 
 const AddQuestion = () => {
@@ -35,8 +39,8 @@ const AddQuestion = () => {
         contenidoHTML: "",
         resumen: "",
         examen: examenOptions[0].value,
-        area: "",
-        origen: OrigenOptions[0].value,
+        area: "Pensamiento matemático",
+        origen: OrigenOptions[1].value,
         respuestaCorrecta: "0",
         respuestas: [
           { html: "", explicacion: "", esCorrecta: false },
@@ -101,8 +105,8 @@ const AddQuestion = () => {
       reset({
         contenidoHTML: "",
         examen: examenOptions[0].value,
-        area: "",
-        origen: OrigenOptions[0].value,
+        area: "Pensamiento matemático",
+        origen: OrigenOptions[1].value,
         respuestaCorrecta: "0",
         respuestas: [
           { html: "", explicacion: "", esCorrecta: false },
@@ -119,8 +123,53 @@ const AddQuestion = () => {
     }
   };
 
+// Paste modal
+  const [jsonModal, setJsonModal] = useState(false);
+
+
   return (
     <>
+
+
+{jsonModal && (
+  <PasteJsonModal
+    isOpen={jsonModal}
+    requiere4={requiere4}
+    onClose={() => setJsonModal(false)}
+    onApply={(p) => {
+      setValue("contenidoHTML", (p.questionHtmlInline || "").trim());
+      setValue("resumen", (p.summary || "").trim());
+
+
+    //VARIABLES 
+  
+
+      const correctIdx = String((p.correctAnswer || 1) - 1) as
+        | "0"
+        | "1"
+        | "2"
+        | "3";
+      setValue("respuestaCorrecta", correctIdx);
+
+      setValue("respuestas.0.html", (p.answer1Html || "").trim());
+      setValue("respuestas.0.explicacion", (p.explanation1Html || "").trim());
+
+      setValue("respuestas.1.html", (p.answer2Html || "").trim());
+      setValue("respuestas.1.explicacion", (p.explanation2Html || "").trim());
+
+      setValue("respuestas.2.html", (p.answer3Html || "").trim());
+      setValue("respuestas.2.explicacion", (p.explanation3Html || "").trim());
+
+      if (requiere4) {
+        setValue("respuestas.3.html", (p.answer4Html || "").trim());
+        setValue("respuestas.3.explicacion", (p.explanation4Html || "").trim());
+      }
+    }}
+  />
+)}
+
+
+
       {modal && (
         <>
           <UploadModal
@@ -230,6 +279,16 @@ const AddQuestion = () => {
                     />
                     Vista previa
                   </button>
+
+
+                  <button
+  type="button"
+  onClick={() => setJsonModal(true)}
+  className={styles.bordered}
+>
+  Pegar JSON
+</button>
+
 
                   <Link href={"/panel-de-control/configuraciones"}>
                     <Image
