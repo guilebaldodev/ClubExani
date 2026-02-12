@@ -1,238 +1,65 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import style from "../../simulador/simulator.module.css";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import SimulatorPageClient from "./SimulatorPageClient";
 import { Simulador } from "@/types";
-import Header from "@/app/ui/landingPage/LandingHeader";
-import Footer from "@/app/ui/landingPage/Footer";
-import { formatExamDuration } from "@/app/utils";
-import Image from "next/image";
-import ConfirmModal from "@/app/ui/shared/ConfirmModal";
-import { useUser } from "@clerk/nextjs";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
-import { useUserStore } from "@/stores/userStore";
-import { SignedIn } from "@clerk/nextjs";
-import LoaderScreen from "@/app/ui/shared/LoaderScreen";
-import ContentNotFound from "@/app/ui/shared/ContentNotFound";
 
-const emptySimulator: Simulador = {
-  _id: "",
-  titulo: "",
-  descripcion_corta: "",
-  descripcion: "",
-  examen: "",
-  dificultad: "",
-  imagen: "",
-  tiempo: "0",
-  totalPreguntas: 0,
-  contador: 0,
-  uso_justo: 0,
-  precio: 0,
-  tipo: "",
-};
+const SITE_URL = "https://www.simulandum.com";
 
-export default function Page() {
-  const { id } = useParams<{ id: string }>();
-  const { user } = useUser();
-  const [modal, setModal] = useState(false);
-  const { monedas, simuladoresCanjeados } = useUserStore();
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+async function getSimulador(id: string): Promise<Simulador | null> {
+  const res = await fetch(`${SITE_URL}/api/simuladores/${id}`, {
+    cache: "no-store",
+  });
 
-  const [simulador, setSimulador] = useState<Simulador>(emptySimulator);
+  if (!res.ok) return null;
+  return res.json();
+}
 
-  useEffect(() => {
-    const fetchSimulador = async () => {
-      try {
-        setIsLoading(true);
-        setError(false);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
 
-        const res = await fetch(`/api/simuladores/${id}`);
-        if (!res.ok) throw new Error("Error al obtener el simulador");
+  const simulador = await getSimulador(id);
 
-        const data = await res.json();
-        setSimulador(data);
-      } catch {
-        setError(true);
-        toast.error("Ocurrió un problema al cargar el simulador.");
-      } finally {
-        setIsLoading(false);
-      }
+  if (!simulador) {
+    return {
+      title: "Simulador no disponible | Simulandum",
+      description: "El simulador no existe o no está disponible.",
     };
+  }
 
-    fetchSimulador();
-  }, [id]);
+  const title = simulador.titulo || "Simulador | Simulandum";
+  const description =
+    simulador.descripcion_corta ||
+    `Simulador para ${simulador.examen} con ${simulador.totalPreguntas} preguntas.`;
 
-  if (isLoading) return <LoaderScreen />;
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/simuladores/${simulador._id}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/simuladores/${simulador._id}`,
+      images: simulador.imagen ? [simulador.imagen] : ["/og.png"],
+    },
+  };
+}
 
-  if (error)
-    return (
-      <ContentNotFound
-        link="/simuladores"
-        message="Ocurrió un problema al cargar el contenido o el contenido no existe"
-      ></ContentNotFound>
-    );
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
-  return (
-    <>
-      <Header></Header>
+  const simulador = await getSimulador(id);
 
-      {/* <BuySimulatorModal simulator={simulador} closeModal={()=>{
+  if (!simulador) notFound();
 
-  }}></BuySimulatorModal> */}
-
-      {modal && (
-        <ConfirmModal
-          simulator={simulador}
-          closeModal={() => setModal(false)}
-        />
-      )}
-
-      <div className={style["simulator-page"]}>
-        <div className={style["simulator-header"]}>
-          <div className={style["simulator-info-title"]}>
-            <h1>{simulador.titulo}</h1>
-            <p>{simulador.descripcion_corta}</p>
-
-            <div className={style["simulator-title-items"]}>
-              <div>
-                <div className={style["simulator-title-item"]}>
-                  <img src="/course/question-black.png" alt="sss" />
-                  <p>{simulador.totalPreguntas} preguntas</p>
-                </div>
-
-                <div
-                  className={`${style["simulator-title-item"]} ${style["title-item-p"]}`}
-                >
-                  <img src="/landing/simulatorTime.svg" alt="sss" />
-                  <p>{formatExamDuration(parseInt(simulador.tiempo))}</p>
-                </div>
-              </div>
-            </div>
-
-            <SignedIn>
-              <div className={style["div-coins"]}>
-                <Image
-                  src={"/layout/yellow-coins.png"}
-                  alt="coins"
-                  width={25}
-                  height={25}
-                ></Image>
-                <p>Cuentas con {monedas} monedas</p>
-              </div>
-            </SignedIn>
-
-            <div className={style["simulator-title-buttons"]}>
-              <button
-                onClick={() => {
-                  if (!user) {
-                    toast.error(
-                      "Debes iniciar sesión para usar este simulador"
-                    );
-                    return;
-                  }
-
-                  const canjeado = simuladoresCanjeados.find(
-                    (item) => item.simuladorId._id === id && item.uso_justo > 0
-                  );
-
-                  if (canjeado) {
-                    router.push(`/plataforma/simular/${id}`);
-                  } else {
-                    setModal(true);
-                  }
-                }}
-              >
-                {simuladoresCanjeados.find(
-                  (item) => item.simuladorId._id === id && item.uso_justo > 0
-                ) ? (
-                  <p>Simular</p>
-                ) : simulador.tipo === "Diagnostico" ? (
-                  <p>Obtener Gratis</p>
-                ) : (
-                  <>
-                    <p>Comprar por {simulador.precio}</p>
-                    <Image
-                      src="/landing/landing-white-coins.png"
-                      alt="simbolo de monedas"
-                      width={30}
-                      height={30}
-                    />
-                  </>
-                )}
-              </button>
-
-              <button
-                onClick={() => {
-                  router.push("/creditos");
-                }}
-                className={style["yellow"]}
-              >
-                <p>Comprar monedas</p>
-              </button>
-            </div>
-          </div>
-
-          <div className={style["simulator-img"]}>
-            <Image
-              src={simulador.imagen}
-              alt="imagen del simulador"
-              height={400}
-              width={380}
-              className={style["your-class"]}
-            ></Image>
-          </div>
-        </div>
-      </div>
-
-      <div className={style["instructions-container"]}>
-        <h2>Instrucciones del simulador</h2>
-        <div className={style["instructions"]}>
-          {[1, 2, 3, 4].map((step, idx) => (
-            <div key={idx} className={style["instructions-item"]}>
-              <div className={style["instructions-item-title"]}>
-                <div className={style["circle"]}>
-                  <img src="/admin/add-icon.png" alt="" />
-                </div>
-                <p>{`Paso ${step}`}</p>
-              </div>
-              <p>
-                {step === 1 &&
-                  "Inicia el simulador correspondiente al examen seleccionado. Las preguntas han sido cuidadosamente seleccionadas para esta versión"}
-                {step === 2 &&
-                  "Responde cada pregunta eligiendo una de las opciones disponibles según tu criterio."}
-                {step === 3 &&
-                  "Tómate el tiempo necesario para pensar bien tus respuestas. La calidad es más importante que la rapidez."}
-                {step === 4 &&
-                  "Al concluir la simulación, se generará un reporte con tu puntaje, respuestas correctas y explicaciones detalladas."}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className={style["separation"]}>
-        <div>
-          <p>
-            🚀 Empieza hoy a prepararte con un simulador que se adapta a tu
-            nivel.
-          </p>
-          <p>⏳ El tiempo pasa... ¡empieza a estudiar ahora!</p>
-        </div>
-      </div>
-
-      <div className={style["description-container"]}>
-        <h2>Descripcion del simulador</h2>
-
-        <div
-          className={style["description"]}
-          dangerouslySetInnerHTML={{ __html: simulador.descripcion }}
-        ></div>
-      </div>
-      <Footer></Footer>
-    </>
-  );
+  return <SimulatorPageClient simulador={simulador} />;
 }

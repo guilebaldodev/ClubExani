@@ -1,9 +1,26 @@
+import type { Metadata } from "next";
 import Footer from "@/app/ui/landingPage/Footer";
 import Header from "@/app/ui/landingPage/LandingHeader";
 import { simulators } from "@/consts/simulators";
 import styles from "../blog.module.css";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Simuladores EXANI III | Simulandum",
+  description:
+    "Simuladores del examen EXANI III para estudiar posgrado: estructura, qué evalúa y por qué practicar con simuladores tipo Ceneval.",
+  alternates: {
+    canonical: "https://www.simulandum.com/blog/exani-iii",
+  },
+  openGraph: {
+    title: "Simuladores EXANI III | Simulandum",
+    description:
+      "Qué es el EXANI III, qué evalúa y cómo practicar con simuladores tipo Ceneval.",
+    url: "https://www.simulandum.com/blog/exani-iii",
+    images: ["/og.png"],
+  },
+};
 
 const Page = () => {
   const exani = simulators[0];
@@ -62,11 +79,7 @@ const Page = () => {
 
             <Link
               href={`/plataforma/simuladores/${sim.id}`}
-              className={
-                sim.estado === "listo"
-                  ? styles["boton"]
-                  : styles["grey"]
-              }
+              className={sim.estado === "listo" ? styles["boton"] : styles["grey"]}
             >
               {sim.estado === "listo" ? "Detalles" : "Próximamente..."}
             </Link>
@@ -184,6 +197,18 @@ const Page = () => {
             resultados reales.
           </li>
         </ul>
+
+        <h2>Empieza a practicar</h2>
+        <p>
+          Si vas a presentar el EXANI III, lo mejor es practicar con preguntas
+          tipo examen y medir tu desempeño.{" "}
+          <Link href="/simuladores" className={styles["link"]}>
+            Aquí puedes ver todos los simuladores disponibles en Simulandum
+          </Link>
+          .
+        </p>       
+
+
       </div>
 
       <Footer />

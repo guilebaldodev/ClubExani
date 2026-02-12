@@ -7,11 +7,28 @@ import { esMX } from "@clerk/localizations";
 import InitUser from "./ui/InitUser";
 import { ToastContainer } from "react-toastify";
 
+
+  const SITE_URL ="https://www.simulandum.com"
+
 export const metadata: Metadata = {
-  title: "Simulandum",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Simulandum",
+    template: "%s | Simulandum",
+  },
   description:
-    "Simuladores de examen para EXANI-III, EGEL, ACREDITA-BACH y más. Preguntas alineadas al temario, práctica ilimitada y resultados inmediatos. ¡Prepárate mejor con Simulandum!",
+    "Simuladores de examen para EXANI-III, EGEL, ACREDITA-BACH y más. Preguntas alineadas al temario, práctica ilimitada y resultados inmediatos.",
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Simulandum",
+    title: "Simulandum",
+    description:
+      "Simuladores de examen para EXANI-III, EGEL, ACREDITA-BACH y más. Preguntas alineadas al temario, práctica ilimitada y resultados inmediatos.",
+    images: ["/og.png"],
+  },
 };
+
 
 export default function RootLayout({
   children,

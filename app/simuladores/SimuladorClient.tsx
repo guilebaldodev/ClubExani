@@ -1,15 +1,15 @@
-'use client';
-import Footer from '../ui/landingPage/Footer';
-import Header from '../ui/landingPage/LandingHeader';
-import styles from './simuladores.module.css';
-import Select from 'react-select';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import {simulators} from "../../consts/simulators"
-import { SignedIn } from '@clerk/nextjs';
-import Image from 'next/image';
-import { useUserStore } from "@/stores/userStore";
+"use client";
 
+import Footer from "../ui/landingPage/Footer";
+import Header from "../ui/landingPage/LandingHeader";
+import styles from "./simuladores.module.css";
+import Select from "react-select";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { simulators } from "../../consts/simulators";
+import { SignedIn } from "@clerk/nextjs";
+import Image from "next/image";
+import { useUserStore } from "@/stores/userStore";
 
 const examenOptions = [
   { value: "Todos", label: "Todos los exámenes" },
@@ -18,16 +18,15 @@ const examenOptions = [
   { value: "EGEL", label: "EGEL" },
 ];
 
-export default function SimuladoresPage() {
+export default function SimuladoresClient() {
   const [categoria, setCategoria] = useState("Todos");
 
-  const filtrado = simulators.filter(examen =>
-    categoria === "Todos" || examen.examen === categoria
+  const filtrado = simulators.filter(
+    (examen) => categoria === "Todos" || examen.examen === categoria
   );
 
-  const router= useRouter()
-
-  const {monedas} = useUserStore()
+  const router = useRouter();
+  const { monedas } = useUserStore();
 
   return (
     <>
@@ -36,27 +35,20 @@ export default function SimuladoresPage() {
         <h2 className={styles["catalogo-title"]}>Todos los simuladores</h2>
 
         <div className={styles["filtros-row"]}>
-
-
-
-              <div className={styles["div-coins"]}>
-              <SignedIn>
-                
-                <p>Cuentas con </p>
-                <div>
+          <div className={styles["div-coins"]}>
+            <SignedIn>
+              <p>Cuentas con </p>
+              <div>
                 <Image
                   src={"/layout/yellow-coins.png"}
                   alt="coins"
                   width={25}
                   height={25}
-                ></Image>
+                />
                 <p>{monedas} monedas</p>
-
-                </div>
-              </SignedIn>
               </div>
-
-
+            </SignedIn>
+          </div>
 
           <div className={styles["filtros-izquierda"]}>
             <Select
@@ -71,22 +63,34 @@ export default function SimuladoresPage() {
         </div>
 
         <main className={styles["catalogo"]}>
-          {filtrado.map(grupo => (
+          {filtrado.map((grupo) => (
             <section key={grupo.examen} className={styles["grupo-examen"]}>
               <h3>{grupo.examen}</h3>
               <div className={styles["grid-simuladores"]}>
-                {grupo.simulacros.map(sim => (
+                {grupo.simulacros.map((sim) => (
                   <div key={sim.id} className={styles["simulador-card"]}>
                     <div>
                       <img src={sim.imagen} alt={sim.titulo} />
                       <h4>{sim.titulo}</h4>
-                      <p><strong>{sim.preguntas}</strong> preguntas</p>
-                      <p><strong>{sim.monedas}</strong> monedas</p>
+                      <p>
+                        <strong>{sim.preguntas}</strong> preguntas
+                      </p>
+                      <p>
+                        <strong>{sim.monedas}</strong> monedas
+                      </p>
                     </div>
-                    <button onClick={()=>{
-                      if(sim.estado!=="listo") return;
-                        router.push(`/simuladores/${sim.id}`)
-                    }} className={sim.estado === "listo" ? styles["boton"] : styles["grey"]}>
+
+                    <button
+                      onClick={() => {
+                        if (sim.estado !== "listo") return;
+                        router.push(`/simuladores/${sim.id}`);
+                      }}
+                      className={
+                        sim.estado === "listo"
+                          ? styles["boton"]
+                          : styles["grey"]
+                      }
+                    >
                       {sim.estado === "listo" ? "Detalles" : "Próximamente..."}
                     </button>
                   </div>

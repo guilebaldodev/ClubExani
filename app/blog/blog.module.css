@@ -155,6 +155,10 @@
   color: black;
 }
 
+.link{
+  color: #287CBE;
+}
+
 @media (max-width: 570px) {
 
   .login-button {
