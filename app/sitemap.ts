@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/simuladores",
     "/blog/exani-iii",
+    "/blog/posgrados-con-beca-en-mexico",
     "/creditos",
     "/contacto",
   ];
