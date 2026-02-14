@@ -397,31 +397,6 @@
    REACT SELECT (GLOBAL)
 ========================================================= */
 
-:global(.rs__control) {
-  border-radius: 10px !important;
-  border: 1px solid #ddd !important;
-  min-height: 46px !important;
-  box-shadow: none !important;
-}
-
-:global(.rs__value-container) {
-  padding: 2px 10px !important;
-}
-
-:global(.rs__single-value) {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-:global(.rs__menu) {
-  z-index: 20 !important;
-}
-
-:global(.rs__menu-list) {
-  max-height: 260px !important;
-}
 
 /* =========================================================
    RESULTS
