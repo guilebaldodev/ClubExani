@@ -46,7 +46,7 @@ const Contacto = () => {
                   width={26}
                   height={26}
                 />
-                <p>+52 7445329953</p>
+                <p>+52 7444243935</p>
               </div>
 
               {/* <div className={style['contact-text-item']}>

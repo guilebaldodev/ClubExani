@@ -82,6 +82,12 @@ const MobileMenu = ({ onClose }) => {
           </Link>
         </div>
 
+        <div className={style["menu-item"]}>
+          <Link href="/blog" onClick={onClose}>
+            Blog
+          </Link>
+        </div>
+
 
         <div className={style["menu-item"]}>
           <Link href="/contacto" onClick={onClose}>

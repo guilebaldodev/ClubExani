@@ -40,6 +40,7 @@ const Header = () => {
       <Link href="/simuladores">Simuladores</Link>
       {/* <Link href="/nosotros">Nosotros</Link> */}
       <Link href="/creditos">Monedas</Link>
+      <Link href="/blog">Blog</Link>
       <Link href="/contacto">Contacto</Link>
     </nav>
 
