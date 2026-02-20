@@ -6,7 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { esMX } from "@clerk/localizations";
 import InitUser from "./ui/InitUser";
 import { ToastContainer } from "react-toastify";
-
+import { Analytics } from "@vercel/analytics/next"
 
   const SITE_URL ="https://www.simulandum.com"
 
@@ -42,7 +42,7 @@ export default function RootLayout({
       <body className={`${poppins.className}`}>
         <InitUser></InitUser>
         {children}
-
+        <Analytics />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-HV3B8VJRKF"></script>
         <script
           dangerouslySetInnerHTML={{
