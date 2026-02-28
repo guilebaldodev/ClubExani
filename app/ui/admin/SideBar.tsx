@@ -177,7 +177,7 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
                 </Link>
 
                 <Link
-                  href="/panel-de-control/crear-simulador"
+                  href="/panel-de-control/crear-paquete"
                   onClick={() => {
                     if (!isSideBarActive && window.innerWidth < 750) {
                       toggleSideBar();
@@ -195,7 +195,74 @@ const SideBar = ({ toggleSideBar, isSideBarActive }: AdminHeaderProps) => {
               </div>
             </div>
 
+            {/* Paquetes */}
+            <div className={styles["option-menu"]}>
+              <div
+                className={`${styles["option-menu-title"]} ${
+                  activeMenu === "paquetes"
+                    ? `${styles["active"]} ${styles["option-menu-selected"]}`
+                    : ""
+                }`}
+                onClick={() => toggleMenu("paquetes")}
+              >
+                <div className={styles["title-right"]}>
+                  <Image
+                    src="/layout/admin/package.png"
+                    alt="Simuladores Icon"
+                    width={20}
+                    height={20}
+                  />
+                  <p>Paquetes</p>
+                </div>
+                <Image
+                  className={styles["toggle-icon"]}
+                  src="/layout/admin/forward-icon.png"
+                  alt="Toggle Icon"
+                  width={18}
+                  height={18}
+                />
+              </div>
 
+              <div
+                className={`${styles["content"]} ${
+                  activeMenu === "paquetes" ? styles["show"] : ""
+                }`}
+              >
+                <Link
+                  href="/panel-de-control/paquetes"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
+                    }
+                  }}
+                >
+                  <Image
+                    src="/layout/admin/round-icon.png"
+                    alt="Lista Icon"
+                    width={12}
+                    height={12}
+                  />
+                  <p>Lista</p>
+                </Link>
+
+                <Link
+                  href="/panel-de-control/crear-paquete"
+                  onClick={() => {
+                    if (!isSideBarActive && window.innerWidth < 750) {
+                      toggleSideBar();
+                    }
+                  }}
+                >
+                  <Image
+                    src="/layout/admin/round-icon.png"
+                    alt="Añadir paquete Icon"
+                    width={12}
+                    height={12}
+                  />
+                  <p>Construir Paquete</p>
+                </Link>
+              </div>
+            </div>
 
             {/* Preguntas */}
             <div className={styles["option-menu"]}>

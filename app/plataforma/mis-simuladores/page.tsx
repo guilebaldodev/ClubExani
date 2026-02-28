@@ -157,7 +157,13 @@ const Page = () => {
                     <button
                       onClick={() => {
                         if (sim.estado !== "listo") return;
-                        router.push(`/plataforma/simuladores/${sim.id}`);
+
+                        if(sim.tipo === "paquete"){
+                          router.push(`/plataforma/paquetes/${sim.id}`);
+                        }else{
+                          router.push(`/plataforma/simuladores/${sim.id}`);
+                        }
+                      
                       }}
                       className={
                         sim.estado === "listo"

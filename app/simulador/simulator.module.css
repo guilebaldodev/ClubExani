@@ -1,5 +1,10 @@
 /* simulador page*/
 
+
+.mt{
+  margin-top: 5rem;
+}
+
 .simulator-header {
   display: flex;
   width: 75%;
@@ -57,6 +62,12 @@
   padding-top: 1.5rem;
 }
 
+.simulator-title-items2 {
+  padding-top: 1.5rem;
+  display: flex;
+}
+
+
 .simulator-title-items>div {
   display: flex;
   padding-bottom: 1rem;
@@ -72,12 +83,27 @@
   font-size: 22px;
   /* font-weight: 600; */
   margin-left: 0.5rem;
+}
 
+.simulator-title-item2 p{
+  margin-left: 0rem !important;
+
+}
+
+.simulator-title-item2 .title-item-p{
+  padding-left: 0rem;
 }
 
 .title-item-p {
   padding-left: 2rem;
 }
+
+.title-item-p2 {
+  padding-left: 0rem;
+  gap: 10px;
+}
+
+
 
 
 .simulator-title-buttons {

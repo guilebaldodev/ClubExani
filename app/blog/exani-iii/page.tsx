@@ -5,6 +5,7 @@ import { simulators } from "@/consts/simulators";
 import styles from "../blog.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { Sun } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Simuladores EXANI III | Simulandum",
@@ -78,7 +79,11 @@ const Page = () => {
             </div>
 
             <Link
-              href={`/plataforma/simuladores/${sim.id}`}
+              href={
+                sim.tipo === "paquete"
+                ?`/plataforma/paquetes/${sim.id}`
+                :`/plataforma/simuladores/${sim.id}`
+              }
               className={sim.estado === "listo" ? styles["boton"] : styles["grey"]}
             >
               {sim.estado === "listo" ? "Detalles" : "Próximamente..."}

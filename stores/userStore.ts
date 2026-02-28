@@ -28,6 +28,7 @@ export type UsuarioStore = {
     >
   ) => void;
   addSimuladorCanjeado: (sim: SimuladorCanjeado) => void;
+  addSimuladorCanjeadoSumar: (sim: SimuladorCanjeado) => void;
   updateMonedas: (monedas: number) => void;
   updateUsoJusto: (id: string, nuevoUso: number) => void;
   resetUser: () => void;
@@ -57,6 +58,34 @@ addSimuladorCanjeado: (sim) =>
     } else {
       return { ...state, simuladoresCanjeados: [...state.simuladoresCanjeados, sim] };
     }
+  }),
+
+  addSimuladorCanjeadoSumar: (sim) =>
+  set((state) => {
+    const index = state.simuladoresCanjeados.findIndex(
+      (s) => s.simuladorId._id === sim.simuladorId._id
+    );
+
+    console.log("hola")
+
+    if (index !== -1) {
+      const updated = [...state.simuladoresCanjeados];
+      const prev = updated[index];
+
+      updated[index] = {
+        ...prev,
+        uso_justo: prev.uso_justo + sim.uso_justo, 
+        monedasPagadas: prev.monedasPagadas + sim.monedasPagadas,
+        fecha: sim.fecha,
+      };
+
+      return { ...state, simuladoresCanjeados: updated };
+    }
+
+    return {
+      ...state,
+      simuladoresCanjeados: [...state.simuladoresCanjeados, sim],
+    };
   }),
 
 

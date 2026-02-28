@@ -83,7 +83,15 @@ export default function SimuladoresClient() {
                     <button
                       onClick={() => {
                         if (sim.estado !== "listo") return;
-                        router.push(`/simuladores/${sim.id}`);
+
+                        if (sim.tipo==="paquete"){
+                          
+                          router.push(`/paquetes/${sim.id}`);
+                        }else{
+                          router.push(`/simuladores/${sim.id}`);
+
+                        }
+
                       }}
                       className={
                         sim.estado === "listo"
