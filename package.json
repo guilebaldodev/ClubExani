@@ -18,7 +18,7 @@
     "cloudinary": "^2.6.1",
     "katex": "^0.16.22",
     "lucide-react": "^0.548.0",
-    "mongoose": "^8.14.3",
+    "mongoose": "^8.8.4",
     "next": "15.3.8",
     "nodemailer": "^7.0.3",
     "react": "^18",
