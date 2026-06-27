@@ -15,13 +15,14 @@ const MathQuestionComponent = ({ html }: Props) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    renderMathInElement(containerRef.current, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false },
-      ],
-      throwOnError: false,
-    });
+renderMathInElement(containerRef.current, {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+  ],
+  ignoredClasses: ["no-katex"],
+  throwOnError: false,
+});
   }, [html]);
 
   return <div ref={containerRef} dangerouslySetInnerHTML={{ __html: html }} />;

@@ -1,15 +1,30 @@
 "use client"
 import Image from "next/image";
 import styles from './prices.module.css';
+
+
 import { useClerk, useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import TransferModal from "../../ui/landingPage/Whatsapp";
 
 const PricingPage = () => {
 
   const {user} = useUser()
   const {openSignIn}= useClerk()
+  const [showTransferModal, setShowTransferModal] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
 
-  console.log(user)
+  const handleTransfer = (packageName: string) => {
+  if (!user) {
+    openSignIn();
+    return;
+  }
+
+  setSelectedPackage(packageName);
+  setShowTransferModal(true);
+};
+
 
   const handlePurchase = async(priceId: string) =>{
     
@@ -41,21 +56,23 @@ const PricingPage = () => {
       toast.error("Problemas en la compra")
     }
 
-
-
-
-
   }
-
-
 
   return (
     <>
 
+<TransferModal
+  isOpen={showTransferModal}
+  onClose={() => setShowTransferModal(false)}
+  packageName={selectedPackage}
+/>
+
+
+
 
       <div className={styles['pricing-page-container']}>
         <div className={styles['pricing-page-titles']}>
-          <h2>Compra monedas para simula exámenes</h2>
+          <h2>Recarga monedas y simula exámenes</h2>
           <p>
             En Simulandum solo pagas por lo que usas. Compra monedas y canjéalas por simuladores de exámenes cuando lo necesites, sin compromisos ni mensualidades. 
             Olvídate de pagar precios exagerados como en otras plataformas: aquí tú eliges cuánto invertir y cuándo estudiar.
@@ -85,6 +102,7 @@ const PricingPage = () => {
             </div>
           </div>
 
+
           {/* Recarga Básica */}
           <div className={styles['plan-item']}>
             <div className={styles['plan-info']}>
@@ -95,6 +113,14 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>50 monedas</p>
               <button onClick={()=>handlePurchase("price_1STahmJZmqsHSS4EyYDLmutv")} className={styles['plan-button']}>Comprar</button>
+<button
+  onClick={() => handleTransfer("Recarga Básica - $49 - 50 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
+
             </div>
 
             <div className={styles['plan-item-includes']}>
@@ -110,6 +136,9 @@ const PricingPage = () => {
             </div>
           </div>
 
+
+
+
           {/* Recarga Estándar */}
           <div className={styles['plan-item']}>
             <div className={styles['plan-info']}>
@@ -120,7 +149,13 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>100 monedas</p>
               <button onClick={()=>handlePurchase("price_1STahiJZmqsHSS4EB7ZmVFRo")} className={styles['plan-button']}>Comprar</button>
-
+<button
+  onClick={() => handleTransfer("Recarga Estándar - $89 - 100 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
            </div>
 
             <div className={styles['plan-item-includes']}>
@@ -147,7 +182,13 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>250 monedas</p>
               <button onClick={()=>handlePurchase("price_1STahdJZmqsHSS4EQGlWNzp8")} className={styles['plan-button']}>Comprar</button>
-
+<button
+  onClick={() => handleTransfer("Recarga Pro - $199 - 250 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
             </div>
 
             <div className={styles['plan-item-includes']}>
@@ -173,6 +214,15 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>500 monedas</p>
               <button onClick={()=>handlePurchase("price_1STaguJZmqsHSS4E1qWQPK2J")} className={styles['plan-button']}>Comprar</button>
+            
+            <button
+  onClick={() => handleTransfer("Recarga Élite - $349 - 500 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
+            
             </div>
 
             <div className={styles['plan-item-includes']}>
@@ -189,6 +239,7 @@ const PricingPage = () => {
           </div>
         </div>
       </div>
+
     </>
   );
 };

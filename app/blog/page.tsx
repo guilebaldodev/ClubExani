@@ -2,6 +2,7 @@ import Header from "../ui/landingPage/LandingHeader";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./blog_section.module.css";
+import Footer from "../ui/landingPage/Footer";
 
 const blogPosts = [
   {
@@ -22,6 +23,15 @@ const blogPosts = [
     image: "/landing/bg2.webp",
     link: "/blog/posgrados-con-beca-en-mexico",
   },
+  {
+  id: "acredita-bach",
+  category: "ACREDITA-BACH",
+  title: "Acredita-Bach 2026 NEM: guía completa para acreditar el bachillerato",
+  description:
+    "Descubre cómo es el nuevo Acredita-Bach 2026 con enfoque NEM, qué áreas evalúa, fechas de aplicación, costos y cómo prepararte con simuladores tipo Ceneval.",
+  image: "/landing/bg3.jpg",
+  link: "/blog/acredita-bach",
+},
 ];
 
 const Blog = () => {
@@ -65,6 +75,7 @@ const Blog = () => {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

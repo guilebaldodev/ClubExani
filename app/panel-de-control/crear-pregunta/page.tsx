@@ -30,7 +30,7 @@ const AddQuestion = () => {
     null
   );
 
-  const EXAMENES_CON_4 = ["EXHCOBA", "ENARM", "Acredita-Bach"];
+  const EXAMENES_CON_4 = ["EXHCOBA", "ENARM"];
 
   const { register, reset, handleSubmit, setValue, watch, trigger, getValues } =
     useForm<FormValues>({
@@ -104,8 +104,8 @@ const AddQuestion = () => {
 
       reset({
         contenidoHTML: "",
-        examen: examenOptions[0].value,
-        area: "Pensamiento matemático",
+        examen: examenOptions[1].value,
+        area: AREAS_POR_EXAMEN["Acredita-Bach"][6],
         origen: OrigenOptions[1].value,
         respuestaCorrecta: "0",
         respuestas: [

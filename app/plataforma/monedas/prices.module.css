@@ -1,21 +1,22 @@
 .pricing-page-container{
+    margin-top: 64px;
     padding-bottom: 3rem;
-
-    padding-top: 6rem;
-    width: 70%;
-    margin: 0 auto;
-
 }
 
+.pricing-page-titles{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
 
 .pricing-page-titles h2{
-    font-size: 30px;
+    color: #003a8c;
+    font-size: 38px;
 }
 
 .pricing-page-titles p{
     padding: 1rem 0;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 20px;
 }
 
 .pricing-plans-container{
@@ -28,7 +29,7 @@
 }
 
 .plan-item{
-    width: 300px;
+    width: 310px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 6px 0px;
     position: relative;
@@ -137,90 +138,57 @@
 }
 
 
-/* @media (max-width: 640px) {
-    .footer-info{
-      flex-direction: column;
-      gap: 15px;
-    }
-}
-
-@media (max-width: 550px) {
-    
-    .pricing-page-titles h2{
-        font-size: 30px;
-    }
- */
-/* } */
-
-
-@media (width <= 1050px) {
-    .pricing-page-container {
-        width: 90%;
-    }
+.whatsapp{
+    background-color: #25d366; 
+    color: white;
+    gap: 7px;
+    font-size: 15px;
 }
 
 
 
-@media (width <= 950px) {
-    .pricing-page-container {
-        width: 80%;
-    }
+@media(max-width:1300px){
 
-    .pricin p{
-      font-size: 17px;
-    }
+  .pricing-page-titles h2{
+    font-size: 35px;
+  }
+
 
 }
 
-@media (width <= 850px) {
+@media(max-width:950px){
 
-    .pricing-plans-container{
-        grid-template-columns: repeat(2,minmax(0,1fr));
-        display: grid;
-        gap: 20px;
-        }
+  .pricing-page-titles h2{
+    font-size: 30px;
+  }
 
-    .plan-item{
-        width: auto;
-    }
+  .pricing-page-titles p{
+    font-size: 18px;
+  }
 
 }
 
+@media(max-width:850px){
 
-
-
-
-
-
-@media (width <= 750px){
-
-    .pricing-page-titles h2{
-        font-size: 25px;
-    }
-
-
-   .results-title p{
-      font-size: 16px;
-    }
-
-
-        .pricing-plans-container{
-        grid-template-columns: repeat(1,minmax(0,300px));
-        display: grid;
-        gap: 20px;
-        }
 
 
 
 }
 
+@media(max-width:700px){
 
-
-@media (width <= 570px) {
-    .pricing-page-container {
-      padding-top: 8rem;
+    .pricing-page-container{
+        margin-top: 2rem;
     }
+
+
+
 }
 
+@media(max-width:550px){
 
+  .pricing-page-titles h2{
+    font-size: 25px;
+  }
 
+}

@@ -14,6 +14,10 @@
   background-image: url("/landing/bg2.webp") !important;
 }
 
+.blog-header.blog-header3{
+  background-image: url("/landing/bg3.jpg") !important;
+}
+
 .overlay {
   display: flex;
   align-items: center;

@@ -107,13 +107,15 @@ export const AREAS_POR_EXAMEN = {
     "Redacción indirecta",
     "Pensamiento matemático"
   ],
-  "Acredita-Bach": [
-    "Matemáticas",
-    "Ciencias sociales",
-    "Humanidades",
-    "Ciencias experimentales",
-    "Comunicación"
-  ],
+"Acredita-Bach": [
+  "Pensamiento Matemático",
+  "Cultura Digital",
+  "Conciencia Histórica",
+  "Humanidades",
+  "Ciencias Naturales, Experimentales y Tecnología",
+  "Lengua y Comunicación",
+  "Ciencias Sociales"
+],
   "ENARM": [
     "Medicina Interna y derivados",
     "Pediatría",

@@ -138,6 +138,15 @@
 }
 
 
+.whatsapp{
+    background-color: #25d366; 
+    color: white;
+    gap: 7px;
+    font-size: 15px;
+}
+
+
+
 @media(max-width:1300px){
 
   .pricing-page-titles h2{

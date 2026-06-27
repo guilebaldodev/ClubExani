@@ -1,0 +1,133 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.transfer-modal {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  max-width: 620px;
+  border-radius: 14px;
+  padding: 34px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  gap: 28px;
+}
+
+.selected-package {
+  background: #f0f9ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.selected-package strong {
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.selected-package span {
+  font-size: 15px;
+  color: #075985;
+  font-weight: 700;
+}
+
+.modal-texts h3 {
+  font-size: 24px;
+  color: #14213d;
+  margin-bottom: 14px;
+}
+
+.modal-description {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.steps p {
+  font-size: 14px;
+}
+
+.modal-bottom {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-bottom h4 {
+  font-size: 14px;
+  color: #14213d;
+  margin-bottom: 4px;
+}
+
+.modal-bottom p {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.whatsapp-button {
+  
+  background: #10b957;
+  
+  color: white;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (max-width: 650px) {
+  .transfer-modal {
+    padding: 28px 22px;
+  }
+
+  .modal-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .modal-bottom {
+    flex-direction: column;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+  }
+}

@@ -65,6 +65,15 @@ const Footer = () => {
             <ul>
               <li>
                 <Link href="/simuladores">Todos</Link>
+         
+              </li>
+                            <li>
+                <Link href="/blog/exani-iii">EXANI III</Link>
+         
+              </li>
+                            <li>
+                <Link href="/blog/acredita-bach">ACREDITA-BACH NEM</Link>
+         
               </li>
             </ul>
           </div>

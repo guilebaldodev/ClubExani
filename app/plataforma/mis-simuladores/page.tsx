@@ -16,6 +16,8 @@ const Page = () => {
   const { openSignIn } = useClerk();
   const { simuladoresCanjeados } = useUserStore();
 
+console.log(simuladoresCanjeados)
+
   return (
     <>
       <div className={styles["container"]}>
@@ -43,7 +45,7 @@ const Page = () => {
                       >
                         <div>
                           <Image
-                            alt={sim.simuladorId.titulo}
+                            alt={"s"}
                             src={sim.simuladorId.imagen}
                             width={500}
                             height={500}

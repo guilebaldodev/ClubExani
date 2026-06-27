@@ -5,11 +5,25 @@ import Header from "../ui/landingPage/LandingHeader";
 import Footer from "../ui/landingPage/Footer";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import TransferModal from "../ui/landingPage/Whatsapp";
 
 const PricingPage = () => {
 
   const {user} = useUser()
   const {openSignIn}= useClerk()
+  const [showTransferModal, setShowTransferModal] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
+
+  const handleTransfer = (packageName: string) => {
+  if (!user) {
+    openSignIn();
+    return;
+  }
+
+  setSelectedPackage(packageName);
+  setShowTransferModal(true);
+};
 
 
   const handlePurchase = async(priceId: string) =>{
@@ -42,16 +56,17 @@ const PricingPage = () => {
       toast.error("Problemas en la compra")
     }
 
-
-
-
-
   }
-
-
 
   return (
     <>
+
+<TransferModal
+  isOpen={showTransferModal}
+  onClose={() => setShowTransferModal(false)}
+  packageName={selectedPackage}
+/>
+
       <Header />
 
 
@@ -98,6 +113,14 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>50 monedas</p>
               <button onClick={()=>handlePurchase("price_1STahmJZmqsHSS4EyYDLmutv")} className={styles['plan-button']}>Comprar</button>
+<button
+  onClick={() => handleTransfer("Recarga Básica - $49 - 50 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
+
             </div>
 
             <div className={styles['plan-item-includes']}>
@@ -126,7 +149,13 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>100 monedas</p>
               <button onClick={()=>handlePurchase("price_1STahiJZmqsHSS4EB7ZmVFRo")} className={styles['plan-button']}>Comprar</button>
-
+<button
+  onClick={() => handleTransfer("Recarga Estándar - $89 - 100 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
            </div>
 
             <div className={styles['plan-item-includes']}>
@@ -153,7 +182,13 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>250 monedas</p>
               <button onClick={()=>handlePurchase("price_1STahdJZmqsHSS4EQGlWNzp8")} className={styles['plan-button']}>Comprar</button>
-
+<button
+  onClick={() => handleTransfer("Recarga Pro - $199 - 250 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
             </div>
 
             <div className={styles['plan-item-includes']}>
@@ -179,6 +214,15 @@ const PricingPage = () => {
               </div>
               <p className={styles['plan-info-last']}>500 monedas</p>
               <button onClick={()=>handlePurchase("price_1STaguJZmqsHSS4E1qWQPK2J")} className={styles['plan-button']}>Comprar</button>
+            
+            <button
+  onClick={() => handleTransfer("Recarga Élite - $349 - 500 monedas")}
+  className={`${styles["plan-button"]} ${styles["whatsapp"]}`}
+>
+  <Image src="/landing/whatsapp.png" alt="" width={22} height={22} />
+  Comprar por transferencia
+</button>
+            
             </div>
 
             <div className={styles['plan-item-includes']}>
