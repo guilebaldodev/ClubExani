@@ -84,7 +84,7 @@ const Footer = () => {
 
         <div className="footer-info">
           <p>
-            Copyright © 2025 Simulandum. Todos los derechos reservados.
+            Copyright © 2026 Simulandum. Todos los derechos reservados.
           </p>
 
           {/* <p>Web hecha con el ♥ por <a target='_blank' href="https://solariasoftware.com">Solaria</a></p> */}

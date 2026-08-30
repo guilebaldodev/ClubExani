@@ -59,12 +59,12 @@ const LandingPage = () => {
             </div>
 
             <div className={styles["landing-number-item"]}>
-              <h3>+1000</h3>
+              <h3>+2000</h3>
               <p>Ejercicios</p>
             </div>
 
             <div className={styles["landing-number-item"]}>
-              <h3>+20</h3>
+              <h3>+100</h3>
               <p>Temas</p>
             </div>
 
@@ -104,7 +104,7 @@ const LandingPage = () => {
 
                   <div>
                     <div className={styles["examen-meta"]}>
-                      <span>3 simuladores</span> | <span>+300 preguntas</span>
+                      <span>7 simuladores</span> | <span>+450 preguntas</span>
                     </div>
                     <Link
                       href={"/blog/exani-iii"}
@@ -142,13 +142,13 @@ const LandingPage = () => {
 
                   <div>
                     <div className={styles["examen-meta"]}>
-                      <span>2 simuladores</span> | <span>+200 preguntas</span>
+                      <span>10 simuladores</span> | <span>+850 preguntas</span>
                     </div>
                     <Link
                       href={"/simuladores"}
-                      className={`${styles["examen-boton"]} ${styles["grey"]}`}
+                      className={`${styles["examen-boton"]}`}
                     >
-                      Proximamente...
+                      Ver simuladores
                     </Link>
                   </div>
                 </div>
