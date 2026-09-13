@@ -10,12 +10,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog/exani-iii",
     "/blog/posgrados-con-beca-en-mexico",
     "/blog/acredita-bach",
+    "/blog/guia-acredita-bach-nem",
+    "/blog/consejos-aprobar-acredita-bach-nem",
     "/creditos",
     "/contacto",
   ];
 
   const simulatorRoutes = simulators
-    .filter((grupo) => grupo.examen === "EXANI-III")
+    .filter(
+      (grupo) =>
+        grupo.examen === "EXANI-III" ||
+        grupo.examen === "ACREDITA-BACH"
+    )
     .flatMap((grupo) =>
       grupo.simulacros
         .filter((sim) => sim.estado === "listo")
@@ -27,7 +33,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return allRoutes.map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: path === "/" ? 1 : 0.8,
+    changeFrequency: path.startsWith("/blog/")
+      ? "monthly"
+      : "weekly",
+    priority:
+      path === "/"
+        ? 1
+        : path === "/simuladores"
+        ? 0.95
+        : path.startsWith("/blog/")
+        ? 0.9
+        : path.startsWith("/simuladores/")
+        ? 0.9
+        : 0.8,
   }));
 }

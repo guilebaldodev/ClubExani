@@ -64,6 +64,7 @@ export default function Page() {
 
   if (isLoading) return <LoaderScreen />;
 
+
   if (error) return <ContentNotFound link="/plataforma/mis-simuladores" message="Ocurrió un problema al cargar el contenido o el contenido no existe"></ContentNotFound>
 
   return (

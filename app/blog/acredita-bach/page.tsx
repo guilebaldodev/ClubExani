@@ -78,6 +78,7 @@ const Page = () => {
             </div>
 
             <Link
+            scroll={true}
               href={
                 sim.tipo === "paquete"
                   ? `/plataforma/paquetes/${sim.id}`

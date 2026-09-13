@@ -15,6 +15,15 @@ const blogPosts = [
     link: "/blog/exani-iii",
   },
   {
+    id: "acredita-bach",
+    category: "ACREDITA-BACH",
+    title: "Acredita-Bach 2026 NEM: guía completa para acreditar el bachillerato",
+    description:
+      "Descubre cómo es el nuevo Acredita-Bach 2026 con enfoque NEM, qué áreas evalúa, fechas de aplicación, costos y cómo prepararte con simuladores tipo Ceneval.",
+    image: "/landing/bg3.jpg",
+    link: "/blog/acredita-bach",
+  },
+  {
     id: "posgrados-beca-mexico",
     category: "Posgrados",
     title: "Posgrados con beca en México: buscador de programas",
@@ -23,15 +32,25 @@ const blogPosts = [
     image: "/landing/bg2.webp",
     link: "/blog/posgrados-con-beca-en-mexico",
   },
+
   {
-  id: "acredita-bach",
-  category: "ACREDITA-BACH",
-  title: "Acredita-Bach 2026 NEM: guía completa para acreditar el bachillerato",
-  description:
-    "Descubre cómo es el nuevo Acredita-Bach 2026 con enfoque NEM, qué áreas evalúa, fechas de aplicación, costos y cómo prepararte con simuladores tipo Ceneval.",
-  image: "/landing/bg3.jpg",
-  link: "/blog/acredita-bach",
-},
+    id: "acredita-bach-nem-2026-2027",
+    category: "ACREDITA-BACH NEM",
+    title: "ACREDITA-BACH NEM 2026-2027: guía completa",
+    description:
+      "Conoce cómo es el ACREDITA-BACH NEM 2026-2027, sus áreas, estructura y cómo prepararte con simuladores.",
+    image: "/landing/bg4.jpg",
+    link: "/blog/guia-acredita-bach-nem",
+  },
+  {
+    id: "consejos-aprobar-acredita-bach-nem",
+    category: "ACREDITA-BACH NEM",
+    title: "7 consejos para aprobar el ACREDITA-BACH NEM",
+    description:
+      "Consejos para prepararte mejor para el ACREDITA-BACH NEM: diagnóstico, práctica por áreas, revisión de errores y simuladores completos.",
+    image: "/landing/bg5.jpg",
+    link: "/blog/consejos-aprobar-acredita-bach-nem",
+  },
 ];
 
 const Blog = () => {

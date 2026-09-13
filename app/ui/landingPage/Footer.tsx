@@ -87,7 +87,18 @@ const Footer = () => {
             Copyright © 2026 Simulandum. Todos los derechos reservados.
           </p>
 
-          {/* <p>Web hecha con el ♥ por <a target='_blank' href="https://solariasoftware.com">Solaria</a></p> */}
+            <div className='footer-contact'>
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=61576940260098&locale=es_LA">
+                <img src="/layout/facebook-icon.png" alt="facebook-icon" />
+                </a>
+                <a target="_blank" href="https://www.tiktok.com/@simulandum">
+                <img src="/layout/tiktok-icon.png" alt="tiktok-icon" />
+                </a>
+                <a target="_blank" href="https://www.youtube.com/@Simulandum">
+                <img src="/layout/youtube-icon.png" alt="youtube-icon" />
+                </a>
+            </div>
+
         </div>
       </footer>
     </>

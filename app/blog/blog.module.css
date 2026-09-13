@@ -17,6 +17,15 @@
 .blog-header.blog-header3{
   background-image: url("/landing/bg3.jpg") !important;
 }
+.blog-header.blog-header4{
+  background-image: url("/landing/bg4.jpg") !important;
+}
+
+.blog-header.blog-header5{
+  background-image: url("/landing/bg5.jpg") !important;
+}
+
+
 
 .overlay {
   display: flex;
@@ -140,6 +149,10 @@
 .simulador-card .dificultad {
   font-size: 1.1rem;
   color: #777;
+}
+
+.blog-container ol {
+  padding-left: 2rem;
 }
 
 .simulador-card a {
@@ -565,4 +578,655 @@
   .blog-container2 ul {
     font-size: 15px;
   }
+}
+
+
+/*  */
+
+/* =========================================================
+   NUEVO - ARTÍCULO ACREDITA-BACH NEM
+========================================================= */
+
+
+/* =========================================================
+   TÍTULO PRINCIPAL
+========================================================= */
+
+.article-main-title {
+  font-size: 45px;
+  text-align: center;
+  padding: 1.5rem 0;
+  line-height: 1.15;
+  max-width: 1200px;
+}
+
+.article-intro {
+  font-size: 1em;
+}
+
+
+/* =========================================================
+   SECCIONES DE CARRUSEL
+   MISMO ANCHO QUE EL ARTÍCULO
+========================================================= */
+
+.article-wide-section {
+  width: 50%;
+  margin: 0 auto;
+  padding: 0.5rem 0 1.5rem;
+}
+
+.section-heading {
+  margin: 0 0 1rem;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+
+  margin: 0 0 0.6rem;
+  padding: 0;
+}
+
+.section-heading p {
+  font-size: 1.3rem;
+  line-height: 1.5;
+
+  color: #555;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   CARRUSEL PRO
+========================================================= */
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.cards-carousel {
+  display: flex;
+
+  width: 100%;
+
+  gap: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 0.3rem 0.2rem 1rem;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.cards-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   UTILIZA LAS CARDS QUE YA EXISTEN
+========================================================= */
+
+.cards-carousel .simulador-card {
+  min-width: 250px;
+  max-width: 250px;
+
+  flex: 0 0 250px;
+
+  scroll-snap-align: start;
+
+  box-shadow:
+    0 3px 12px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   BOTONES DEL CARRUSEL
+========================================================= */
+
+.carousel-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  color: #004aad;
+
+  font-size: 31px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 5;
+
+  box-shadow:
+    0 4px 15px
+    rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  transform:
+    translateY(-50%)
+    scale(1.08);
+
+  box-shadow:
+    0 6px 18px
+    rgba(0, 0, 0, 0.2);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.carousel-arrow-left {
+  left: -22px;
+}
+
+.carousel-arrow-right {
+  right: -22px;
+}
+
+
+/* =========================================================
+   BLOQUES INFORMATIVOS AZULES
+========================================================= */
+
+.info-box {
+  background: #f1f7ff;
+
+  border-left: 5px solid #287CBE;
+
+  border-radius: 8px;
+
+  padding: 1rem 1.2rem;
+
+  margin: 0.8rem 0 1.2rem;
+}
+
+.info-box strong {
+  display: block;
+
+  color: #004aad;
+
+  font-size: 1.05em;
+
+  margin-bottom: 0.3rem;
+}
+
+.info-box p {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #333;
+}
+
+
+/* =========================================================
+   TABLAS
+========================================================= */
+
+.table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  margin: 1rem 0 1.5rem;
+}
+
+.article-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 18px;
+
+  line-height: 1.4;
+}
+
+.article-table th {
+  background: #004aad;
+
+  color: white;
+
+  padding: 13px;
+
+  text-align: left;
+}
+
+.article-table td {
+  border: 1px solid #e3e3e3;
+
+  padding: 13px;
+
+  vertical-align: top;
+}
+
+.article-table tbody tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+
+/* =========================================================
+   BANNER
+   MISMO ANCHO QUE EL ARTÍCULO
+========================================================= */
+
+.simulandum-banner {
+  width: 50%;
+
+  margin: 1.5rem auto;
+
+  background:
+    linear-gradient(
+      135deg,
+      #004aad,
+      #287CBE
+    );
+
+  border-radius: 18px;
+
+  color: white;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0, 74, 173, 0.14);
+}
+
+.simulandum-banner-content {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+
+  padding: 2rem;
+}
+
+.simulandum-banner-content > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.banner-label {
+  display: block;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+
+  margin-bottom: 0.5rem;
+}
+
+.simulandum-banner h2 {
+  font-size: 30px;
+
+  line-height: 1.2;
+
+  margin: 0 0 0.7rem;
+}
+
+.simulandum-banner p {
+  font-size: 1.2rem;
+
+  line-height: 1.5;
+
+  margin: 0 0 1.2rem;
+}
+
+.simulandum-banner-content img {
+  flex-shrink: 0;
+}
+
+.banner-button {
+  display: inline-block;
+
+  background: white;
+
+  color: #004aad;
+
+  padding: 0.8rem 1.5rem;
+
+  border-radius: 8px;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.banner-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 12px
+    rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.6rem;
+
+  margin: 0.5rem 0 1rem;
+}
+
+.faq-list details {
+  border: 1px solid #e5e5e5;
+
+  border-radius: 10px;
+
+  padding: 1rem 1.2rem;
+
+  background: white;
+}
+
+.faq-list summary {
+  font-size: 1em;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.faq-list p {
+  padding: 0.7rem 0 0 !important;
+
+  margin: 0;
+}
+
+
+/* =========================================================
+   REDUCIR ESPACIOS ENTRE BLOQUES
+========================================================= */
+
+.blog-container + .article-wide-section {
+  margin-top: -1rem;
+}
+
+.article-wide-section + .blog-container {
+  padding-top: 1rem;
+}
+
+.blog-container + .simulandum-banner {
+  margin-top: 0.5rem;
+}
+
+.simulandum-banner + .blog-container {
+  padding-top: 1rem;
+}
+
+
+
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+
+  /* Dejamos espacio físico para las flechas */
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.cards-carousel {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 0.4rem 0.2rem 1rem;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.cards-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-arrow {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #004aad;
+  color: #ffffff;
+
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 20;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  background: #287CBE;
+
+  transform:
+    translateY(-50%)
+    scale(1.1);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.carousel-arrow-left {
+  left: 0;
+}
+
+.carousel-arrow-right {
+  right: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .article-wide-section,
+  .simulandum-banner {
+    width: 60%;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .section-heading p {
+    font-size: 18px;
+  }
+
+
+.carousel-wrapper {
+
+  padding: 0 0px;
+}
+
+}
+
+
+@media (max-width: 750px) {
+
+  .article-main-title {
+    font-size: 35px;
+  }
+
+  .article-wide-section,
+  .simulandum-banner {
+    width: 70%;
+  }
+
+  .section-heading h2 {
+    font-size: 26px;
+  }
+
+  .simulandum-banner-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .simulandum-banner-content img {
+    display: none;
+  }
+
+  .simulandum-banner h2 {
+    font-size: 26px;
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+
+    font-size: 27px;
+  }
+
+  .carousel-arrow-left {
+    left: -15px;
+  }
+
+  .carousel-arrow-right {
+    right: -15px;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .article-main-title {
+    font-size: 27px;
+  }
+
+  .article-wide-section,
+  .simulandum-banner {
+    width: 70%;
+  }
+
+  .section-heading h2 {
+    font-size: 22px;
+  }
+
+  .section-heading p {
+    font-size: 17px;
+  }
+
+  .cards-carousel .simulador-card {
+    min-width: 230px;
+    max-width: 230px;
+
+    flex: 0 0 230px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+
+    font-size: 25px;
+  }
+
+  .carousel-arrow-left {
+    left: -12px;
+  }
+
+  .carousel-arrow-right {
+    right: -12px;
+  }
+
+  .simulandum-banner {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .simulandum-banner-content {
+    padding: 1.5rem;
+  }
+
+  .simulandum-banner h2 {
+    font-size: 24px;
+  }
+
+  .simulandum-banner p {
+    font-size: 17px;
+  }
+
+  .article-table {
+    min-width: 600px;
+  }
+
+
+
 }

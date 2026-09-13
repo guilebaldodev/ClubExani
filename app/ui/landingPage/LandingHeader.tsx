@@ -39,9 +39,9 @@ const Header = () => {
     <nav className="navbar">
       <Link href="/simuladores">Simuladores</Link>
       {/* <Link href="/nosotros">Nosotros</Link> */}
+      <Link href="/como-funciona">Como funciona</Link>
       <Link href="/creditos">Monedas</Link>
       <Link href="/blog">Blog</Link>
-      <Link href="/contacto">Contacto</Link>
     </nav>
 
     <div className='right-buttons'>
