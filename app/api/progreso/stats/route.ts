@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 // import dbConnect from "@/lib/dbConnect";
 import Progreso from "@/models/Progreso";
 import { connectDB } from "@/app/utils/mongoose";
+import Simulador from "@/models/Simulador";
 
 export async function GET() {
   await connectDB();
