@@ -389,24 +389,27 @@ const LandingPage = () => {
               <div className={styles["testimonial-item"]}>
                 <div className={styles["testimonial-img"]}>
                   <Image
-                    src="/landing/person/male.gif"
-                    alt="Guilebaldo Vargas Solís"
+                    src="/landing/person/female.gif"
+                    alt="Laura"
                     width={80}
                     height={80}
                   />
                 </div>
-                <div className={styles["testimonial-texts"]}>
-                  <div className={styles["testimonial-title"]}>
-                    <h4>Guilebaldo Vargas Solís</h4>
-                    <p>EXANI III</p>
-                  </div>
-                  <p className={styles["testimonial-pb"]}>
-                    <q>
-                      Usando Simulandum, obtuve el mejor puntaje en el EXANI III
-                      en el posgrado al que aspiré y fui aceptado.
-                    </q>
-                  </p>
-                </div>
+
+<div className={styles["testimonial-texts"]}>
+  <div className={styles["testimonial-title"]}>
+    <h4>Laura Mendoza</h4>
+    <p>ACREDITA-BACH NEM</p>
+  </div>
+  <p className={styles["testimonial-pb"]}>
+    <q>
+      Gracias a Simulandum, pude prepararme para el examen
+      ACREDITA-BACH, reforzar mis conocimientos y sentirme
+      más seguro al presentar mi evaluación.
+    </q>
+  </p>
+</div>
+
               </div>
 
               <div className={styles["testimonial-item"]}>
