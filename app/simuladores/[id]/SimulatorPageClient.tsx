@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -8,11 +9,9 @@ import Header from "@/app/ui/landingPage/LandingHeader";
 import Footer from "@/app/ui/landingPage/Footer";
 import { formatExamDuration } from "@/app/utils";
 import Image from "next/image";
-import ConfirmModal from "@/app/ui/shared/ConfirmModal";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
 import { useUserStore } from "@/stores/userStore";
-import { SignedIn } from "@clerk/nextjs";
 
 export default function SimulatorPageClient({
   simulador,
@@ -21,21 +20,79 @@ export default function SimulatorPageClient({
 }) {
   const { id } = useParams<{ id: string }>();
   const { user } = useUser();
-  const [modal, setModal] = useState(false);
-  const { monedas, simuladoresCanjeados } = useUserStore();
   const router = useRouter();
 
+  const [comprando, setComprando] = useState(false);
+  const { simuladoresCanjeados } = useUserStore();
+
   const canjeado = simuladoresCanjeados.find(
-    (item) => item.simuladorId._id === id && item.uso_justo > 0
+    (item) =>
+      item.simuladorId?._id === id &&
+      item.uso_justo > 0
   );
+
+  const esDiagnostico = simulador.tipo === "Diagnostico";
+
+  const handleComprar = async () => {
+    if (!user) {
+      toast.error("Debes iniciar sesión para comprar este simulador");
+      return;
+    }
+
+    if (comprando) return;
+
+    try {
+      setComprando(true);
+
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tipoProducto: "simulador",
+          productoId: simulador._id,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "No se pudo iniciar la compra");
+      }
+
+      if (!data.url) {
+        throw new Error("Stripe no devolvió una URL de pago");
+      }
+
+      window.location.assign(data.url);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Ocurrió un error al iniciar la compra"
+      );
+      setComprando(false);
+    }
+  };
+
+  const handleAccion = () => {
+    if (canjeado || esDiagnostico) {
+      if (!user && !esDiagnostico) {
+        toast.error("Debes iniciar sesión para usar este simulador");
+        return;
+      }
+
+      router.push(`/plataforma/simular/${id}`);
+      return;
+    }
+
+    handleComprar();
+  };
 
   return (
     <>
       <Header />
-
-      {modal && (
-        <ConfirmModal simulator={simulador} closeModal={() => setModal(false)} />
-      )}
 
       <div className={style["simulator-page"]}>
         <div className={style["simulator-header"]}>
@@ -46,68 +103,48 @@ export default function SimulatorPageClient({
             <div className={style["simulator-title-items"]}>
               <div>
                 <div className={style["simulator-title-item"]}>
-                  <img src="/course/question-black.png" alt="Preguntas" />
+                  <img
+                    src="/course/question-black.png"
+                    alt="Preguntas"
+                  />
                   <p>{simulador.totalPreguntas} preguntas</p>
                 </div>
 
                 <div
                   className={`${style["simulator-title-item"]} ${style["title-item-p"]}`}
                 >
-                  <img src="/landing/simulatorTime.svg" alt="Tiempo" />
-                  <p>{formatExamDuration(parseInt(simulador.tiempo))}</p>
+                  <img
+                    src="/landing/simulatorTime.svg"
+                    alt="Tiempo"
+                  />
+                  <p>
+                    {formatExamDuration(parseInt(simulador.tiempo))}
+                  </p>
                 </div>
               </div>
             </div>
 
-            <SignedIn>
-              <div className={style["div-coins"]}>
-                <Image
-                  src={"/layout/yellow-coins.png"}
-                  alt="Monedas"
-                  width={25}
-                  height={25}
-                />
-                <p>Cuentas con {monedas} monedas</p>
-              </div>
-            </SignedIn>
-
             <div className={style["simulator-title-buttons"]}>
               <button
-                onClick={() => {
-                  if (!user) {
-                    toast.error("Debes iniciar sesión para usar este simulador");
-                    return;
-                  }
-
-                  if (canjeado) {
-                    router.push(`/plataforma/simular/${id}`);
-                  } else {
-                    setModal(true);
-                  }
-                }}
+                onClick={handleAccion}
+                disabled={comprando}
               >
-                {canjeado ? (
+                {comprando ? (
+                  <p>Procesando compra...</p>
+                ) : canjeado ? (
                   <p>Simular</p>
-                ) : simulador.tipo === "Diagnostico" ? (
-                  <p>Obtener Gratis</p>
+                ) : esDiagnostico ? (
+                  <p>Obtener gratis</p>
                 ) : (
-                  <>
-                    <p>Comprar por {simulador.precio}</p>
-                    <Image
-                      src="/landing/landing-white-coins.png"
-                      alt="Símbolo de monedas"
-                      width={30}
-                      height={30}
-                    />
-                  </>
+                  <p>
+                    Comprar por $
+                    {Number(simulador.precio).toLocaleString("es-MX", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}{" "}
+                    MXN
+                  </p>
                 )}
-              </button>
-
-              <button
-                onClick={() => router.push("/creditos")}
-                className={style["yellow"]}
-              >
-                <p>Comprar monedas</p>
               </button>
             </div>
           </div>
@@ -135,6 +172,7 @@ export default function SimulatorPageClient({
                 </div>
                 <p>{`Paso ${step}`}</p>
               </div>
+
               <p>
                 {step === 1 &&
                   "Inicia el simulador correspondiente al examen seleccionado. Las preguntas han sido cuidadosamente seleccionadas para esta versión"}
@@ -152,17 +190,21 @@ export default function SimulatorPageClient({
 
       <div className={style["separation"]}>
         <div>
-          <p>🚀 Empieza hoy a prepararte con un simulador que se adapta a tu nivel.</p>
+          <p>
+            🚀 Empieza hoy a prepararte con un simulador que se adapta a tu nivel.
+          </p>
           <p>⏳ El tiempo pasa... ¡empieza a estudiar ahora!</p>
         </div>
       </div>
 
       <div className={style["description-container"]}>
-        <h2>Descripcion del simulador</h2>
+        <h2>Descripción del simulador</h2>
 
         <div
           className={style["description"]}
-          dangerouslySetInnerHTML={{ __html: simulador.descripcion }}
+          dangerouslySetInnerHTML={{
+            __html: simulador.descripcion || "",
+          }}
         />
       </div>
 

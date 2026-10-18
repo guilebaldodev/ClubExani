@@ -1,10 +1,11 @@
+
 import { Schema, model, models } from "mongoose";
 
 const UsuarioSchema = new Schema(
   {
     clerkId: {
       type: String,
-      required:true,
+      required: true,
       unique: true,
     },
 
@@ -16,26 +17,54 @@ const UsuarioSchema = new Schema(
     nombre: {
       type: String,
     },
+
     estado: {
       type: String,
     },
 
-    edad:{
-      type:Number
-    },
-    
-    rol: { type: String, enum: ["estudiante", "admin"], default: "estudiante" },
-    monedas: {
+    edad: {
       type: Number,
-      default: 0,
     },
-    
+
+    rol: {
+      type: String,
+      enum: ["estudiante", "admin"],
+      default: "estudiante",
+    },
+
     simuladoresCanjeados: [
       {
-        simuladorId: { type: Schema.Types.ObjectId, ref: "Simulador" },
-        fecha: { type: Date, default: Date.now },
-        monedasPagadas: Number,
+        simuladorId: {
+          type: Schema.Types.ObjectId,
+          ref: "Simulador",
+        },
+
+        fecha: {
+          type: Date,
+          default: Date.now,
+        },
+
         uso_justo: Number,
+      },
+    ],
+
+    guiasAdquiridas: [
+      {
+        guiaId: {
+          type: Schema.Types.ObjectId,
+          ref: "Guia",
+          required: true,
+        },
+
+        fecha: {
+          type: Date,
+          default: Date.now,
+        },
+
+        fechaExpiracion: {
+          type: Date,
+          required: true,
+        },
       },
     ],
   },
