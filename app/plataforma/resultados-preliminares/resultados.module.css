@@ -224,7 +224,7 @@
   gap: 15px;
 }
 
-.results-buttons a {
+.results-buttons a, .results-buttons button {
   color: #fff;
   cursor: pointer;
   background-color: #287cbe;

@@ -1,3 +1,4 @@
+
 "use client";
 
 import Footer from "../ui/landingPage/Footer";
@@ -7,9 +8,6 @@ import Select from "react-select";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { simulators } from "../../consts/simulators";
-import { SignedIn } from "@clerk/nextjs";
-import Image from "next/image";
-import { useUserStore } from "@/stores/userStore";
 
 const examenOptions = [
   { value: "Todos", label: "Todos los exámenes" },
@@ -18,45 +16,46 @@ const examenOptions = [
   { value: "EGEL", label: "EGEL" },
 ];
 
+
+const formatoPrecio = (precio: number) => {
+  if (precio === 0) return "Gratis";
+
+  return new Intl.NumberFormat("es-MX", {
+    style: "currency",
+    currency: "MXN",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(precio) + " MXN";
+};
+
+
 export default function SimuladoresClient() {
   const [categoria, setCategoria] = useState("Todos");
+  const router = useRouter();
 
   const filtrado = simulators.filter(
     (examen) => categoria === "Todos" || examen.examen === categoria
   );
 
-  const router = useRouter();
-  const { monedas } = useUserStore();
-
   return (
     <>
       <Header />
+
       <div className={styles["catalogo-container"]}>
-        <h2 className={styles["catalogo-title"]}>Todos los simuladores</h2>
+        <h2 className={styles["catalogo-title"]}>
+          Todos los simuladores
+        </h2>
 
         <div className={styles["filtros-row"]}>
-          <div className={styles["div-coins"]}>
-            <SignedIn>
-              <p>Cuentas con </p>
-              <div>
-                <Image
-                  src={"/layout/yellow-coins.png"}
-                  alt="coins"
-                  width={25}
-                  height={25}
-                />
-                <p>{monedas} monedas</p>
-              </div>
-            </SignedIn>
-          </div>
-
           <div className={styles["filtros-izquierda"]}>
             <Select
               isClearable
               placeholder="Filtrar por examen"
               options={examenOptions}
               defaultValue={examenOptions[0]}
-              onChange={(option) => setCategoria(option?.value ?? "Todos")}
+              onChange={(option) =>
+                setCategoria(option?.value ?? "Todos")
+              }
               className={styles["react-select"]}
             />
           </div>
@@ -64,19 +63,31 @@ export default function SimuladoresClient() {
 
         <main className={styles["catalogo"]}>
           {filtrado.map((grupo) => (
-            <section key={grupo.examen} className={styles["grupo-examen"]}>
+            <section
+              key={grupo.examen}
+              className={styles["grupo-examen"]}
+            >
               <h3>{grupo.examen}</h3>
+
               <div className={styles["grid-simuladores"]}>
                 {grupo.simulacros.map((sim) => (
-                  <div key={sim.id} className={styles["simulador-card"]}>
+                  <div
+                    key={sim.id}
+                    className={styles["simulador-card"]}
+                  >
                     <div>
                       <img src={sim.imagen} alt={sim.titulo} />
+
                       <h4>{sim.titulo}</h4>
+
                       <p>
                         <strong>{sim.preguntas}</strong> preguntas
                       </p>
+
                       <p>
-                        <strong>{sim.monedas}</strong> monedas
+                        <strong>
+                          {formatoPrecio(sim.monedas)}
+                        </strong>
                       </p>
                     </div>
 
@@ -84,14 +95,11 @@ export default function SimuladoresClient() {
                       onClick={() => {
                         if (sim.estado !== "listo") return;
 
-                        if (sim.tipo==="paquete"){
-                          
+                        if ("tipo" in sim && sim.tipo === "paquete") {
                           router.push(`/paquetes/${sim.id}`);
-                        }else{
+                        } else {
                           router.push(`/simuladores/${sim.id}`);
-
                         }
-
                       }}
                       className={
                         sim.estado === "listo"
@@ -99,7 +107,9 @@ export default function SimuladoresClient() {
                           : styles["grey"]
                       }
                     >
-                      {sim.estado === "listo" ? "Detalles" : "Próximamente..."}
+                      {sim.estado === "listo"
+                        ? "Detalles"
+                        : "Próximamente..."}
                     </button>
                   </div>
                 ))}
@@ -108,6 +118,7 @@ export default function SimuladoresClient() {
           ))}
         </main>
       </div>
+
       <Footer />
     </>
   );

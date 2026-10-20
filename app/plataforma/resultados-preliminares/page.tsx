@@ -1,3 +1,4 @@
+
 "use client";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -6,6 +7,7 @@ import Link from "next/link";
 import { useSimulatorStore } from "@/stores/simulatorStore";
 import style from "./resultados.module.css";
 import { useEffect, useState } from "react";
+import { useUser, SignUpButton } from "@clerk/nextjs";
 import {
   FacebookShareButton,
   WhatsappShareButton,
@@ -16,13 +18,10 @@ import Image from "next/image";
 import QuestionItem from "@/app/ui/course/QuestionItem";
 
 const Page = () => {
-  const {
-    simulator,
-    score,
-    totalScore,
-    normalizeSolvedQuestions,
-    reset,
-  } = useSimulatorStore();
+  const { simulator, score, totalScore, normalizeSolvedQuestions, reset } =
+    useSimulatorStore();
+
+  const { isLoaded, isSignedIn } = useUser();
 
   const [localSimulator, setLocalSimulator] = useState<any>(null);
   const [localQuestions, setLocalQuestions] = useState<any[]>([]);
@@ -32,25 +31,27 @@ const Page = () => {
 
   useEffect(() => {
     if (simulator) {
-
-
       const normalized = normalizeSolvedQuestions();
+
       const dataToSave = {
         simulator,
         score,
         totalScore,
         questions: normalized,
       };
-      localStorage.setItem("lastSimulatorData", JSON.stringify(dataToSave));
+
+      localStorage.setItem(
+        "lastSimulatorData",
+        JSON.stringify(dataToSave)
+      );
+
       setLocalSimulator(simulator);
       setLocalQuestions(normalized);
       setLocalScore(score);
       setLocalTotalScore(totalScore);
-
-
-
     } else {
       const stored = localStorage.getItem("lastSimulatorData");
+
       if (stored) {
         const parsed = JSON.parse(stored);
         setLocalSimulator(parsed.simulator);
@@ -63,7 +64,13 @@ const Page = () => {
     return () => {
       reset();
     };
-  }, [simulator, score, totalScore, normalizeSolvedQuestions, reset]);
+  }, [
+    simulator,
+    score,
+    totalScore,
+    normalizeSolvedQuestions,
+    reset,
+  ]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -71,33 +78,56 @@ const Page = () => {
 
       const handlePopState = (e: PopStateEvent) => {
         e.preventDefault();
-        window.history.pushState(null, "", window.location.href);
+        window.history.pushState(
+          null,
+          "",
+          window.location.href
+        );
       };
 
-      window.history.pushState(null, "", window.location.href);
-      window.addEventListener("popstate", handlePopState);
+      window.history.pushState(
+        null,
+        "",
+        window.location.href
+      );
 
-      return () => window.removeEventListener("popstate", handlePopState);
+      window.addEventListener(
+        "popstate",
+        handlePopState
+      );
+
+      return () => {
+        window.removeEventListener(
+          "popstate",
+          handlePopState
+        );
+      };
     }
   }, []);
 
   if (!localSimulator) {
     return (
-
-        <div className={style["not-content-container"]}>
-            <Image src="/layout/no-content.png" alt="not found" width={100} height={100}></Image>
-            <p>Este contenido ya no se encuentra disponible</p>
-            <Link href={"/plataforma"}>Volver atras</Link>
-        </div>
-    )
+      <div className={style["not-content-container"]}>
+        <Image
+          src="/layout/no-content.png"
+          alt="not found"
+          width={100}
+          height={100}
+        />
+        <p>Este contenido ya no se encuentra disponible</p>
+        <Link href="/simuladores">Volver atrás</Link>
+      </div>
+    );
   }
 
   const date = new Date();
+
   const formattedDate = date.toLocaleDateString("es-MX", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+
   const cleanDate = formattedDate.replace(",", "");
 
   const shareMessage = `¡Acabo de completar el simulador "${localSimulator?.titulo}" con ${localScore}/${localTotalScore}! 🎯`;
@@ -114,7 +144,11 @@ const Page = () => {
 
             <div className={style["progress-bar"]}>
               <CircularProgressbar
-                value={(localScore / localTotalScore) * 100}
+                value={
+                  localTotalScore > 0
+                    ? (localScore / localTotalScore) * 100
+                    : 0
+                }
                 text={`${localScore}`}
                 strokeWidth={6}
                 styles={buildStyles({
@@ -130,6 +164,7 @@ const Page = () => {
 
           <div className={style["result-left-footer"]}>
             <p>Comparte tu puntuación</p>
+
             <div className={style["shared-icons"]}>
               {currentUrl && (
                 <>
@@ -157,9 +192,10 @@ const Page = () => {
           <h3>Tu puntuación explicada</h3>
 
           <p>
-            Este es un reporte completo de tu desempeño en el simulador. Aquí
-            puedes revisar tu puntaje, el porcentaje de aciertos y el resultado
-            individual de cada pregunta que resolviste durante esta sesión.
+            Este es un reporte completo de tu desempeño en el simulador.
+            Aquí puedes revisar tu puntaje, el porcentaje de aciertos
+            y el resultado individual de cada pregunta que resolviste
+            durante esta sesión.
           </p>
 
           <div className={style["results-header"]}>
@@ -183,11 +219,18 @@ const Page = () => {
           <div className={style["results-container-info"]}>
             <div className={style["results-data-info"]}>
               <div>
-                <img src="/course/calendar-black.png" alt="calendar" />
+                <img
+                  src="/course/calendar-black.png"
+                  alt="calendar"
+                />
                 <p>{cleanDate}</p>
               </div>
+
               <div>
-                <img src="/course/question.png" alt="question" />
+                <img
+                  src="/course/question.png"
+                  alt="question"
+                />
                 <p>{localTotalScore} preguntas</p>
               </div>
             </div>
@@ -195,8 +238,12 @@ const Page = () => {
 
           <div className={style["results-question-list"]}>
             {questions.map((question, index) => (
-              <div key={question.questionId} className={style["question-square"]}>
+              <div
+                key={question.questionId}
+                className={style["question-square"]}
+              >
                 {index + 1}
+
                 <div
                   className={`${style["question-square-result"]} ${
                     question.selectedAnswer === -1
@@ -207,9 +254,15 @@ const Page = () => {
                   }`}
                 >
                   {question.wasCorrect === true ? (
-                    <img src="/course/check-white.png" alt="Correcta" />
+                    <img
+                      src="/course/check-white.png"
+                      alt="Correcta"
+                    />
                   ) : (
-                    <img src="/course/close-white.png" alt="Incorrecta o vacía" />
+                    <img
+                      src="/course/close-white.png"
+                      alt="Incorrecta o vacía"
+                    />
                   )}
                 </div>
               </div>
@@ -218,34 +271,88 @@ const Page = () => {
 
           <p>
             Debajo se muestra el{" "}
-            <strong>detalle individual de cada pregunta</strong> de este
-            simulador, con sus aciertos e intentos.
+            <strong>
+              detalle individual de cada pregunta
+            </strong>{" "}
+            de este simulador, con sus aciertos e intentos.
             <strong>
               {" "}
-              Esta información solo estará disponible en este momento, justo al
-              terminar tu examen
+              Esta información solo estará disponible en este
+              momento, justo al terminar tu examen
             </strong>
             , como parte del análisis inmediato de desempeño.
+
             <br />
             <br />
-            Podrás consultar en cualquier momento el{" "}
-            <strong>resumen general de tus simulaciones</strong> en la sección
-            de resultados, pero{" "}
-            <strong>no el desglose pregunta por pregunta</strong>.
+
+            {isLoaded &&
+              (isSignedIn ? (
+                <>
+                  Podrás consultar en cualquier momento el{" "}
+                  <strong>
+                    resumen general de tus simulaciones
+                  </strong>{" "}
+                  en la sección de resultados, pero{" "}
+                  <strong>
+                    no el desglose pregunta por pregunta
+                  </strong>
+                  .
+                </>
+              ) : (
+                <>
+                  <strong>
+                    Estás realizando el diagnóstico como visitante.
+                  </strong>{" "}
+                  Tu resultado no se guardará en un historial de cuenta.
+                  Si deseas conservar el historial de tus próximas
+                  simulaciones, puedes registrarte en Simulandum.
+                </>
+              ))}
           </p>
 
-          <div className={style["results-buttons"]}>
-            <Link href={"/plataforma/mis-simuladores"} className={style["border"]}>
-              Ir a simuladores
-            </Link>
-            <Link href={"/plataforma/resultados"}>Ver todos los reportes</Link>
-          </div>
+          {isLoaded && (
+            <div className={style["results-buttons"]}>
+              {isSignedIn ? (
+                <>
+                  <Link
+                    href="/plataforma/mis-simuladores"
+                    className={style["border"]}
+                  >
+                    Ir a simuladores
+                  </Link>
+
+                  <Link href="/plataforma/resultados">
+                    Ver todos los reportes
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/simuladores"
+                    className={style["border"]}
+                  >
+                    Ver simuladores
+                  </Link>
+
+                  <SignUpButton mode="modal">
+                    <button type="button">
+                      Crear una cuenta
+                    </button>
+                  </SignUpButton>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
       <div className={style["questions-container"]}>
         {questions.map((question, index) => (
-          <QuestionItem key={index} question={question} index={index}></QuestionItem>
+          <QuestionItem
+            key={index}
+            question={question}
+            index={index}
+          />
         ))}
       </div>
     </>
@@ -253,3 +360,4 @@ const Page = () => {
 };
 
 export default Page;
+

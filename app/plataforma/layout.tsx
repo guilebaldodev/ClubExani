@@ -1,49 +1,61 @@
-"use client"
+
+"use client";
 
 import { useDashboardStore } from "@/stores/progessStore";
 import Header from "../ui/course/Header";
 import Footer from "../ui/landingPage/Footer";
 import { useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
 
-const Layout = ({children}:{children:React.ReactNode}) => {
+const Layout = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const setStats = useDashboardStore(
+    (s) => s.setDashboardData
+  );
 
-    const setStats= useDashboardStore(s=> s.setDashboardData)
+  const { isLoaded, isSignedIn } = useUser();
 
-    useEffect(()=>{
-        const fetchStats = async()=> {
-            try {
-                const res= await fetch("/api/progreso/stats")
-                if(!res.ok) throw new Error("Error al cargar")
-                const data = await res.json()
-                console.log(data)
+  useEffect(() => {
+    // Esperar a que Clerk determine el estado de autenticación.
+    if (!isLoaded || !isSignedIn) {
+      return;
+    }
 
-                setStats({
-                    stats: data.stats,
-                    lastProgress:data.lastProgress
-                })
-            
+    const fetchStats = async () => {
+      try {
+        const res = await fetch("/api/progreso/stats");
 
-            } catch (error) {
-               console.log(error) 
-            }
+        if (!res.ok) {
+          throw new Error("Error al cargar estadísticas");
         }
 
-        fetchStats()
+        const data = await res.json();
 
-    },[setStats])
+        setStats({
+          stats: data.stats,
+          lastProgress: data.lastProgress,
+        });
+      } catch (error) {
+        console.error(
+          "Error al obtener estadísticas:",
+          error
+        );
+      }
+    };
 
+    fetchStats();
+  }, [isLoaded, isSignedIn, setStats]);
 
-    return ( 
-        <>
-        <div className="colum-container">
-        <Header></Header>
-        <main>
-            {children}
-        </main>
-        <Footer></Footer>
-        </div>
-        </>
-     );
-}
- 
+  return (
+    <div className="colum-container">
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </div>
+  );
+};
+
 export default Layout;

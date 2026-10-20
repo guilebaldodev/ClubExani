@@ -28,7 +28,7 @@ interface StartSimulatorResponse {
   simulator: SimuladorType;
   questions: PreguntaType[];
   totalQuestions: number;
-  user: Usuarios;
+  user: Usuarios | null;
 }
 
 const Page = () => {
@@ -82,7 +82,10 @@ const Page = () => {
     setLoading(true);
 
     const fetchData = async () => {
-      const res = await fetch(`/api/simuladores/start/${id}`);
+      const res = await fetch(`/api/simuladores/start/${id}`, {
+        method: "POST",
+        cache: "no-store",
+      });
       if (!res.ok) {
         if (res.status === 401) {
           toast.error("No tienes acceso.");
@@ -98,6 +101,12 @@ const Page = () => {
 
         if (res.status === 400) {
           toast.error("El ID del simulador no es válido.");
+          router.push("/plataforma/mis-simuladores");
+          return;
+        }
+
+        if (res.status === 409) {
+          toast.error("Este simulador no tiene preguntas disponibles.");
           router.push("/plataforma/mis-simuladores");
           return;
         }
@@ -126,7 +135,7 @@ const Page = () => {
   }, [currentIndex]);
 
   useEffect(() => {
-    if (data && data.simulator) {
+    if (data?.user) {
       const sim = data.user.simuladoresCanjeados.find(
         (s) => s.simuladorId === id
       );
@@ -244,10 +253,21 @@ const Page = () => {
         }),
       });
 
-      if (!response.ok) toast.error("Error al guardar progreso en reportes");
+      if (!response.ok) {
+        throw new Error("Error al guardar progreso en reportes");
+      }
 
-      const json = await response.json()
+      const json = await response.json();
 
+      // Los visitantes pueden consultar sus resultados sin guardar historial.
+      if (json.guest === true) {
+        router.push("/plataforma/resultados-preliminares");
+        return;
+      }
+
+      if (!json.progreso?._id) {
+        throw new Error("La API no devolvió un progreso válido");
+      }
 
       const newProgress = {
         _id: json.progreso._id,
@@ -283,9 +303,10 @@ const Page = () => {
         router.push(`/plataforma/resultados-preliminares`);
       }, 2000);
 
-      if (!response.ok) throw new Error("Error al guardar progreso");
     } catch (error) {
-      console.log(error);
+      console.error("Error al finalizar el simulador:", error);
+      toast.error("No se pudo finalizar el simulador. Inténtalo de nuevo.");
+      setComplete(false);
     }
   };
 
